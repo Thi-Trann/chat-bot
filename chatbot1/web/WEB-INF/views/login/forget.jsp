@@ -8,6 +8,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
+    <div class="container">
     <head>
         <meta charset="UTF-8">
         <link href="${root}/css/Forget.css" rel="stylesheet" type="text/css"/>
@@ -21,14 +22,14 @@
                 <div class="line">
                 <hr/>
                 </div>
-                <input class="login_button" type="submit" value="Cancel" name="cancel">
+               <button class="login_button"><a href="../login/index.do">Cancel</a></button>
                 <input class="find_button" type="submit" value="Find" name="find">
                 
                 
         </form>
     </body>
     
-    
+    </div>
     
     
     
