@@ -1,0 +1,94 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 19, 2022, 11:54:50 AM
+    Author     : quckh
+*/
+body{
+    background-color: #F7C8FF;
+}
+.shop_name{
+    text-align: center;
+    font-size: 50px;  
+    background-color: #F49CEC;
+    padding-bottom: 5px;
+    padding-top: 5px;
+
+}
+.search_button{
+    height: 40px;
+}
+.phone_number{
+    padding-left: 850px;
+    font-size: 20px;
+    font-weight: normal;
+    color: black;
+    margin-bottom: 5px;
+}
+
+/* Bordered form */
+form {
+    border: 3px solid #f1f1f1;
+    width: 700px;
+    margin-left: 420px;
+    border-radius: 50px;
+}
+
+.userName{
+    margin-top: 50px;
+    
+}
+.password{
+    margin-top: 15px;
+}
+
+/* Full-width inputs */
+input[type=text], input[type=password] {
+    width: 50%;
+    padding: 12px 10px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin-left: 200px;
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 5px 0;
+    border: none;
+    cursor: pointer;
+    width: 49%;
+    margin-left: 305px;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+    opacity: 0.8;
+}
+
+
+
+/* The "Forgot password" text */
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+        display: block;
+        float: none;
+    }
+    .cancelbtn {
+        width: 100%;
+    }
+}
+
+
