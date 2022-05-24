@@ -26,6 +26,7 @@ li{
     display: inline;
     float: left;
     border-right: 1px solid #bbb;
+    
 }
 
 ul {
@@ -54,13 +55,13 @@ li a:hover:not(.active){
 
 .search_bar{
     border-radius: 25px;
-    margin-left: 220px;
+    margin-left: 230px;
     height: 40px;
     border: 1px solid black;
     width: 300px;
 }
 .shop_name{
-    padding-left: 670px;
+    text-align: center;
     font-size: 50px;  
     background-color: #F49CEC;
 
@@ -76,11 +77,16 @@ li a:hover:not(.active){
     color: black;
 }
 
-.event_img{
+
+.img{
+    width:inherit;
+    height: auto;
+}
+.item{
     width: 1220px;
-    height: 300px;
-    border: 1px solid black;
     margin-left: 155px;
+    border: 1px solid black;
+    
 }
 
 .row {
