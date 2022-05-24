@@ -37,6 +37,9 @@ public class LoginController extends HttpServlet {
             case "index":
                 index(request, response);
                 break;
+            case "forget":
+                forget(request, response);
+                break;
             default:
                 request.setAttribute("controller", "error");
                 request.setAttribute("action", "index");
@@ -45,6 +48,10 @@ public class LoginController extends HttpServlet {
     }
 
     private void index(HttpServletRequest request, HttpServletResponse response) {
+
+    }
+
+    private void forget(HttpServletRequest request, HttpServletResponse response) {
 
     }
 

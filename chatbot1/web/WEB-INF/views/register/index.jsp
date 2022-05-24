@@ -16,6 +16,7 @@
     <body>
         <form>
             <div class="register_form">
+                
                 Last name: 
                 <input style="margin-left: 39px;" type="text" name="lastName" placeholder="Enter last name"/>
                 First name:

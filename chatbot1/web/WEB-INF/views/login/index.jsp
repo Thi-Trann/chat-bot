@@ -18,7 +18,7 @@ and open the template in the editor.
             <div>
                 <input class="userName" type="text" placeholder="   Enter Username" name="usName"><br/>
                 <input class="password" type="password" placeholder="   Enter Password" name="psw"><br/> 
-                <a style="margin-left: 220px;" href="#">Forgot your password? Click here</a><br/>
+                <a style="margin-left: 220px;" href="<c:url value="/login/forget.do"/>">Forgot your password? Click here</a><br/>
                 <label style="margin-left: 290px;">
                     <input type="checkbox" checked="checked" name="remember"> Remember me
                 </label><br/><br/>
