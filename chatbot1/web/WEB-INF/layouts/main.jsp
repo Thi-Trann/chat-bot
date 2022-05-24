@@ -18,6 +18,9 @@
     </head>
     <body>
         <!--        header-->
+                <h1> <a href="${root}" title="Home Page" class="logo">
+                <img src="${root}/images/logo.png" height="100"/>
+                </h1>
         <div>
             <p>Gấu bông</p>
             <h1 style="">Contact number: 090910509</h1>
