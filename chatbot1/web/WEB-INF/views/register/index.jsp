@@ -24,13 +24,13 @@
                 First name:
                 <input type="text" name="firstName" placeholder="Enter first name"/><br/><br/>
                 Phone number:
-                <input style="margin-left: 5px;" type="number" name="phoneNumber" placeholder="Enter phone number"/><br/><br/>
+                <input style="margin-left: 12px;" type="number" name="phoneNumber" placeholder="Enter phone number"/><br/><br/>
                 Email:
-                <input style="margin-left: 71px;" type="text" name="email" placeholder="Enter your email"/><br/><br/>
+                <input style="margin-left: 68px;" type="text" name="email" placeholder="Enter your email"/><br/><br/>
                 Password:
-                <input style="margin-left: 43px;" type="password" name="password" placeholder="Enter your password"/><br/><br/>
+                <input style="margin-left: 41px;" type="password" name="password" placeholder="Enter your password"/><br/><br/>
                 Day of birth: 
-                <input style="margin-left: 25px;" type="number" name="day" placeholder="Day"/>
+                <input style="margin-left: 31px;" type="number" name="day" placeholder="Day"/>
                 <input type="number" name="month" placeholder="Month"/>
                 <input type="number" name="year" placeholder="Year"/><br/><br/>
                 Gender:
@@ -41,7 +41,7 @@
                 </select>
                 <br/>
                 <br/>
-                <button class="register_button" type="submit"><a href="#">Register</a></button><br/>
+                <button class="register_button" type="submit">Register</button><br/>
             </div>
         </form>
     </body>

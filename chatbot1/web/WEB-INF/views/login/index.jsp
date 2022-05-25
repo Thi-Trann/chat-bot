@@ -14,19 +14,21 @@ and open the template in the editor.
     </head>
     <body>
         <!--        header-->
-        <form >
             <div class="login_form">
                 <p class="login_header">Login</p>
                 <br>
                 <input class="userName" type="text" placeholder="Enter Username" name="usName"><br/>
                 <input class="password" type="password" placeholder="Enter Password" name="psw"><br/> 
-                <a style="margin-left: 220px;" href="<c:url value="/login/forget.do"/>">Forgot your password? Click here</a><br/>
+                <a style="margin-left: 235px;" href="<c:url value="/login/forget.do"/>">Forgot your password? Click here</a><br/>
                 <label style="margin-left: 290px;">
                     <input type="checkbox" checked="checked" name="remember"> Remember me
                 </label><br/><br/>
-                <button class="login_button" type="submit"><a href="../product/product_page.jsp">Login</a></button><br/><br/>
-                <button class="register_button"><a href="<c:url value="/register/index.do"/>">Register</a></button>
+                <form>
+                    <button class="login_button" type="submit">Login</button>
+                </form>
+                <form action="${root}/register/index.do">
+                    <button type="submit" class="register_button">Register</button>
+                </form>
             </div>
-        </form>
     </body>
 </html>
