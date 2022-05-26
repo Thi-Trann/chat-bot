@@ -108,7 +108,6 @@ private void add(HttpServletRequest request, HttpServletResponse response) {
         //Xoa item trong cart
         cart.update(id, quantity);
         //Cho hien cart/index.jsp controller
-        request.setAttribute("controller", "product");
         request.setAttribute("action", "index");
     }
 

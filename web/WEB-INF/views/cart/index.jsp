@@ -31,7 +31,7 @@
             <tr>
                 <td class="text-right">${loop.count}</td>
                 <td class="text-right">${item.id}</td>
-                <td><img src="<c:url value="/products/${item.id}.jpg" />" height="60" /> </td>
+                <td><img src="${root}/images/products/${item.id}.jpg" width="30%" /> </td>
                 <td>${item.description}</td>
                 <td class="text-right"><fmt:formatNumber value="${item.price}" type="currency" /></td>
                 <td class="text-right"><fmt:formatNumber value="${item.discount}" type="percent" /></td>

@@ -44,7 +44,7 @@
                         <li><a href="<c:url value="/login/index.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="search_form"><input type="text" placeholder="Search product..."/><button type="submit" style="background-color: #F49CEC;height: 25px"><i class="bi bi-search"></i></button></li>
+                        <li class="search_form" style="margin-top:11px"><input type="text" placeholder="Search product..."/><button type="submit" style="background-color: #F49CEC;height: 25px"><i class="bi bi-search"></i></button></li>
                     </ul>
                 </div>
             </div>
@@ -53,11 +53,12 @@
             <jsp:include page="/WEB-INF/views/${controller}/${action}.jsp"/>
         </div>
 
+      
         <input type="checkbox" id="check"> 
-        <label class="chat-btn" for="check"> 
+        <label class="chat-btn" for="check" style="position: fixed;"> 
             <img src="${root}/images/chatbot_icon.png" width="100%"/>
         </label> 
-        <div class="wrapper"> 
+        <div class="wrapper" style="position: fixed;"> 
             <div class="header"> <h6>ChatBot</h6> </div>  
             <div class="conversation-wrapper">
                 <ul class="chatlist">
@@ -78,12 +79,13 @@
                 <form action="" id="chatform">
                     <textarea placeholder="Talk to me!" class="chatbox" name="chatbox"></textarea>
                     <input class="submit-button" type="submit" value="send">
+                    
                 </form>
             </div>
         </div>
 
-    </body>
-    <footer class="container-fluid text-center">
+
+    <footer class="container-fluid text-center"style="position: fixed;">
         <p>Copyright by Team 6 - SWP391</p>
     
     </footer>
