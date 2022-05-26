@@ -19,10 +19,10 @@
                 <div class="register_header">
                         Register
                 </div>
-                Last name: 
-                <input style="margin-left: 39px;" type="text" name="lastName" placeholder="Enter last name"/>
-                First name:
-                <input type="text" name="firstName" placeholder="Enter first name"/><br/><br/>
+                Name: 
+                <input style="margin-left: 66px;" type="text" name="lastName" placeholder="Enter last name"/>
+                User name:
+                <input type="text" name="firstName" placeholder="Enter user name"/><br/><br/>
                 Phone number:
                 <input style="margin-left: 12px;" type="number" name="phoneNumber" placeholder="Enter phone number"/><br/><br/>
                 Email:
