@@ -26,26 +26,34 @@
     </thead>
 
     <tbody>
-        <c:forEach var="item" items="${cart.items}" varStatus="loop">
-        <form>
-            <tr>
-                <td class="text-right">${loop.count}</td>
-                <td class="text-right">${item.id}</td>
-                <td><img src="${root}/images/products/${item.id}.jpg" width="30%" /> </td>
-                <td>${item.description}</td>
-                <td class="text-right"><fmt:formatNumber value="${item.price}" type="currency" /></td>
-                <td class="text-right"><fmt:formatNumber value="${item.discount}" type="percent" /></td>
-                <td class="text-right"><fmt:formatNumber value="${item.newPrice}" type="currency" /></td>
-                <td class="text-right"><input type="number" value="${item.quantity}" name="quantity" /></td>
-                <td class="text-right"><fmt:formatNumber value="${item.cost}" type="currency" /></td>
-                <td>
-                    <input type="hidden" value=${item.id} name="id" />
-                    <button type="submit" class="btn btn-link" formaction="<c:url value="/cart/update.do"/>">Update</button>
-                    <button type="submit" class="btn btn-link" formaction="<c:url value="/cart/delete.do"/>">Delete</button>
-                </td>
-            </tr>
-        </form>
-    </c:forEach>
+ 
+            <c:forEach var="item" items="${cart.items}" varStatus="loop">
+                   <div class="row">
+                        <div class="col">
+                <form>
+                    <tr>
+
+                        <td class="text-right">${loop.count}</td>
+                        <td class="text-right">${item.id}</td>
+                        <td><img src="${root}/images/products/${item.id}.jpg" width="30%" /> </td>
+                        <td>${item.description}</td>
+                        <td class="text-right"><fmt:formatNumber value="${item.price}" pattern="$#,##0.00" /></td>
+                        <td class="text-right"><fmt:formatNumber value="${item.discount}" type="percent" /></td>
+                        <td class="text-right"><fmt:formatNumber value="${item.newPrice}" pattern="$#,##0.00" /></td>
+                        <td class="text-right"><input type="number" value="${item.quantity}" name="quantity" /></td>
+                        <td class="text-right"><fmt:formatNumber value="${item.cost}" pattern="$#,##0.00" /></td>
+                        <td>
+                            <input type="hidden" value=${item.id} name="id" />
+                            <button type="submit" class="btn btn-link" formaction="<c:url value="/cart/update.do"/>">Update</button>
+                            <button type="submit" class="btn btn-link" formaction="<c:url value="/cart/delete.do"/>">Delete</button>
+                        </td>
+
+                    </tr>
+                </form>
+
+            </c:forEach>
+        </div>
+    </div>
 </tbody>
 <tfoot>
     <tr>
@@ -57,7 +65,7 @@
         <th></th>
         <th></th>
         <th></th>
-        <th class="text-right"><fmt:formatNumber value="${cart.total}" type="currency" /></th>
+        <th class="text-right"><fmt:formatNumber value="${cart.total}" pattern="$#,##0.00" /></th>
         <th><a href="<c:url value="/cart/empty.do"/>">Empty your cart</a></th>
     </tr>
 </tfoot>

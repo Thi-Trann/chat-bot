@@ -22,6 +22,7 @@
         <link href="${root}/css/layout.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
+        
         <nav class="navbar navbar-inverse" style="background-color:#F49CEC; ">
             <div class="container-fluid">
                 <div class="navbar-header">
