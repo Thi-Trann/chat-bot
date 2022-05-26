@@ -36,7 +36,7 @@
                     <ul class="nav navbar-nav" style="display: inline;">
                         <li><a style="padding: 0px; padding-right: 5px;" class="navbar-collapse" href="<c:url value="/"/>">
                                 <img src="${root}/images/logo.png" height="50"/>
-                        </a></li>
+                            </a></li>
                         <li><a href="<c:url value="/"/>" class="text-dark"><i class="bi bi-house"></i> Home page</a></li>
                         <li><a href="<c:url value="/product/index.do"/>"class="text-dark"><i class="bi bi-bag"></i> Product list</a></li>
                         <li><a href="<c:url value="/cart/index.do"/>"class="text-dark"><i class="bi bi-cart"></i> Cart</a></li>
@@ -53,8 +53,9 @@
         <div>
             <jsp:include page="/WEB-INF/views/${controller}/${action}.jsp"/>
         </div>
-        <footer class="container-fluid text-center" style="background-color: #F7C8FF;">
-            <p>Copyright by Team 6 - SWP301</p>
-        </footer>
+
     </body>
+    <footer class="container-fluid text-center">
+        <p>Copyright by Team 6 - SWP391</p>
+    </footer>
 </html>

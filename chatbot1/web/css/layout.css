@@ -8,7 +8,7 @@ and open the template in the editor.
     Author     : quckh
 */
 body{
-    background-color: #F7C8FF;
+    background-color: white;
 }
 
 /* Remove the navbar's default margin-bottom and rounded borders */ 
@@ -39,5 +39,14 @@ footer {
 .search_form{
     margin-top: 11px;
     margin-right: 15px;
+}
+footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #F49CEC;;
+    color: black;
+    text-align: center;
 }
 
