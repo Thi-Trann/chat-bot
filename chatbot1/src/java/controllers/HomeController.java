@@ -44,7 +44,7 @@ public class HomeController extends HttpServlet {
     }
 
     private void index(HttpServletRequest request, HttpServletResponse response) {
-
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -5,21 +5,26 @@
  */
 package controllers;
 
+
+import cart.Cart;
+import entities.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import sesionbean.ProductFacade;
 
-/**
- *
- * @author quckh
- */
+
 @WebServlet(name = "CartController", urlPatterns = {"/cart"})
 public class CartController extends HttpServlet {
-
+   @EJB
+    private ProductFacade pf;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -29,13 +34,25 @@ public class CartController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String action = request.getAttribute("action").toString();
         switch (action) {
             case "index":
                 index(request, response);
+                break;
+            case "add":
+                add(request, response);
+                break;
+            case "update":
+                update(request, response);
+                break;
+            case "delete":
+                delete(request, response);
+                break;
+            case "empty":
+                empty(request, response);
                 break;
             default:
                 request.setAttribute("controller", "error");
@@ -46,6 +63,60 @@ public class CartController extends HttpServlet {
 
     private void index(HttpServletRequest request, HttpServletResponse response) {
 
+    }
+
+private void add(HttpServletRequest request, HttpServletResponse response) {
+        //Lấy thông tin từ client gửi lên
+        int id = Integer.parseInt(request.getParameter("id"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        //Lấy cart từ session        
+        HttpSession session = request.getSession();
+        Cart cart = (Cart)session.getAttribute("cart");
+        if(cart==null){//Nếu trong session chưa có cart thì tạo mới cart
+            cart = new Cart();
+        }
+        //Thêm item vào cart
+        cart.add(id, quantity);
+        //Để cart vào session
+        session.setAttribute("cart", cart);
+        //Cho hiện view home/index.jsp
+        request.setAttribute("controller","product");
+        request.setAttribute("action","index");
+        //Đọc danh sách sản phẩm
+        List<Product> list = pf.findAll();
+        request.setAttribute("list", list);
+    }
+
+    private void delete(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+
+        HttpSession session = request.getSession();
+        Cart cart = (Cart)session.getAttribute("cart");
+        //Xoa item trong cart
+        cart.delete(id);
+        //Cho hien cart/index.jsp
+        request.setAttribute("action", "index");
+    }
+
+    private void update(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+
+        HttpSession session = request.getSession();
+        Cart cart = (Cart)session.getAttribute("cart");
+        //Xoa item trong cart
+        cart.update(id, quantity);
+        //Cho hien cart/index.jsp
+        request.setAttribute("action", "index");
+    }
+
+    private void empty(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+        Cart cart = (Cart)session.getAttribute("cart");
+        //Xoa item trong cart
+        cart.empty();
+        //Cho hien cart/index.jsp
+        request.setAttribute("action", "index");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
