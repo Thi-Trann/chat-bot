@@ -78,7 +78,7 @@
             <div class="chatbox-area">
                 <form action="" id="chatform">
                     <textarea placeholder="Talk to me!" class="chatbox" name="chatbox"></textarea>
-                    <input class="submit-button" type="submit" value="send">
+                    <input class="submit-button" type="submit" value="Send">
                 </form>
             </div>
         </div>

@@ -187,15 +187,14 @@ footer {
 
 textarea[name="chatbox"] {
     resize: none;
-    border: 2px solid $main-color-2;
-    border-right: 0;
+    border: 2px solid black;
 
     width: 70%;
     background-color: #fff;
     height: 3em;
     margin: 0;
     padding: 0.75em;
-    border-radius: 8px 0px 0px 8px;
+    border-radius: 8px;
     font-family: inherit;
     font-size: 1em;
 }
@@ -203,6 +202,7 @@ textarea[name="chatbox"] {
 .submit-button{
     margin: 0 0 0 10px;
     border-radius: 5px;
+    border: 2px solid black;
 }
 
 footer{
