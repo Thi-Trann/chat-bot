@@ -36,10 +36,6 @@ footer {
     }
 }
 
-.search_form{
-    margin-top: 11px;
-    margin-right: 15px;
-}
 .chat-btn {
     position: absolute;
     right: 30px;
@@ -77,20 +73,18 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 50px;
-    color: #fff;
-    font-size: 22px;
     border: none;
 }
 
 .wrapper {
     position: absolute;
-    height: 500px;
+    height: 550px;
     right: 20px;
     bottom: 150px;
-    width: 350px;
+    width: 400px;
     background-color: #F49CEC;
     border-radius: 5px;
+    border: outset;
     opacity: 0;
     transition: all 0.4s;
     overflow: auto;
@@ -137,8 +131,8 @@ footer {
 
 .conversation-wrapper{
     display: flex;
-    width: 350px;
-    height: 356px;
+    width: 380px;
+    height: 380px;
 }
 
 .chatlist {
@@ -179,7 +173,7 @@ footer {
     position: relative;
     bottom: 0;
     height: 75px;
-    width: 350px;
+    width: 380px;
 }
 
 #chatform {
