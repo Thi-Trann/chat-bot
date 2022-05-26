@@ -20,6 +20,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="${root}/css/layout.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
@@ -52,6 +53,35 @@
         </nav>
         <div>
             <jsp:include page="/WEB-INF/views/${controller}/${action}.jsp"/>
+        </div>
+
+        <input type="checkbox" id="check"> 
+        <label class="chat-btn" for="check"> 
+            <img src="${root}/images/chatbot_icon.png" width="100%"/>
+        </label> 
+        <div class="wrapper"> 
+            <div class="header"> <h6>ChatBot</h6> </div>  
+            <div class="conversation-wrapper">
+                <ul class="chatlist">
+                    <li class="bot__output bot__output--standard">Hey, I'm ChatBot!</li>
+                    <li class="bot__output bot__output--standard">I will guide you through Brown Ted!</li>
+                    <li class="bot__output bot__output--standard">
+                        <span class="bot__output--second-sentence">You can ask me a bunch of things!</span>
+                        <ul>
+                            <li class="input__nested-list">Show the product list</li>
+                            <li class="input__nested-list">Show trending products</li>
+                            <li class="input__nested-list">...</li>
+                        </ul>
+                    </li>
+                    <li class="bot__output bot__output--standard">Ask me something!</li>
+                </ul>
+            </div>
+            <div class="chatbox-area">
+                <form action="" id="chatform">
+                    <textarea placeholder="Talk to me!" class="chatbox" name="chatbox"></textarea>
+                    <input class="submit-button" type="submit" value="send">
+                </form>
+            </div>
         </div>
 
     </body>
