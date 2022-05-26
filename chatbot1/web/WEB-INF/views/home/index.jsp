@@ -5,6 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<head>
+    <link href="${root}/css/home.css" rel="stylesheet" type="text/css"/>
+</head>
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -42,15 +45,16 @@
 
 <div class="container text-center">    
     <br>
-    <div class="row">
+    <div class="row" style="border: 2px solid black; height: 200px; padding: 10px;">
         <div class="col-sm-4">
             <img src="${root}/images/PNG home page/topic1.png" class="img-responsive" style="width:100%" alt="Image">
         </div>
-        <div class="col-sm-4"> 
-            <img src="${root}/images/PNG home page/topic2.png" class="img-responsive" style="width:100%" alt="Image">
+        <div class="col-sm-8"> 
+            <p style="text-align: left;">We are Brown Ted, a Teddy bear shop focusing on giving customers the best online cuddling material through our chatbot system. With our system, you can complete a purchase only using our texting method and don't have to move a muscle or wrack your brain navigating through the web store (you can still do it of course). We hope to give you a wonderful shopping time here at our shop!</p>
+            <form action="${root}/product/index.do">
+                <button class="product_button" type="submit">See all product</button>
+            </form>
         </div>
-        <div class="col-sm-4"> 
-            <img src="${root}/images/PNG home page/topic3.png" class="img-responsive" style="width:100%" alt="Image">
-        </div>
+
     </div>
 </div><br/>
