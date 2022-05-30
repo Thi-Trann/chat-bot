@@ -15,14 +15,14 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>   
-        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css">
         <link href="${root}/css/layout.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        
+
         <nav class="navbar navbar-inverse" style="background-color:#F49CEC; ">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -54,45 +54,38 @@
             <jsp:include page="/WEB-INF/views/${controller}/${action}.jsp"/>
         </div>
 
-      
-        <input type="checkbox" id="check"> 
-        <label class="chat-btn" for="check" style="position: fixed;"> 
-            <img src="${root}/images/chatbot_icon.png" width="100%"/>
-        </label> 
-        <div class="wrapper" style="position: fixed;"> 
-            <div class="header"> <h6>ChatBot</h6> </div>  
-            <div class="conversation-wrapper">
-                <ul class="chatlist">
-                    <li class="bot__output bot__output--standard">Hey, I'm ChatBot!</li>
-                    <li class="bot__output bot__output--standard">I will guide you through Brown Ted!</li>
-                    <li class="bot__output bot__output--standard">
-                        <span class="bot__output--second-sentence">You can ask me a bunch of things!</span>
-                        <ul>
-                            <li class="input__nested-list">Show the product list</li>
-                            <li class="input__nested-list">Show trending products</li>
-                            <li class="input__nested-list">...</li>
-                        </ul>
-                    </li>
-                    <li class="bot__output bot__output--standard">Ask me something!</li>
-                </ul>
+        <!-- Chat bot-->
+        <section>
+            <button class="chat-btn"> 
+                <img src="${root}/images/chatbot_icon.png" width="100%"/>
+            </button> 
+            <div class="chat-popup">
+                <div class="chat-header">
+                    <div style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid #05c702; padding: 2px 0 0 1px;">
+                        <img src="${root}/images/logo.png" class="img-fluid rounded-circle" style="margin: auto"/>
+                    </div>
+                    <div class="header-text">ChatBot</div>
+                    <button class="close-btn"><i class="material-icons"> close</i></button>
+                </div>
+                <div class="chat-area">
+                    <div class="incoming-msg">
+                        <span class="bot-msg">Hi, I'm Chatbot</span>
+                        <span class="bot-msg">How can I help you?</span>
+                    </div>
+                </div>
+                <div class="input-area">
+                    <input type="text" id="txtmsg" placeholder="Enter your message here...">
+                    <button class="submit-btn" style="padding-left: 8px"> <i class="material-icons"> send</i></button>
+                </div>
             </div>
-            <div class="chatbox-area">
-                <form action="" id="chatform">
-                    <textarea placeholder="Talk to me!" class="chatbox" name="chatbox"></textarea>
-                    <input class="submit-button" type="submit" value="send">
-                    
-                </form>
-            </div>
-        </div>
+        </section>
 
 
-    <footer class="container-fluid text-center"style="position: fixed;">
-        <p>Copyright by Team 6 - SWP391</p>
-    
-    </footer>
-              
+        <footer class="container-fluid text-center"style="position: fixed;">
+            <p>Copyright by Team 6 - SWP391</p>
+
+        </footer>
+
+        <script src="${root}/js/main.js"></script>
     </body>
-   
-
-      
 </html>
