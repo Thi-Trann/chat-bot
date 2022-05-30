@@ -130,7 +130,7 @@ footer {
     display: flex;
     justify-content: center;
 }
-input[type="text"]{
+#txtmsg{
     padding: auto;
     width: 80%;
     border: 1px solid #ccc;
