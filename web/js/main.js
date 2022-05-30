@@ -15,10 +15,12 @@ $(popup).hide();
 $(chatBtn).click(function () {
     $(popup).toggle("swing");
     $(txtMsg).select();
+    txtMsg.value = "";
 });
 
 $(closeBtn).click(function () {
     $(popup).hide("swing");
+    txtMsg.value = "";
 });
 
 //Send messages
