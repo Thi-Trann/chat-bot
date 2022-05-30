@@ -109,6 +109,8 @@ footer {
     margin-left: 1rem;
     margin-bottom: 1rem;
     box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+    max-width: 60%;
+    word-break: break-all;
 }
 
 .chat-header .close-btn{
@@ -160,12 +162,14 @@ input[type="text"]{
 .my-msg{
     display: flex;
     justify-content: flex-end;
-    margin: 0.75rem;
     padding: 0.5rem;
     border-radius: 5px;
     background-color: white;
     word-break: break-all;
     box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+    max-width: 60%;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
 }
 
 footer{

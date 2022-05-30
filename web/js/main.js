@@ -8,40 +8,44 @@ const chatBtn = document.querySelector('.chat-btn');
 const closeBtn = document.querySelector('.close-btn');
 const submitBtn = document.querySelector('.submit-btn');
 const chatArea = document.querySelector('.chat-area');
-
+const txtMsg = document.querySelector('#txtmsg');
 //Display chat box
 $(popup).hide();
 
 $(chatBtn).click(function () {
     $(popup).toggle("swing");
+    $(txtMsg).select();
 });
 
 $(closeBtn).click(function () {
-    $(popup).hide();
+    $(popup).hide("swing");
 });
 
 //Send messages
-function eraseText(){
+function eraseText() {
     document.getElementById("txtmsg").value = "";
 }
 
+$(txtMsg).keyup(function(event) {
+    if(event.keyCode === 13) {
+        $(submitBtn).click();
+    }
+});
+
 $(submitBtn).click(function () {
-    var userInput = $("#txtmsg").val();
-    if(userInput === ""){
+    var userInput = $(txtMsg).val();
+    if (userInput === "") {
         return;
-    }else{
+    } else {
         var myMsg = `
         <div class="out-msg">
         <span class="my-msg">${userInput}</span>
         </div>`;
-    
-    chatArea.insertAdjacentHTML("beforeend", myMsg);
-    this.scrollIntoView(false);
-    userInput = "";
-    eraseText();
-    chatArea.scrollIntoView(true);
+
+        chatArea.insertAdjacentHTML("beforeend", myMsg);
+        this.scrollIntoView(false);
+        userInput = "";
+        eraseText();
+        chatArea.scrollTop = chatArea.scrollHeight;
     }
 });
-
-//Auto message scroll
-
