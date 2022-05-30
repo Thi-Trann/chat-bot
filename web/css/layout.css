@@ -57,9 +57,9 @@ footer {
 .chat-popup{
     display: flex;
     position: fixed;
-    bottom: 130px;
-    right: 15px;
-    height: 450px;
+    bottom: 125px;
+    right: 25px;
+    height: 470px;
     width: 300px;
     background-color: #F49CEC;
     flex-direction: column;
