@@ -9,23 +9,24 @@ const closeBtn = document.querySelector('.close-btn');
 const submitBtn = document.querySelector('.submit-btn');
 const chatArea = document.querySelector('.chat-area');
 const txtMsg = document.querySelector('#txtmsg');
+
 //Display chat box
 $(popup).hide();
 
 $(chatBtn).click(function () {
     $(popup).toggle("swing");
     $(txtMsg).select();
-    txtMsg.value = "";
+    eraseText();
 });
 
 $(closeBtn).click(function () {
     $(popup).hide("swing");
-    txtMsg.value = "";
+    eraseText();
 });
 
 //Send messages
 function eraseText() {
-    document.getElementById("txtmsg").value = "";
+    txtMsg.value = "";
 }
 
 $(txtMsg).keyup(function(event) {
