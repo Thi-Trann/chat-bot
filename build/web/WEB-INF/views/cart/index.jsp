@@ -15,6 +15,7 @@
             <th class="text-right">No.</th>
             <th class="text-right">Id</th>
             <th>Image</th>
+            <th>Name</th>
             <th>Description.</th>
             <th class="text-right">Old price</th>
             <th class="text-right">Discount</th>
@@ -26,16 +27,17 @@
     </thead>
 
     <tbody>
- 
-            <c:forEach var="item" items="${cart.items}" varStatus="loop">
-                   <div class="row">
-                        <div class="col">
+
+        <c:forEach var="item" items="${cart.items}" varStatus="loop">
+        <div class="row">
+            <div class="col">
                 <form>
                     <tr>
 
                         <td class="text-right">${loop.count}</td>
                         <td class="text-right">${item.id}</td>
                         <td><img src="${root}/images/products/${item.id}.jpg" width="30%" /> </td>
+                        <td>${item.name}</td>
                         <td>${item.description}</td>
                         <td class="text-right"><fmt:formatNumber value="${item.price}" pattern="$#,##0.00" /></td>
                         <td class="text-right"><fmt:formatNumber value="${item.discount}" type="percent" /></td>
@@ -57,6 +59,7 @@
 </tbody>
 <tfoot>
     <tr>
+        <th></th>
         <th></th>
         <th></th>
         <th></th>

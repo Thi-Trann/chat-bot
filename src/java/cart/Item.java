@@ -9,6 +9,7 @@ package cart;
 public class Item {
     private int id;
     private String description;
+    private String name;
     private double price;
     private double discount;
     private int quantity;
@@ -16,12 +17,13 @@ public class Item {
     public Item() {
     }
 
-    public Item(int id, String description, double price, double discount, int quantity) {
+    public Item(int id,String name, String description, double price, double discount, int quantity) {
         this.id = id;
         this.description = description;
         this.price = price;
         this.discount = discount;
         this.quantity = quantity;
+        this.name = name;
     }
 
     public int getId() {
@@ -71,4 +73,13 @@ public class Item {
     public double getCost() {
         return this.getNewPrice()*quantity;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
 }

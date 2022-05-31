@@ -36,6 +36,7 @@ public class Cart {
             Product product = pf.find(id);
             item = new Item(product.getId(),
                     product.getDescription(),
+                    product.getName(),
                     product.getPrice(),
                     product.getDiscount(),
                     quantity);
