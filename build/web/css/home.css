@@ -13,4 +13,32 @@ and open the template in the editor.
     height: 50px;
     border-radius: 50px;
     background-color: #04AA6D;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.product_button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.product_button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.product_button:hover span {
+    padding-right: 25px;
+}
+
+.product_button:hover span:after {
+    opacity: 1;
+    right: 0;
 }
