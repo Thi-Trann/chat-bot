@@ -7,13 +7,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
-
+ 
+<c:if test="${cart.numOfProducts>0}">
+    
+    
 <table class="table table-striped">
     <thead>
         <tr>
             <th class="text-right">No.</th>
-            <th class="text-right">Id</th>
             <th>Image</th>
             <th>Name</th>
             <th>Description.</th>
@@ -35,14 +36,13 @@
                     <tr>
 
                         <td class="text-right">${loop.count}</td>
-                        <td class="text-right">${item.id}</td>
                         <td><img src="${root}/images/products/${item.id}.jpg" width="30%" /> </td>
                         <td>${item.name}</td>
                         <td>${item.description}</td>
                         <td class="text-right"><fmt:formatNumber value="${item.price}" pattern="$#,##0.00" /></td>
                         <td class="text-right"><fmt:formatNumber value="${item.discount}" type="percent" /></td>
                         <td class="text-right"><fmt:formatNumber value="${item.newPrice}" pattern="$#,##0.00" /></td>
-                        <td class="text-right"><input type="number" value="${item.quantity}" name="quantity" /></td>
+                        <td class="text-right"><input type="number" value="${item.quantity}" style="width: 65px; text-align: right;"name="quantity" /></td>
                         <td class="text-right"><fmt:formatNumber value="${item.cost}" pattern="$#,##0.00" /></td>
                         <td>
                             <input type="hidden" value=${item.id} name="id" />
@@ -62,14 +62,35 @@
         <th></th>
         <th></th>
         <th></th>
-        <th></th>
-        <th>Total</th>
-        <th></th>
+     
         <th></th>
         <th></th>
         <th></th>
+        <th></th>
+           <th>Total</th>
         <th class="text-right"><fmt:formatNumber value="${cart.total}" pattern="$#,##0.00" /></th>
         <th><a href="<c:url value="/cart/empty.do"/>">Empty your cart</a></th>
+        
     </tr>
 </tfoot>
 </table>
+</c:if>
+<c:if test="${cart.numOfProducts<=0 || cart.numOfProducts==null}">
+<div style="margin-left:16%;">
+<img src="${root}/images/not.png" />
+</div>
+<h1 style="text-align: center">
+    Don't have anything in cart !
+</h1>
+<h1 style="text-align: center">
+    <form action='${root}/product/index.do'>
+    <button style='    
+    background-color: #f0bc4d;
+    color: rgb(74, 74, 74);
+    font-weight: 500;
+    padding: 10px 55px;
+    display: inline-block;
+    border-radius: 4px;' type='submit'>Go shopping</button>
+    </form>     
+</h1>
+</c:if>

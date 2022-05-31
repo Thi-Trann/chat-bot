@@ -7,7 +7,14 @@ and open the template in the editor.
     Created on : May 31, 2022, 9:30:29 AM
     Author     : quckh
 */
-
+.gLDlsb .empty__btn {
+    background-color: rgb(253, 216, 53);
+    color: rgb(74, 74, 74);
+    font-weight: 500;
+    padding: 10px 55px;
+    display: inline-block;
+    border-radius: 4px;
+}
 .title{
     margin-bottom: 5vh;
 }

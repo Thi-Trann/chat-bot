@@ -6,7 +6,7 @@
         <property name="portNumber" value="1433"/>
         <property name="databaseName" value="ChatbotShop1"/>
         <property name="User" value="sa"/>
-        <property name="Password" value="1"/>
+        <property name="Password" value="minhthi160992"/>
         <property name="URL" value="jdbc:sqlserver://localhost:1433;databaseName=ChatbotShop1"/>
         <property name="driverClass" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
     </jdbc-connection-pool>
