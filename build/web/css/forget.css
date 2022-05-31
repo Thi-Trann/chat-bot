@@ -33,7 +33,7 @@
     width: 250px;
     height: 50px;
     border-radius: 50px;
-    background-color: #04AA6D;
+    background-color: #f0bc4d;
 }
 
 .cancel_button{
@@ -41,6 +41,6 @@
     width: 250px;
     height: 50px;
     border-radius: 50px;
-    background-color: #04AA6D;
+    background-color: #f0bc4d;
     margin-top: 15px;
 }

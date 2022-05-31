@@ -24,10 +24,10 @@ and open the template in the editor.
                     <input type="checkbox" checked="checked" name="remember"> Remember me
                 </label><br/><br/>
                 <form>
-                    <button class="login_button" type="submit">Login</button>
+                    <button style="margin-left: 220px;" class="login_button" type="submit"><span>Login</span></button>
                 </form>
                 <form action="${root}/register/index.do">
-                    <button type="submit" class="register_button">Register</button>
+                    <button style="margin-left: 220px;" type="submit" class="register_button"><span>Register</span></button>
                 </form>
             </div>
     </body>

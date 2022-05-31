@@ -15,7 +15,7 @@ and open the template in the editor.
     margin: 0 auto;
     margin-top: 50px;
     border-radius: 50px;
-    height: 420px;
+    height: 450px;
     background-color: #FEE7FF;
 
 }
@@ -28,7 +28,7 @@ and open the template in the editor.
     font-weight: bold;
 }
 .userName{
-    
+
     text-indent: 20px;
     margin-left: 150px;
     width: 400px;
@@ -44,17 +44,72 @@ and open the template in the editor.
     border-radius: 50px;
 }
 .login_button{
-    margin-left: 220px;
+    margin: 250px auto;
     width: 250px;
     height: 50px;
     border-radius: 50px;
-    background-color: #04AA6D;
+    background-color: #f0bc4d;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
 }
 
+.login_button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.login_button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.login_button:hover span {
+    padding-right: 25px;
+}
+
+.login_button:hover span:after {
+    opacity: 1;
+    right: 0;
+}
 .register_button{
     width: 250px;
     height: 50px;
     border-radius: 50px;
-    background-color: #04AA6D;
+    background-color: #f0bc4d;
     margin-left: 220px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.register_button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.register_button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.register_button:hover span {
+    padding-right: 25px;
+}
+
+.register_button:hover span:after {
+    opacity: 1;
+    right: 0;
 }

@@ -8,21 +8,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
-        <head>
-            <meta charset="UTF-8">
-            <link href="${root}/css/forget.css" rel="stylesheet" type="text/css"/>
-        </head>
-        <body>
-            <form>
-                <div class="forget_form">
-                    <p class="title">Find your account</p>
+    <head>
+        <meta charset="UTF-8">
+        <link href="${root}/css/forget.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <form>
+            <div class="forget_form">
+                <p class="title">Find your account</p>
                 <hr/>
                 <div class="message">Please enter your email or mobile number to search for your account.</div>
                 <input class="input_forget" type="text" placeholder="Enter your Email/Phone number" >
                 <hr/>
                 <button type="submit" class="find_button">Find</button><br/>
                 <button type="reset" class="cancel_button">Cancel</button>
-            </form>
-            </div>
-        </body>
+        </form>
+    </div>
+</body>
 </html>

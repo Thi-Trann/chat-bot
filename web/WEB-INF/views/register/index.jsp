@@ -17,22 +17,18 @@
         <form>
             <div class="register_form">
                 <div class="register_header">
-                        Register
+                    Register
                 </div>
                 Name: 
-                <input style="margin-left: 66px;" type="text" name="lastName" placeholder="Enter last name"/>
+                <input style="margin-left: 66px;" type="text" name="lastName" placeholder="Enter last name"/><br/><br/>
                 User name:
-                <input type="text" name="firstName" placeholder="Enter user name"/><br/><br/>
+                <input style="margin-left: 35px;" type="text" name="firstName" placeholder="Enter user name"/><br/><br/>
+                Password:
+                <input style="margin-left: 41px;" type="password" name="password" placeholder="Enter your password"/><br/><br/>
                 Phone number:
                 <input style="margin-left: 12px;" type="number" name="phoneNumber" placeholder="Enter phone number"/><br/><br/>
                 Email:
                 <input style="margin-left: 68px;" type="text" name="email" placeholder="Enter your email"/><br/><br/>
-                Password:
-                <input style="margin-left: 41px;" type="password" name="password" placeholder="Enter your password"/><br/><br/>
-                Day of birth: 
-                <input style="margin-left: 31px;" type="number" name="day" placeholder="Day"/>
-                <input type="number" name="month" placeholder="Month"/>
-                <input type="number" name="year" placeholder="Year"/><br/><br/>
                 Gender:
                 <select style="margin-left: 57px;">
                     <option>Male</option>
@@ -41,7 +37,7 @@
                 </select>
                 <br/>
                 <br/>
-                <button class="register_button" type="submit">Register</button><br/>
+                <button style=" margin-left: 270px;" class="register_button" type="submit"><span>Register</span></button><br/>
             </div>
         </form>
     </body>
