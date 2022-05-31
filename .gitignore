@@ -3,3 +3,4 @@ nbproject/private/private.properties
 web/WEB-INF/glassfish-resources.xml
 /build/
 /nbproject/private/
+/dist/

@@ -20,24 +20,24 @@
                     Register
                 </div>
                 Name: 
-                <input style="margin-left: 66px;" type="text" name="lastName" placeholder="Enter last name"/><br/><br/>
+                <input style="margin-left: 66px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px; border: none;" type="text" name="lastName" placeholder="Enter last name"/><br/><br/>
                 User name:
-                <input style="margin-left: 35px;" type="text" name="firstName" placeholder="Enter user name"/><br/><br/>
+                <input style="margin-left: 35px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="text" name="firstName" placeholder="Enter user name"/><br/><br/>
                 Password:
-                <input style="margin-left: 41px;" type="password" name="password" placeholder="Enter your password"/><br/><br/>
+                <input style="margin-left: 41px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="password" name="password" placeholder="Enter your password"/><br/><br/>
                 Phone number:
-                <input style="margin-left: 12px;" type="number" name="phoneNumber" placeholder="Enter phone number"/><br/><br/>
+                <input style="margin-left: 12px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="number" name="phoneNumber" placeholder="Enter phone number"/><br/><br/>
                 Email:
-                <input style="margin-left: 68px;" type="text" name="email" placeholder="Enter your email"/><br/><br/>
+                <input style="margin-left: 68px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="text" name="email" placeholder="Enter your email"/><br/><br/>
                 Gender:
-                <select style="margin-left: 57px;">
+                <select style="margin-left: 57px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;">
                     <option>Male</option>
                     <option>Female</option>
                     <option>Other</option>
                 </select>
                 <br/>
                 <br/>
-                <button style=" margin-left: 270px;" class="register_button" type="submit"><span>Register</span></button><br/>
+                <button style=" margin-left: 190px;" class="register_button" type="submit"><span>Register</span></button><br/>
             </div>
         </form>
     </body>
