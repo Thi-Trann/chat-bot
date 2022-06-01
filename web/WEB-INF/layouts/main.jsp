@@ -44,7 +44,7 @@
                                     product(s)</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="<c:url value="/login/index.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        <li><a href="<c:url value="/login/login.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="search_form" style="margin-top:11px"><input type="text" placeholder="Search product..."/><button type="submit" style="background-color: #D59B00;height: 25px"><i class="bi bi-search"></i></button></li>

@@ -136,12 +136,14 @@ footer {
     border-radius: 5px;
     height: 3.3rem;
     box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+    text-indent: 10px;
+
 }
 
 .submit-btn{
     margin-left: 0.5rem;
     background-color: white;
-    color: #F49CEC;
+    color: #fffa37	;
     display: flex;
     justify-content: center;
     align-items: center;
