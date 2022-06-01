@@ -8,8 +8,7 @@ and open the template in the editor.
     Author     : quckh
 */
 
-
-.shopping{ 
+.shopping_button{
     background-color: #f0bc4d;
     color: rgb(74, 74, 74);
     font-weight: 500;
@@ -21,16 +20,14 @@ and open the template in the editor.
     margin: 5px;
 }
 
-
-
-.shopping span {
+.shopping_button span {
     cursor: pointer;
     display: inline-block;
     position: relative;
     transition: 0.5s;
 }
 
-.shopping span:after {
+.shopping_button span:after {
     content: '\00bb';
     position: absolute;
     opacity: 0;
@@ -39,11 +36,11 @@ and open the template in the editor.
     transition: 0.5s;
 }
 
-.shopping:hover span {
+.shopping_button:hover span {
     padding-right: 25px;
 }
 
-.shopping:hover span:after {
+.shopping_button:hover span:after {
     opacity: 1;
     right: 0;
 }

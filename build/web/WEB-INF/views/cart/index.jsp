@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="${root}/css/cart.css" rel="stylesheet" type="text/css"/>
 </head>
 <c:if test="${cart.numOfProducts>0}">
 
@@ -34,7 +35,6 @@
         </thead>
 
         <tbody>
-
             <c:forEach var="item" items="${cart.items}" varStatus="loop">
             <div class="row">
                 <div class="col">
@@ -97,13 +97,7 @@
     </h1>
     <h1 style="text-align: center">
         <form action='${root}/product/index.do'>
-            <button style='    
-                    background-color: #f0bc4d;
-                    color: rgb(74, 74, 74);
-                    font-weight: 500;
-                    padding: 10px 55px;
-                    display: inline-block;
-                    border-radius: 4px;' type='submit'>Go shopping</button>
+            <button class="shopping_button" type='submit'><span>Go shopping</span></button>
         </form>     
     </h1>
 </c:if>
