@@ -6,9 +6,7 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,10 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -38,7 +33,6 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Account.findByAddress", query = "SELECT a FROM Account a WHERE a.address = :address")
     , @NamedQuery(name = "Account.findByPhone", query = "SELECT a FROM Account a WHERE a.phone = :phone")
     , @NamedQuery(name = "Account.findByEmail", query = "SELECT a FROM Account a WHERE a.email = :email")
-    , @NamedQuery(name = "Account.findByDate", query = "SELECT a FROM Account a WHERE a.date = :date")
     , @NamedQuery(name = "Account.findByGender", query = "SELECT a FROM Account a WHERE a.gender = :gender")
     , @NamedQuery(name = "Account.findByUserName", query = "SELECT a FROM Account a WHERE a.userName = :userName")
     , @NamedQuery(name = "Account.findByPassword", query = "SELECT a FROM Account a WHERE a.password = :password")
@@ -76,13 +70,9 @@ public class Account implements Serializable {
     private String email;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "date")
-    @Temporal(TemporalType.DATE)
-    private Date date;
-    @Basic(optional = false)
-    @NotNull
+    @Size(min = 1, max = 20)
     @Column(name = "gender")
-    private boolean gender;
+    private String gender;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
@@ -102,10 +92,6 @@ public class Account implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "role")
     private String role;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "account")
-    private Customer customer;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "account")
-    private Staff staff;
 
     public Account() {
     }
@@ -114,13 +100,12 @@ public class Account implements Serializable {
         this.id = id;
     }
 
-    public Account(Integer id, String name, String address, String phone, String email, Date date, boolean gender, String userName, String password, boolean enabled, String role) {
+    public Account(Integer id, String name, String address, String phone, String email, String gender, String userName, String password, boolean enabled, String role) {
         this.id = id;
         this.name = name;
         this.address = address;
         this.phone = phone;
         this.email = email;
-        this.date = date;
         this.gender = gender;
         this.userName = userName;
         this.password = password;
@@ -168,19 +153,11 @@ public class Account implements Serializable {
         this.email = email;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public boolean getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(boolean gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
@@ -216,22 +193,6 @@ public class Account implements Serializable {
         this.role = role;
     }
 
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public Staff getStaff() {
-        return staff;
-    }
-
-    public void setStaff(Staff staff) {
-        this.staff = staff;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -254,7 +215,7 @@ public class Account implements Serializable {
 
     @Override
     public String toString() {
-        return "Entity.Account[ id=" + id + " ]";
+        return "cart.Account[ id=" + id + " ]";
     }
     
 }
