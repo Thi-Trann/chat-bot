@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link href="${root}/css/cart.css" rel="stylesheet" type="text/css"/>
 </head>
 <c:if test="${cart.numOfProducts>0}">
 
@@ -43,26 +42,33 @@
                         <tr>
 
                             <td class="text-right">${loop.count}</td>
-                            <td><img src="${root}/images/products/${item.id}.jpg" width="30%" /> </td>
+                            <td><img src="${root}/images/products/${item.id}.jpg" width="30%" /><input type="hidden" value=${item.id} name="id" /> </td>
                             <td>${item.name}</td>
                             <td>${item.description}</td>
                             <td class="text-right"><fmt:formatNumber value="${item.price}" pattern="$#,##0.00" /></td>
                             <td class="text-right"><fmt:formatNumber value="${item.discount}" type="percent" /></td>
                             <td class="text-right"><fmt:formatNumber value="${item.newPrice}" pattern="$#,##0.00" /></td>
-                            <td class="text-right"><input type="number" value="${item.quantity}" style="width: 65px; text-align: right;"name="quantity" /></td>
-                            <td class="text-right"><fmt:formatNumber value="${item.cost}" pattern="$#,##0.00" /></td>
                             <td>
-                                <input type="hidden" value=${item.id} name="id" />
+                                <input onclick="var result = document.getElementById('${loop.count}'); var qty = result.value; if (!isNaN(qty) & amp; qty > 1)result.value--; return false;" type='button' value='-'   />
+                                <input id='${loop.count}' min='1' name='quantity' type='text' value='${item.quantity}' />
+                                <input onclick="var result = document.getElementById('${loop.count}'); var qty = result.value;  if (!isNaN(qty))result.value++;return false;trans();" type='button' value='+'  />
+                            </td>
+
+<!--                            <td class="text-right"><input type="number" value="${item.quantity}" style="width: 65px; text-align: right;"name="quantity" /></td>-->
+                            <td class="text-right"><fmt:formatNumber value="${item.cost}" pattern="$#,##0.00" /></td>
+                            <td>                               
                                 <button type="submit" class="btn btn-link" formaction="<c:url value="/cart/update.do"/>">Update</button>
                                 <button type="submit" class="btn btn-link" formaction="<c:url value="/cart/delete.do"/>">Delete</button>
                             </td>
 
                         </tr>
                     </form>
-
-                </c:forEach>
+                </div>
             </div>
-        </div>
+
+        </c:forEach>
+
+        
     </tbody>
     <tfoot>
         <tr>
@@ -91,7 +97,13 @@
     </h1>
     <h1 style="text-align: center">
         <form action='${root}/product/index.do'>
-            <button class="shopping" type='submit'><span>Go shopping</span></button>
+            <button style='    
+                    background-color: #f0bc4d;
+                    color: rgb(74, 74, 74);
+                    font-weight: 500;
+                    padding: 10px 55px;
+                    display: inline-block;
+                    border-radius: 4px;' type='submit'>Go shopping</button>
         </form>     
     </h1>
 </c:if>
