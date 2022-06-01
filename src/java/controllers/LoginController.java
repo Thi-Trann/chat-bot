@@ -45,6 +45,9 @@ public class LoginController extends HttpServlet {
             case "login_handler":
                 login_handler(request, response);
                 break;
+            case "logout":
+                logout(request, response);
+                break;
             case "forget":
                 forget(request, response);
                 break;
@@ -54,11 +57,18 @@ public class LoginController extends HttpServlet {
         }
         request.getRequestDispatcher(App.LAYOUT).forward(request, response);
     }
-
+    
     private void forget(HttpServletRequest request, HttpServletResponse response) {
-
+        
     }
-
+    
+    private void logout(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+        session.invalidate();
+        request.setAttribute("controller", "home");
+        request.setAttribute("action", "index");
+    }
+    
     private void login_handler(HttpServletRequest request, HttpServletResponse response) {
         String userName = request.getParameter("userName");
         String password = request.getParameter("password");
@@ -67,8 +77,11 @@ public class LoginController extends HttpServlet {
         if (a == null) {
             request.setAttribute("controller", "login");
             request.setAttribute("action", "login");
+            request.setAttribute("mess", "Wrong user name or password !");
         } else {
             HttpSession session = request.getSession();
+            session.setAttribute("login_success", a);
+            session.setAttribute("userName", userName);
             request.setAttribute("controller", "home");
             request.setAttribute("action", "index");
         }
@@ -101,7 +114,18 @@ public class LoginController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-
+        String userName = request.getParameter("userName");
+        String password = request.getParameter("password");
+        loginDAO dao = new loginDAO();
+        Account a = dao.checkLogin(userName, password);
+        if (a == null) {
+            request.setAttribute("controller", "login");
+            request.setAttribute("action", "login");
+        } else {
+            HttpSession session = request.getSession();
+            request.setAttribute("controller", "home");
+            request.setAttribute("action", "index");
+        }
     }
 
     /**

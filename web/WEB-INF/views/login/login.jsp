@@ -23,13 +23,15 @@ and open the template in the editor.
                 <a style="margin-left: 235px;" href="<c:url value="/login/forget.do"/>">Forgot your password? Click here</a><br/>
                 <label style="margin-left: 290px;">
                     <input type="checkbox" checked="checked" name="rememberMe"> Remember me
-                </label><br/><br/>     
+                </label><br/><br/>  
+                <p style="margin-left: 250px;">${mess}</p><br/>
                 <button style="margin-left: 220px;" class="login_button" type="submit"><span>Login</span></button>
             </form>
 
             <form action="${root}/register/index.do">
                 <button style="margin-left: 220px;" type="submit" class="register_button"><span>Register</span></button>
             </form>
+
         </div>
     </body>
 </html>
