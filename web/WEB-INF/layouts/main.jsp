@@ -40,7 +40,6 @@
                         <li><a href="<c:url value="/"/>" class="text-dark"><i class="bi bi-house"></i> Home page</a></li>
                         <li><a href="<c:url value="/product/index.do"/>"class="text-dark"><i class="bi bi-bag"></i> Product list</a></li>
                         <li><a href="<c:url value="/cart/index.do"/>"class="text-dark"><i class="bi bi-cart"></i> Cart :<c:if test="${cart.numOfProducts==null}"> 0 </c:if><c:if test="${cart.numOfProducts!=null}"> ${cart.numOfProducts} </c:if> 
-
                                     product(s)</a></li>
                         </ul>
                     <c:if test="${login_success == null}">
@@ -53,7 +52,7 @@
                             <li><a href="<c:url value="/login/logout.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                           
+                            <li style="margin-top: 15px;">${userName}</li>
                         </ul>
                     </c:if>
 
