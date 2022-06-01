@@ -85,15 +85,7 @@ public class Cart {
         return list.size();
     }
 
-    private ProductFacade lookupProductFacadeBean() {
-        try {
-            Context c = new InitialContext();
-            return (ProductFacade) c.lookup("java:global/chatbot1/ProductFacade!sesionbeans.ProductFacade");
-        } catch (NamingException ne) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
-            throw new RuntimeException(ne);
-        }
-    }
+   
 
     private ProductFacade lookupProductFacadeBean1() {
         try {

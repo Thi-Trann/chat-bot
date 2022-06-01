@@ -7,6 +7,7 @@ package entities;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -92,6 +94,10 @@ public class Account implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "role")
     private String role;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "account")
+    private Customer customer;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "account")
+    private Staff staff;
 
     public Account() {
     }
@@ -100,13 +106,6 @@ public class Account implements Serializable {
         this.id = id;
     }
 
-    public Account(String userName, String password) {
-        this.userName = userName;
-        this.password = password;
-    }
-    
-    
-    
     public Account(Integer id, String name, String address, String phone, String email, String gender, String userName, String password, boolean enabled, String role) {
         this.id = id;
         this.name = name;
@@ -118,6 +117,11 @@ public class Account implements Serializable {
         this.password = password;
         this.enabled = enabled;
         this.role = role;
+    }
+
+      public Account(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
     }
 
     public Integer getId() {
@@ -200,6 +204,22 @@ public class Account implements Serializable {
         this.role = role;
     }
 
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Staff getStaff() {
+        return staff;
+    }
+
+    public void setStaff(Staff staff) {
+        this.staff = staff;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -222,7 +242,7 @@ public class Account implements Serializable {
 
     @Override
     public String toString() {
-        return "cart.Account[ id=" + id + " ]";
+        return "entities.Account[ id=" + id + " ]";
     }
     
 }

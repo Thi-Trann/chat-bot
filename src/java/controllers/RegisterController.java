@@ -5,13 +5,19 @@
  */
 package controllers;
 
+import entities.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.util.Collections.list;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import sesionbean.AccountFacade;
+
 
 /**
  *
@@ -19,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "RegisterController", urlPatterns = {"/register"})
 public class RegisterController extends HttpServlet {
-
+ private AccountFacade pf;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -37,6 +43,9 @@ public class RegisterController extends HttpServlet {
             case "index":
                 index(request, response);
                 break;
+            case "register" :
+                register(request, response);
+                break;
             default:
                 request.setAttribute("controller", "error");
                 request.setAttribute("action", "index");
@@ -45,9 +54,32 @@ public class RegisterController extends HttpServlet {
     }
 
     private void index(HttpServletRequest request, HttpServletResponse response) {
-
+          
+         
     }
 
+    private void register(HttpServletRequest request, HttpServletResponse response) {
+          String uname = request.getParameter("uName");
+          HttpSession session = request.getSession();
+           List<Account> list = null;
+           list =pf.findAll();
+         
+//         for( Account account :list ){
+//             if(uname.equals(account.getUserName()))
+//            {
+//                 request.setAttribute("messuname","User name was exist !!!");
+                 request.setAttribute("controller","register");
+                 request.setAttribute("action","index");
+//            }
+//         }
+         
+         
+         
+         
+    }
+    
+    
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

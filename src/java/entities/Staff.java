@@ -7,7 +7,7 @@ package entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -53,7 +53,7 @@ public class Staff implements Serializable {
     @Column(name = "department_id")
     private int departmentId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "staffId")
-    private Collection<OrderHeader> orderHeaderCollection;
+    private List<OrderHeader> orderHeaderList;
     @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private Account account;
@@ -96,12 +96,12 @@ public class Staff implements Serializable {
     }
 
     @XmlTransient
-    public Collection<OrderHeader> getOrderHeaderCollection() {
-        return orderHeaderCollection;
+    public List<OrderHeader> getOrderHeaderList() {
+        return orderHeaderList;
     }
 
-    public void setOrderHeaderCollection(Collection<OrderHeader> orderHeaderCollection) {
-        this.orderHeaderCollection = orderHeaderCollection;
+    public void setOrderHeaderList(List<OrderHeader> orderHeaderList) {
+        this.orderHeaderList = orderHeaderList;
     }
 
     public Account getAccount() {
@@ -134,7 +134,7 @@ public class Staff implements Serializable {
 
     @Override
     public String toString() {
-        return "Entity.Staff[ id=" + id + " ]";
+        return "entities.Staff[ id=" + id + " ]";
     }
     
 }

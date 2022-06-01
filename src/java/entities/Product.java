@@ -6,7 +6,7 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -64,7 +64,7 @@ public class Product implements Serializable {
     @Column(name = "discount")
     private double discount;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
-    private Collection<OrderDetail> orderDetailCollection;
+    private List<OrderDetail> orderDetailList;
 
     public Product() {
     }
@@ -122,12 +122,12 @@ public class Product implements Serializable {
     }
 
     @XmlTransient
-    public Collection<OrderDetail> getOrderDetailCollection() {
-        return orderDetailCollection;
+    public List<OrderDetail> getOrderDetailList() {
+        return orderDetailList;
     }
 
-    public void setOrderDetailCollection(Collection<OrderDetail> orderDetailCollection) {
-        this.orderDetailCollection = orderDetailCollection;
+    public void setOrderDetailList(List<OrderDetail> orderDetailList) {
+        this.orderDetailList = orderDetailList;
     }
 
     @Override
@@ -152,7 +152,7 @@ public class Product implements Serializable {
 
     @Override
     public String toString() {
-        return "Entity.Product[ id=" + id + " ]";
+        return "entities.Product[ id=" + id + " ]";
     }
     
 }

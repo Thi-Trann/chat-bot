@@ -109,7 +109,7 @@ public class Chatbot implements Serializable {
 
     @Override
     public String toString() {
-        return "Entity.Chatbot[ id=" + id + " ]";
+        return "entities.Chatbot[ id=" + id + " ]";
     }
     
 }

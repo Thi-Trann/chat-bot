@@ -144,7 +144,7 @@ public class OrderDetail implements Serializable {
 
     @Override
     public String toString() {
-        return "Entity.OrderDetail[ id=" + id + " ]";
+        return "entities.OrderDetail[ id=" + id + " ]";
     }
     
 }

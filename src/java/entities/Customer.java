@@ -6,7 +6,7 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -54,7 +54,7 @@ public class Customer implements Serializable {
     @Column(name = "shipToAddress")
     private String shipToAddress;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
-    private Collection<OrderHeader> orderHeaderCollection;
+    private List<OrderHeader> orderHeaderList;
     @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private Account account;
@@ -97,12 +97,12 @@ public class Customer implements Serializable {
     }
 
     @XmlTransient
-    public Collection<OrderHeader> getOrderHeaderCollection() {
-        return orderHeaderCollection;
+    public List<OrderHeader> getOrderHeaderList() {
+        return orderHeaderList;
     }
 
-    public void setOrderHeaderCollection(Collection<OrderHeader> orderHeaderCollection) {
-        this.orderHeaderCollection = orderHeaderCollection;
+    public void setOrderHeaderList(List<OrderHeader> orderHeaderList) {
+        this.orderHeaderList = orderHeaderList;
     }
 
     public Account getAccount() {
@@ -135,7 +135,7 @@ public class Customer implements Serializable {
 
     @Override
     public String toString() {
-        return "Entity.Customer[ id=" + id + " ]";
+        return "entities.Customer[ id=" + id + " ]";
     }
     
 }

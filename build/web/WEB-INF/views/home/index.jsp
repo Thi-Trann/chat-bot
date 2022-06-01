@@ -20,7 +20,7 @@
         <div class="item active">
             <img src="${root}/images/PNG home page/event1.png" alt="Image" style="padding: 15px;">
             <div class="carousel-caption">
-                <h3>Summer sale $</h3>
+                <h3 style="font-weight: bold;">Summer sale $$$</h3>
                 <p>Teddy will save your money !</p>
             </div>      
         </div>
