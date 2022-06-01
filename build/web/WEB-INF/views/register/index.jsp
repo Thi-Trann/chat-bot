@@ -22,13 +22,13 @@
                 Name: 
                 <input style="margin-left: 66px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px; border: none;" type="text" name="name" placeholder="Enter your name"/><br/><br/>
                 User name:
-                <input style="margin-left: 35px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="text" name="uName" placeholder="Enter user name"/><br/>${messuname}<br/>
+                <input style="margin-left: 35px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="text" name="uName" placeholder="Enter user name" /><br/>${messuname}<br/>
                 Password:
-                <input style="margin-left: 41px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="password" name="password" placeholder="Enter your password"/><br/><br/>
+                <input style="margin-left: 41px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="password" name="password" placeholder="Enter your password" /><br/><br/>
                 Verify Password:
-                <input style="margin-left: 2px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="password" name="password" placeholder="Enter your password"/><br/><br/>
+                <input style="margin-left: 2px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="password" name="vpassword" placeholder="Enter your password" /><br/>${messpass}<br/>
                 Email:
-                <input style="margin-left: 68px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="text"  name="email" placeholder="Enter your email"/><br/><br/>
+                <input style="margin-left: 68px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="text"  name="email" placeholder="Enter your email" /><br/><br/>
                 Phone number:
                 <input style="margin-left: 12px;width: 170px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="text" onkeypress='validatePhone(event)' maxlength="10" name="phone" placeholder="Enter phone number"/>
                 Gender:

@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import static java.util.Collections.list;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +26,10 @@ import sesionbean.AccountFacade;
  */
 @WebServlet(name = "RegisterController", urlPatterns = {"/register"})
 public class RegisterController extends HttpServlet {
- private AccountFacade pf;
+
+    @EJB
+    private AccountFacade as;
+ 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -43,7 +47,7 @@ public class RegisterController extends HttpServlet {
             case "index":
                 index(request, response);
                 break;
-            case "register" :
+            case "register":
                 register(request, response);
                 break;
             default:
@@ -55,25 +59,38 @@ public class RegisterController extends HttpServlet {
 
     private void index(HttpServletRequest request, HttpServletResponse response) {
           
-         
+         request.setAttribute("controller","register");
+         request.setAttribute("action","index");
     }
 
     private void register(HttpServletRequest request, HttpServletResponse response) {
-          String uname = request.getParameter("uName");
-          HttpSession session = request.getSession();
-           List<Account> list = null;
-           list =pf.findAll();
-         
-//         for( Account account :list ){
-//             if(uname.equals(account.getUserName()))
-//            {
-//                 request.setAttribute("messuname","User name was exist !!!");
+            List<Account> list =as.findAll();
+            request.setAttribute("list", list);
+            String uname = request.getParameter("uName");
+            String pw= request.getParameter("password");
+            String rpw= request.getParameter("vpassword");
+            
+            
+          
+         for( Account account :list ){
+             if(uname.equals(account.getUserName()))
+            {
+                 request.setAttribute("messuname","User name was exist !!!");
                  request.setAttribute("controller","register");
                  request.setAttribute("action","index");
-//            }
-//         }
+                 
+            }
+         }
+             if(!(pw.equals(rpw)==true) ){
+             
+                 request.setAttribute("messpass","Wrong password verification !!!");
+                 request.setAttribute("controller","register");
+                 request.setAttribute("action","index");
+        }
          
          
+                 request.setAttribute("controller","register");
+                 request.setAttribute("action","index");
          
          
     }
