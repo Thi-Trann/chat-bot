@@ -23,7 +23,7 @@
     </head>
     <body>
         
-        <nav class="navbar navbar-inverse" style="background-color:#F49CEC; ">
+        <nav class="navbar navbar-inverse" style="background-color:#F1AF00 ">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -32,7 +32,7 @@
                         <span class="icon-bar"></span>                        
                     </button>
                 </div>
-                <div class="collapse navbar-collapse" id="myNavbar" style="background-color:#F49CEC; ">
+                <div class="collapse navbar-collapse" id="myNavbar" style="background-color:#F1AF00 ">
                     <ul class="nav navbar-nav" style="display: inline;">
                         <li><a style="padding: 0px; padding-right: 5px;" class="navbar-collapse" href="<c:url value="/"/>">
                                 <img src="${root}/images/logo.png" height="50"/>
@@ -47,7 +47,7 @@
                         <li><a href="<c:url value="/login/index.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="search_form" style="margin-top:11px"><input type="text" placeholder="Search product..."/><button type="submit" style="background-color: #F49CEC;height: 25px"><i class="bi bi-search"></i></button></li>
+                        <li class="search_form" style="margin-top:11px"><input type="text" placeholder="Search product..."/><button type="submit" style="background-color: #D59B00;height: 25px"><i class="bi bi-search"></i></button></li>
                     </ul>
                 </div>
             </div>
@@ -85,9 +85,7 @@
 
         <footer class="container-fluid text-center"style="position: fixed;">
             <p>Copyright by Team 6 - SWP391</p>
-
         </footer>
-
         <script src="${root}/js/main.js"></script>
     </body>
 </html>
