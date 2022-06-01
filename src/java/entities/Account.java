@@ -100,6 +100,13 @@ public class Account implements Serializable {
         this.id = id;
     }
 
+    public Account(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+    }
+    
+    
+    
     public Account(Integer id, String name, String address, String phone, String email, String gender, String userName, String password, boolean enabled, String role) {
         this.id = id;
         this.name = name;

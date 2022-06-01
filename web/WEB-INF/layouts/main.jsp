@@ -22,7 +22,7 @@
         <link href="${root}/css/layout.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        
+
         <nav class="navbar navbar-inverse" style="background-color:#F1AF00 ">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -40,13 +40,24 @@
                         <li><a href="<c:url value="/"/>" class="text-dark"><i class="bi bi-house"></i> Home page</a></li>
                         <li><a href="<c:url value="/product/index.do"/>"class="text-dark"><i class="bi bi-bag"></i> Product list</a></li>
                         <li><a href="<c:url value="/cart/index.do"/>"class="text-dark"><i class="bi bi-cart"></i> Cart :<c:if test="${cart.numOfProducts==null}"> 0 </c:if><c:if test="${cart.numOfProducts!=null}"> ${cart.numOfProducts} </c:if> 
-                                    
+
                                     product(s)</a></li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="<c:url value="/login/index.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
+                        </ul>
+                    <c:if test="${login_success == null}">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="<c:url value="/login/login.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        </ul>
+                    </c:if>
+                    <c:if test="${login_success != null}">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="<c:url value="/login/logout.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                           
+                        </ul>
+                    </c:if>
+
+                    <ul class="nav navbar-nav">
                         <li class="search_form" style="margin-top:11px"><input type="text" placeholder="Search product..."/><button type="submit" style="background-color: #D59B00;height: 25px"><i class="bi bi-search"></i></button></li>
                     </ul>
                 </div>
