@@ -5,7 +5,6 @@
  */
 package controllers;
 
-
 import cart.Cart;
 import entities.Product;
 import java.io.IOException;
@@ -20,11 +19,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import sesionbean.ProductFacade;
 
-
 @WebServlet(name = "CartController", urlPatterns = {"/cart"})
 public class CartController extends HttpServlet {
-   @EJB
+
+    @EJB
     private ProductFacade pf;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -34,7 +34,7 @@ public class CartController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String action = request.getAttribute("action").toString();
@@ -65,14 +65,14 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
 
     }
 
-private void add(HttpServletRequest request, HttpServletResponse response) {
+    private void add(HttpServletRequest request, HttpServletResponse response) {
         //Lấy thông tin từ client gửi lên
         int id = Integer.parseInt(request.getParameter("id"));
         int quantity = Integer.parseInt(request.getParameter("quantity"));
         //Lấy cart từ session        
         HttpSession session = request.getSession();
-        Cart cart = (Cart)session.getAttribute("cart");
-        if(cart==null){//Nếu trong session chưa có cart thì tạo mới cart
+        Cart cart = (Cart) session.getAttribute("cart");
+        if (cart == null) {//Nếu trong session chưa có cart thì tạo mới cart
             cart = new Cart();
         }
         //Thêm item vào cart
@@ -81,7 +81,7 @@ private void add(HttpServletRequest request, HttpServletResponse response) {
         session.setAttribute("cart", cart);
         //Cho hiện view home/index.jsp
         request.setAttribute("controller", "product");
-        request.setAttribute("action","index");
+        request.setAttribute("action", "index");
         //Đọc danh sách sản phẩm
         List<Product> list = pf.findAll();
         request.setAttribute("list", list);
@@ -91,11 +91,11 @@ private void add(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
 
         HttpSession session = request.getSession();
-        Cart cart = (Cart)session.getAttribute("cart");
+        Cart cart = (Cart) session.getAttribute("cart");
         //Xoa item trong cart
         cart.delete(id);
         //Cho hien cart/index.jsp
-        
+
         request.setAttribute("action", "index");
     }
 
@@ -104,7 +104,7 @@ private void add(HttpServletRequest request, HttpServletResponse response) {
         int quantity = Integer.parseInt(request.getParameter("quantity"));
 
         HttpSession session = request.getSession();
-        Cart cart = (Cart)session.getAttribute("cart");
+        Cart cart = (Cart) session.getAttribute("cart");
         //Xoa item trong cart
         cart.update(id, quantity);
         //Cho hien cart/index.jsp controller
@@ -113,7 +113,7 @@ private void add(HttpServletRequest request, HttpServletResponse response) {
 
     private void empty(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
-        Cart cart = (Cart)session.getAttribute("cart");
+        Cart cart = (Cart) session.getAttribute("cart");
         //Xoa item trong cart
         cart.empty();
         //Cho hien cart/index.jsp
