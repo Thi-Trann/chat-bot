@@ -63,6 +63,7 @@ public class RegisterController extends HttpServlet {
     }
 
     private void register(HttpServletRequest request, HttpServletResponse response) {
+        boolean flag = false;
         List<Account> list = as.findAll();
         request.setAttribute("list", list);
         String name = request.getParameter("name");
@@ -80,15 +81,18 @@ public class RegisterController extends HttpServlet {
                 request.setAttribute("messuname", "User name was exist !!!");
                 request.setAttribute("controller", "register");
                 request.setAttribute("action", "index");
-            } else {
-                Account a = new Account(id, name, address, phone, email, gender, uname, pw, true, role);
-                as.create(a);
+                flag = true;
             }
         }
         if (!(pw.equals(rpw) == true)) {
             request.setAttribute("messpass", "Wrong password verification !!!");
             request.setAttribute("controller", "register");
             request.setAttribute("action", "index");
+            flag = true;
+        }
+        if (!flag) {
+            Account a = new Account(id, name, address, phone, email, gender, uname, pw, true, role);
+            as.create(a);
         }
 
         request.setAttribute("controller", "register");
