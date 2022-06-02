@@ -17,23 +17,25 @@
     <body>
         <form action="${pageContext.request.contextPath}/register/register.do" method="post">
             <div class="register_form">
+                
                 <div class="register_header">
                     Register
                 </div>
+                <div style="margin-left: 32px; ">
                 Name: 
-                <input style="margin-left: 66px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px; border: none;" type="text" name="name" placeholder="Enter your name"/><br/><br/>
+                <input style="margin-left: 66px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px; border: none;" type="text" name="name" placeholder="Enter your name" required/><br/><br/>
                 User name:
-                <input style="margin-left: 35px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="text" name="uName" placeholder="Enter user name" /><br/>${messuname}<br/>
+                <input style="margin-left: 35px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="text" name="uName" placeholder="Enter user name" required /><br/>${messuname}<br/>
                 Password:
-                <input style="margin-left: 41px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="password" name="password" placeholder="Enter your password" /><br/><br/>
+                <input style="margin-left: 41px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="password" name="password" placeholder="Enter your password" required/><br/><br/>
                 Verify Password:
-                <input style="margin-left: 2px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="password" name="vpassword" placeholder="Enter your password" /><br/>${messpass}<br/>
+                <input style="margin-left: 2px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="password" name="vpassword" placeholder="Enter your password" required /><br/>${messpass}<br/>
                 Address:
-                <input style="margin-left: 2px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="text" maxlength="300" name="address" placeholder="Enter your address" /><br/><br/>          
+                <input style="margin-left: 51px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="text" maxlength="300" name="address" placeholder="Enter your address" required/><br/><br/>          
                 Email:
-                <input style="margin-left: 68px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="text"  name="email" placeholder="Enter your email" /><br/><br/>
+                <input style="margin-left: 68px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="text"  name="email" placeholder="Enter your email" required /><br/><br/>
                 Phone number:
-                <input style="margin-left: 12px;width: 170px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="text" onkeypress='validatePhone(event)' maxlength="10" name="phone" placeholder="Enter phone number"/>
+                <input style="margin-left: 12px;width: 170px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="text" onkeypress='validatePhone(event)' maxlength="10" name="phone" placeholder="Enter phone number" required/>
                 Gender:
                 <select name="gender" style="margin-left: 5px;width: 165px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;">
                     <option>Male</option>
@@ -42,8 +44,10 @@
                 </select>
                 <br/>
                 <br/>
+                </div>
                 <button style=" margin-left: 190px;" class="register_button" type="submit"><span>Register</span></button><br/>
-            </div>
+                
+                </div>
         </form>
     </body>
 </html>
