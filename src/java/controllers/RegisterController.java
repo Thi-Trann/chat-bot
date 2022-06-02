@@ -19,7 +19,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import sesionbean.AccountFacade;
 
-
 /**
  *
  * @author quckh
@@ -29,7 +28,7 @@ public class RegisterController extends HttpServlet {
 
     @EJB
     private AccountFacade as;
- 
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -58,45 +57,45 @@ public class RegisterController extends HttpServlet {
     }
 
     private void index(HttpServletRequest request, HttpServletResponse response) {
-          
-         request.setAttribute("controller","register");
-         request.setAttribute("action","index");
+
+        request.setAttribute("controller", "register");
+        request.setAttribute("action", "index");
     }
 
     private void register(HttpServletRequest request, HttpServletResponse response) {
-            List<Account> list =as.findAll();
-            request.setAttribute("list", list);
-            String uname = request.getParameter("uName");
-            String pw= request.getParameter("password");
-            String rpw= request.getParameter("vpassword");
-            
-            
-          
-         for( Account account :list ){
-             if(uname.equals(account.getUserName()))
-            {
-                 request.setAttribute("messuname","User name was exist !!!");
-                 request.setAttribute("controller","register");
-                 request.setAttribute("action","index");
-                 
+        List<Account> list = as.findAll();
+        request.setAttribute("list", list);
+        String name = request.getParameter("name");
+        String uname = request.getParameter("uName");
+        String pw = request.getParameter("password");
+        String rpw = request.getParameter("vpassword");
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
+        String gender = request.getParameter("gender");
+        int id = list.size() + 1;
+        String address = "Tp.HCM";
+        String role = "CUSTOMER";
+        for (Account account : list) {
+            if (uname.equals(account.getUserName())) {
+                request.setAttribute("messuname", "User name was exist !!!");
+                request.setAttribute("controller", "register");
+                request.setAttribute("action", "index");
+            } else {
+                Account a = new Account(id, name, address, phone, email, gender, uname, pw, true, role);
+                as.create(a);
             }
-         }
-             if(!(pw.equals(rpw)==true) ){
-             
-                 request.setAttribute("messpass","Wrong password verification !!!");
-                 request.setAttribute("controller","register");
-                 request.setAttribute("action","index");
         }
-         
-         
-                 request.setAttribute("controller","register");
-                 request.setAttribute("action","index");
-         
-         
+        if (!(pw.equals(rpw) == true)) {
+            request.setAttribute("messpass", "Wrong password verification !!!");
+            request.setAttribute("controller", "register");
+            request.setAttribute("action", "index");
+        }
+
+        request.setAttribute("controller", "register");
+        request.setAttribute("action", "index");
+
     }
-    
-    
-    
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

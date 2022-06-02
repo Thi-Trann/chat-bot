@@ -57,18 +57,18 @@ public class LoginController extends HttpServlet {
         }
         request.getRequestDispatcher(App.LAYOUT).forward(request, response);
     }
-    
+
     private void forget(HttpServletRequest request, HttpServletResponse response) {
-        
+
     }
-    
+
     private void logout(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         session.invalidate();
         request.setAttribute("controller", "home");
         request.setAttribute("action", "index");
     }
-    
+
     private void login_handler(HttpServletRequest request, HttpServletResponse response) {
         String userName = request.getParameter("userName");
         String password = request.getParameter("password");
@@ -82,6 +82,15 @@ public class LoginController extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("login_success", a);
             session.setAttribute("userName", userName);
+            // add cookies
+            Cookie u = new Cookie("userNameC", userName);
+            Cookie p = new Cookie("passwordC", password);
+            // set thoi gian ton tai cua cookies
+            u.setMaxAge(60 * 60 * 24);
+            p.setMaxAge(60 * 60 * 24);
+            //luu cookie len client
+            response.addCookie(u);
+            response.addCookie(p);
             request.setAttribute("controller", "home");
             request.setAttribute("action", "index");
         }
