@@ -8,6 +8,7 @@ package controllers;
 import entities.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -41,13 +42,26 @@ public class ProductController extends HttpServlet {
             case "index":
                 index(request, response);
                 break;
+            case "detail": 
+                detail(request, response);
+                break;
             default:
                 request.setAttribute("controller", "error");
                 request.setAttribute("action", "index");
         }
         request.getRequestDispatcher(App.LAYOUT).forward(request, response);
     }
-
+   private void detail(HttpServletRequest request, HttpServletResponse response) {
+       int id = Integer.parseInt(request.getParameter("id"));
+//       List<Product> list = new ArrayList();
+//       list = (List<Product>) pf.find(id);
+       
+        Product list = pf.find(id);
+       
+        request.setAttribute("list", list);
+        request.setAttribute("controller", "product");
+        request.setAttribute("action", "detail");
+   }
     private void index(HttpServletRequest request, HttpServletResponse response) {
         int pageSize = 6;//Kich thuoc trang                        
         HttpSession session = request.getSession();

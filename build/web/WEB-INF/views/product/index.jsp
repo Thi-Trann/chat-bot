@@ -14,9 +14,11 @@ and open the template in the editor.
     <c:forEach var="product" items="${list}">
         <div class="col-sm-4 py-3">
             <div class="card">
-                <form action="${pageContext.request.contextPath}/cart/add.do">
-                    <div class="img_scale"><img src="${root}/images/products/${product.id}.jpg" width="90%" /></div><br/>
-                    Id: ${product.id}<br/>
+              
+          
+                <form method ="post" action="${pageContext.request.contextPath}/product/detail.do">
+                    <button style="background: white;color : black;" type="submit">
+                        <div class="img_scale"><img src="${root}/images/products/${product.id}.jpg" width="90%" /></div><br/>                    
                     <input type="hidden" value="${product.id}" name="id"/>
                     Name: ${product.name}<br/>
                     Description: ${product.description}<br/>
@@ -26,9 +28,12 @@ and open the template in the editor.
                     <span style="color:red;font-size:20px;">
                         <fmt:formatNumber value="${product.price*(1 - product.discount)}" pattern="$#,##0.00" />
                     </span><br/>
-                    Quantity: <input type="number" value="1" name="quantity" style="width:80px;" /><br/>
-                    <button type="submit" class="btn btn-sm btn-info" style="margin-top: 20px"><i class="bi bi-cart-plus"></i> Add to Cart</button>
-                </form>
+<!--                    Quantity: <input type="number" value="1" name="quantity" style="width:80px;" /><br/>-->
+<!--                    <button type="submit" class="btn btn-sm btn-info" style="margin-top: 20px"><i class="bi bi-cart-plus"></i> Add to Cart</button>-->
+                    </button>
+                    </form>
+                 
+          
             </div>
         </div>
 
