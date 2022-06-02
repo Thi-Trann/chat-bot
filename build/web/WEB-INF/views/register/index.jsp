@@ -8,13 +8,14 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="UTF-8" />
         <link href="${root}/css/register.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/register.css" rel="stylesheet" type="text/css"/>
         <title>Register</title>
     </head>
     <body>
-        <form action="${pageContext.request.contextPath}/register/register.do">
+        <form action="${pageContext.request.contextPath}/register/register.do" method="post">
             <div class="register_form">
                 <div class="register_header">
                     Register
@@ -28,7 +29,7 @@
                 Verify Password:
                 <input style="margin-left: 2px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="password" name="vpassword" placeholder="Enter your password" /><br/>${messpass}<br/>
                 Address:
-                <input style="margin-left: 2px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="type" name="address" placeholder="Enter your address" /><br/><br/>          
+                <input style="margin-left: 2px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="text" maxlength="300" name="address" placeholder="Enter your address" /><br/><br/>          
                 Email:
                 <input style="margin-left: 68px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="text"  name="email" placeholder="Enter your email" /><br/><br/>
                 Phone number:
@@ -49,22 +50,23 @@
 
 <script>
     function validatePhone(evt) {
-  var theEvent = evt || window.event;
- 
-  // Handle paste
-  if (theEvent.type === 'paste') {
-      key = event.clipboardData.getData('text/plain');
-  } else {
-  // Handle key press
-      var key = theEvent.keyCode || theEvent.which;
-      key = String.fromCharCode(key);
-  }
-  var regex = /[0-9]|\./;
-  if( !regex.test(key) ) {
-    theEvent.returnValue = false;
-    if(theEvent.preventDefault) theEvent.preventDefault();
-  }
-}
+        var theEvent = evt || window.event;
+
+        // Handle paste
+        if (theEvent.type === 'paste') {
+            key = event.clipboardData.getData('text/plain');
+        } else {
+            // Handle key press
+            var key = theEvent.keyCode || theEvent.which;
+            key = String.fromCharCode(key);
+        }
+        var regex = /[0-9]|\./;
+        if (!regex.test(key)) {
+            theEvent.returnValue = false;
+            if (theEvent.preventDefault)
+                theEvent.preventDefault();
+        }
+    }
 
 
 

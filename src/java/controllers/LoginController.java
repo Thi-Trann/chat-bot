@@ -93,7 +93,9 @@ public class LoginController extends HttpServlet {
             response.addCookie(p);
             request.setAttribute("controller", "home");
             request.setAttribute("action", "index");
+
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

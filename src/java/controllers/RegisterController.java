@@ -67,6 +67,7 @@ public class RegisterController extends HttpServlet {
         List<Account> list = as.findAll();
         request.setAttribute("list", list);
         String name = request.getParameter("name");
+        String address = request.getParameter("address");
         String uname = request.getParameter("uName");
         String pw = request.getParameter("password");
         String rpw = request.getParameter("vpassword");
@@ -74,7 +75,7 @@ public class RegisterController extends HttpServlet {
         String phone = request.getParameter("phone");
         String gender = request.getParameter("gender");
         int id = list.size() + 1;
-        String address = "Tp.HCM";
+
         String role = "CUSTOMER";
         for (Account account : list) {
             if (uname.equals(account.getUserName())) {
@@ -93,10 +94,9 @@ public class RegisterController extends HttpServlet {
         if (!flag) {
             Account a = new Account(id, name, address, phone, email, gender, uname, pw, true, role);
             as.create(a);
+            request.setAttribute("controller", "register");
+            request.setAttribute("action", "index");
         }
-
-        request.setAttribute("controller", "register");
-        request.setAttribute("action", "index");
 
     }
 
