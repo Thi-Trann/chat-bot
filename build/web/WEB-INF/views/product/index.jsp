@@ -21,7 +21,7 @@ and open the template in the editor.
                         <div class="img_scale"><img src="${root}/images/products/${product.id}.jpg" width="90%" /></div><br/>                    
                     <input type="hidden" value="${product.id}" name="id"/>
                     Name: ${product.name}<br/>
-                    Description: ${product.description}<br/>
+                   
                     Price: <fmt:formatNumber value="${product.price}" pattern="$#,##0.00" /><br/>
                     Discount <fmt:formatNumber value="${product.discount}" pattern="#%" /><br/>
                     Price: <strike><fmt:formatNumber value="${product.price}" pattern="$#,##0.00" /></strike>
