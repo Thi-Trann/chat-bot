@@ -79,7 +79,7 @@ public class RegisterController extends HttpServlet {
         String role = "CUSTOMER";
         for (Account account : list) {
             if (uname.equals(account.getUserName())) {
-                request.setAttribute("messuname", "User name was exist !!!");
+                request.setAttribute("messuname", "User name already existed !!!");
                 request.setAttribute("controller", "register");
                 request.setAttribute("action", "index");
                 flag = true;
