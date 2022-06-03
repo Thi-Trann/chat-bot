@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "HomeController", urlPatterns = {"/home"})
 public class HomeController extends HttpServlet {
-    
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -36,6 +36,9 @@ public class HomeController extends HttpServlet {
             case "index":
                 index(request, response);
                 break;
+            case "admin":
+                admin(request, response);
+                break;
             default:
                 request.setAttribute("controller", "error");
                 request.setAttribute("action", "index");
@@ -44,7 +47,11 @@ public class HomeController extends HttpServlet {
     }
 
     private void index(HttpServletRequest request, HttpServletResponse response) {
-        
+
+    }
+
+    private void admin(HttpServletRequest request, HttpServletResponse response) {
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
