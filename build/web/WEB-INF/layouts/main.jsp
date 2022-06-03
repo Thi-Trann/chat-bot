@@ -69,8 +69,9 @@
         <div>
             <jsp:include page="/WEB-INF/views/${controller}/${action}.jsp"/>
         </div>
-
+</body>
         <!-- Chat bot-->
+        <footer>
         <section>
             <button class="chat-btn"> 
                 <img src="${root}/images/chatbot_icon.png" width="100%"/>
@@ -95,10 +96,6 @@
                 </div>
             </div>
         </section>
-        <div>
-
-        </div>
-
         <script src="${root}/js/main.js"></script>
-    </body>
+        </footer>
 </html>
