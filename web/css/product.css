@@ -31,7 +31,7 @@ and open the template in the editor.
   margin: auto;
   text-align: center;
   font-family: arial;
-  height: 565px;
+  height: 490px;
 }
 
 .card button {
@@ -52,5 +52,9 @@ and open the template in the editor.
 
 .img_scale{
     height: 310px;
+}
 
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
 }

@@ -75,7 +75,6 @@ public class RegisterController extends HttpServlet {
         String phone = request.getParameter("phone");
         String gender = request.getParameter("gender");
         int id = list.size() + 1;
-
         String role = "CUSTOMER";
         for (Account account : list) {
             if (uname.equals(account.getUserName())) {
