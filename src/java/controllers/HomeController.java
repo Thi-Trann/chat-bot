@@ -45,14 +45,15 @@ public class HomeController extends HttpServlet {
         }
         request.getRequestDispatcher(App.LAYOUT).forward(request, response);
     }
-
+    
     private void index(HttpServletRequest request, HttpServletResponse response) {
-
+        
     }
-
+    
     private void admin(HttpServletRequest request, HttpServletResponse response) {
-
+   
     }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

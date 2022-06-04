@@ -10,7 +10,6 @@ and open the template in the editor.
 <html>
     <head>
         <link href="${root}/css/product.css" rel="stylesheet" type="text/css"/>
-    </head>
     <body>
         <div>
             <c:forEach var="product" items="${list}">
@@ -18,7 +17,7 @@ and open the template in the editor.
                     <div class="card">  
                         <form method ="post" action="${pageContext.request.contextPath}/product/detail.do">
                             <button style="background: white;color : black;" type="submit">
-                                <div class="img_scale"><img src="${root}/images/products/${product.id}.jpg" width="90%" /></div><br/>                    
+                                <div class="img_scale" ><img id="picture" src="${root}/images/products/${product.id}.jpg" width="90%" /></div><br/>                    
                                 <input type="hidden" value="${product.id}" name="id"/>
                                 Name: ${product.name}<br/>
                                 <c:if test="${product.discount > 0/100}">
@@ -40,24 +39,28 @@ and open the template in the editor.
             </c:forEach>
         </div>
 
+
     </body>
 
-        <footer>
-            <div class="abc">
-                <div class="col" >
-                    <br/>
-                    <form action="${root}/product/index.do">
-                        <button type="submit" class="btn btn-sm btn-default" name="op" value="FirstPage" title="First Page" <c:if test="${page==1}">disabled</c:if>><i class="bi bi-chevron-bar-left"></i></button>
-                        <button type="submit" class="btn btn-sm btn-default" name="op" value="PreviousPage" title="Previous Page" <c:if test="${page==1}">disabled</c:if>><i class="bi bi-chevron-left"></i></button>
-                        <button type="submit" class="btn btn-sm btn-default" name="op" value="NextPage" title="Next Page" <c:if test="${page==totalPage}">disabled</c:if>><i class="bi bi-chevron-right"></i></button>
-                        <button type="submit" class="btn btn-sm btn-default" name="op" value="LastPage" title="Last Page" <c:if test="${page==totalPage}">disabled</c:if>><i class="bi bi-chevron-bar-right"></i></button>
-                        <input type="text" name="gotoPage" value="${page}" class="btn btn-sm btn-outline-default" style="text-align: right;width: 32px;" title="Enter page number"/>
-                        <button type="submit" class="btn btn-sm btn-default" name="op" value="GotoPage" title="Goto Page"><i class="bi bi-arrow-up-right-circle"></i></button>
-                    </form>
-                    Page ${page}/${totalPage}
-                </div>
+
+    <footer>
+        <div class="abc">
+            <div class="col" >
+                <br/>
+                <form action="${root}/product/index.do">
+                    <button type="submit" class="btn btn-sm btn-default" name="op" value="FirstPage" title="First Page" <c:if test="${page==1}">disabled</c:if>><i class="bi bi-chevron-bar-left"></i></button>
+                    <button type="submit" class="btn btn-sm btn-default" name="op" value="PreviousPage" title="Previous Page" <c:if test="${page==1}">disabled</c:if>><i class="bi bi-chevron-left"></i></button>
+                    <button type="submit" class="btn btn-sm btn-default" name="op" value="NextPage" title="Next Page" <c:if test="${page==totalPage}">disabled</c:if>><i class="bi bi-chevron-right"></i></button>
+                    <button type="submit" class="btn btn-sm btn-default" name="op" value="LastPage" title="Last Page" <c:if test="${page==totalPage}">disabled</c:if>><i class="bi bi-chevron-bar-right"></i></button>
+                    <input type="text" name="gotoPage" value="${page}" class="btn btn-sm btn-outline-default" style="text-align: right;width: 32px;" title="Enter page number"/>
+                    <button type="submit" class="btn btn-sm btn-default" name="op" value="GotoPage" title="Goto Page"><i class="bi bi-arrow-up-right-circle"></i></button>
+                </form>
+                Page ${page}/${totalPage}
             </div>
-        </footer>
+        </div>
+    </footer>
+
+
 </html>
 
 

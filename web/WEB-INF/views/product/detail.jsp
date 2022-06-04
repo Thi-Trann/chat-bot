@@ -45,16 +45,18 @@
                         </div>
                         <div class="product-price-discount" style="color:red;font-size:30px;"> <fmt:formatNumber value="${list.price*(1 - list.discount)}" pattern="$#,##0.00" /><span class="line-through"><fmt:formatNumber value="${list.price}" pattern="$#,##0.00" /></span></div>
                     </div>
-                        
+
                     <p>${list.description}</p>
                     <div class="product-count">
                         <label for="size">Quantity</label>
                         <form action="${pageContext.request.contextPath}/cart/add.do"  class="display-flex" method="post">
                             <input class="qtyminus" onclick="var result = document.getElementById('quantity'); var qty = result.value; if (!isNaN(qty) & amp; qty > 1) result.value--; return false;" type='button' value='-' />
                             <input class="qty" id='quantity' min='1' name='quantity' type='text' value='1' />
-                            <input class="qtyplus" onclick="var result = document.getElementById('quantity'); var qty = result.value; if (!isNaN(qty))
-                                                            result.value++;
-                                                        return false;" type='button' value='+' />
+                            <input class="qtyplus" onclick="var result = document.getElementById('quantity');
+                                    var qty = result.value;
+                                    if (!isNaN(qty))
+                                        result.value++;
+                                    return false;" type='button' value='+' />
                             <input type="hidden" name="id" value="${list.id}" >
                             </div>
                             <button type="submit" class="round-black-btn">Add to Cart</button>

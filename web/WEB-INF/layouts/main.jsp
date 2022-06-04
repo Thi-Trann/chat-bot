@@ -71,7 +71,6 @@
         </div>
 </body>
         <!-- Chat bot-->
-        <footer>
         <section>
             <button class="chat-btn"> 
                 <img src="${root}/images/chatbot_icon.png" width="100%"/>
@@ -97,5 +96,4 @@
             </div>
         </section>
         <script src="${root}/js/main.js"></script>
-        </footer>
 </html>
