@@ -73,7 +73,7 @@ public class RegisterController extends HttpServlet {
         // dia chi email nguoi nhan
         final String toEmail = x;
         final String subject = "Confirm account !!!";
-        final String body = "YOUR VERIFY CODE" + y;
+        final String body = "YOUR VERIFY CODE : " + y;
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com"); //SMTP Host
         props.put("mail.smtp.port", "587"); //TLS Port
@@ -118,6 +118,9 @@ public class RegisterController extends HttpServlet {
                 }
             }
             break;
+            case "confirm":
+                confirm(request, response);
+                break;
             default:
                 request.setAttribute("controller", "error");
                 request.setAttribute("action", "index");
@@ -170,9 +173,28 @@ public class RegisterController extends HttpServlet {
             }
         }
 
-        vgmail(email, vcode);
-        request.setAttribute("controller", "register");
-        request.setAttribute("action", "index");
+        
+        if (!flag) {
+            
+            
+            vgmail(email, vcode);
+            request.setAttribute("id", id);
+            request.setAttribute("name", name);
+            request.setAttribute("address", address);
+            request.setAttribute("phone", phone);
+            request.setAttribute("email", email);
+            request.setAttribute("gender", gender);
+            request.setAttribute("uname", uname);
+            request.setAttribute("pw", pw);
+            request.setAttribute("role", role);
+            
+            request.setAttribute("vcode", vcode);
+            request.setAttribute("controller", "register");
+            request.setAttribute("action", "confirm");
+            
+        }
+        
+       
 
 //        if (!flag) {
 //            Account a = new Account(id, name, address, phone, email, gender, uname, pw, true, role);
@@ -220,5 +242,55 @@ public class RegisterController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void confirm(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        String address = request.getParameter("address");
+        String phone = request.getParameter("phone");
+        String email = request.getParameter("email");
+        String gender = request.getParameter("gender");
+        String uname = request.getParameter("uname");
+        String pw = request.getParameter("pw");
+        String role = request.getParameter("role");
+        
+        String vcode = request.getParameter("vcode");
+        String input = request.getParameter("inputcode");
+        
+        
+        if(input.equals(vcode)){
+            
+            Account a = new Account(id, name, address, phone, email, gender, uname, pw, true, role);
+             as.create(a);
+             
+            request.setAttribute("controller", "home");
+            request.setAttribute("action", "index");
+        }
+        else{
+            request.setAttribute("id", id);
+            request.setAttribute("name", name);
+            request.setAttribute("address", address);
+            request.setAttribute("phone", phone);
+            request.setAttribute("email", email);
+            request.setAttribute("gender", gender);
+            request.setAttribute("uname", uname);
+            request.setAttribute("pw", pw);
+            request.setAttribute("role", role);
+            request.setAttribute("vcode", vcode);
+            
+            request.setAttribute("codemess", "Wrong verification code !!!");
+            request.setAttribute("controller", "register");
+            request.setAttribute("action", "confirm");
+            
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+    }
 
 }
