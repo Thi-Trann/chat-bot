@@ -5,30 +5,26 @@
  */
 package controllers;
 
-
 import entities.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import sesionbean.AccountFacade;
 
 /**
  *
  * @author quckh
  */
-@WebServlet(name = "LoginController", urlPatterns = {"/login"})
-public class LoginController extends HttpServlet {
-    
+@WebServlet(name = "AdminController", urlPatterns = {"/admin"})
+public class AdminController extends HttpServlet {
+
     @EJB
     private AccountFacade af;
 
@@ -46,66 +42,55 @@ public class LoginController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String action = request.getAttribute("action").toString();
         switch (action) {
-            case "login":
+            case "manageEmployees":
+                manageEmployees(request, response);
                 break;
-            case "login_handler":
-                login_handler(request, response);
+            case "manageCustomers":
+                manageCustomers(request, response);
                 break;
-            case "logout":
-                logout(request, response);
+            case "manageProducts":
+                manageProducts(request, response);
                 break;
-            case "forget":
-                forget(request, response);
+            case "manageOrders":
+                manageOrders(request, response);
                 break;
+            default:
+                request.setAttribute("controller", "error");
+                request.setAttribute("action", "index");
         }
         request.getRequestDispatcher(App.LAYOUT).forward(request, response);
     }
-    
-    private void login(HttpServletRequest request, HttpServletResponse response) {
-        
-    }
-    
-    private void login_handler(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        boolean flag = false;
+
+    private void manageEmployees(HttpServletRequest request, HttpServletResponse response) {
+        String role = "EMPLOYEE";
+        List<Account> elist = new ArrayList<>();
         List<Account> list = af.findAll();
-        String userName = request.getParameter("userName");
-        String password = request.getParameter("password");
-        HttpSession session = request.getSession();
-        String role;
         for (Account acc : list) {
-            if (userName.equals(acc.getUserName()) && password.equals(acc.getPassword())) {
-                request.setAttribute("controller", "home");
-                request.setAttribute("action", "index");
-                session.setAttribute("login_success", 1);
-                session.setAttribute("userName", userName);
-                flag = true;
-            }
-            if (userName.equals(acc.getUserName()) && password.equals(acc.getPassword()) && acc.getRole().equals("ADMIN")) {
-                request.setAttribute("controller", "admin");
-                request.setAttribute("action", "admin");
-                session.setAttribute("login_success", 1);
-                session.setAttribute("userName", userName);
-                role = acc.getRole();
-                session.setAttribute("role", role);
-                flag = true;
-            }
-            
-            if (!flag) {
-                request.setAttribute("controller", "login");
-                request.setAttribute("action", "login");
-                request.setAttribute("mess", "Wrong username or password !");
+            if (acc.getRole().equals(role)) {
+                elist.add(acc);
             }
         }
+        request.setAttribute("elist", elist);
     }
-    
-    private void forget(HttpServletRequest request, HttpServletResponse response) {
+
+    private void manageCustomers(HttpServletRequest request, HttpServletResponse response) {
+        String role = "CUSTOMER";
+        List<Account> clist = new ArrayList<>();
+        List<Account> list = af.findAll();
+        for (Account acc : list) {
+            if (acc.getRole().equals(role)) {
+                clist.add(acc);
+            }
+        }
+        request.setAttribute("clist", clist);
     }
-    
-    private void logout(HttpServletRequest request, HttpServletResponse response) {
-        HttpSession session = request.getSession();
-        session.invalidate();
-        request.setAttribute("controller", "home");
-        request.setAttribute("action", "index");
+
+    private void manageProducts(HttpServletRequest request, HttpServletResponse response) {
+
+    }
+
+    private void manageOrders(HttpServletRequest request, HttpServletResponse response) {
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -121,7 +106,6 @@ public class LoginController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
     }
 
     /**
@@ -136,7 +120,6 @@ public class LoginController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
     }
 
     /**

@@ -5,12 +5,19 @@
  */
 package controllers;
 
+import entities.Account;
+import entities.Staff;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import sesionbean.AccountFacade;
+import sesionbean.StaffFacade;
 
 /**
  *
@@ -18,6 +25,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "HomeController", urlPatterns = {"/home"})
 public class HomeController extends HttpServlet {
+
+    @EJB
+    private AccountFacade af;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,24 +46,18 @@ public class HomeController extends HttpServlet {
             case "index":
                 index(request, response);
                 break;
-            case "admin":
-                admin(request, response);
-                break;
             default:
                 request.setAttribute("controller", "error");
                 request.setAttribute("action", "index");
         }
         request.getRequestDispatcher(App.LAYOUT).forward(request, response);
     }
-    
+
     private void index(HttpServletRequest request, HttpServletResponse response) {
-        
+
     }
-    
-    private void admin(HttpServletRequest request, HttpServletResponse response) {
+
    
-    }
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

@@ -38,11 +38,7 @@ and open the template in the editor.
                 </div>
             </c:forEach>
         </div>
-
-
     </body>
-
-
     <footer>
         <div class="abc">
             <div class="col" >

@@ -5,4 +5,4 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:forward page="/home/index.do" />
+<jsp:forward page="/home/index.do"/>

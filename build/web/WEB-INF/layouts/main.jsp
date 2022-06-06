@@ -22,78 +22,146 @@
         <link href="${root}/css/layout.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-
-        <nav class="navbar navbar-inverse" style="background-color:#F1AF00;">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>                        
-                    </button>
-                </div>
-                <div class="collapse navbar-collapse" id="myNavbar" style="background-color:#F1AF00 ">
-                    <ul class="nav navbar-nav" style="display: inline;">
-                        <li><a style="padding: 0px; padding-right: 5px;" class="navbar-collapse" href="<c:url value="/"/>">
-                                <img src="${root}/images/logo.png" height="50"/>
-                            </a></li>
-                            <c:if test="${role == 'ADMIN'}">
-                            <li><a href="<c:url value="/home/admin.do"/>"class="text-dark"><i class="bi bi-gear"></i> Manage</a></li>
+        <c:choose>
+            <c:when test="${role=='ADMIN'}">
+                <nav class="navbar navbar-inverse" style="background-color:#F1AF00;">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>                        
+                            </button>
+                        </div>
+                        <div class="collapse navbar-collapse" id="myNavbar" style="background-color:#F1AF00 ">
+                            <ul class="nav navbar-nav" style="display: inline;">
+                                <li><a style="padding: 0px; padding-right: 5px;" class="navbar-collapse" href="<c:url value="/"/>">
+                                        <img src="${root}/images/logo.png" height="50"/>
+                                    </a></li>
+                                <li><a href="<c:url value="/"/>" class="text-dark"><i class="bi bi-house"></i> Home page</a></li>
+                                <li><a href="<c:url value="/product/index.do"/>"class="text-dark"><i class="bi bi-bag"></i> Product list</a></li>
+                                <li><a href="<c:url value="/cart/index.do"/>"class="text-dark"><i class="bi bi-cart"></i> Cart :<c:if test="${cart.numOfProducts==null}"> 0 </c:if><c:if test="${cart.numOfProducts!=null}"> ${cart.numOfProducts} </c:if> 
+                                            product(s)</a></li>
+                                </ul>
+                            <c:if test="${login_success == null}">
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li><a href="<c:url value="/login/login.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                                </ul>
                             </c:if>
-                        <li><a href="<c:url value="/"/>" class="text-dark"><i class="bi bi-house"></i> Home page</a></li>
-                        <li><a href="<c:url value="/product/index.do"/>"class="text-dark"><i class="bi bi-bag"></i> Product list</a></li>
-                        <li><a href="<c:url value="/cart/index.do"/>"class="text-dark"><i class="bi bi-cart"></i> Cart :<c:if test="${cart.numOfProducts==null}"> 0 </c:if><c:if test="${cart.numOfProducts!=null}"> ${cart.numOfProducts} </c:if> 
-                                    product(s)</a></li>
-                        </ul>
-                    <c:if test="${login_success == null}">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="<c:url value="/login/login.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                        </ul>
-                    </c:if>
-                    <c:if test="${login_success != null}">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="<c:url value="/login/logout.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li style="margin-top: 15px;">${userName}</li>
-                        </ul>
-                    </c:if>
+                            <c:if test="${login_success != null}">
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li><a href="<c:url value="/login/logout.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                                </ul>
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li style="margin-top: 15px;">${userName}</li>
+                                </ul>
+                            </c:if>
 
-                    <ul class="nav navbar-nav">
-                        <li class="search_form" style="margin-top:11px"><input type="text" placeholder="Search product..."/><button type="submit" style="background-color: #D59B00;height: 25px"><i class="bi bi-search"></i></button></li>
-                    </ul>
+                            <ul class="nav navbar-nav">
+                                <li class="search_form" style="margin-top:11px"><input type="text" placeholder="Search product..."/><button type="submit" style="background-color: #D59B00;height: 25px"><i class="bi bi-search"></i></button></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>  
+                <div class="container-fluid">
+                    <div class="row content">
+                        <div class="col-sm-3 sidenav" style="background-color: #FFFAB3; border: 1px solid black; height: 100vh; margin-top: 10px;">
+                            <ul class="nav nav-pills nav-stacked" style="display: block">
+                                <form action="${pageContext.request.contextPath}/admin/manageEmployees.do">
+                                    <li> <button class="admin_btn">Manage employees</button></li>
+                                </form>
+                                <form action="${pageContext.request.contextPath}/admin/manageCustomers.do">
+                                    <li> <button class="admin_btn">Manage customers</button></li>
+                                </form>
+                                <form action="${pageContext.request.contextPath}/admin/manageProducts.do">
+                                    <li> <button class="admin_btn">Manage products</button></li>
+                                </form>
+                                <form action="${pageContext.request.contextPath}/admin/manageOrders.do">
+                                    <li> <button class="admin_btn">Manage orders</button></li>
+                                </form>
+                            </ul><br/>
+                        </div>
+                        <div class="col-sm-9">
+                            <jsp:include page="/WEB-INF/views/${controller}/${action}.jsp"/>
+                        </div>
+                    </div>
+                </div>
+            </c:when>
+
+            <c:otherwise>
+                <c:choose>
+                    <c:when test="${role !='ADMIN'}">
+                        <nav class="navbar navbar-inverse" style="background-color:#F1AF00;">
+                            <div class="container-fluid">
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>                        
+                                    </button>
+                                </div>
+                                <div class="collapse navbar-collapse" id="myNavbar" style="background-color:#F1AF00 ">
+                                    <ul class="nav navbar-nav" style="display: inline;">
+                                        <li><a style="padding: 0px; padding-right: 5px;" class="navbar-collapse" href="<c:url value="/"/>">
+                                                <img src="${root}/images/logo.png" height="50"/>
+                                            </a></li>
+                                        <li><a href="<c:url value="/"/>" class="text-dark"><i class="bi bi-house"></i> Home page</a></li>
+                                        <li><a href="<c:url value="/product/index.do"/>"class="text-dark"><i class="bi bi-bag"></i> Product list</a></li>
+                                        <li><a href="<c:url value="/cart/index.do"/>"class="text-dark"><i class="bi bi-cart"></i> Cart :<c:if test="${cart.numOfProducts==null}"> 0 </c:if><c:if test="${cart.numOfProducts!=null}"> ${cart.numOfProducts} </c:if> 
+                                                    product(s)</a></li>
+                                        </ul>
+                                    <c:if test="${login_success == null}">
+                                        <ul class="nav navbar-nav navbar-right">
+                                            <li><a href="<c:url value="/login/login.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                                        </ul>
+                                    </c:if>
+                                    <c:if test="${login_success != null}">
+                                        <ul class="nav navbar-nav navbar-right">
+                                            <li><a href="<c:url value="/login/logout.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                                        </ul>
+                                        <ul class="nav navbar-nav navbar-right">
+                                            <li style="margin-top: 15px;">${userName}</li>
+                                        </ul>
+                                    </c:if>
+
+                                    <ul class="nav navbar-nav">
+                                        <li class="search_form" style="margin-top:11px"><input type="text" placeholder="Search product..."/><button type="submit" style="background-color: #D59B00;height: 25px"><i class="bi bi-search"></i></button></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>  
+                        <div>
+                            <jsp:include page="/WEB-INF/views/${controller}/${action}.jsp"/>
+                        </div>
+                    </c:when>
+                </c:choose>
+            </c:otherwise>
+        </c:choose>
+    </body>
+    <!-- Chat bot-->
+    <section>
+        <button class="chat-btn"> 
+            <img src="${root}/images/chatbot_icon.png" width="100%"/>
+        </button> 
+        <div class="chat-popup">
+            <div class="chat-header">
+                <div style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid #05c702; padding: 2px 0 0 1px;">
+                    <img src="${root}/images/logo.png" class="img-fluid rounded-circle" style="margin: auto"/>
+                </div>
+                <div class="header-text">ChatBot</div>
+                <button class="close-btn"><i class="material-icons"> close</i></button>
+            </div>
+            <div class="chat-area">
+                <div class="incoming-msg">
+                    <span class="bot-msg">Hi, I'm Chatbot</span>
+                    <span class="bot-msg">How can I help you?</span>
                 </div>
             </div>
-        </nav>
-
-        <div>
-            <jsp:include page="/WEB-INF/views/${controller}/${action}.jsp"/>
+            <div class="input-area">
+                <input type="text" id="txtmsg" placeholder="Enter your message here...">
+                <button class="submit-btn" style="padding-left: 8px"> <i class="material-icons"> send</i></button>
+            </div>
         </div>
-</body>
-        <!-- Chat bot-->
-        <section>
-            <button class="chat-btn"> 
-                <img src="${root}/images/chatbot_icon.png" width="100%"/>
-            </button> 
-            <div class="chat-popup">
-                <div class="chat-header">
-                    <div style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid #05c702; padding: 2px 0 0 1px;">
-                        <img src="${root}/images/logo.png" class="img-fluid rounded-circle" style="margin: auto"/>
-                    </div>
-                    <div class="header-text">ChatBot</div>
-                    <button class="close-btn"><i class="material-icons"> close</i></button>
-                </div>
-                <div class="chat-area">
-                    <div class="incoming-msg">
-                        <span class="bot-msg">Hi, I'm Chatbot</span>
-                        <span class="bot-msg">How can I help you?</span>
-                    </div>
-                </div>
-                <div class="input-area">
-                    <input type="text" id="txtmsg" placeholder="Enter your message here...">
-                    <button class="submit-btn" style="padding-left: 8px"> <i class="material-icons"> send</i></button>
-                </div>
-            </div>
-        </section>
-        <script src="${root}/js/main.js"></script>
+    </section>
+    <script src="${root}/js/main.js"></script>
 </html>

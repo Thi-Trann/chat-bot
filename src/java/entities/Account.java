@@ -117,10 +117,7 @@ public class Account implements Serializable {
         this.password = password;
         this.enabled = enabled;
         this.role = role;
-    }
-
-   
-
+    }   
       public Account(String userName, String password) {
         this.userName = userName;
         this.password = password;

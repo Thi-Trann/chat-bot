@@ -1,6 +1,6 @@
 <%-- 
-    Document   : manageProduct
-    Created on : Jun 3, 2022, 1:56:38 PM
+    Document   : manageProducts
+    Created on : Jun 6, 2022, 6:20:47 PM
     Author     : quckh
 --%>
 
@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Manage Products</h1>
     </body>
 </html>
