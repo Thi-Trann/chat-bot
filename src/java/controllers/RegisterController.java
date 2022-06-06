@@ -18,12 +18,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import sesionbean.AccountFacade;
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import java.io.UnsupportedEncodingException;
+import java.util.Date;
+import java.util.Properties;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author quckh
  */
 @WebServlet(name = "RegisterController", urlPatterns = {"/register"})
+
 public class RegisterController extends HttpServlet {
 
     @EJB
@@ -38,6 +48,58 @@ public class RegisterController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    Random generator = new Random();
+    String alpha = "ABCDEFGHIJKLMOPQRSTUVWXYZ1234567890";
+   
+    public String randomAlpha() {
+        int numberOfCharactor =9;
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < numberOfCharactor; i++) {
+            int number = randomNumber(0, alpha.length() - 1);
+            char ch = alpha.charAt(number);
+            sb.append(ch);
+        }
+        return sb.toString();
+    }
+    
+    
+       int randomNumber(int min, int max) {
+        return generator.nextInt((max - min) + 1) + min;
+    }
+    public void vgmail(String x, String y) throws MessagingException, UnsupportedEncodingException {
+        final String fromEmail = "hieuctse151515@fpt.edu.vn";
+        // Mat khai email cua ban
+        final String password = "kqxhhptlpvvcqghx";
+        // dia chi email nguoi nhan
+        final String toEmail = x;
+        final String subject = "Confirm account !!!";
+        final String body ="YOUR VERIFY CODE" + y;
+        Properties props = new Properties();
+        props.put("mail.smtp.host", "smtp.gmail.com"); //SMTP Host
+        props.put("mail.smtp.port", "587"); //TLS Port
+        props.put("mail.smtp.auth", "true"); //enable authentication
+        props.put("mail.smtp.starttls.enable", "true"); //enable STARTTLS
+        Authenticator auth = new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(fromEmail, password);
+            }
+        };
+        Session session = Session.getInstance(props, auth);
+        MimeMessage msg = new MimeMessage(session);
+        //set message headers
+        msg.addHeader("Content-type", "text/HTML; charset=UTF-8");
+        msg.addHeader("format", "flowed");
+        msg.addHeader("Content-Transfer-Encoding", "8bit");
+        msg.setFrom(new InternetAddress(fromEmail, "NoReply-JD"));
+        msg.setReplyTo(InternetAddress.parse(fromEmail, false));
+        msg.setSubject(subject, "UTF-8");
+        msg.setText(body, "UTF-8");
+        msg.setSentDate(new Date());
+        msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail, false));
+        Transport.send(msg);
+
+    }
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -46,9 +108,16 @@ public class RegisterController extends HttpServlet {
             case "index":
                 index(request, response);
                 break;
-            case "register":
-                register(request, response);
-                break;
+            case "register": {
+                try {
+                    register(request, response);
+                } catch (MessagingException ex) {
+                    Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (UnsupportedEncodingException ex) {
+                    Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            break;
             default:
                 request.setAttribute("controller", "error");
                 request.setAttribute("action", "index");
@@ -62,7 +131,7 @@ public class RegisterController extends HttpServlet {
         request.setAttribute("action", "index");
     }
 
-    private void register(HttpServletRequest request, HttpServletResponse response) {
+    private void register(HttpServletRequest request, HttpServletResponse response) throws MessagingException, UnsupportedEncodingException {
         boolean flag = false;
         List<Account> list = as.findAll();
         request.setAttribute("list", list);
@@ -76,6 +145,8 @@ public class RegisterController extends HttpServlet {
         String gender = request.getParameter("gender");
         int id = list.size() + 1;
         String role = "CUSTOMER";
+        
+        String vcode = randomAlpha();        
         for (Account account : list) {
             if (uname.equals(account.getUserName())) {
                 request.setAttribute("messuname", "User name already existed !!!");
@@ -90,13 +161,25 @@ public class RegisterController extends HttpServlet {
             request.setAttribute("action", "index");
             flag = true;
         }
-        if (!flag) {
-            Account a = new Account(id, name, address, phone, email, gender, uname, pw, true, role);
-            as.create(a);
-            request.setAttribute("controller", "register");
-            request.setAttribute("action", "index");
+        for (Account account : list) {
+            if (email.equals(account.getEmail())) {
+                request.setAttribute("messmail", "Email already existed !!!");
+                request.setAttribute("controller", "register");
+                request.setAttribute("action", "index");
+                flag = true;
+            }
         }
 
+        vgmail(email,vcode);
+        request.setAttribute("controller", "register");
+        request.setAttribute("action", "index");
+
+//        if (!flag) {
+//            Account a = new Account(id, name, address, phone, email, gender, uname, pw, true, role);
+//            as.create(a);
+//            request.setAttribute("controller", "register");
+//            request.setAttribute("action", "index");
+//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
