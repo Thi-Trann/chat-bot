@@ -13,7 +13,9 @@ and open the template in the editor.
         <link href="${root}/css/login.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <!--        header-->
+        <input type="hidden" id ="resu" value${sucmess}>
+ 
+
         <div class="login_form">
             <form action="${pageContext.request.contextPath}/login/login_handler.do" method="post">
                 <p class="login_header">Login</p>

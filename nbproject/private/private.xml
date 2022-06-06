@@ -3,35 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/index.jsp</file>
-            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/WEB-INF/views/login/login.jsp</file>
-            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/src/java/controllers/HomeController.java</file>
-            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/css/details.css</file>
-            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/WEB-INF/views/cart/index.jsp</file>
-            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/WEB-INF/views/admin/updateEmployee.jsp</file>
-            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/WEB-INF/views/admin/generateNewEmployee.jsp</file>
-            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/css/login.css</file>
-            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/css/layout.css</file>
-            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/WEB-INF/views/product/index.jsp</file>
-            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/WEB-INF/views/register/index.jsp</file>
-            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/src/java/controllers/ProductController.java</file>
-            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/WEB-INF/views/admin/manageCustomers.jsp</file>
-            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/css/register.css</file>
-            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/WEB-INF/views/product/detail.jsp</file>
-            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/src/java/controllers/App.java</file>
-            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/src/java/controllers/AdminController.java</file>
-            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/WEB-INF/views/home/index.jsp</file>
-            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/css/generateNewEmployee.css</file>
-            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/WEB-INF/views/admin/manageProducts.jsp</file>
-            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/WEB-INF/views/admin/manageOrders.jsp</file>
-            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/WEB-INF/views/admin/manageEmployees.jsp</file>
-            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/WEB-INF/layouts/main.jsp</file>
-            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/src/java/controllers/RegisterController.java</file>
-            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/src/java/controllers/CartController.java</file>
-            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/src/java/entities/Account.java</file>
-            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/src/java/controllers/LoginController.java</file>
-            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/WEB-INF/views/admin/admin.jsp</file>
-            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/src/java/controllers/FrontController.java</file>
+            <file>file:/F:/SWP/chat-bot/web/WEB-INF/views/register/index.jsp</file>
+            <file>file:/F:/SWP/chat-bot/web/WEB-INF/views/cart/index.jsp</file>
+            <file>file:/F:/SWP/chat-bot/src/java/controllers/RegisterController.java</file>
+            <file>file:/F:/SWP/chat-bot/web/WEB-INF/views/login/login.jsp</file>
+            <file>file:/F:/SWP/chat-bot/web/WEB-INF/views/register/confirm.jsp</file>
         </group>
     </open-files>
 </project-private>

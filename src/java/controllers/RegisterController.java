@@ -262,9 +262,9 @@ public class RegisterController extends HttpServlet {
             
             Account a = new Account(id, name, address, phone, email, gender, uname, pw, true, role);
              as.create(a);
-             
-            request.setAttribute("controller", "home");
-            request.setAttribute("action", "index");
+            request.setAttribute("sucmess", "REGISTER SUCCESS !!!"); 
+            request.setAttribute("controller", "login");
+            request.setAttribute("action", "login");
         }
         else{
             request.setAttribute("id", id);

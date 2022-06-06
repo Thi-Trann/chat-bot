@@ -14,7 +14,7 @@
     <body>
         <!--        header-->
         <div class="login_form">
-            ${id}  ${name} ${address} ${phone} ${email} ${uname} ${pw}       ${role} ${vcode}
+           
             <div class="conf">
             <form action="${pageContext.request.contextPath}/register/confirm.do" method="post">
                 <p class="con_header" >Verify Account</p>
@@ -32,13 +32,13 @@
                 <input type="hidden" name="vcode" value="${vcode}">
                 
              
-                <input class="userName" type="text" placeholder="Enter your code " name="inputcode"><br/> <br/> 
+                <input class="userName" id="ab1" type="text" placeholder="Enter your code " name="inputcode"><br/> <br/> 
                 ${codemess}
                 <button style="margin-left: 220px;" class="login_button" type="submit"><span>Confirm</span></button>
                 
             </form>
         </div>
         </div>
-    </body>
+              
 </html>
 <p style="margin-left: 250px;">${mess}</p><br/>

@@ -51,22 +51,22 @@
 
                             <c:set var = "name" scope = "session" value = "${item.id*99+3105}"></c:set>
                             <c:set var = "del" scope = "session" value = "${item.id*200+3105}"></c:set>
+                            <c:set var = "abc" scope = "session" value = "${item.id}a"></c:set>
 
-
-                                <form method="post" action="update.do" id='${name}' >
+                                <form method="post" action="update.do" id='${abc}' >
                                 <input type="hidden" name="id"  value=${item.id} >
 
-                                <input onclick="var result = document.getElementById('${loop.count}'); var qty = result.value;
-                                    if (!isNaN(qty) & amp; qty > 1) {
-                                    result.value--;
-                                    document.getElementById('${name}').submit();
-                                    } else{
-                                    document.getElementById('${del}').submit();
-                                    }
-                                    return false;" type='button' value='-' />
-                                <input id='${loop.count}' style="width:50px;"  min='1' name='quantity' type='text' value='${item.quantity}' />
+
+                                  <input onclick="var result = document.getElementById('${loop.count}'); var qty = result.value; if (qty>1)
+                                            result.value--; 
+                                            document.getElementById('${abc}').submit();
+                                    return false;
+                                       " type='button' value='-'  />
+
+                                       
+                                <input id="${loop.count}" style="width:50px;"  min="1" name="quantity" type="text" value="${item.quantity}" />
                                 <input onclick="var result = document.getElementById('${loop.count}'); var qty = result.value; if (!isNaN(qty))
-                                            result.value++; document.getElementById('${name}').submit();
+                                            result.value++; document.getElementById('${abc}').submit();
                                     return false;
                                        " type='button' value='+'  />
 
