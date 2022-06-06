@@ -15,7 +15,10 @@
     </head>
     <body>
         <h1>Manage Employees</h1>
+        <form action="${pageContext.request.contextPath}/admin/generateNewEmployee.do">
+            <button style="float: right; border-radius: 50px;background-color: #f0bc4d; height: 50px;" ><i class="bi bi-plus-square"></i> Generate new employee</button>
 
+        </form>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -41,10 +44,17 @@
                         <td>${elist.gender}</td>
                         <td>${elist.userName}</td>
                         <td>${elist.password}</td>
-                    </tr>
-                </c:forEach> 
-            </tbody>
-        </table>
+                <form action="${pageContext.request.contextPath}/admin/updateEmployee.do">
+                    <td>
+                        <input type="hidden" value="${elist.id}" name="id"/>
+                        <button>Update</button>
+                        <button>Delete</button>
+                    </td>
+                </form>
+            </tr>
+        </c:forEach> 
+    </tbody>
+</table>
 
-    </body>
+</body>
 </html>

@@ -15,7 +15,7 @@ and open the template in the editor.
     padding: 20px;
     border: 2px solid black;
     width: 700px;
-    height: 750px;
+    height: fit-content;
     border-radius: 50px;
     background-color:#FFFAB3;
 }

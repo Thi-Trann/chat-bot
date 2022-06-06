@@ -5,7 +5,6 @@
  */
 package controllers;
 
-
 import entities.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -28,7 +27,7 @@ import sesionbean.AccountFacade;
  */
 @WebServlet(name = "LoginController", urlPatterns = {"/login"})
 public class LoginController extends HttpServlet {
-    
+
     @EJB
     private AccountFacade af;
 
@@ -60,11 +59,11 @@ public class LoginController extends HttpServlet {
         }
         request.getRequestDispatcher(App.LAYOUT).forward(request, response);
     }
-    
+
     private void login(HttpServletRequest request, HttpServletResponse response) {
-        
+
     }
-    
+
     private void login_handler(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         boolean flag = false;
         List<Account> list = af.findAll();
@@ -89,7 +88,7 @@ public class LoginController extends HttpServlet {
                 session.setAttribute("role", role);
                 flag = true;
             }
-            
+
             if (!flag) {
                 request.setAttribute("controller", "login");
                 request.setAttribute("action", "login");
@@ -97,10 +96,10 @@ public class LoginController extends HttpServlet {
             }
         }
     }
-    
+
     private void forget(HttpServletRequest request, HttpServletResponse response) {
     }
-    
+
     private void logout(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         session.invalidate();
@@ -121,7 +120,7 @@ public class LoginController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
+
     }
 
     /**
@@ -136,7 +135,7 @@ public class LoginController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
+
     }
 
     /**
