@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,7 +25,7 @@ import sesionbean.AccountFacade;
  */
 @WebServlet(name = "AdminController", urlPatterns = {"/admin"})
 public class AdminController extends HttpServlet {
-
+    
     @EJB
     private AccountFacade af;
 
@@ -54,13 +55,25 @@ public class AdminController extends HttpServlet {
             case "manageOrders":
                 manageOrders(request, response);
                 break;
+            case "generateNewEmployee":
+                generateNewEmployee(request, response);
+                break;
+            case "generateNewEmployee_handler":
+                generateNewEmployee_handler(request, response);
+                break;
+            case "updateEmployee":
+                updateEmployee(request, response);
+                break;
+                case "updateEmployee_handler":
+                updateEmployee(request, response);
+                break;
             default:
                 request.setAttribute("controller", "error");
                 request.setAttribute("action", "index");
         }
         request.getRequestDispatcher(App.LAYOUT).forward(request, response);
     }
-
+    
     private void manageEmployees(HttpServletRequest request, HttpServletResponse response) {
         String role = "EMPLOYEE";
         List<Account> elist = new ArrayList<>();
@@ -72,7 +85,7 @@ public class AdminController extends HttpServlet {
         }
         request.setAttribute("elist", elist);
     }
-
+    
     private void manageCustomers(HttpServletRequest request, HttpServletResponse response) {
         String role = "CUSTOMER";
         List<Account> clist = new ArrayList<>();
@@ -84,14 +97,80 @@ public class AdminController extends HttpServlet {
         }
         request.setAttribute("clist", clist);
     }
-
+    
+    private void generateNewEmployee(HttpServletRequest request, HttpServletResponse response) {
+        
+    }
+    
+    private void generateNewEmployee_handler(HttpServletRequest request, HttpServletResponse response) {
+        boolean flag = false;
+        List<Account> list = af.findAll();
+        request.setAttribute("list", list);
+        String name = request.getParameter("name");
+        String address = request.getParameter("address");
+        String uname = request.getParameter("uName");
+        String pw = request.getParameter("password");
+        String rpw = request.getParameter("vpassword");
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
+        String gender = request.getParameter("gender");
+        int id = list.size() + 1;
+        String role = "EMPLOYEE";
+        List<Account> rlist = new ArrayList<>();
+        
+        for (Account account : list) {
+            if (uname.equals(account.getUserName())) {
+                request.setAttribute("messuname", "User name already existed !!!");
+                request.setAttribute("controller", "admin");
+                request.setAttribute("action", "generateNewEmployee");
+                flag = true;
+            }
+        }
+        if (!(pw.equals(rpw) == true)) {
+            request.setAttribute("messpass", "Wrong password verification !!!");
+            request.setAttribute("controller", "admin");
+            request.setAttribute("action", "generateNewEmployee");
+            flag = true;
+        }
+        for (Account account : list) {
+            if (email.equals(account.getEmail())) {
+                request.setAttribute("messmail", "Email already existed !!!");
+                request.setAttribute("controller", "admin");
+                request.setAttribute("action", "generateNewEmployee");
+                flag = true;
+            }
+        }
+        
+        if (!flag) {
+            Account a = new Account(id, name, address, phone, email, gender, uname, pw, true, role);
+            af.create(a);
+            request.setAttribute("controller", "admin");
+            request.setAttribute("action", "manageEmployees");
+        }
+    }
+    
     private void manageProducts(HttpServletRequest request, HttpServletResponse response) {
-
+        
     }
-
+    
     private void manageOrders(HttpServletRequest request, HttpServletResponse response) {
+        
+    }
+    
+    private void updateEmployee(HttpServletRequest request, HttpServletResponse response) {
 
     }
+   private void updateEmployee_handler(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        List list = new ArrayList();
+        Account acc = af.find(id);
+        list.add(acc);
+        request.setAttribute("list", list);
+    }
+   
+    
+    
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
