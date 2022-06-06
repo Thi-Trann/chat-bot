@@ -47,6 +47,9 @@
                                 <ul class="nav navbar-nav navbar-right">
                                     <li><a href="<c:url value="/login/login.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                                 </ul>
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li><a href="<c:url value="/register/register.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Register</a></li>
+                                </ul>
                             </c:if>
                             <c:if test="${login_success != null}">
                                 <ul class="nav navbar-nav navbar-right">
@@ -66,7 +69,7 @@
                 <div class="container-fluid">
                     <div class="row content">
                         <div class="col-sm-3 sidenav" style="background-color: #FFFAB3; border: 1px solid black; height: 100vh; margin-top: 10px;">
-                            <ul class="nav nav-pills nav-stacked" style="display: block">
+                            <ul class="nav nav-pills nav-stacked" style="display: block; margin-top: 10px;">
                                 <form action="${pageContext.request.contextPath}/admin/manageEmployees.do">
                                     <li> <button class="admin_btn">Manage employees</button></li>
                                 </form>
@@ -111,6 +114,9 @@
                                                     product(s)</a></li>
                                         </ul>
                                     <c:if test="${login_success == null}">
+                                        <ul class="nav navbar-nav navbar-right">
+                                            <li><a href="<c:url value="/register/index.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Register</a></li>
+                                        </ul>
                                         <ul class="nav navbar-nav navbar-right">
                                             <li><a href="<c:url value="/login/login.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                                         </ul>

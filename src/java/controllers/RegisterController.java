@@ -50,9 +50,9 @@ public class RegisterController extends HttpServlet {
      */
     Random generator = new Random();
     String alpha = "ABCDEFGHIJKLMOPQRSTUVWXYZ1234567890";
-   
+
     public String randomAlpha() {
-        int numberOfCharactor =9;
+        int numberOfCharactor = 9;
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < numberOfCharactor; i++) {
             int number = randomNumber(0, alpha.length() - 1);
@@ -61,11 +61,11 @@ public class RegisterController extends HttpServlet {
         }
         return sb.toString();
     }
-    
-    
-       int randomNumber(int min, int max) {
+
+    int randomNumber(int min, int max) {
         return generator.nextInt((max - min) + 1) + min;
     }
+
     public void vgmail(String x, String y) throws MessagingException, UnsupportedEncodingException {
         final String fromEmail = "hieuctse151515@fpt.edu.vn";
         // Mat khai email cua ban
@@ -73,7 +73,7 @@ public class RegisterController extends HttpServlet {
         // dia chi email nguoi nhan
         final String toEmail = x;
         final String subject = "Confirm account !!!";
-        final String body ="YOUR VERIFY CODE" + y;
+        final String body = "YOUR VERIFY CODE" + y;
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com"); //SMTP Host
         props.put("mail.smtp.port", "587"); //TLS Port
@@ -145,8 +145,8 @@ public class RegisterController extends HttpServlet {
         String gender = request.getParameter("gender");
         int id = list.size() + 1;
         String role = "CUSTOMER";
-        
-        String vcode = randomAlpha();        
+
+        String vcode = randomAlpha();
         for (Account account : list) {
             if (uname.equals(account.getUserName())) {
                 request.setAttribute("messuname", "User name already existed !!!");
@@ -170,7 +170,7 @@ public class RegisterController extends HttpServlet {
             }
         }
 
-        vgmail(email,vcode);
+        vgmail(email, vcode);
         request.setAttribute("controller", "register");
         request.setAttribute("action", "index");
 
