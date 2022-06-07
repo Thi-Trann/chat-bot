@@ -14,7 +14,7 @@
     </head>
     <body>
         <h1>Manage Customers</h1>
-        <table class="table table-bordered">
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th>No.</th>

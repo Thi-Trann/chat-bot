@@ -50,7 +50,7 @@
             <img src="${root}/images/PNG home page/topic1.png" class="img-responsive" style="width:100%" alt="Image">
         </div>
         <div class="col-sm-8"> 
-            <p style="text-align: left;">We are Brown Ted, a Teddy bear shop focusing on giving customers the best online cuddling material through our chatbot system. With our system, you can complete a purchase only using our texting method and don't have to move a muscle or wrack your brain navigating through the web store (you can still do it of course). We hope to give you a wonderful shopping time here at our shop!</p>
+            <p style="text-align: left; height: fit-content; width: fit-content;">We are Brown Ted, a Teddy bear shop focusing on giving customers the best online cuddling material through our chatbot system. With our system, you can complete a purchase only using our texting method and don't have to move a muscle or wrack your brain navigating through the web store (you can still do it of course). We hope to give you a wonderful shopping time here at our shop!</p>
             <form action="${root}/product/index.do">
                 <button class="product_button" type="submit"><span>See all product</span></button>
             </form>

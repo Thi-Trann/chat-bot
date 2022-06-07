@@ -17,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import sesionbean.AccountFacade;
 
 /**
@@ -25,7 +26,7 @@ import sesionbean.AccountFacade;
  */
 @WebServlet(name = "AdminController", urlPatterns = {"/admin"})
 public class AdminController extends HttpServlet {
-    
+
     @EJB
     private AccountFacade af;
 
@@ -64,8 +65,11 @@ public class AdminController extends HttpServlet {
             case "updateEmployee":
                 updateEmployee(request, response);
                 break;
-                case "updateEmployee_handler":
-                updateEmployee(request, response);
+            case "updateEmployee_handler":
+                updateEmployee_handler(request, response);
+                break;
+            case "deleteEmployee":
+                deleteEmployee(request, response);
                 break;
             default:
                 request.setAttribute("controller", "error");
@@ -73,7 +77,7 @@ public class AdminController extends HttpServlet {
         }
         request.getRequestDispatcher(App.LAYOUT).forward(request, response);
     }
-    
+
     private void manageEmployees(HttpServletRequest request, HttpServletResponse response) {
         String role = "EMPLOYEE";
         List<Account> elist = new ArrayList<>();
@@ -85,7 +89,7 @@ public class AdminController extends HttpServlet {
         }
         request.setAttribute("elist", elist);
     }
-    
+
     private void manageCustomers(HttpServletRequest request, HttpServletResponse response) {
         String role = "CUSTOMER";
         List<Account> clist = new ArrayList<>();
@@ -97,11 +101,23 @@ public class AdminController extends HttpServlet {
         }
         request.setAttribute("clist", clist);
     }
-    
+
     private void generateNewEmployee(HttpServletRequest request, HttpServletResponse response) {
-        
+
     }
-    
+
+    private void deleteEmployee(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        List<Account> list = af.findAll();
+        for (Account acc : list) {
+            if (acc.getId().equals(id)) {
+                af.remove(acc);
+            }
+        }
+        request.setAttribute("controller", "admin");
+        request.setAttribute("action", "manageEmployees");
+    }
+
     private void generateNewEmployee_handler(HttpServletRequest request, HttpServletResponse response) {
         boolean flag = false;
         List<Account> list = af.findAll();
@@ -117,7 +133,7 @@ public class AdminController extends HttpServlet {
         int id = list.size() + 1;
         String role = "EMPLOYEE";
         List<Account> rlist = new ArrayList<>();
-        
+
         for (Account account : list) {
             if (uname.equals(account.getUserName())) {
                 request.setAttribute("messuname", "User name already existed !!!");
@@ -140,7 +156,7 @@ public class AdminController extends HttpServlet {
                 flag = true;
             }
         }
-        
+
         if (!flag) {
             Account a = new Account(id, name, address, phone, email, gender, uname, pw, true, role);
             af.create(a);
@@ -148,31 +164,48 @@ public class AdminController extends HttpServlet {
             request.setAttribute("action", "manageEmployees");
         }
     }
-    
+
     private void manageProducts(HttpServletRequest request, HttpServletResponse response) {
-        
+
     }
-    
+
     private void manageOrders(HttpServletRequest request, HttpServletResponse response) {
-        
+
     }
-    
+
     private void updateEmployee(HttpServletRequest request, HttpServletResponse response) {
-
-    }
-   private void updateEmployee_handler(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        List list = new ArrayList();
-        Account acc = af.find(id);
-        list.add(acc);
-        request.setAttribute("list", list);
+        List<Account> list = af.findAll();
+        List elist = new ArrayList();
+        for (Account acc : list) {
+            if (acc.getId().equals(id)) {
+                elist.add(acc);
+                request.setAttribute("elist", elist);
+            }
+        }
     }
-   
-    
-    
-    
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    private void updateEmployee_handler(HttpServletRequest request, HttpServletResponse response) {
+        boolean flag = false;
+        int id = Integer.parseInt(request.getParameter("id"));
+        List<Account> list = af.findAll();
+        String name = request.getParameter("name");
+        String address = request.getParameter("address");
+        String phoneNumber = request.getParameter("phoneNumber");
+        String email = request.getParameter("email");
+        String gender = request.getParameter("gender");
+        String userName = request.getParameter("userName");
+        String password = request.getParameter("password");
+        String vPassword = request.getParameter("vPassword");
+        String role = "EMPLOYEE";
+
+        Account acc = new Account(id, name, address, phoneNumber, email, gender, userName, password, true, role);
+        af.edit(acc);
+        request.setAttribute("controller", "admin");
+        request.setAttribute("action", "manageEmployees");
+    }
+
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

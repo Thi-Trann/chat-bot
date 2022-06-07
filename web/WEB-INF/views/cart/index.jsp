@@ -16,8 +16,6 @@
     <link href="${root}/css/cart.css" rel="stylesheet" type="text/css"/>
 </head>
 <c:if test="${cart.numOfProducts>0}">
-
-
     <table class="table table-striped">
         <thead>
             <tr>

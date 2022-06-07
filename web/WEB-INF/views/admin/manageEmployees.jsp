@@ -21,9 +21,10 @@
         </form>
         <table class="table table-striped">
             <thead>
-                <tr>
+                <tr style="text-align:  center">
                     <th>No.</th>
                     <th>Id</th>
+                    <th>Name</th>
                     <th>Phone number</th>
                     <th>Address</th>
                     <th>Email</th>
@@ -31,6 +32,7 @@
                     <th>Username</th>
                     <th>Password</th>
                     <th>Manage</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -38,23 +40,27 @@
                     <tr>
                         <td>${loop.count}</td>
                         <td>${elist.id}</td>
+                        <td>${elist.name}</td>
                         <td>${elist.phone}</td>
                         <td>${elist.address}</td>
                         <td>${elist.email}</td>
                         <td>${elist.gender}</td>
                         <td>${elist.userName}</td>
                         <td>${elist.password}</td>
-                <form action="${pageContext.request.contextPath}/admin/updateEmployee.do">
-                    <td>
-                        <input type="hidden" value="${elist.id}" name="id"/>
-                        <button>Update</button>
-                        <button>Delete</button>
-                    </td>
-                </form>
-            </tr>
-        </c:forEach> 
-    </tbody>
-</table>
+                        <td>
+                            <form action="${pageContext.request.contextPath}/admin/updateEmployee.do">
+                                <input type="hidden" value="${elist.id}" name="id"/>
+                                <button style="width: 100px; border-radius: 25px;"><i class="bi bi-pencil"></i> Update</button>
+                            </form>
+                            <form action="${pageContext.request.contextPath}/admin/deleteEmployee.do">
+                                <input type="hidden" value="${elist.id}" name="id"/>
+                                <button style="width: 100px; border-radius: 25px;"><i class="bi bi-eraser"></i> Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                </c:forEach> 
+            </tbody>
+        </table>
 
-</body>
+    </body>
 </html>
