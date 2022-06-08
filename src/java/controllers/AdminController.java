@@ -191,6 +191,7 @@ public class AdminController extends HttpServlet {
         List<Account> list = af.findAll();
         String name = request.getParameter("name");
         String address = request.getParameter("address");
+        int length = address.length();
         String phoneNumber = request.getParameter("phoneNumber");
         String email = request.getParameter("email");
         String gender = request.getParameter("gender");
@@ -198,7 +199,8 @@ public class AdminController extends HttpServlet {
         String password = request.getParameter("password");
         String vPassword = request.getParameter("vPassword");
         String role = "EMPLOYEE";
-
+        
+        
         Account acc = new Account(id, name, address, phoneNumber, email, gender, userName, password, true, role);
         af.edit(acc);
         request.setAttribute("controller", "admin");

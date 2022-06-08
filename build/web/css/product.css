@@ -62,3 +62,15 @@ footer{
     color: white;
     text-align: center;
 }
+
+.cus_btn{
+    width: 100%;
+    height: fit-content;
+    background-color: #FFFAB3;
+    text-align: left;
+    border: none;
+}
+
+.cus_btn:hover{
+    opacity: 0.8;
+}

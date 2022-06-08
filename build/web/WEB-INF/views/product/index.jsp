@@ -15,9 +15,15 @@ and open the template in the editor.
             <div class="row content">
                 <div class="col-sm-3 sidenav">
                     <ul class="nav nav-pills nav-stacked" style="display: block; background-color: #FFFAB3; border: 1px solid black; height: 100vh; margin-top: 20px;">
-                        <li><a href="#section2">Sort A <i class="bi bi-arrow-right"></i> Z</a></li>
-                        <li><a href="#section3">Sort price descending</a></li>
-                        <li><a href="#section3">Sort price increasing</a></li>
+                        <form>
+                            <li> <button class="cus_btn">Sort A <i class="bi bi-arrow-right"></i> Z</li>
+                        </form>
+                        <form>
+                            <li> <button class="cus_btn">Sort price ascending</button></li>
+                        </form>
+                        <form>
+                            <li> <button class="cus_btn">Sort price descending</button></li>
+                        </form>
                     </ul><br>
                 </div>
                 <div class="col-sm-9">

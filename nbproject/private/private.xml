@@ -20,6 +20,9 @@
             <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/WEB-INF/views/product/detail.jsp</file>
             <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/src/java/controllers/App.java</file>
             <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/src/java/controllers/AdminController.java</file>
+            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/css/confirmation.css</file>
+            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/css/manageEmployee.css</file>
+            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/css/product.css</file>
             <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/WEB-INF/views/home/index.jsp</file>
             <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/css/generateNewEmployee.css</file>
             <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/WEB-INF/views/admin/manageProducts.jsp</file>
@@ -27,6 +30,7 @@
             <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/WEB-INF/views/admin/manageEmployees.jsp</file>
             <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/WEB-INF/layouts/main.jsp</file>
             <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/src/java/controllers/RegisterController.java</file>
+            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/WEB-INF/views/register/congra.jsp</file>
             <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/src/java/controllers/CartController.java</file>
             <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/src/java/entities/Account.java</file>
             <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/src/java/controllers/LoginController.java</file>
