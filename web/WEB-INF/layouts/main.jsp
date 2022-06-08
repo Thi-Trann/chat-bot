@@ -70,6 +70,13 @@
                     <div class="row content">
                         <div class="col-sm-3 sidenav" style="background-color: #FFFAB3; border: 1px solid black; height: 100vh; margin-top: 10px;">
                             <ul class="nav nav-pills nav-stacked" style="display: block; margin-top: 10px;">
+                                <li>
+                                    <h3 style="font-weight: bold;">
+                                        Welcome ${role} to Brown Ted 
+                                    </h3>
+                                </li>
+                                <hr/>
+                                <br/>
                                 <form action="${pageContext.request.contextPath}/admin/manageEmployees.do">
                                     <li> <button class="admin_btn">Manage employees</button></li>
                                 </form>

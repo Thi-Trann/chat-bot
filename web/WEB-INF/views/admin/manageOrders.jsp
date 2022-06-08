@@ -12,6 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Manage Orders</h1>
+        <h1 style="padding: 4px;">Manage Orders</h1>
+        <hr/>
     </body>
 </html>

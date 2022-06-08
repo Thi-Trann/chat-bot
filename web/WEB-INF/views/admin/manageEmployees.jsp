@@ -12,11 +12,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <link href="${root}/css/manageEmployee.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <h1>Manage Employees</h1>
+        <h1 style="padding: 4px;">Manage Employees</h1>
+        <hr/>
         <form action="${pageContext.request.contextPath}/admin/generateNewEmployee.do">
-            <button style="float: right; border-radius: 50px;background-color: #f0bc4d; height: 50px;" ><i class="bi bi-plus-square"></i> Generate new employee</button>
+            <button class="generate_button" ><span>New employee</span> </button>
 
         </form>
         <table class="table table-striped">
@@ -48,13 +50,13 @@
                         <td>${elist.userName}</td>
                         <td>${elist.password}</td>
                         <td>
-                            <form action="${pageContext.request.contextPath}/admin/updateEmployee.do">
+                            <form action="${pageContext.request.contextPath}/admin/updateEmployee.do" method="post">
                                 <input type="hidden" value="${elist.id}" name="id"/>
-                                <button style="width: 100px; border-radius: 25px;"><i class="bi bi-pencil"></i> Update</button>
+                                <button class="manage_btn"><i class="bi bi-pencil"></i> Update</button>
                             </form>
-                            <form action="${pageContext.request.contextPath}/admin/deleteEmployee.do">
+                                <form action="${pageContext.request.contextPath}/admin/deleteEmployee.do" method="post">
                                 <input type="hidden" value="${elist.id}" name="id"/>
-                                <button style="width: 100px; border-radius: 25px;"><i class="bi bi-eraser"></i> Delete</button>
+                                <button class="manage_btn"><i class="bi bi-eraser"></i> Delete</button>
                             </form>
                         </td>
                     </tr>

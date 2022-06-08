@@ -10,10 +10,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Manage Customers</h1>
+        <h1 style="padding: 4px;">Manage Customers</h1>
+        <hr/>
         <table class="table table-striped">
             <thead>
                 <tr>

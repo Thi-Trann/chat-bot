@@ -16,7 +16,7 @@
     </ol>
 
     <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox">
+    <div class="carousel-inner" role="listbox" style="margin-top: 11px;">
         <div class="item active">
             <img src="${root}/images/PNG home page/event1.png" alt="Image" style="padding: 15px;">
             <div class="carousel-caption">
