@@ -3,15 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/src/java/sesionbean/AbstractFacade.java</file>
             <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/index.jsp</file>
             <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/src/java/controllers/AdminController.java</file>
-            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/WEB-INF/layouts/main.jsp</file>
-            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/src/java/controllers/RegisterController.java</file>
-            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/WEB-INF/views/product/index.jsp</file>
-            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/WEB-INF/views/register/confirm.jsp</file>
-            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/src/java/controllers/CartController.java</file>
-            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/WEB-INF/views/cart/index.jsp</file>
+            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/WEB-INF/views/login/forget.jsp</file>
+            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/src/java/entities/Account.java</file>
             <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/WEB-INF/views/register/index.jsp</file>
+            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/WEB-INF/views/login/resetpw.jsp</file>
+            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/src/java/controllers/LoginController.java</file>
+            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/css/forget.css</file>
         </group>
     </open-files>
 </project-private>

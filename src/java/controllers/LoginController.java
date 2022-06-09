@@ -284,12 +284,11 @@ public class LoginController extends HttpServlet {
                     af.edit(acc);
                     request.setAttribute("controller", "login");
                     request.setAttribute("action", "login");
-                    flag =true;
+                    flag = true;
                 }
-
             }
-
-        } if(!flag) {
+        }
+        if (!flag) {
             request.setAttribute("id", id);
             request.setAttribute("messpassd", "wrong verify password");
             request.setAttribute("controller", "login");

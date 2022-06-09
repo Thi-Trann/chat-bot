@@ -30,7 +30,7 @@
                     Verify Password:
                     <input style="margin-left: 2px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="password" name="vpassword" placeholder="Enter your password" required /><br/>${messpass}<br/>    
                     Address:
-                    <input style="margin-left: 35px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="text" name="address" placeholder="Enter your address" required /><br/><br/>
+                    <input style="margin-left: 35px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="text" name="address" placeholder="Enter your address" maxlength="100" required /><br/><br/>
                     Email:
                     <input style="margin-left: 68px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="email"  name="email" placeholder="Enter your email" required /><br/>${messmail}<br/>
                     Phone number:
