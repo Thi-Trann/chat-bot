@@ -13,12 +13,12 @@
         <link href="${root}/css/forget.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <form>
+        <form action="${pageContext.request.contextPath}/login/forget_handler.do">
             <div class="forget_form">
                 <p class="title">Find your account</p>
                 <hr/>
                 <div class="message">Please enter your email or mobile number to search for your account.</div>
-                <input class="input_forget" type="text" placeholder="Enter your Email/Phone number" >
+                <input class="input_forget" type="text" placeholder="Enter your Email" >
                 <hr/>
                 <button type="submit" class="find_button">Find</button><br/>
                 <button type="reset" class="cancel_button">Cancel</button>

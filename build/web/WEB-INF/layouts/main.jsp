@@ -97,7 +97,6 @@
                     </div>
                 </div>
             </c:when>
-
             <c:otherwise>
                 <c:choose>
                     <c:when test="${role !='ADMIN'}">

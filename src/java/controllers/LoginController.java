@@ -71,12 +71,15 @@ public class LoginController extends HttpServlet {
         String password = request.getParameter("password");
         HttpSession session = request.getSession();
         String role;
+        
         for (Account acc : list) {
-            if (userName.equals(acc.getUserName()) && password.equals(acc.getPassword())) {
+            if (userName.equals(acc.getUserName()) && password.equals(acc.getPassword()) && acc.getRole().equals("CUSTOMER")) {
                 request.setAttribute("controller", "home");
                 request.setAttribute("action", "index");
                 session.setAttribute("login_success", 1);
                 session.setAttribute("userName", userName);
+                role = acc.getRole();
+                session.setAttribute("role", role);
                 flag = true;
             }
             if (userName.equals(acc.getUserName()) && password.equals(acc.getPassword()) && acc.getRole().equals("ADMIN")) {
@@ -99,7 +102,7 @@ public class LoginController extends HttpServlet {
 
     private void forget(HttpServletRequest request, HttpServletResponse response) {
     }
-
+    
     private void logout(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         session.invalidate();

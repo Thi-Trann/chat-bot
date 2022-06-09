@@ -13,48 +13,79 @@ and open the template in the editor.
     <body>
         <div class="container-fluid">
             <div class="row content">
-                <div class="col-sm-3 sidenav">
-                    <ul class="nav nav-pills nav-stacked" style="display: block; background-color: #FFFAB3; border: 1px solid black; height: 100vh; margin-top: 20px;">
-                        <form>
-                            <li> <button class="cus_btn">Sort A <i class="bi bi-arrow-right"></i> Z</li>
-                        </form>
-                        <form>
-                            <li> <button class="cus_btn">Sort price ascending</button></li>
-                        </form>
-                        <form>
-                            <li> <button class="cus_btn">Sort price descending</button></li>
-                        </form>
-                    </ul><br>
-                </div>
-                <div class="col-sm-9">
-                    <div>
-                        <c:forEach var="product" items="${list}">
-                            <div class="col-sm-4 py-3" style="margin-top: 10px;">
-                                <div class="card">  
-                                    <form method ="post" action="${pageContext.request.contextPath}/product/detail.do">
-                                        <button style="background: white;color : black;" type="submit">
-                                            <div class="img_scale" ><img id="picture" src="${root}/images/products/${product.id}.jpg" width="90%" /></div><br/>                    
-                                            <input type="hidden" value="${product.id}" name="id"/>
-                                            Name: ${product.name}<br/>
-                                            <c:if test="${product.discount > 0/100}">
-                                                Discount <fmt:formatNumber value="${product.discount}" pattern="#%" /><br/>
-                                                Price: <strike><fmt:formatNumber value="${product.price}" pattern="$#,##0.00" /></strike>
-                                                <span style="color:red;font-size:20px;">
-                                                    <fmt:formatNumber value="${product.price*(1 - product.discount)}" pattern="$#,##0.00" />
-                                                </span><br/>
-                                            </c:if>
-                                            <c:if test="${product.discount == 0/100}">
-                                                Price: <fmt:formatNumber value="${product.price}" pattern="$#,##0.00" /><br/>
-                                            </c:if>
-                                            <!--                    Quantity: <input type="number" value="1" name="quantity" style="width:80px;" /><br/>-->
-                                            <!--                    <button type="submit" class="btn btn-sm btn-info" style="margin-top: 20px"><i class="bi bi-cart-plus"></i> Add to Cart</button>-->
-                                        </button>
-                                    </form>       
-                                </div>
-                            </div>
-                        </c:forEach>
+                <c:if test="${role == 'CUSTOMER'}">
+                    <div class="col-sm-3 sidenav">
+                        <ul class="nav nav-pills nav-stacked" style="display: block; background-color: #FFFAB3; border: 1px solid black; height: 100vh; margin-top: 20px;">
+                            <form>
+                                <li> <button class="cus_btn">Sort A <i class="bi bi-arrow-right"></i> Z</li>
+                            </form>
+                            <form>
+                                <li> <button class="cus_btn">Sort price ascending</button></li>
+                            </form>
+                            <form>
+                                <li> <button class="cus_btn">Sort price descending</button></li>
+                            </form>
+                        </ul><br>
                     </div>
-                </div>
+                    <div class="col-sm-9">
+                        <div>
+                            <c:forEach var="product" items="${list}">
+                                <div class="col-sm-4 py-3" style="margin-top: 10px;">
+                                    <div class="card">  
+                                        <form method ="post" action="${pageContext.request.contextPath}/product/detail.do">
+                                            <button style="background: white;color : black;" type="submit">
+                                                <div class="img_scale" ><img src="${root}/images/products/${product.id}.jpg" width="90%" /></div><br/>                    
+                                                <input type="hidden" value="${product.id}" name="id"/>
+                                                Name: ${product.name}<br/>
+                                                <c:if test="${product.discount > 0/100}">
+                                                    Discount <fmt:formatNumber value="${product.discount}" pattern="#%" /><br/>
+                                                    Price: <strike><fmt:formatNumber value="${product.price}" pattern="$#,##0.00" /></strike>
+                                                    <span style="color:red;font-size:20px;">
+                                                        <fmt:formatNumber value="${product.price*(1 - product.discount)}" pattern="$#,##0.00" />
+                                                    </span><br/>
+                                                </c:if>
+                                                <c:if test="${product.discount == 0/100}">
+                                                    Price: <fmt:formatNumber value="${product.price}" pattern="$#,##0.00" /><br/>
+                                                </c:if>
+                                                <!--                    Quantity: <input type="number" value="1" name="quantity" style="width:80px;" /><br/>-->
+                                                <!--                    <button type="submit" class="btn btn-sm btn-info" style="margin-top: 20px"><i class="bi bi-cart-plus"></i> Add to Cart</button>-->
+                                            </button>
+                                        </form>       
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </div>
+                </c:if>
+                <c:if test="${role != 'CUSTOMER'}">
+                     <div>
+                            <c:forEach var="product" items="${list}">
+                                <div class="col-sm-4 py-3" style="margin-top: 10px;">
+                                    <div class="card">  
+                                        <form method ="post" action="${pageContext.request.contextPath}/product/detail.do">
+                                            <button style="background: white;color : black;" type="submit">
+                                                <div class="img_scale" ><img src="${root}/images/products/${product.id}.jpg" width="90%" /></div><br/>                    
+                                                <input type="hidden" value="${product.id}" name="id"/>
+                                                Name: ${product.name}<br/>
+                                                <c:if test="${product.discount > 0/100}">
+                                                    Discount <fmt:formatNumber value="${product.discount}" pattern="#%" /><br/>
+                                                    Price: <strike><fmt:formatNumber value="${product.price}" pattern="$#,##0.00" /></strike>
+                                                    <span style="color:red;font-size:20px;">
+                                                        <fmt:formatNumber value="${product.price*(1 - product.discount)}" pattern="$#,##0.00" />
+                                                    </span><br/>
+                                                </c:if>
+                                                <c:if test="${product.discount == 0/100}">
+                                                    Price: <fmt:formatNumber value="${product.price}" pattern="$#,##0.00" /><br/>
+                                                </c:if>
+                                                <!--                    Quantity: <input type="number" value="1" name="quantity" style="width:80px;" /><br/>-->
+                                                <!--                    <button type="submit" class="btn btn-sm btn-info" style="margin-top: 20px"><i class="bi bi-cart-plus"></i> Add to Cart</button>-->
+                                            </button>
+                                        </form>       
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </div>
+                </c:if>
             </div>
         </div>
         <footer>

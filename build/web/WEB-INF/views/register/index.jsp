@@ -3,7 +3,6 @@
     Created on : May 23, 2022, 9:01:49 PM
     Author     : quckh
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,7 +14,7 @@
         <title>Register</title>
     </head>
     <body>
-        <form action="${pageContext.request.contextPath}/register/register.do" method="post">
+        <form action="${pageContext.request.contextPath}/register/register.do" >
             <div class="register_form">
 
                 <div class="register_header">
@@ -29,9 +28,9 @@
                     Password:
                     <input style="margin-left: 41px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="password" name="password" placeholder="Enter your password" required/><br/><br/>
                     Verify Password:
-                    <input style="margin-left: 2px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="password" name="vpassword" placeholder="Enter your password" required /><br/>${messpass}<br/>
+                    <input style="margin-left: 2px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="password" name="vpassword" placeholder="Enter your password" required /><br/>${messpass}<br/>    
                     Address:
-                    <input style="margin-left: 51px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="text" size="50" name="address" placeholder="Enter your address" required/><br/><br/>          
+                    <input style="margin-left: 35px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="text" name="address" placeholder="Enter your address" required /><br/><br/>
                     Email:
                     <input style="margin-left: 68px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="email"  name="email" placeholder="Enter your email" required /><br/>${messmail}<br/>
                     Phone number:
@@ -69,9 +68,5 @@
                     theEvent.preventDefault();
             }
         }
-
-
-
-
     </script>
 </html>

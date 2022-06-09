@@ -135,11 +135,12 @@ public class RegisterController extends HttpServlet {
     }
 
     private void register(HttpServletRequest request, HttpServletResponse response) throws MessagingException, UnsupportedEncodingException {
+        response.setContentType("text/html;charset=UTF-8");
         boolean flag = false;
         List<Account> list = as.findAll();
         request.setAttribute("list", list);
         String name = request.getParameter("name");
-        String address = request.getParameter("address");
+        String address = request.getParameter("address").toString();
         String uname = request.getParameter("uName");
         String pw = request.getParameter("password");
         String rpw = request.getParameter("vpassword");
@@ -177,7 +178,7 @@ public class RegisterController extends HttpServlet {
         if (!flag) {
             
             
-            vgmail(email, vcode);
+//            vgmail(email, vcode);
             request.setAttribute("id", id);
             request.setAttribute("name", name);
             request.setAttribute("address", address);
@@ -187,8 +188,8 @@ public class RegisterController extends HttpServlet {
             request.setAttribute("uname", uname);
             request.setAttribute("pw", pw);
             request.setAttribute("role", role);
-            
-            request.setAttribute("vcode", vcode);
+
+            request.setAttribute("vcode", "abc");
             request.setAttribute("controller", "register");
             request.setAttribute("action", "confirm");
             
@@ -244,6 +245,7 @@ public class RegisterController extends HttpServlet {
     }// </editor-fold>
 
     private void confirm(HttpServletRequest request, HttpServletResponse response) {
+        response.setContentType("text/html;charset=UTF-8");
         int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         String address = request.getParameter("address");

@@ -79,6 +79,8 @@ public class AdminController extends HttpServlet {
     }
 
     private void manageEmployees(HttpServletRequest request, HttpServletResponse response) {
+        response.setContentType("text/html;charset=UTF-8");
+
         String role = "EMPLOYEE";
         List<Account> elist = new ArrayList<>();
         List<Account> list = af.findAll();
@@ -91,6 +93,8 @@ public class AdminController extends HttpServlet {
     }
 
     private void manageCustomers(HttpServletRequest request, HttpServletResponse response) {
+        response.setContentType("text/html;charset=UTF-8");
+
         String role = "CUSTOMER";
         List<Account> clist = new ArrayList<>();
         List<Account> list = af.findAll();
@@ -114,11 +118,14 @@ public class AdminController extends HttpServlet {
                 af.remove(acc);
             }
         }
+        manageEmployees(request, response);
         request.setAttribute("controller", "admin");
         request.setAttribute("action", "manageEmployees");
     }
 
     private void generateNewEmployee_handler(HttpServletRequest request, HttpServletResponse response) {
+        response.setContentType("text/html;charset=UTF-8");
+
         boolean flag = false;
         List<Account> list = af.findAll();
         request.setAttribute("list", list);
@@ -160,6 +167,7 @@ public class AdminController extends HttpServlet {
         if (!flag) {
             Account a = new Account(id, name, address, phone, email, gender, uname, pw, true, role);
             af.create(a);
+            manageEmployees(request, response);
             request.setAttribute("controller", "admin");
             request.setAttribute("action", "manageEmployees");
         }
@@ -174,12 +182,15 @@ public class AdminController extends HttpServlet {
     }
 
     private void updateEmployee(HttpServletRequest request, HttpServletResponse response) {
+        response.setContentType("text/html;charset=UTF-8");
+
         int id = Integer.parseInt(request.getParameter("id"));
         List<Account> list = af.findAll();
         List elist = new ArrayList();
         for (Account acc : list) {
             if (acc.getId().equals(id)) {
                 elist.add(acc);
+
                 request.setAttribute("elist", elist);
             }
         }
@@ -199,10 +210,10 @@ public class AdminController extends HttpServlet {
         String password = request.getParameter("password");
         String vPassword = request.getParameter("vPassword");
         String role = "EMPLOYEE";
-        
-        
+
         Account acc = new Account(id, name, address, phoneNumber, email, gender, userName, password, true, role);
         af.edit(acc);
+        manageEmployees(request, response);
         request.setAttribute("controller", "admin");
         request.setAttribute("action", "manageEmployees");
     }
