@@ -18,10 +18,10 @@
                 <p class="title">Find your account</p>
                 <hr/>
                 <div class="message">Please enter your email or mobile number to search for your account.</div>
-                <input class="input_forget" type="text" placeholder="Enter your Email" >
+                <input class="input_forget" type="email" placeholder="Enter your Email" >
                 <hr/>
-                <button type="submit" class="find_button">Find</button><br/>
-                <button type="reset" class="cancel_button">Cancel</button>
+                <button type="submit" class="find_button"><span>Find</span></button><br/>
+                <button type="reset" class="cancel_button"><span>Cancel</span></button>
         </form>
     </div>
 </body>

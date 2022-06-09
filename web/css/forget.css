@@ -34,8 +34,34 @@
     height: 50px;
     border-radius: 50px;
     background-color: #f0bc4d;
+    transition: all 0.5s;
+    cursor: pointer;
+    
 }
 
+.find_button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.find_button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+.find_button:hover span {
+    padding-right: 25px;
+}
+
+.find_button:hover span:after {
+    opacity: 1;
+    right: 0;
+}
 .cancel_button{
     margin-left: 220px;
     width: 250px;
@@ -43,4 +69,30 @@
     border-radius: 50px;
     background-color: #f0bc4d;
     margin-top: 15px;
+     cursor: pointer;
+    
+}
+
+.cancel_button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.cancel_button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+.cancel_button:hover span {
+    padding-right: 25px;
+}
+
+.cancel_button:hover span:after {
+    opacity: 1;
+    right: 0;
 }
