@@ -144,7 +144,7 @@ public class LoginController extends HttpServlet {
         String password = request.getParameter("password");
         HttpSession session = request.getSession();
         String role;
-        
+
         for (Account acc : list) {
             if (userName.equals(acc.getUserName()) && password.equals(acc.getPassword()) && acc.getRole().equals("CUSTOMER")) {
                 request.setAttribute("controller", "home");
@@ -176,7 +176,7 @@ public class LoginController extends HttpServlet {
     private void forget(HttpServletRequest request, HttpServletResponse response) {
 
     }
-    
+
     private void logout(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         session.invalidate();
@@ -228,23 +228,26 @@ public class LoginController extends HttpServlet {
     private void forget_handler(HttpServletRequest request, HttpServletResponse response) {
         String email = request.getParameter("email");
         String vcode = randomAlpha();
-        boolean flag = true;
+        int id;
+        boolean flag = false;
         List<Account> list = af.findAll();
 
         for (Account account : list) {
-            if (email.equals(account.getEmail())) {
-                request.setAttribute("id", account.getId());
-                flag = false;
+            if (account.getEmail().equals(email)) {
+                id = account.getId();
+                request.setAttribute("id", id);
+                //vgmail(email, vcode);
+                request.setAttribute("vcode", "abc");
+                request.setAttribute("controller", "login");
+                request.setAttribute("action", "confirm");
+                flag = true;
             }
         }
 
         if (!flag) {
-
-            //vgmail(email, vcode);
-            request.setAttribute("vcode", "abc");
+            request.setAttribute("mess", "Wrong email address !");
             request.setAttribute("controller", "login");
-            request.setAttribute("action", "confirm");
-
+            request.setAttribute("action", "forget");
         }
     }
 
@@ -272,17 +275,23 @@ public class LoginController extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         String pass = request.getParameter("pw");
         String vpass = request.getParameter("vpw");
+        boolean flag = false;
         if (vpass.equals(pass)) {
-            request.setAttribute("id", id);
-            Account acc = new Account();
-            acc = af.find(id);
-            af.edit(acc);
-            request.setAttribute("controller", "login");
-            request.setAttribute("action", "login");
+            List<Account> list = af.findAll();
+            for (Account acc : list) {
+                if (acc.getId().equals(id)) {
+                    acc = new Account(id, acc.getName(), acc.getAddress(), acc.getPhone(), acc.getEmail(), acc.getGender(), acc.getUserName(), vpass, true, acc.getRole());
+                    af.edit(acc);
+                    request.setAttribute("controller", "login");
+                    request.setAttribute("action", "login");
+                    flag =true;
+                }
 
-        } else {
+            }
+
+        } if(!flag) {
             request.setAttribute("id", id);
-            request.setAttribute("messpassd", "wrong verify passwork");
+            request.setAttribute("messpassd", "wrong verify password");
             request.setAttribute("controller", "login");
             request.setAttribute("action", "resetpw");
         }

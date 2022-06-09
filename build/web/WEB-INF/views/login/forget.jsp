@@ -19,6 +19,7 @@
                 <hr/>
                 <div class="message">Please enter your email or mobile number to search for your account.</div>
                 <input class="input_forget" type="email" name="email" placeholder="Enter your Email" >
+                ${mess}
                 <hr/>
                 <button type="submit" class="find_button"><span>Find</span></button><br/>
                 <button type="reset" class="cancel_button"><span>Cancel</span></button>
