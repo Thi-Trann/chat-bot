@@ -25,7 +25,7 @@
         </form>
         <table class="table table-striped">
             <thead>
-                <tr style="text-align:  center">
+                <tr>
                     <th>No.</th>
                     <th>Id</th>
                     <th>Name</th>

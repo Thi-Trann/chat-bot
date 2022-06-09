@@ -26,7 +26,7 @@
                     Verify Password:
                     <input style="margin-left: 2px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="password" name="vpassword" placeholder="Verify employee password" required /><br/>${messpass}<br/>
                     Address:
-                    <input style="margin-left: 51px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="text" name="address" placeholder="Enter employee address"  maxlength="100"  required/><br/><br/>          
+                    <input style="margin-left: 51px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="text" name="address" placeholder="Enter employee address"  maxlength="300"  required/><br/><br/>          
                     Email:
                     <input style="margin-left: 68px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="email"  name="email" placeholder="Enter employee email" required /><br/><br/>
                     Phone number:

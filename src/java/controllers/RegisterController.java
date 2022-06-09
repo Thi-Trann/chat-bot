@@ -140,7 +140,7 @@ public class RegisterController extends HttpServlet {
         List<Account> list = as.findAll();
         request.setAttribute("list", list);
         String name = request.getParameter("name");
-        String address = request.getParameter("address").toString();
+        String address = request.getParameter("address");
         String uname = request.getParameter("uName");
         String pw = request.getParameter("password");
         String rpw = request.getParameter("vpassword");
@@ -178,7 +178,7 @@ public class RegisterController extends HttpServlet {
         if (!flag) {
             
             
-//            vgmail(email, vcode);
+            vgmail(email, vcode);
             request.setAttribute("id", id);
             request.setAttribute("name", name);
             request.setAttribute("address", address);
@@ -189,7 +189,7 @@ public class RegisterController extends HttpServlet {
             request.setAttribute("pw", pw);
             request.setAttribute("role", role);
 
-            request.setAttribute("vcode", "abc");
+            request.setAttribute("vcode", vcode);
             request.setAttribute("controller", "register");
             request.setAttribute("action", "confirm");
             

@@ -105,7 +105,7 @@ public class LoginController extends HttpServlet {
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, MessagingException {
         response.setContentType("text/html;charset=UTF-8");
         String action = request.getAttribute("action").toString();
         switch (action) {
@@ -165,6 +165,16 @@ public class LoginController extends HttpServlet {
                 flag = true;
             }
 
+            if (userName.equals(acc.getUserName()) && password.equals(acc.getPassword()) && acc.getRole().equals("EMPLOYEE")) {
+                request.setAttribute("controller", "home");
+                request.setAttribute("action", "index");
+                session.setAttribute("login_success", 1);
+                session.setAttribute("userName", userName);
+                role = acc.getRole();
+                session.setAttribute("role", role);
+                flag = true;
+            }
+
             if (!flag) {
                 request.setAttribute("controller", "login");
                 request.setAttribute("action", "login");
@@ -196,7 +206,11 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (MessagingException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
@@ -211,7 +225,11 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (MessagingException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
@@ -225,7 +243,7 @@ public class LoginController extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private void forget_handler(HttpServletRequest request, HttpServletResponse response) {
+    private void forget_handler(HttpServletRequest request, HttpServletResponse response) throws MessagingException, UnsupportedEncodingException {
         String email = request.getParameter("email");
         String vcode = randomAlpha();
         int id;
@@ -236,8 +254,8 @@ public class LoginController extends HttpServlet {
             if (account.getEmail().equals(email)) {
                 id = account.getId();
                 request.setAttribute("id", id);
-                //vgmail(email, vcode);
-                request.setAttribute("vcode", "abc");
+                vgmail(email, vcode);
+                request.setAttribute("vcode", vcode);
                 request.setAttribute("controller", "login");
                 request.setAttribute("action", "confirm");
                 flag = true;

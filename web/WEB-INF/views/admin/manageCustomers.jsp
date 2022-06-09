@@ -21,7 +21,8 @@
                 <tr>
                     <th>No.</th>
                     <th>Id</th>
-                    <th>Phone number</th>
+                    <th>Name</th>
+                    <th>Phone</th>
                     <th>Address</th>
                     <th>Email</th>
                     <th>Gender</th>
@@ -34,6 +35,7 @@
                     <tr>
                         <td>${loop.count}</td>
                         <td>${clist.id}</td>
+                        <td>${clist.name}</td>
                         <td>${clist.phone}</td>
                         <td>${clist.address}</td>
                         <td>${clist.email}</td>

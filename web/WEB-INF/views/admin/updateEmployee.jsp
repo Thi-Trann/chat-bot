@@ -29,7 +29,7 @@
                         Verify Password:
                         <input style="margin-left: 2px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="password" name="vPassword" placeholder="Verify employee password" required /><br/>${messpass}<br/>
                         Address:
-                        <input style="margin-left: 51px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="text" maxlength="300" name="address" value="${elist.address}" required/><br/><br/>          
+                        <input style="margin-left: 51px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="text" maxlength="100" name="address" value="${elist.address}" required/><br/><br/>          
                         Email:
                         <input style="margin-left: 68px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="text"  name="email" value="${elist.email}" required /><br/><br/>
                         Phone number:
