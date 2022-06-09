@@ -8,10 +8,22 @@ package controllers;
 import entities.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.util.Date;
 import java.util.List;
+import java.util.Properties;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -40,6 +52,58 @@ public class LoginController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    Random generator = new Random();
+    String alpha = "ABCDEFGHIJKLMOPQRSTUVWXYZ1234567890";
+
+    public String randomAlpha() {
+        int numberOfCharactor = 9;
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < numberOfCharactor; i++) {
+            int number = randomNumber(0, alpha.length() - 1);
+            char ch = alpha.charAt(number);
+            sb.append(ch);
+        }
+        return sb.toString();
+    }
+
+    int randomNumber(int min, int max) {
+        return generator.nextInt((max - min) + 1) + min;
+    }
+
+    public void vgmail(String x, String y) throws MessagingException, UnsupportedEncodingException {
+        final String fromEmail = "hieuctse151515@fpt.edu.vn";
+        // Mat khai email cua ban
+        final String password = "kqxhhptlpvvcqghx";
+        // dia chi email nguoi nhan
+        final String toEmail = x;
+        final String subject = "Confirm account !!!";
+        final String body = "YOUR VERIFY CODE : " + y;
+        Properties props = new Properties();
+        props.put("mail.smtp.host", "smtp.gmail.com"); //SMTP Host
+        props.put("mail.smtp.port", "587"); //TLS Port
+        props.put("mail.smtp.auth", "true"); //enable authentication
+        props.put("mail.smtp.starttls.enable", "true"); //enable STARTTLS
+        Authenticator auth = new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(fromEmail, password);
+            }
+        };
+        Session session = Session.getInstance(props, auth);
+        MimeMessage msg = new MimeMessage(session);
+        //set message headers
+        msg.addHeader("Content-type", "text/HTML; charset=UTF-8");
+        msg.addHeader("format", "flowed");
+        msg.addHeader("Content-Transfer-Encoding", "8bit");
+        msg.setFrom(new InternetAddress(fromEmail, "NoReply-JD"));
+        msg.setReplyTo(InternetAddress.parse(fromEmail, false));
+        msg.setSubject(subject, "UTF-8");
+        msg.setText(body, "UTF-8");
+        msg.setSentDate(new Date());
+        msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail, false));
+        Transport.send(msg);
+
+    }
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -55,6 +119,15 @@ public class LoginController extends HttpServlet {
                 break;
             case "forget":
                 forget(request, response);
+                break;
+            case "forget_handler":
+                forget_handler(request, response);
+                break;
+            case "confirm":
+                confirm(request, response);
+                break;
+            case "resetpass":
+                resetpass(request, response);
                 break;
         }
         request.getRequestDispatcher(App.LAYOUT).forward(request, response);
@@ -101,6 +174,7 @@ public class LoginController extends HttpServlet {
     }
 
     private void forget(HttpServletRequest request, HttpServletResponse response) {
+
     }
     
     private void logout(HttpServletRequest request, HttpServletResponse response) {
@@ -150,5 +224,68 @@ public class LoginController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void forget_handler(HttpServletRequest request, HttpServletResponse response) {
+        String email = request.getParameter("email");
+        String vcode = randomAlpha();
+        boolean flag = true;
+        List<Account> list = af.findAll();
+
+        for (Account account : list) {
+            if (email.equals(account.getEmail())) {
+                request.setAttribute("id", account.getId());
+                flag = false;
+            }
+        }
+
+        if (!flag) {
+
+            //vgmail(email, vcode);
+            request.setAttribute("vcode", "abc");
+            request.setAttribute("controller", "login");
+            request.setAttribute("action", "confirm");
+
+        }
+    }
+
+    private void confirm(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String vcode = request.getParameter("vcode");
+        String input = request.getParameter("inputcode");
+        if (input.equals(vcode)) {
+            request.setAttribute("id", id);
+            request.setAttribute("controller", "login");
+            request.setAttribute("action", "resetpw");
+
+        } else {
+            request.setAttribute("id", id);
+            request.setAttribute("vcode", vcode);
+
+            request.setAttribute("codemess", "Wrong verification code !!!");
+            request.setAttribute("controller", "login");
+            request.setAttribute("action", "confirm");
+
+        }
+    }
+
+    private void resetpass(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String pass = request.getParameter("pw");
+        String vpass = request.getParameter("vpw");
+        if (vpass.equals(pass)) {
+            request.setAttribute("id", id);
+            Account acc = new Account();
+            acc = af.find(id);
+            af.edit(acc);
+            request.setAttribute("controller", "login");
+            request.setAttribute("action", "login");
+
+        } else {
+            request.setAttribute("id", id);
+            request.setAttribute("messpassd", "wrong verify passwork");
+            request.setAttribute("controller", "login");
+            request.setAttribute("action", "resetpw");
+        }
+    }
 
 }
