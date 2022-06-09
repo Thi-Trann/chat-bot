@@ -5,19 +5,26 @@
         <group>
             <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/index.jsp</file>
             <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/src/java/controllers/AdminController.java</file>
+            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/src/java/controllers/HomeController.java</file>
             <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/WEB-INF/views/login/forget.jsp</file>
             <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/WEB-INF/views/admin/updateEmployee.jsp</file>
+            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/src/java/entities/Product.java</file>
+            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/css/details.css</file>
             <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/WEB-INF/views/admin/generateNewEmployee.jsp</file>
             <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/css/generateNewEmployee.css</file>
+            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/WEB-INF/views/home/index.jsp</file>
             <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/WEB-INF/views/admin/manageEmployees.jsp</file>
             <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/src/java/sesionbean/AbstractFacade.java</file>
             <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/src/java/controllers/RegisterController.java</file>
+            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/WEB-INF/layouts/main.jsp</file>
+            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/WEB-INF/views/product/index.jsp</file>
             <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/src/java/entities/Account.java</file>
             <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/WEB-INF/views/register/index.jsp</file>
             <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/WEB-INF/views/login/resetpw.jsp</file>
             <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/src/java/controllers/LoginController.java</file>
             <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/css/forget.css</file>
             <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/WEB-INF/views/admin/manageCustomers.jsp</file>
+            <file>file:/C:/Users/quckh/OneDrive/Documents/NetBeansProjects/chat-bot/web/WEB-INF/views/product/detail.jsp</file>
         </group>
     </open-files>
 </project-private>

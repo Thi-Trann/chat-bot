@@ -43,7 +43,12 @@
                             </div>
                             <span>3 Reviews</span>
                         </div>
-                        <div class="product-price-discount" style="color:red;font-size:30px;"> <fmt:formatNumber value="${list.price*(1 - list.discount)}" pattern="$#,##0.00" /><span class="line-through"><fmt:formatNumber value="${list.price}" pattern="$#,##0.00" /></span></div>
+                        <c:if test="${list.discount > 0/100}">
+                            <div class="product-price-discount" style="color:red;font-size:30px;"> <fmt:formatNumber value="${list.price*(1 - list.discount)}" pattern="$#,##0.00" /><span class="line-through"><fmt:formatNumber value="${list.price}" pattern="$#,##0.00" /></span></div>
+                        </c:if>
+                        <c:if test="${list.discount == 0/100}">
+                        <h1>Price: <fmt:formatNumber value="${list.price}" pattern="$#,##0.00" /></h1><br/>
+                        </c:if>
                     </div>
 
                     <p>${list.description}</p>

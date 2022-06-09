@@ -6,6 +6,7 @@
 package controllers;
 
 import entities.Account;
+import entities.Product;
 import entities.Staff;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import sesionbean.AccountFacade;
+import sesionbean.ProductFacade;
 import sesionbean.StaffFacade;
 
 /**
@@ -25,6 +27,9 @@ import sesionbean.StaffFacade;
  */
 @WebServlet(name = "HomeController", urlPatterns = {"/home"})
 public class HomeController extends HttpServlet {
+
+    @EJB
+    private ProductFacade pf;
 
     @EJB
     private AccountFacade af;
@@ -46,6 +51,9 @@ public class HomeController extends HttpServlet {
             case "index":
                 index(request, response);
                 break;
+            case "search":
+                search(request, response);
+                break;
             default:
                 request.setAttribute("controller", "error");
                 request.setAttribute("action", "index");
@@ -57,7 +65,23 @@ public class HomeController extends HttpServlet {
 
     }
 
-   
+    private void search(HttpServletRequest request, HttpServletResponse response) {
+        String productName = request.getParameter("productName").toLowerCase();
+        int id;
+        boolean flag = false;
+        List<Product> list = pf.findAll();
+        for (Product p : list) {
+            if (p.getName().contains(productName)) {
+                request.setAttribute("controller", "product");
+                request.setAttribute("action", "detail");
+                flag = true;
+            }
+            if (!flag) {
+                request.setAttribute("controller", "home");
+                request.setAttribute("action", "index");
+            }
+        }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
