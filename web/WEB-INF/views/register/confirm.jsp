@@ -19,7 +19,7 @@
             <form action="${pageContext.request.contextPath}/register/confirm.do" method="post">
                 <p class="con_header" >Verify Account</p>
                 <br>
-                <h6 class ="contit">verifycation code </h6>
+                <h6 class ="contit">Verification code </h6>
                 <input type="hidden" name="id" value="${id}">
                 <input type="hidden" name="name" value="${name}">
                 <input type="hidden" name="address" value="${address}">
@@ -30,8 +30,6 @@
                 <input type="hidden" name="pw" value="${pw}">
                 <input type="hidden" name="role" value="${role}">
                 <input type="hidden" name="vcode" value="${vcode}">
-                
-                ${address}
                 <input class="userName" id="ab1" type="text" placeholder="Enter your code " name="inputcode"><br/> <br/> 
                 ${codemess}
                 <button style="margin-left: 220px;" class="login_button" type="submit"><span>Confirm</span></button>

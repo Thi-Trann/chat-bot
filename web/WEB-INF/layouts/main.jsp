@@ -22,57 +22,6 @@
         <link href="${root}/css/layout.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-
-        <c:if test="${login_success == null}" >
-            <nav class="navbar navbar-inverse" style="background-color:#F1AF00;">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>                        
-                        </button>
-                    </div>
-                    <div class="collapse navbar-collapse" id="myNavbar" style="background-color:#F1AF00 ">
-                        <ul class="nav navbar-nav" style="display: inline;">
-                            <li><a style="padding: 0px; padding-right: 5px;" class="navbar-collapse" href="<c:url value="/"/>">
-                                    <img src="${root}/images/logo.png" height="50"/>
-                                </a></li>
-                            <li><a href="<c:url value="/"/>" class="text-dark"><i class="bi bi-house"></i> Home page</a></li>
-                            <li><a href="<c:url value="/product/index.do"/>"class="text-dark"><i class="bi bi-bag"></i> Product list</a></li>
-                            <li><a href="<c:url value="/cart/index.do"/>"class="text-dark"><i class="bi bi-cart"></i> Cart :<c:if test="${cart.numOfProducts==null}"> 0 </c:if><c:if test="${cart.numOfProducts!=null}"> ${cart.numOfProducts} </c:if> 
-                                        product(s)</a></li>
-                            </ul>
-                        <c:if test="${login_success == null}">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a href="<c:url value="/register/index.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Register</a></li>
-                            </ul>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a href="<c:url value="/login/login.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                            </ul>
-                        </c:if>
-                        <c:if test="${login_success != null}">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a href="<c:url value="/login/logout.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-                            </ul>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li style="margin-top: 15px;">${userName}</li>
-                            </ul>
-                        </c:if>
-
-                        <form action="${pageContext.request.contextPath}/home/search.do">
-                            <ul class="nav navbar-nav">
-                                <li class="search_form" style="margin-top:11px"><input type="text" placeholder="Search product..." name="productName"/><button type="submit" style="background-color: #D59B00;height: 25px"><i class="bi bi-search"></i></button></li>
-                            </ul>
-                        </form>                   
-                    </div>
-                </div>
-            </nav>  
-            <div>
-                <jsp:include page="/WEB-INF/views/${controller}/${action}.jsp"/>
-            </div>
-        </c:if>
-
         <c:choose>
             <c:when test="${role=='ADMIN'}">
                 <nav class="navbar navbar-inverse" style="background-color:#F1AF00;">
@@ -152,6 +101,57 @@
             <c:otherwise>
                 <c:choose>
                     <c:when test="${role =='CUSTOMER'}">
+                        <nav class="navbar navbar-inverse" style="background-color:#F1AF00;">
+                            <div class="container-fluid">
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>                        
+                                    </button>
+                                </div>
+                                <div class="collapse navbar-collapse" id="myNavbar" style="background-color:#F1AF00 ">
+                                    <ul class="nav navbar-nav" style="display: inline;">
+                                        <li><a style="padding: 0px; padding-right: 5px;" class="navbar-collapse" href="<c:url value="/"/>">
+                                                <img src="${root}/images/logo.png" height="50"/>
+                                            </a></li>
+                                        <li><a href="<c:url value="/"/>" class="text-dark"><i class="bi bi-house"></i> Home page</a></li>
+                                        <li><a href="<c:url value="/product/index.do"/>"class="text-dark"><i class="bi bi-bag"></i> Product list</a></li>
+                                        <li><a href="<c:url value="/cart/index.do"/>"class="text-dark"><i class="bi bi-cart"></i> Cart :<c:if test="${cart.numOfProducts==null}"> 0 </c:if><c:if test="${cart.numOfProducts!=null}"> ${cart.numOfProducts} </c:if> 
+                                                    product(s)</a></li>
+                                        </ul>
+                                    <c:if test="${login_success == null}">
+                                        <ul class="nav navbar-nav navbar-right">
+                                            <li><a href="<c:url value="/register/index.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Register</a></li>
+                                        </ul>
+                                        <ul class="nav navbar-nav navbar-right">
+                                            <li><a href="<c:url value="/login/login.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                                        </ul>
+                                    </c:if>
+                                    <c:if test="${login_success != null}">
+                                        <ul class="nav navbar-nav navbar-right">
+                                            <li><a href="<c:url value="/login/logout.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                                        </ul>
+                                        <ul class="nav navbar-nav navbar-right">
+                                            <li style="margin-top: 15px;">${userName}</li>
+                                        </ul>
+                                    </c:if>
+
+                                    <form action="${pageContext.request.contextPath}/home/search.do">
+                                        <ul class="nav navbar-nav">
+                                            <li class="search_form" style="margin-top:11px"><input type="text" placeholder="Search product..." name="productName"/><button type="submit" style="background-color: #D59B00;height: 25px"><i class="bi bi-search"></i></button></li>
+                                        </ul>
+                                    </form>    
+                                </div>
+                            </div>
+                        </nav>  
+                        <div>
+                            <jsp:include page="/WEB-INF/views/${controller}/${action}.jsp"/>
+                        </div>
+                    </c:when>
+                </c:choose>
+                <c:choose>
+                    <c:when test="${role ==null}">
                         <nav class="navbar navbar-inverse" style="background-color:#F1AF00;">
                             <div class="container-fluid">
                                 <div class="navbar-header">
