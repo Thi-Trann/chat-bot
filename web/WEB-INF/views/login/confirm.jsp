@@ -25,8 +25,9 @@
                 
              
                 <input class="userName" id="ab1" type="text" placeholder="Enter your code " name="inputcode"><br/> <br/> 
-                ${codemess}
-                <button style="margin-left: 220px;" class="login_button" type="submit"><span>Confirm</span></button>    
+              
+                <button style="margin-left: 220px;" class="login_button" type="submit"><span>Confirm</span></button>    <br>
+                 <div style="text-align: center;" > ${codemess}</div>
             </form>
         </div>
         </div>

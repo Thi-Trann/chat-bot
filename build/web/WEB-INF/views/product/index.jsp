@@ -14,7 +14,7 @@ and open the template in the editor.
         <div class="container-fluid">
             <div class="row content">
                 <c:if test="${role == 'CUSTOMER'}">
-                    <div class="col-sm-3 sidenav">
+                    <div class="col-sm-4 sidenav">
                         <ul class="nav nav-pills nav-stacked" style="display: block; background-color: #FFFAB3; border: 1px solid black; height: 100vh; margin-top: 20px;">
                             <form>
                                 <li> <button class="cus_btn">Sort A <i class="bi bi-arrow-right"></i> Z</li>

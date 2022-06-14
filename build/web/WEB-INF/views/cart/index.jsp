@@ -158,10 +158,18 @@
             <th style=" text-align: right; ">Total:</th>
             <th style=" text-align: center;" ><fmt:formatNumber value="${cart.total}" pattern="$#,##0.00" /></th>
             <th style=" text-align: center;"><a href="<c:url value="/cart/empty.do"/>">Empty your cart</a></th>
-
+            
         </tr>
     </tfoot>
 </table>
+             <form method="post" action="checkout.do" >
+            <div>
+               
+                <input type="hidden" name="role" value="${role}">
+            <button style="margin-left: 500px;" class="checkout_button" type="submit"><span>checkout</span></button>
+            
+            </div>
+                </form>
 </c:if>
 <c:if test="${cart.numOfProducts<=0 || cart.numOfProducts==null}">
     <div class="container">

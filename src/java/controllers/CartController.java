@@ -54,6 +54,9 @@ public class CartController extends HttpServlet {
             case "empty":
                 empty(request, response);
                 break;
+            case "checkout":
+                checkout(request, response);
+                break;
             default:
                 request.setAttribute("controller", "error");
                 request.setAttribute("action", "index");
@@ -158,5 +161,23 @@ public class CartController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void checkout(HttpServletRequest request, HttpServletResponse response) {
+    String  role =  request.getParameter("role");
+    
+    if(role == null)
+    {
+          request.setAttribute("action", "index");
+    }
+    else{
+        request.setAttribute("controller", "home");
+        request.setAttribute("action", "index");
+    }
+    
+    
+    
+    
+    
+    }
 
 }
