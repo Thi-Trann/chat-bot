@@ -10,6 +10,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
+    
+    <form action="bill.do">
     Name : ${name}<br>
     Phone: ${phone}<br>
     Email: ${email}<br>
@@ -28,10 +30,10 @@
     <br>
   Total:<fmt:formatNumber value="${cart.total}" pattern="$#,##0.00" />
     
+  <button>Payment</button>
     
     
-    
-    
+    </form>
     
     
     

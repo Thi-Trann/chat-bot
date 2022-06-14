@@ -11,6 +11,7 @@ import entities.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.Random;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,6 +39,12 @@ public class CartController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+     Random generator = new Random();
+      
+    int randomNumber(int min, int max) {
+        return generator.nextInt((max - min) + 1) + min;
+    }
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -60,6 +67,9 @@ public class CartController extends HttpServlet {
                 break;
             case "checkout":
                 checkout(request, response);
+                break;
+            case "bill":
+                bill(request, response);
                 break;
             default:
                 request.setAttribute("controller", "error");
@@ -198,6 +208,25 @@ public class CartController extends HttpServlet {
     
     
     
+    }
+
+    private void bill(HttpServletRequest request, HttpServletResponse response) {
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
 
 }
