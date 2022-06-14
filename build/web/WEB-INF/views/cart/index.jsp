@@ -47,8 +47,7 @@
                     <td     style=" text-align: center;">
 <!--                            <script>var name =${item.id} +"a";document.write(name);</script>-->
 
-                        <c:set var = "name" scope = "session" value = "${item.id*99+3105}"></c:set>
-                        <c:set var = "del" scope = "session" value = "${item.id*200+3105}"></c:set>
+                    
                         <c:set var = "abc" scope = "session" value = "${item.id}a"></c:set>
 
                             <form method="post" action="update.do" id='${abc}' >

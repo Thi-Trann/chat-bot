@@ -17,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import sesionbean.AccountFacade;
 import sesionbean.ProductFacade;
 import sesionbean.StaffFacade;
@@ -62,7 +63,11 @@ public class HomeController extends HttpServlet {
     }
 
     private void index(HttpServletRequest request, HttpServletResponse response) {
-
+        HttpSession session = request.getSession();
+        
+        session.setAttribute("iduser", null);
+        session.setAttribute("roleuser", null);
+         
     }
 
     private void search(HttpServletRequest request, HttpServletResponse response) {

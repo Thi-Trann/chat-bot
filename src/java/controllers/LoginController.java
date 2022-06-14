@@ -152,7 +152,8 @@ public class LoginController extends HttpServlet {
                 session.setAttribute("login_success", 1);
                 session.setAttribute("userName", userName);
                 role = acc.getRole();
-                session.setAttribute("role", role);
+                session.setAttribute("iduser", acc.getId());
+                session.setAttribute("roleuser", role);
                 flag = true;
             }
             if (userName.equals(acc.getUserName()) && password.equals(acc.getPassword()) && acc.getRole().equals("ADMIN")) {
@@ -161,7 +162,8 @@ public class LoginController extends HttpServlet {
                 session.setAttribute("login_success", 1);
                 session.setAttribute("userName", userName);
                 role = acc.getRole();
-                session.setAttribute("role", role);
+                session.setAttribute("iduser", acc.getId());
+                session.setAttribute("roleuser", role);
                 flag = true;
             }
 
@@ -171,7 +173,8 @@ public class LoginController extends HttpServlet {
                 session.setAttribute("login_success", 1);
                 session.setAttribute("userName", userName);
                 role = acc.getRole();
-                session.setAttribute("role", role);
+                session.setAttribute("iduser", acc.getId());
+                session.setAttribute("roleuser", role);
                 flag = true;
             }
 
@@ -189,7 +192,14 @@ public class LoginController extends HttpServlet {
 
     private void logout(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
-        session.invalidate();
+       // session.invalidate();
+        session.setAttribute("login_success", null);
+        session.setAttribute("iduser",null);
+        session.setAttribute("roleuser", null);
+        session.setAttribute("userName", null);
+
+        
+        
         request.setAttribute("controller", "home");
         request.setAttribute("action", "index");
     }

@@ -23,7 +23,7 @@
     </head>
     <body>
         <c:choose>
-            <c:when test="${role=='ADMIN'}">
+            <c:when test="${roleuser=='ADMIN'}">
                 <nav class="navbar navbar-inverse" style="background-color:#F1AF00;">
                     <div class="container-fluid">
                         <div class="navbar-header">
@@ -73,7 +73,7 @@
                             <ul class="nav nav-pills nav-stacked" style="display: block; margin-top: 10px;">
                                 <li>
                                     <h3 style="font-weight: bold;">
-                                        Welcome ${role} to Brown Ted 
+                                        Welcome ${roleuser} to Brown Ted 
                                     </h3>
                                 </li>
                                 <hr/>
@@ -100,7 +100,7 @@
             </c:when>
             <c:otherwise>
                 <c:choose>
-                    <c:when test="${role =='CUSTOMER'}">
+                    <c:when test="${roleuser =='CUSTOMER'}">
                         <nav class="navbar navbar-inverse" style="background-color:#F1AF00;">
                             <div class="container-fluid">
                                 <div class="navbar-header">
@@ -151,7 +151,7 @@
                     </c:when>
                 </c:choose>
                 <c:choose>
-                    <c:when test="${role ==null}">
+                    <c:when test="${roleuser ==null}">
                         <nav class="navbar navbar-inverse" style="background-color:#F1AF00;">
                             <div class="container-fluid">
                                 <div class="navbar-header">
@@ -202,7 +202,7 @@
                     </c:when>
                 </c:choose>
                 <c:choose>
-                    <c:when test="${role =='EMPLOYEE'}">
+                    <c:when test="${roleuser =='EMPLOYEE'}">
                         <nav class="navbar navbar-inverse" style="background-color:#F1AF00;">
                             <div class="container-fluid">
                                 <div class="navbar-header">

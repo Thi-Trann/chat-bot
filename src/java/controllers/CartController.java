@@ -163,18 +163,34 @@ public class CartController extends HttpServlet {
     }// </editor-fold>
 
     private void checkout(HttpServletRequest request, HttpServletResponse response) {
-    String  role =  request.getParameter("role");
+        HttpSession session = request.getSession();
+        String role = (String) session.getAttribute("roleuser");
     
     if(role == null)
     {
-          request.setAttribute("action", "index");
+          request.setAttribute("controller", "login");
+          request.setAttribute("action", "login");
     }
     else{
-        request.setAttribute("controller", "home");
-        request.setAttribute("action", "index");
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        request.setAttribute("controller", "cart");
+        request.setAttribute("action", "confirmcheckout");
     }
     
-    
+
     
     
     
