@@ -6,6 +6,7 @@
 package controllers;
 
 import cart.Cart;
+import entities.Account;
 import entities.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import sesionbean.AccountFacade;
 import sesionbean.ProductFacade;
 
 @WebServlet(name = "CartController", urlPatterns = {"/cart"})
@@ -24,6 +26,8 @@ public class CartController extends HttpServlet {
 
     @EJB
     private ProductFacade pf;
+    @EJB
+    private AccountFacade as;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -165,7 +169,9 @@ public class CartController extends HttpServlet {
     private void checkout(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         String role = (String) session.getAttribute("roleuser");
-    
+        List<Account> list = as.findAll();
+        
+        
     if(role == null)
     {
           request.setAttribute("controller", "login");
@@ -173,21 +179,19 @@ public class CartController extends HttpServlet {
     }
     else{
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        request.setAttribute("controller", "cart");
-        request.setAttribute("action", "confirmcheckout");
+          
+          int idu = (int) session.getAttribute("iduser");  
+          for (Account account : list) {
+            if (idu == account.getId()) {
+                request.setAttribute("email", account.getEmail());
+                request.setAttribute("name", account.getName());
+                request.setAttribute("phone", account.getPhone());
+                request.setAttribute("address", account.getAddress());
+                request.setAttribute("controller", "cart");
+                request.setAttribute("action", "confirmcheckout");
+            }
+        }
+
     }
     
 

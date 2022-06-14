@@ -4,14 +4,36 @@
     Author     : Admin
 --%>
 
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
+    Name : ${name}<br>
+    Phone: ${phone}<br>
+    Email: ${email}<br>
+    Address: ${address}<br>
+    <br>
+    Your cart   <a href="<c:url value="/cart/index.do"/>">change</a>    <br>
+    
+    
+    <c:forEach var="item" items="${cart.items}" varStatus="loop">
+    ${item.name}x${item.quantity}     ${item.cost}
+    
+    
+    
+    <br>
+    </c:forEach>
+    <br>
+  Total:<fmt:formatNumber value="${cart.total}" pattern="$#,##0.00" />
+    
+    
+    
+    
+    
+    
+    
+    
+   
 </html>
