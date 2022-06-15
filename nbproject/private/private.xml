@@ -3,8 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/chat-bot2/src/java/controllers/CartController.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/chat-bot2/web/WEB-INF/views/cart/index.jsp</file>
+            <file>file:/F:/SWP/chat-bot/src/java/sesionbean/OrderDetailFacade.java</file>
+            <file>file:/F:/SWP/chat-bot/src/java/controllers/RegisterController.java</file>
+            <file>file:/F:/SWP/chat-bot/src/java/sesionbean/ChatbotFacade.java</file>
+            <file>file:/F:/SWP/chat-bot/src/java/sesionbean/ProductFacade.java</file>
+            <file>file:/F:/SWP/chat-bot/src/java/sesionbean/SysdiagramsFacade.java</file>
+            <file>file:/F:/SWP/chat-bot/src/java/controllers/LoginController.java</file>
+            <file>file:/F:/SWP/chat-bot/src/java/controllers/AdminController.java</file>
+            <file>file:/F:/SWP/chat-bot/src/java/sesionbean/AccountFacade.java</file>
+            <file>file:/F:/SWP/chat-bot/src/java/sesionbean/CustomerFacade.java</file>
+            <file>file:/F:/SWP/chat-bot/src/java/sesionbean/AbstractFacade.java</file>
+            <file>file:/F:/SWP/chat-bot/src/java/sesionbean/UserDetailFacade.java</file>
+            <file>file:/F:/SWP/chat-bot/src/java/sesionbean/OrderHeaderFacade.java</file>
+            <file>file:/F:/SWP/chat-bot/src/java/sesionbean/StaffFacade.java</file>
+            <file>file:/F:/SWP/chat-bot/src/java/utilities/DBUtil.java</file>
+            <file>file:/F:/SWP/chat-bot/src/java/entities/Account.java</file>
         </group>
     </open-files>
 </project-private>

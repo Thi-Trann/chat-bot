@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Admin
+ * @author SE151515 Cao Trong Hieu
  */
 @Entity
 @Table(name = "Customer")
@@ -33,6 +33,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Customer.findAll", query = "SELECT c FROM Customer c")
     , @NamedQuery(name = "Customer.findById", query = "SELECT c FROM Customer c WHERE c.id = :id")
+    , @NamedQuery(name = "Customer.findByBillCount", query = "SELECT c FROM Customer c WHERE c.billCount = :billCount")
     , @NamedQuery(name = "Customer.findByCategory", query = "SELECT c FROM Customer c WHERE c.category = :category")
     , @NamedQuery(name = "Customer.findByShipToAddress", query = "SELECT c FROM Customer c WHERE c.shipToAddress = :shipToAddress")})
 public class Customer implements Serializable {
@@ -45,12 +46,16 @@ public class Customer implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
+    @Column(name = "bill_count")
+    private int billCount;
+    @Basic(optional = false)
+    @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "category")
     private String category;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 2147483647)
+    @Size(min = 1, max = 50)
     @Column(name = "shipToAddress")
     private String shipToAddress;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
@@ -66,8 +71,9 @@ public class Customer implements Serializable {
         this.id = id;
     }
 
-    public Customer(Integer id, String category, String shipToAddress) {
+    public Customer(Integer id, int billCount, String category, String shipToAddress) {
         this.id = id;
+        this.billCount = billCount;
         this.category = category;
         this.shipToAddress = shipToAddress;
     }
@@ -78,6 +84,14 @@ public class Customer implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public int getBillCount() {
+        return billCount;
+    }
+
+    public void setBillCount(int billCount) {
+        this.billCount = billCount;
     }
 
     public String getCategory() {

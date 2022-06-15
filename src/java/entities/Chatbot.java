@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Admin
+ * @author SE151515 Cao Trong Hieu
  */
 @Entity
 @Table(name = "Chatbot")

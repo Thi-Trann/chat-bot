@@ -7,7 +7,6 @@ package entities;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,18 +18,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Admin
+ * @author SE151515 Cao Trong Hieu
  */
 @Entity
 @Table(name = "OrderHeader")
@@ -56,8 +54,8 @@ public class OrderHeader implements Serializable {
     @Size(max = 30)
     @Column(name = "status")
     private String status;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderId")
-    private List<OrderDetail> orderDetailList;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "orderHeader")
+    private OrderDetail orderDetail;
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Customer customerId;
@@ -101,13 +99,12 @@ public class OrderHeader implements Serializable {
         this.status = status;
     }
 
-    @XmlTransient
-    public List<OrderDetail> getOrderDetailList() {
-        return orderDetailList;
+    public OrderDetail getOrderDetail() {
+        return orderDetail;
     }
 
-    public void setOrderDetailList(List<OrderDetail> orderDetailList) {
-        this.orderDetailList = orderDetailList;
+    public void setOrderDetail(OrderDetail orderDetail) {
+        this.orderDetail = orderDetail;
     }
 
     public Customer getCustomerId() {

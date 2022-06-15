@@ -6,6 +6,7 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,15 +16,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Admin
+ * @author SE151515 Cao Trong Hieu
  */
 @Entity
 @Table(name = "Account")
@@ -55,7 +58,7 @@ public class Account implements Serializable {
     private String name;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 2147483647)
+    @Size(min = 1, max = 500)
     @Column(name = "address")
     private String address;
     // @Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$", message="Invalid phone/fax format, should be as xxx-xxx-xxxx")//if the field contains phone or fax number consider using this annotation to enforce field validation
@@ -70,9 +73,7 @@ public class Account implements Serializable {
     @Size(min = 1, max = 30)
     @Column(name = "email")
     private String email;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20)
+    @Size(max = 20)
     @Column(name = "gender")
     private String gender;
     @Basic(optional = false)
@@ -94,6 +95,8 @@ public class Account implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "role")
     private String role;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "accountId")
+    private List<UserDetail> userDetailList;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "account")
     private Customer customer;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "account")
@@ -118,6 +121,8 @@ public class Account implements Serializable {
         this.enabled = enabled;
         this.role = role;
     }
+
+  
 
     public Integer getId() {
         return id;
@@ -197,6 +202,15 @@ public class Account implements Serializable {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    @XmlTransient
+    public List<UserDetail> getUserDetailList() {
+        return userDetailList;
+    }
+
+    public void setUserDetailList(List<UserDetail> userDetailList) {
+        this.userDetailList = userDetailList;
     }
 
     public Customer getCustomer() {

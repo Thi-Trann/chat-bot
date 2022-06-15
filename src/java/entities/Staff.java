@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Admin
+ * @author SE151515 Cao Trong Hieu
  */
 @Entity
 @Table(name = "Staff")
@@ -33,8 +33,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Staff.findAll", query = "SELECT s FROM Staff s")
     , @NamedQuery(name = "Staff.findById", query = "SELECT s FROM Staff s WHERE s.id = :id")
-    , @NamedQuery(name = "Staff.findBySalary", query = "SELECT s FROM Staff s WHERE s.salary = :salary")
-    , @NamedQuery(name = "Staff.findByDepartmentId", query = "SELECT s FROM Staff s WHERE s.departmentId = :departmentId")})
+    , @NamedQuery(name = "Staff.findBySalary", query = "SELECT s FROM Staff s WHERE s.salary = :salary")})
 public class Staff implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -48,10 +47,6 @@ public class Staff implements Serializable {
     @NotNull
     @Column(name = "salary")
     private BigDecimal salary;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "department_id")
-    private int departmentId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "staffId")
     private List<OrderHeader> orderHeaderList;
     @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
@@ -65,10 +60,9 @@ public class Staff implements Serializable {
         this.id = id;
     }
 
-    public Staff(Integer id, BigDecimal salary, int departmentId) {
+    public Staff(Integer id, BigDecimal salary) {
         this.id = id;
         this.salary = salary;
-        this.departmentId = departmentId;
     }
 
     public Integer getId() {
@@ -85,14 +79,6 @@ public class Staff implements Serializable {
 
     public void setSalary(BigDecimal salary) {
         this.salary = salary;
-    }
-
-    public int getDepartmentId() {
-        return departmentId;
-    }
-
-    public void setDepartmentId(int departmentId) {
-        this.departmentId = departmentId;
     }
 
     @XmlTransient
