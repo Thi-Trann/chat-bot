@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author SE151515 Cao Trong Hieu
+ * @author Admin
  */
 @Stateless
 public class AccountFacade extends AbstractFacade<Account> {
