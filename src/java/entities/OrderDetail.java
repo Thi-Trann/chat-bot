@@ -16,7 +16,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -30,7 +29,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "OrderDetail.findAll", query = "SELECT o FROM OrderDetail o")
-    , @NamedQuery(name = "OrderDetail.findByOrderId", query = "SELECT o FROM OrderDetail o WHERE o.orderId = :orderId")
+    , @NamedQuery(name = "OrderDetail.findById", query = "SELECT o FROM OrderDetail o WHERE o.id = :id")
     , @NamedQuery(name = "OrderDetail.findByQuantity", query = "SELECT o FROM OrderDetail o WHERE o.quantity = :quantity")
     , @NamedQuery(name = "OrderDetail.findByPrice", query = "SELECT o FROM OrderDetail o WHERE o.price = :price")
     , @NamedQuery(name = "OrderDetail.findByDiscount", query = "SELECT o FROM OrderDetail o WHERE o.discount = :discount")})
@@ -40,8 +39,8 @@ public class OrderDetail implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "order_id")
-    private Integer orderId;
+    @Column(name = "id")
+    private Integer id;
     @Basic(optional = false)
     @NotNull
     @Column(name = "quantity")
@@ -54,9 +53,9 @@ public class OrderDetail implements Serializable {
     @NotNull
     @Column(name = "discount")
     private double discount;
-    @JoinColumn(name = "order_id", referencedColumnName = "id", insertable = false, updatable = false)
-    @OneToOne(optional = false)
-    private OrderHeader orderHeader;
+    @JoinColumn(name = "order_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private OrderHeader orderId;
     @JoinColumn(name = "product_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Product productId;
@@ -64,23 +63,23 @@ public class OrderDetail implements Serializable {
     public OrderDetail() {
     }
 
-    public OrderDetail(Integer orderId) {
-        this.orderId = orderId;
+    public OrderDetail(Integer id) {
+        this.id = id;
     }
 
-    public OrderDetail(Integer orderId, int quantity, double price, double discount) {
-        this.orderId = orderId;
+    public OrderDetail(Integer id, int quantity, double price, double discount) {
+        this.id = id;
         this.quantity = quantity;
         this.price = price;
         this.discount = discount;
     }
 
-    public Integer getOrderId() {
-        return orderId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public int getQuantity() {
@@ -107,12 +106,12 @@ public class OrderDetail implements Serializable {
         this.discount = discount;
     }
 
-    public OrderHeader getOrderHeader() {
-        return orderHeader;
+    public OrderHeader getOrderId() {
+        return orderId;
     }
 
-    public void setOrderHeader(OrderHeader orderHeader) {
-        this.orderHeader = orderHeader;
+    public void setOrderId(OrderHeader orderId) {
+        this.orderId = orderId;
     }
 
     public Product getProductId() {
@@ -126,7 +125,7 @@ public class OrderDetail implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (orderId != null ? orderId.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -137,7 +136,7 @@ public class OrderDetail implements Serializable {
             return false;
         }
         OrderDetail other = (OrderDetail) object;
-        if ((this.orderId == null && other.orderId != null) || (this.orderId != null && !this.orderId.equals(other.orderId))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -145,7 +144,7 @@ public class OrderDetail implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.OrderDetail[ orderId=" + orderId + " ]";
+        return "entities.OrderDetail[ id=" + id + " ]";
     }
     
 }

@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author SE151515 Cao Trong Hieu
+ * @author Admin
  */
 @Entity
 @Table(name = "Customer")
@@ -50,7 +50,7 @@ public class Customer implements Serializable {
     private String category;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 50)
+    @Size(min = 1, max = 2147483647)
     @Column(name = "shipToAddress")
     private String shipToAddress;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")

@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author SE151515 Cao Trong Hieu
+ * @author Admin
  */
 @Entity
 @Table(name = "Account")
@@ -55,7 +55,7 @@ public class Account implements Serializable {
     private String name;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 300)
+    @Size(min = 1, max = 2147483647)
     @Column(name = "address")
     private String address;
     // @Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$", message="Invalid phone/fax format, should be as xxx-xxx-xxxx")//if the field contains phone or fax number consider using this annotation to enforce field validation
@@ -106,19 +106,6 @@ public class Account implements Serializable {
         this.id = id;
     }
 
-    public Account(String name, String address, String phone, String email, String gender, String userName, String password, String role) {
-        this.name = name;
-        this.address = address;
-        this.phone = phone;
-        this.email = email;
-        this.gender = gender;
-        this.userName = userName;
-        this.password = password;
-        this.role = role;
-    }
-    
-    
-
     public Account(Integer id, String name, String address, String phone, String email, String gender, String userName, String password, boolean enabled, String role) {
         this.id = id;
         this.name = name;
@@ -130,10 +117,6 @@ public class Account implements Serializable {
         this.password = password;
         this.enabled = enabled;
         this.role = role;
-    }   
-      public Account(String userName, String password) {
-        this.userName = userName;
-        this.password = password;
     }
 
     public Integer getId() {

@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author SE151515 Cao Trong Hieu
+ * @author Admin
  */
 @Entity
 @Table(name = "OrderHeader")
