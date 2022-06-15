@@ -42,8 +42,11 @@ public class ProductController extends HttpServlet {
             case "index":
                 index(request, response);
                 break;
-            case "detail": 
+            case "detail":
                 detail(request, response);
+                break;
+            case "search":
+                search(request, response);
                 break;
             default:
                 request.setAttribute("controller", "error");
@@ -51,17 +54,19 @@ public class ProductController extends HttpServlet {
         }
         request.getRequestDispatcher(App.LAYOUT).forward(request, response);
     }
-   private void detail(HttpServletRequest request, HttpServletResponse response) {
-       int id = Integer.parseInt(request.getParameter("id"));
+
+    private void detail(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
 //       List<Product> list = new ArrayList();
 //       list = (List<Product>) pf.find(id);
-       
+
         Product list = pf.find(id);
-       
+
         request.setAttribute("list", list);
         request.setAttribute("controller", "product");
         request.setAttribute("action", "detail");
-   }
+    }
+
     private void index(HttpServletRequest request, HttpServletResponse response) {
         int pageSize = 6;//Kich thuoc trang                        
         HttpSession session = request.getSession();
@@ -159,5 +164,27 @@ public class ProductController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void search(HttpServletRequest request, HttpServletResponse response) {
+        String productName = request.getParameter("productName");
+        boolean flag = false;
+        List<Product> list = pf.findAll();
+        List<Product> list2 = new ArrayList<>();
+        for (Product p : list) {
+            if (p.getName().toLowerCase().contains(productName.toLowerCase())) {
+                p = new Product(p.getId(), p.getName(), p.getDescription(), p.getPrice(), p.getDiscount());
+                list2.add(p);
+                flag = true;
+                request.setAttribute("list", list2);
+                request.setAttribute("controller", "product");
+                request.setAttribute("action", "index");
+            }
+            if (!flag) {
+                request.setAttribute("controller", "home");
+                request.setAttribute("action", "index");
+            }
+        }
+
+    }
 
 }

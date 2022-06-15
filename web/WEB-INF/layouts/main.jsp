@@ -59,7 +59,7 @@
                                     <li style="margin-top: 15px;">${userName}</li>
                                 </ul>
                             </c:if>
-                            <form action="${pageContext.request.contextPath}/home/search.do">
+                            <form action="${pageContext.request.contextPath}/product/search.do">
                                 <ul class="nav navbar-nav">
                                     <li class="search_form" style="margin-top:11px"><input type="text" placeholder="Search product..." name="productName"/><button type="submit" style="background-color: #D59B00;height: 25px"><i class="bi bi-search"></i></button></li>
                                 </ul>
@@ -137,7 +137,7 @@
                                         </ul>
                                     </c:if>
 
-                                    <form action="${pageContext.request.contextPath}/home/search.do">
+                                    <form action="${pageContext.request.contextPath}/product/search.do">
                                         <ul class="nav navbar-nav">
                                             <li class="search_form" style="margin-top:11px"><input type="text" placeholder="Search product..." name="productName"/><button type="submit" style="background-color: #D59B00;height: 25px"><i class="bi bi-search"></i></button></li>
                                         </ul>
@@ -188,7 +188,7 @@
                                         </ul>
                                     </c:if>
 
-                                    <form action="${pageContext.request.contextPath}/home/search.do">
+                                    <form action="${pageContext.request.contextPath}/product/search.do">
                                         <ul class="nav navbar-nav">
                                             <li class="search_form" style="margin-top:11px"><input type="text" placeholder="Search product..." name="productName"/><button type="submit" style="background-color: #D59B00;height: 25px"><i class="bi bi-search"></i></button></li>
                                         </ul>
@@ -239,7 +239,7 @@
                                         </ul>
                                     </c:if>
 
-                                    <form action="${pageContext.request.contextPath}/home/search.do">
+                                    <form action="${pageContext.request.contextPath}/product/search.do">
                                         <ul class="nav navbar-nav">
                                             <li class="search_form" style="margin-top:11px"><input type="text" placeholder="Search product..." name="productName"/><button type="submit" style="background-color: #D59B00;height: 25px"><i class="bi bi-search"></i></button></li>
                                         </ul>
