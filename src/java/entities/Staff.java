@@ -7,25 +7,21 @@ package entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author SE151515 Cao Trong Hieu
+ * @author quckh
  */
 @Entity
 @Table(name = "Staff")
@@ -47,8 +43,6 @@ public class Staff implements Serializable {
     @NotNull
     @Column(name = "salary")
     private BigDecimal salary;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "staffId")
-    private List<OrderHeader> orderHeaderList;
     @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private Account account;
@@ -79,15 +73,6 @@ public class Staff implements Serializable {
 
     public void setSalary(BigDecimal salary) {
         this.salary = salary;
-    }
-
-    @XmlTransient
-    public List<OrderHeader> getOrderHeaderList() {
-        return orderHeaderList;
-    }
-
-    public void setOrderHeaderList(List<OrderHeader> orderHeaderList) {
-        this.orderHeaderList = orderHeaderList;
     }
 
     public Account getAccount() {

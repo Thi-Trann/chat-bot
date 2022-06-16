@@ -6,10 +6,18 @@
 package controllers;
 
 import cart.Cart;
+import cart.Item;
 import entities.Account;
+import entities.Customer;
+import entities.OrderDetail;
+import entities.OrderHeader;
 import entities.Product;
+import entities.Staff;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import javax.ejb.EJB;
@@ -20,10 +28,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import sesionbean.AccountFacade;
+import sesionbean.CustomerFacade;
+import sesionbean.OrderDetailFacade;
+import sesionbean.OrderHeaderFacade;
 import sesionbean.ProductFacade;
+import sesionbean.StaffFacade;
 
 @WebServlet(name = "CartController", urlPatterns = {"/cart"})
 public class CartController extends HttpServlet {
+
+    @EJB
+    private StaffFacade sf;
+
+    @EJB
+    private OrderHeaderFacade ohf;
+
+    @EJB
+    private CustomerFacade cus;
+
+    @EJB
+    private OrderDetailFacade odf;
 
     @EJB
     private ProductFacade pf;
@@ -39,12 +63,12 @@ public class CartController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-     Random generator = new Random();
-      
+    Random generator = new Random();
+
     int randomNumber(int min, int max) {
         return generator.nextInt((max - min) + 1) + min;
     }
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -68,8 +92,8 @@ public class CartController extends HttpServlet {
             case "checkout":
                 checkout(request, response);
                 break;
-            case "bill":
-                bill(request, response);
+            case "success":
+                success(request, response);
                 break;
             default:
                 request.setAttribute("controller", "error");
@@ -180,53 +204,65 @@ public class CartController extends HttpServlet {
         HttpSession session = request.getSession();
         String role = (String) session.getAttribute("roleuser");
         List<Account> list = as.findAll();
-        
-        
-    if(role == null)
-    {
-          request.setAttribute("controller", "login");
-          request.setAttribute("action", "login");
-    }
-    else{
-        
-          
-          int idu = (int) session.getAttribute("iduser");  
-          for (Account account : list) {
-            if (idu == account.getId()) {
-                request.setAttribute("email", account.getEmail());
-                request.setAttribute("name", account.getName());
-                request.setAttribute("phone", account.getPhone());
-                request.setAttribute("address", account.getAddress());
-                request.setAttribute("controller", "cart");
-                request.setAttribute("action", "confirmcheckout");
+
+        if (role == null) {
+            request.setAttribute("controller", "login");
+            request.setAttribute("action", "login");
+        } else {
+            int idu = (int) session.getAttribute("iduser");
+            for (Account account : list) {
+                if (idu == account.getId()) {
+                    request.setAttribute("email", account.getEmail());
+                    request.setAttribute("name", account.getName());
+                    request.setAttribute("phone", account.getPhone());
+                    request.setAttribute("address", account.getAddress());
+                    request.setAttribute("controller", "cart");
+                    request.setAttribute("action", "confirmcheckout");
+                }
             }
+        }
+    }
+
+    private int checkDuplicateId() {
+        boolean flag = true;
+        List<OrderHeader> listOH = ohf.findAll();
+        int r = randomNumber(1001, 9999);
+        while (flag) {
+            boolean flag2 = true;
+            for (OrderHeader oh : listOH) {
+                if (oh.getOrderId() == r) {
+                    flag2 = false;
+                    r = randomNumber(1001, 9999);
+                }
+            }
+            if (flag2 == true) {
+                return r;
+            }
+        }
+        return 0;
+    }
+
+    private void success(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+        int oId = checkDuplicateId();
+        int uId = (int) session.getAttribute("iduser");
+        int sId = 0;
+        int id = 0;
+        Date date = new java.util.Date();
+        String shipToAdress = "Tp.Hcm";
+        String status = "new";
+        
+        OrderHeader odh = new OrderHeader(id, oId, date, status, uId, sId, shipToAdress);
+        ohf.create(odh);
+        //-----------------------------------------------------------------------------
+        Cart cart = (Cart) session.getAttribute("cart");
+        List<Item> itemList = cart.getItems();
+        
+        for (Item i : itemList) {
+            
+            OrderDetail od = new OrderDetail(oId, i.getId(), i.getQuantity(), i.getPrice(), i.getDiscount());
+            odf.create(od);
         }
 
     }
-    
-
-    
-    
-    
-    }
-
-    private void bill(HttpServletRequest request, HttpServletResponse response) {
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    }
-
 }

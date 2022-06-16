@@ -6,6 +6,7 @@
 package controllers;
 
 import entities.Account;
+import entities.Customer;
 import java.io.IOException;
 import java.io.PrintWriter;
 import static java.util.Collections.list;
@@ -27,6 +28,7 @@ import java.util.Properties;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import sesionbean.CustomerFacade;
 
 /**
  *
@@ -35,7 +37,10 @@ import java.util.logging.Logger;
 @WebServlet(name = "RegisterController", urlPatterns = {"/register"})
 
 public class RegisterController extends HttpServlet {
-
+    
+    @EJB
+    private CustomerFacade cf;
+    
     @EJB
     private AccountFacade as;
 
@@ -50,7 +55,7 @@ public class RegisterController extends HttpServlet {
      */
     Random generator = new Random();
     String alpha = "ABCDEFGHIJKLMOPQRSTUVWXYZ1234567890";
-
+    
     public String randomAlpha() {
         int numberOfCharactor = 9;
         StringBuilder sb = new StringBuilder();
@@ -61,11 +66,11 @@ public class RegisterController extends HttpServlet {
         }
         return sb.toString();
     }
-
+    
     int randomNumber(int min, int max) {
         return generator.nextInt((max - min) + 1) + min;
     }
-
+    
     public void vgmail(String x, String y) throws MessagingException, UnsupportedEncodingException {
         final String fromEmail = "hieuctse151515@fpt.edu.vn";
         // Mat khai email cua ban
@@ -97,9 +102,9 @@ public class RegisterController extends HttpServlet {
         msg.setSentDate(new Date());
         msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail, false));
         Transport.send(msg);
-
+        
     }
-
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -127,13 +132,13 @@ public class RegisterController extends HttpServlet {
         }
         request.getRequestDispatcher(App.LAYOUT).forward(request, response);
     }
-
+    
     private void index(HttpServletRequest request, HttpServletResponse response) {
-
+        
         request.setAttribute("controller", "register");
         request.setAttribute("action", "index");
     }
-
+    
     private void register(HttpServletRequest request, HttpServletResponse response) throws MessagingException, UnsupportedEncodingException {
         response.setContentType("text/html;charset=UTF-8");
         boolean flag = false;
@@ -149,7 +154,7 @@ public class RegisterController extends HttpServlet {
         String gender = request.getParameter("gender");
         int id = list.size() + 1;
         String role = "CUSTOMER";
-
+        
         String vcode = randomAlpha();
         for (Account account : list) {
             if (uname.equals(account.getUserName())) {
@@ -173,10 +178,8 @@ public class RegisterController extends HttpServlet {
                 flag = true;
             }
         }
-
         
         if (!flag) {
-            
             
             vgmail(email, vcode);
             request.setAttribute("id", id);
@@ -188,14 +191,12 @@ public class RegisterController extends HttpServlet {
             request.setAttribute("uname", uname);
             request.setAttribute("pw", pw);
             request.setAttribute("role", role);
-
+            
             request.setAttribute("vcode", vcode);
             request.setAttribute("controller", "register");
             request.setAttribute("action", "confirm");
             
         }
-        
-       
 
 //        if (!flag) {
 //            Account a = new Account(id, name, address, phone, email, gender, uname, pw, true, role);
@@ -259,16 +260,15 @@ public class RegisterController extends HttpServlet {
         String vcode = request.getParameter("vcode");
         String input = request.getParameter("inputcode");
         
-        
-        if(input.equals(vcode)){
+        if (input.equals(vcode)) {
             
             Account a = new Account(id, name, address, phone, email, gender, uname, pw, true, role);
-             as.create(a);
-            request.setAttribute("sucmess", "REGISTER SUCCESS !!!"); 
+            as.create(a);
+            request.setAttribute("sucmess", "REGISTER SUCCESS !!!");            
             request.setAttribute("controller", "login");
             request.setAttribute("action", "login");
-        }
-        else{
+            
+        } else {
             request.setAttribute("id", id);
             request.setAttribute("name", name);
             request.setAttribute("address", address);
@@ -286,13 +286,6 @@ public class RegisterController extends HttpServlet {
             
         }
         
-        
-        
-        
-        
-        
-        
-        
     }
-
+    
 }

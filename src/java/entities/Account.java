@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author SE151515 Cao Trong Hieu
+ * @author quckh
  */
 @Entity
 @Table(name = "Account")
@@ -109,20 +109,17 @@ public class Account implements Serializable {
         this.id = id;
     }
 
-    public Account(Integer id, String name, String address, String phone, String email, String gender, String userName, String password, boolean enabled, String role) {
+    public Account(Integer id, String name, String address, String phone, String email,String gender, String userName, String password, boolean enabled, String role) {
         this.id = id;
         this.name = name;
         this.address = address;
         this.phone = phone;
         this.email = email;
-        this.gender = gender;
         this.userName = userName;
         this.password = password;
         this.enabled = enabled;
         this.role = role;
     }
-
-  
 
     public Integer getId() {
         return id;

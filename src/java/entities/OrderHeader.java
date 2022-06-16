@@ -8,17 +8,13 @@ package entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -28,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author SE151515 Cao Trong Hieu
+ * @author quckh
  */
 @Entity
 @Table(name = "OrderHeader")
@@ -36,8 +32,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "OrderHeader.findAll", query = "SELECT o FROM OrderHeader o")
     , @NamedQuery(name = "OrderHeader.findById", query = "SELECT o FROM OrderHeader o WHERE o.id = :id")
+    , @NamedQuery(name = "OrderHeader.findByOrderId", query = "SELECT o FROM OrderHeader o WHERE o.orderId = :orderId")
     , @NamedQuery(name = "OrderHeader.findByDate", query = "SELECT o FROM OrderHeader o WHERE o.date = :date")
-    , @NamedQuery(name = "OrderHeader.findByStatus", query = "SELECT o FROM OrderHeader o WHERE o.status = :status")})
+    , @NamedQuery(name = "OrderHeader.findByStatus", query = "SELECT o FROM OrderHeader o WHERE o.status = :status")
+    , @NamedQuery(name = "OrderHeader.findByCustomerId", query = "SELECT o FROM OrderHeader o WHERE o.customerId = :customerId")
+    , @NamedQuery(name = "OrderHeader.findByStaffId", query = "SELECT o FROM OrderHeader o WHERE o.staffId = :staffId")
+    , @NamedQuery(name = "OrderHeader.findByShipToAddress", query = "SELECT o FROM OrderHeader o WHERE o.shipToAddress = :shipToAddress")})
 public class OrderHeader implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -48,39 +48,62 @@ public class OrderHeader implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
+    @Column(name = "order_id")
+    private int orderId;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
     @Size(max = 30)
     @Column(name = "status")
     private String status;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "orderHeader")
-    private OrderDetail orderDetail;
-    @JoinColumn(name = "customer_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Customer customerId;
-    @JoinColumn(name = "staff_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Staff staffId;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "customer_id")
+    private int customerId;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "staff_id")
+    private int staffId;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = "shipToAddress")
+    private String shipToAddress;
 
     public OrderHeader() {
     }
 
-    public OrderHeader(Integer id) {
+    public OrderHeader(int id) {
         this.id = id;
     }
 
-    public OrderHeader(Integer id, Date date) {
+    public OrderHeader(Integer id, int orderId, Date date, String status, int customerId, int staffId, String shipToAddress) {
         this.id = id;
+        this.orderId = orderId;
         this.date = date;
+        this.status = status;
+        this.customerId = customerId;
+        this.staffId = staffId;
+        this.shipToAddress = shipToAddress;
     }
 
-    public Integer getId() {
+   
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
+    }
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 
     public Date getDate() {
@@ -99,28 +122,28 @@ public class OrderHeader implements Serializable {
         this.status = status;
     }
 
-    public OrderDetail getOrderDetail() {
-        return orderDetail;
-    }
-
-    public void setOrderDetail(OrderDetail orderDetail) {
-        this.orderDetail = orderDetail;
-    }
-
-    public Customer getCustomerId() {
+    public int getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(Customer customerId) {
+    public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
 
-    public Staff getStaffId() {
+    public int getStaffId() {
         return staffId;
     }
 
-    public void setStaffId(Staff staffId) {
+    public void setStaffId(int staffId) {
         this.staffId = staffId;
+    }
+
+    public String getShipToAddress() {
+        return shipToAddress;
+    }
+
+    public void setShipToAddress(String shipToAddress) {
+        this.shipToAddress = shipToAddress;
     }
 
     @Override

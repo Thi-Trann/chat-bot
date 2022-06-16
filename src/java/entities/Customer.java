@@ -6,26 +6,22 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author SE151515 Cao Trong Hieu
+ * @author quckh
  */
 @Entity
 @Table(name = "Customer")
@@ -34,8 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Customer.findAll", query = "SELECT c FROM Customer c")
     , @NamedQuery(name = "Customer.findById", query = "SELECT c FROM Customer c WHERE c.id = :id")
     , @NamedQuery(name = "Customer.findByBillCount", query = "SELECT c FROM Customer c WHERE c.billCount = :billCount")
-    , @NamedQuery(name = "Customer.findByCategory", query = "SELECT c FROM Customer c WHERE c.category = :category")
-    , @NamedQuery(name = "Customer.findByShipToAddress", query = "SELECT c FROM Customer c WHERE c.shipToAddress = :shipToAddress")})
+    , @NamedQuery(name = "Customer.findByCategory", query = "SELECT c FROM Customer c WHERE c.category = :category")})
 public class Customer implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -53,13 +48,6 @@ public class Customer implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "category")
     private String category;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "shipToAddress")
-    private String shipToAddress;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
-    private List<OrderHeader> orderHeaderList;
     @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private Account account;
@@ -71,11 +59,10 @@ public class Customer implements Serializable {
         this.id = id;
     }
 
-    public Customer(Integer id, int billCount, String category, String shipToAddress) {
+    public Customer(Integer id, int billCount, String category) {
         this.id = id;
         this.billCount = billCount;
         this.category = category;
-        this.shipToAddress = shipToAddress;
     }
 
     public Integer getId() {
@@ -100,23 +87,6 @@ public class Customer implements Serializable {
 
     public void setCategory(String category) {
         this.category = category;
-    }
-
-    public String getShipToAddress() {
-        return shipToAddress;
-    }
-
-    public void setShipToAddress(String shipToAddress) {
-        this.shipToAddress = shipToAddress;
-    }
-
-    @XmlTransient
-    public List<OrderHeader> getOrderHeaderList() {
-        return orderHeaderList;
-    }
-
-    public void setOrderHeaderList(List<OrderHeader> orderHeaderList) {
-        this.orderHeaderList = orderHeaderList;
     }
 
     public Account getAccount() {
