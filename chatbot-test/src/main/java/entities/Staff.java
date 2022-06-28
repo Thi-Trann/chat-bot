@@ -50,6 +50,14 @@ public class Staff implements Serializable {
     public Staff() {
     }
 
+    public Staff(Integer id, BigDecimal salary, Account account) {
+        this.id = id;
+        this.salary = salary;
+        this.account = account;
+    }
+
+  
+
     public Staff(Integer id) {
         this.id = id;
     }

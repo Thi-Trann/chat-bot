@@ -238,6 +238,9 @@
                                         <ul class="nav navbar-nav navbar-right">
                                             <li style="margin-top: 15px;">${userName}</li>
                                         </ul>
+                                        <ul class="nav navbar-nav navbar-right" style="margin-right: 1%; ">
+                                            <li><a href="<c:url value="/emp/index.do"/>"class="text-dark"> Work</a></li>
+                                        </ul>
                                     </c:if>
 
                                     <form action="${pageContext.request.contextPath}/product/search.do">

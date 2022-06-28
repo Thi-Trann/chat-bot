@@ -231,7 +231,7 @@ public class CartController extends HttpServlet {
     private int checkDuplicateId() {
         boolean flag = true;
         List<OrderHeader> listOH = ohf.findAll();
-        int r = randomNumber(1001, 9999);
+        int r = randomNumber(100001, 999999);
         while (flag) {
             boolean flag2 = true;
             for (OrderHeader oh : listOH) {
