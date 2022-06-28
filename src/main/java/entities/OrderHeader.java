@@ -79,6 +79,11 @@ public class OrderHeader implements Serializable {
         this.id = id;
     }
 
+    public OrderHeader(Integer id, Date date, int orderId, String status, int customerId, int staffId, String shipToAddress) {
+        this.id = id;
+
+    }
+
     public OrderHeader(int orderId, Date date, String status, int customerId, int staffId, String shipToAddress) {
         this.orderId = orderId;
         this.date = date;
@@ -87,8 +92,6 @@ public class OrderHeader implements Serializable {
         this.staffId = staffId;
         this.shipToAddress = shipToAddress;
     }
-
-   
 
     public Integer getId() {
         return id;
@@ -170,5 +173,5 @@ public class OrderHeader implements Serializable {
     public String toString() {
         return "entities.OrderHeader[ id=" + id + " ]";
     }
-    
+
 }
