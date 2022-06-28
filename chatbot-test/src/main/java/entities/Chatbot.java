@@ -9,8 +9,6 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -21,24 +19,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author quckh
+ * @author SE151515 Cao Trong Hieu
  */
 @Entity
 @Table(name = "Chatbot")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Chatbot.findAll", query = "SELECT c FROM Chatbot c")
-    , @NamedQuery(name = "Chatbot.findById", query = "SELECT c FROM Chatbot c WHERE c.id = :id")
     , @NamedQuery(name = "Chatbot.findByKeyword", query = "SELECT c FROM Chatbot c WHERE c.keyword = :keyword")
     , @NamedQuery(name = "Chatbot.findByContent", query = "SELECT c FROM Chatbot c WHERE c.content = :content")})
 public class Chatbot implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id")
-    private Integer id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
@@ -53,22 +46,13 @@ public class Chatbot implements Serializable {
     public Chatbot() {
     }
 
-    public Chatbot(Integer id) {
-        this.id = id;
+    public Chatbot(String keyword) {
+        this.keyword = keyword;
     }
 
-    public Chatbot(Integer id, String keyword, String content) {
-        this.id = id;
+    public Chatbot(String keyword, String content) {
         this.keyword = keyword;
         this.content = content;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getKeyword() {
@@ -90,7 +74,7 @@ public class Chatbot implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (keyword != null ? keyword.hashCode() : 0);
         return hash;
     }
 
@@ -101,7 +85,7 @@ public class Chatbot implements Serializable {
             return false;
         }
         Chatbot other = (Chatbot) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.keyword == null && other.keyword != null) || (this.keyword != null && !this.keyword.equals(other.keyword))) {
             return false;
         }
         return true;
@@ -109,7 +93,7 @@ public class Chatbot implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Chatbot[ id=" + id + " ]";
+        return "entities.Chatbot[ keyword=" + keyword + " ]";
     }
     
 }

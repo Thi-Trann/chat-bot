@@ -52,7 +52,7 @@ $(submitBtn).click(function () {
         $.ajax({
             url: "/chatbot-test/chatbot",
             data: {
-                action: 1,
+
                 uInput: userInput
             },
             cache: false,
@@ -73,27 +73,5 @@ $(submitBtn).click(function () {
     }
 });
 
-$(submitBtn).click(function () {
-    var inputTxt = $(inputTxt).val();
-    $.ajax({
-        url: "/chatbot-test/chatbot",
-        data: {
-            action: 2,
-            inputTxt: inputTxt
-        },
-        cache: false,
-        type: "GET",
-        success: function (content) {
-            var chat = document.getElementById("content");
-            chatArea.insertAdjacentHTML("beforeend", content);
-        },
-        error: function (xhr) {
-        }
-    });
-    this.scrollIntoView(false);
-    userInput = "";
-    eraseText();
-    chatArea.scrollTop = chatArea.scrollHeight;
-}
-);
+
 

@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import entities.Chatbot;
 import entities.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -49,36 +50,53 @@ public class ChatBotController extends HttpServlet {
         boolean flag = true;
         List<Product> list = pf.findAll();
         
-        for (Product p : list) {
-            if (uInput.toLowerCase().equals(p.getName().toLowerCase())) {
-                out.println(
-                        "<form method =\"post\" action=\"/chatbot-test/product/detail.do\">"
-                        + "<button style=\"background: white;color : black;\" type=\"submit\">"
-                        + " <input type=\"hidden\" value=\"" + p.getId() + "\" name=\"id\"/>"
-                        +"<img  src=\"/chatbot-test/images/products/" + p.getId() + ".jpg\" width=\"50%\" />"                        
-                        + "Discount:" + p.getDiscount() * 100 + "%" + "<br/>\n"
-                        + "Price: <strike>" + p.getPrice() + "$" + "</strike>\n"
-                        + "<span style=\"color:red;font-size:20px;\">\n"
-                        + (p.getPrice() * (1 - p.getDiscount())) + "$"
-                        + "</span><br/>"
-                        + " </button>\n"
-                        +" <input name='quantity' type='hidden' value='1' />"
-                        + " <button formaction=\"/chatbot-test/cart/add_chatbot.do\" style=\"border-radius: 4px;background: #212529;color: #fff;padding: 7px 27px;margin-left:80px;display: inline-block;margin-top: 20px;border: solid 2px #212529;transition: all 0.5s ease-in-out 0s;\" type=\"submit\" class=\"round-black-btn\">Add to Cart</button>"
-                        + "</form>");
-
-                flag = false;
+        List<Chatbot> listChatbot = cf.findAll();
+        for (Chatbot p : listChatbot) { 
+            if (uInput.toLowerCase().contains(p.getKeyword())) {
+                switch (p.getKeyword()) {
+                    case "hi":
+                        out.println("<span style=\"background-color: #0084FF;color: white;\" class=\"bot-msg\">" + p.getContent() + "</span>\n");
+                        break;
+                    default:
+                        out.println("<span style=\"background-color: #0084FF;color: white;\" class=\"bot-msg\">I can't understand</span>\n");
+                        break;
+                }
             }
         }
-        if (flag == true) {
-            if (uInput.toLowerCase().equals("hi")) {
-                out.println("<span style=\"background-color: #0084FF;color: white;\" class=\"bot-msg\">Hello</span>\n");
-            } else if (uInput.toLowerCase().contains("search")) {
-                out.println("<span style=\"background-color: #0084FF;color: white;\" class=\"bot-msg\">Enter product's name for searching:</span>\n");
-
-            } else {
-                out.println("<span style=\"background-color: #0084FF;color: white;\" class=\"bot-msg\">I can't understand</span>\n");
-            }
-        } //            case 2:
+        
+//        for (Product p : list) {
+//            if (uInput.toLowerCase().equals(p.getName().toLowerCase())) {
+//                out.println(
+//                        "<form method =\"post\" action=\"/chatbot-test/product/detail.do\">"
+//                        + "<button style=\"background: white;color : black;\" type=\"submit\">"
+//                        + " <input type=\"hidden\" value=\"" + p.getId() + "\" name=\"id\"/>"
+//                        +"<img  src=\"/chatbot-test/images/products/" + p.getId() + ".jpg\" width=\"50%\" />"                        
+//                        + "Discount:" + p.getDiscount() * 100 + "%" + "<br/>\n"
+//                        + "Price: <strike>" + p.getPrice() + "$" + "</strike>\n"
+//                        + "<span style=\"color:red;font-size:20px;\">\n"
+//                        + (p.getPrice() * (1 - p.getDiscount())) + "$"
+//                        + "</span><br/>"
+//                        + " </button>\n"
+//                        +" <input name='quantity' type='hidden' value='1' />"
+//                        + " <button formaction=\"/chatbot-test/cart/add_chatbot.do\" style=\"border-radius: 4px;background: #212529;color: #fff;padding: 7px 27px;margin-left:80px;display: inline-block;margin-top: 20px;border: solid 2px #212529;transition: all 0.5s ease-in-out 0s;\" type=\"submit\" class=\"round-black-btn\">Add to Cart</button>"
+//                        + "</form>");
+//                flag = false;
+//            }
+//        }
+        
+        
+        
+//        if (flag == true) {
+//            if (uInput.toLowerCase().equals("hi")) {
+//                out.println("<span style=\"background-color: #0084FF;color: white;\" class=\"bot-msg\">Hello</span>\n");
+//            } else if (uInput.toLowerCase().contains("search")) {
+//                out.println("<span style=\"background-color: #0084FF;color: white;\" class=\"bot-msg\">Enter product's name for searching:</span>\n");
+//
+//            } else {
+//                out.println("<span style=\"background-color: #0084FF;color: white;\" class=\"bot-msg\">I can't understand</span>\n");
+//            }
+//        }
+        //            case 2:
         //                String inputTxt = request.getParameter("inputTxt");
         //                List<Product> list = pf.findAll();
         //                for (Product p : list) {

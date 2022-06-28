@@ -144,7 +144,11 @@ public class RegisterController extends HttpServlet {
     private void register(HttpServletRequest request, HttpServletResponse response) throws MessagingException, UnsupportedEncodingException {
         response.setContentType("text/html;charset=UTF-8");
         boolean flag = false;
+        
+        
         List<Account> list = as.findAll();
+        
+        
         request.setAttribute("list", list);
         String name = request.getParameter("name");
         String address = request.getParameter("address");
