@@ -65,9 +65,7 @@ public class OrderDetail implements Serializable {
     public OrderDetail() {
     }
 
-    public OrderDetail(Integer id) {
-        this.id = id;
-    }
+
 
     public OrderDetail(int orderId, int productId, int quantity, double price, double discount) {
         this.orderId = orderId;
@@ -76,6 +74,10 @@ public class OrderDetail implements Serializable {
         this.price = price;
         this.discount = discount;
     }
+
+    
+
+    
 
     public Integer getId() {
         return id;
