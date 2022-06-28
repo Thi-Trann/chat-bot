@@ -79,8 +79,7 @@ public class OrderHeader implements Serializable {
         this.id = id;
     }
 
-    public OrderHeader( int orderId, Date date, String status, int customerId, int staffId, String shipToAddress) {
-  
+    public OrderHeader(int orderId, Date date, String status, int customerId, int staffId, String shipToAddress) {
         this.orderId = orderId;
         this.date = date;
         this.status = status;
@@ -89,7 +88,7 @@ public class OrderHeader implements Serializable {
         this.shipToAddress = shipToAddress;
     }
 
-    
+   
 
     public Integer getId() {
         return id;

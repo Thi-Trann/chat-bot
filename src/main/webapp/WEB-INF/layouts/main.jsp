@@ -20,7 +20,6 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css">
         <link href="${root}/css/layout.css" rel="stylesheet" type="text/css"/>
-
     </head>
     <body>
         <c:choose>
@@ -280,9 +279,6 @@
                 <button class="submit-btn"  style="padding-left: 8px"> <i class="material-icons"> send</i></button>
             </div>
         </div>
-
-
-
     </section>
-    <script src="${root}/js/main.js"></script>
+                            <script src="${root}/js/main.js"></script>
 </html>

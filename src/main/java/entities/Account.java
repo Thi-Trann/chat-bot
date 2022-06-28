@@ -105,10 +105,6 @@ public class Account implements Serializable {
     public Account() {
     }
 
-    public Account(Integer id) {
-        this.id = id;
-    }
-
     public Account(Integer id, String name, String address, String phone, String email, String gender, String userName, String password, boolean enabled, String role) {
         this.id = id;
         this.name = name;
@@ -123,7 +119,7 @@ public class Account implements Serializable {
     }
 
     
-
+    
     public Integer getId() {
         return id;
     }
