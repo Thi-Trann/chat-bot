@@ -4,6 +4,9 @@
     Author     : quckh
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="entities.Chat"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -272,12 +275,30 @@
                 <div class="header-text">ChatBot</div>
                 <button class="close-btn"><i class="material-icons"> close</i></button>
             </div>
-            <div class="chat chat-area">
-                <div class="incoming-msg" id="content">
-                    <span style="background-color: #0084FF; color: white;" class="bot-msg">Hi, I'm Chatbot</span>
-                    <span style="background-color: #0084FF; color: white;" class="bot-msg">How can I help you?</span>
+            <div class="chat chat-area" id="content">
+                <div class="incoming-msg">
+                    <span class="bot-msg">Hi, I'm Chatbot</span>
+                    <span class="bot-msg">How can I help you?</span>
                 </div>
             </div>
+            <c:if test="${sessionScope.CHAT_SESSION != null}">
+                <c:if test="${not empty sessionScope.CHAT_SESSION}">
+                    <c:forEach var="chat" items="${sessionScope.CHAT_SESSION}">
+                        <script type="text/javascript">
+                            chatArea = document.querySelector('.chat-area');
+                            var myMsg = `<div class="out-msg">
+                            <span class="my-msg">${chat.getuInput()}</span>
+                            </div>`;
+                            chatArea.insertAdjacentHTML("beforeend", myMsg);
+                            
+                            var botMsg = `<div class="incoming-msg">
+                            <span class="bot-msg">${chat.getBotMsg()}</span>
+                            </div>`;
+                            chatArea.insertAdjacentHTML("beforeend", botMsg);
+                        </script>
+                    </c:forEach>
+                </c:if>
+            </c:if>
             <div class="input-area">
                 <input name="msg" type="text" id="txtmsg" placeholder="Enter your message here..."/>
                 <button class="submit-btn"  style="padding-left: 8px"> <i class="material-icons"> send</i></button>

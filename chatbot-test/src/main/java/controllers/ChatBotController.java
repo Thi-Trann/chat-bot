@@ -5,10 +5,12 @@
  */
 package controllers;
 
+import entities.Chat;
 import entities.Chatbot;
 import entities.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -16,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import sessionbean.ChatbotFacade;
 import sessionbean.ProductFacade;
 
@@ -32,6 +35,7 @@ public class ChatBotController extends HttpServlet {
     @EJB
     private ProductFacade pf;
     
+    List<Chat> chatSession = new ArrayList<>();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -46,24 +50,43 @@ public class ChatBotController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        String uInput = request.getParameter("uInput");
-        boolean flag = true;
         List<Product> list = pf.findAll();
-        
         List<Chatbot> listChatbot = cf.findAll();
-        for (Chatbot p : listChatbot) { 
-            if (uInput.toLowerCase().contains(p.getKeyword())) {
-                switch (p.getKeyword()) {
-                    case "hi":
-                        out.println("<span style=\"background-color: #0084FF;color: white;\" class=\"bot-msg\">" + p.getContent() + "</span>\n");
-                        break;
-                    default:
-                        out.println("<span style=\"background-color: #0084FF;color: white;\" class=\"bot-msg\">I can't understand</span>\n");
-                        break;
-                }
-            }
-        }
+
+        String uInput = "";
+        String botMsg = "";
+        Chat chat;
+        HttpSession session = request.getSession();
         
+        for (Chatbot p : listChatbot) {
+            uInput = request.getParameter("uInput");
+            switch (uInput) {
+                case "hi":
+                    botMsg = (String) p.getContent();
+                    chat = new Chat(uInput, botMsg);
+                    chatSession.add(chat);
+                    session.setAttribute("CHAT_SESSION", chatSession);
+                    out.println("<div class=\"incoming-msg\"> <span class=\"bot-msg\">" + chat.getBotMsg() + "</span></div>\n");
+                    break;
+                case "search":
+                    break;
+                case "find order":
+                    break;
+                case "end":
+                    out.println("<div class=\"incoming-msg\"> <span class=\"bot-msg\">See you later!</span></div>\n");
+                    session.invalidate();
+                    return;
+                default:
+                    botMsg = "I don't understand";
+                    chat = new Chat(uInput, botMsg);
+                    chatSession.add(chat);
+                    session.setAttribute("CHAT_SESSION", chatSession);
+                    out.println("<div class=\"incoming-msg\"> <span class=\"bot-msg\">" + chat.getBotMsg() + "</span></div>\n");
+                    break;
+            }
+            break;
+        }
+
 //        for (Product p : list) {
 //            if (uInput.toLowerCase().equals(p.getName().toLowerCase())) {
 //                out.println(
@@ -83,9 +106,6 @@ public class ChatBotController extends HttpServlet {
 //                flag = false;
 //            }
 //        }
-        
-        
-        
 //        if (flag == true) {
 //            if (uInput.toLowerCase().equals("hi")) {
 //                out.println("<span style=\"background-color: #0084FF;color: white;\" class=\"bot-msg\">Hello</span>\n");
@@ -107,7 +127,6 @@ public class ChatBotController extends HttpServlet {
         //                    }
         //                }
         //                break;
-
     }
 //        out.println("<button type=\"submit\" class=\"chat-round-black-btn\">Add to Cart</button>");
 

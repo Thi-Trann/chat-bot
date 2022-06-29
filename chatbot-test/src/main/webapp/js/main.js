@@ -52,14 +52,11 @@ $(submitBtn).click(function () {
         $.ajax({
             url: "/chatbot-test/chatbot",
             data: {
-
                 uInput: userInput
             },
             cache: false,
             type: "GET",
             success: function (content) {
-                var chat = document.getElementById("content");
-
                 chatArea.insertAdjacentHTML("beforeend", content);
             },
             error: function (xhr) {

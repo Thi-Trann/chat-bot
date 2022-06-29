@@ -7,7 +7,6 @@ package controllers;
 
 import entities.Account;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.List;
@@ -41,8 +40,6 @@ public class LoginController extends HttpServlet {
 
     @EJB
     private AccountFacade af;
-
-    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -193,11 +190,11 @@ public class LoginController extends HttpServlet {
 
     private void logout(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
-       // session.invalidate();
+        // session.invalidate();
         session.setAttribute("login_success", null);
-        session.setAttribute("iduser",null);
+        session.setAttribute("iduser", null);
         session.setAttribute("roleuser", null);
-        session.setAttribute("userName", null);      
+        session.setAttribute("userName", null);
         request.setAttribute("controller", "home");
         request.setAttribute("action", "index");
     }
