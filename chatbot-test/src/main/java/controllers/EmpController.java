@@ -5,6 +5,8 @@
  */
 package controllers;
 
+import entities.Account;
+import entities.OrderDetail;
 import entities.OrderHeader;
 import entities.Product;
 import entities.Staff;
@@ -31,6 +33,8 @@ import sessionbean.StaffFacade;
 @WebServlet(name = "EmpController", urlPatterns = {"/emp"})
 public class EmpController extends HttpServlet {
 
+
+
     @EJB
     private OrderDetailFacade of;
 
@@ -42,6 +46,8 @@ public class EmpController extends HttpServlet {
 
     @EJB
     private StaffFacade sf;
+    
+    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -66,6 +72,9 @@ public class EmpController extends HttpServlet {
             case "update":
                 update(request, response);
                 break;
+            case "detail":
+                detail(request, response);
+                break;    
             default:
                 request.setAttribute("controller", "error");
                 request.setAttribute("action", "index");
@@ -95,45 +104,108 @@ public class EmpController extends HttpServlet {
         HttpSession session = request.getSession();
         List<Staff> list = sf.findAll();
         List<OrderHeader> list2 = ohf.findAll();
+        List<OrderHeader> list3 = ohf.findAll();
+        List<OrderHeader> list4 = ohf.findAll();
         List<OrderHeader> ohnew = new ArrayList();
+        List<OrderHeader> ohcf = new ArrayList();
+        List<OrderHeader> ohcel = new ArrayList();
+        
         int id = (int) session.getAttribute("iduser");
         for (int i = 0; i < list2.size(); i++) {
-            if (list2.get(i).getStatus().equals("new")) {
+            if (list2.get(i).getStatus().equalsIgnoreCase("new")) {
                 ohnew.add(list2.get(i));
             }
         }
 
-        request.setAttribute("ohnew", ohnew);
+        for (int i = 0; i < list3.size(); i++) {
+            if (list3.get(i).getStatus().equalsIgnoreCase("confirmed")) {
+                ohcf.add(list3.get(i));
+            }
+        }
+   
+        for (int i = 0; i < list4.size(); i++) {
+            if (list4.get(i).getStatus().equalsIgnoreCase("canceled")) {
+                ohcel.add(list4.get(i));
+            }
+        }
 
-        request.setAttribute("abc", "abc");
+        request.setAttribute("ohnew", ohnew);
+        request.setAttribute("ohcf", ohcf);
+        request.setAttribute("ohcel", ohcel);
+        
+
         request.setAttribute("controller", "emp");
         request.setAttribute("action", "checkbill");
 
     }
-    
-     private void update(HttpServletRequest request, HttpServletResponse response) throws IOException {
-            int id = Integer.parseInt(request.getParameter("id"));
-            String stt = request.getParameter("stt");
-            stt = "new";
-             HttpSession session = request.getSession();
-            
-            int idstaff = (int) session.getAttribute("iduser");
-            OrderHeader odhh = new OrderHeader();
-         List<OrderHeader> list = ohf.findAll();
 
-         for (int i = 0; i < list.size(); i++) {
-             if (list.get(i).getOrderId() == id) {
-                odhh = new OrderHeader(list.get(i).getId(), list.get(i).getDate(), stt, list.get(i).getCustomerId(),idstaff, list.get(i).getShipToAddress());
-             }
-         }
+    private void update(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String stt = request.getParameter("stt");
+        
+        HttpSession session = request.getSession();
+          
+        int idstaff = (int) session.getAttribute("iduser");
+        
+        List<OrderHeader> list = ohf.findAll();
+
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getOrderId() == id) {
+              OrderHeader odhh   = new OrderHeader(list.get(i).getOrderId(), list.get(i).getDate(), stt, list.get(i).getCustomerId(), idstaff, list.get(i).getShipToAddress());          
                ohf.edit(odhh);
-               
-             
+            }
+        }
+
+        
+        
+        request.setAttribute("controller", "emp");
+        request.setAttribute("action", "checkbill_trans");
+
     }
     
-    
-    
-    
+        private void detail(HttpServletRequest request, HttpServletResponse response) {
+        List<Account> list = af.findAll();
+        List<OrderDetail> ord = of.findAll();
+        List<OrderDetail> orlist = new ArrayList();
+        
+        int cid = Integer.parseInt(request.getParameter("cusid"));
+        int orid = Integer.parseInt(request.getParameter("orid"));
+        HttpSession session = request.getSession();
+        double total=0;
+         for (OrderDetail od : ord) {
+             if(orid == od.getOrderId()){
+                 
+                 total = od.getPrice() * (1-od.getDiscount());
+                 orlist.add(od);
+             }
+         
+         
+         
+         
+         }
+         
+        
+        
+        
+        
+        for (Account st : list) {
+            if (cid == st.getId()) {
+                request.setAttribute("name", st.getName());
+                request.setAttribute("email", st.getEmail());
+                request.setAttribute("phone", st.getPhone());
+                request.setAttribute("addr", st.getAddress());
+                request.setAttribute("gender", st.getGender());
+            }
+        }
+            
+            
+            
+        request.setAttribute("total",total);      
+        request.setAttribute("orlist",orlist);   
+        
+        request.setAttribute("controller", "emp");
+        request.setAttribute("action", "Odetail");
+    }
     
     
     
@@ -177,6 +249,6 @@ public class EmpController extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-   
+
 
 }

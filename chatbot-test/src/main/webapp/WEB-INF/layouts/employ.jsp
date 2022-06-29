@@ -86,12 +86,12 @@
                                 <form action="${pageContext.request.contextPath}/emp/checkbill.do">
                                     <li> <button class="admin_btn">Check bills</button></li>
                                 </form>
-                                <form action="${pageContext.request.contextPath}/admin/manageProducts.do">
+<!--                                <form action="${pageContext.request.contextPath}/admin/manageProducts.do">
                                     <li> <button class="admin_btn">Manage products</button></li>
                                 </form>
                                 <form action="${pageContext.request.contextPath}/admin/manageOrders.do">
                                     <li> <button class="admin_btn">Manage orders</button></li>
-                                </form>
+                                </form>-->
                             </ul><br/>
                         </div>
                         <div class="col-sm-9">

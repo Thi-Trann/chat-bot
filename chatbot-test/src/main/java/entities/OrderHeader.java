@@ -10,8 +10,6 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -24,14 +22,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author quckh
+ * @author SE151515 Cao Trong Hieu
  */
 @Entity
 @Table(name = "OrderHeader")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "OrderHeader.findAll", query = "SELECT o FROM OrderHeader o")
-    , @NamedQuery(name = "OrderHeader.findById", query = "SELECT o FROM OrderHeader o WHERE o.id = :id")
     , @NamedQuery(name = "OrderHeader.findByOrderId", query = "SELECT o FROM OrderHeader o WHERE o.orderId = :orderId")
     , @NamedQuery(name = "OrderHeader.findByDate", query = "SELECT o FROM OrderHeader o WHERE o.date = :date")
     , @NamedQuery(name = "OrderHeader.findByStatus", query = "SELECT o FROM OrderHeader o WHERE o.status = :status")
@@ -42,14 +39,10 @@ public class OrderHeader implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id")
-    private Integer id;
     @Basic(optional = false)
     @NotNull
     @Column(name = "order_id")
-    private int orderId;
+    private Integer orderId;
     @Basic(optional = false)
     @NotNull
     @Column(name = "date")
@@ -75,12 +68,11 @@ public class OrderHeader implements Serializable {
     public OrderHeader() {
     }
 
-    public OrderHeader(Integer id) {
-        this.id = id;
+    public OrderHeader(Integer orderId) {
+        this.orderId = orderId;
     }
 
-    public OrderHeader( int orderId, Date date, String status, int customerId, int staffId, String shipToAddress) {
-  
+    public OrderHeader(Integer orderId, Date date, String status, int customerId, int staffId, String shipToAddress) {
         this.orderId = orderId;
         this.date = date;
         this.status = status;
@@ -89,21 +81,13 @@ public class OrderHeader implements Serializable {
         this.shipToAddress = shipToAddress;
     }
 
-    
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public int getOrderId() {
+    public Integer getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(int orderId) {
+    public void setOrderId(Integer orderId) {
         this.orderId = orderId;
     }
 
@@ -150,7 +134,7 @@ public class OrderHeader implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (orderId != null ? orderId.hashCode() : 0);
         return hash;
     }
 
@@ -161,7 +145,7 @@ public class OrderHeader implements Serializable {
             return false;
         }
         OrderHeader other = (OrderHeader) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.orderId == null && other.orderId != null) || (this.orderId != null && !this.orderId.equals(other.orderId))) {
             return false;
         }
         return true;
@@ -169,7 +153,7 @@ public class OrderHeader implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.OrderHeader[ id=" + id + " ]";
+        return "entities.OrderHeader[ orderId=" + orderId + " ]";
     }
     
 }
