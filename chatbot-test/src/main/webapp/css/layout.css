@@ -126,6 +126,10 @@ body{
     word-break: break-all;
 }
 
+.product-img{
+    border-radius: 5px;  
+}
+
 .chat-header .close-btn{
     margin: auto;
     margin-right: 0;

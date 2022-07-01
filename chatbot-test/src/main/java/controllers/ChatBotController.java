@@ -34,7 +34,7 @@ public class ChatBotController extends HttpServlet {
 
     @EJB
     private ProductFacade pf;
-    
+
     List<Chat> chatSession = new ArrayList<>();
 
     /**
@@ -50,25 +50,28 @@ public class ChatBotController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        List<Product> list = pf.findAll();
+        List<Product> listProduct = pf.findAll();
         List<Chatbot> listChatbot = cf.findAll();
 
-        String uInput = "";
-        String botMsg = "";
+        String uInput;
+        String botMsg;
         Chat chat;
         HttpSession session = request.getSession();
-        
-        for (Chatbot p : listChatbot) {
+
+        for (Chatbot c : listChatbot) {
             uInput = request.getParameter("uInput");
             switch (uInput) {
                 case "hi":
-                    botMsg = (String) p.getContent();
+                    botMsg = (String) c.getContent();
                     chat = new Chat(uInput, botMsg);
                     chatSession.add(chat);
                     session.setAttribute("CHAT_SESSION", chatSession);
                     out.println("<div class=\"incoming-msg\"> <span class=\"bot-msg\">" + chat.getBotMsg() + "</span></div>\n");
                     break;
                 case "search":
+                    out.println("<div class=\"incoming-msg\"> <span class=\"bot-msg\">Enter the product name \n you want to find:</span></div>\n");
+                    break;
+                case "end search":
                     break;
                 case "find order":
                     break;
@@ -77,11 +80,40 @@ public class ChatBotController extends HttpServlet {
                     session.invalidate();
                     return;
                 default:
-                    botMsg = "I don't understand";
-                    chat = new Chat(uInput, botMsg);
-                    chatSession.add(chat);
-                    session.setAttribute("CHAT_SESSION", chatSession);
-                    out.println("<div class=\"incoming-msg\"> <span class=\"bot-msg\">" + chat.getBotMsg() + "</span></div>\n");
+                    boolean flag = false;
+                    for (Product p : listProduct) {
+                        if (uInput.toLowerCase().equals(p.getName().toLowerCase())) {
+                            botMsg = p.getId() + "-" + p.getDiscount() + "-" + p.getPrice() +"-"+ p.getDiscount() * 100 + "-" +(p.getPrice() * (1 - p.getDiscount()));
+                            chat = new Chat(uInput, botMsg);
+                            chatSession.add(chat);
+                            session.setAttribute("CHAT_SESSION", chatSession);
+                            out.println(
+                                    "<div class =\"incoming-msg\"> "
+                                    + "<span class =\"bot-msg\">"
+                                    + "<form method =\"post\" action=\"/chatbot-test/product/detail.do\">"
+                                    + "<button style=\"background: white;color : black;border-radius: 5px;\" type=\"submit\">"
+                                    + " <input type=\"hidden\" value=\"" + p.getId() + "\" name=\"id\"/>"
+                                    + "<img  src=\"/chatbot-test/images/products/" + p.getId() + ".jpg\" width=\"50%\" /><br/>"
+                                    + "Discount:" + p.getDiscount() * 100 + "%" + "<br/>\n"
+                                    + "Price: <strike>" + p.getPrice() + "$" + "</strike>\n"
+                                    + "<span style=\"color:red;font-size:20px;\">\n"
+                                    + (p.getPrice() * (1 - p.getDiscount())) + "$"
+                                    + "</span><br/>"
+                                    + " </button>\n"
+                                    + " <input name='quantity' type='hidden' value='1' />"
+                                    + " <button formaction=\"/chatbot-test/cart/add_chatbot.do\" style=\"border-radius: 5px;background: #212529;color: #fff;margin: 10px 0 0 20px;padding: 2px 27px;border: solid 2px #212529;transition: all 0.5s ease-in-out 0s;\" type=\"submit\" class=\"round-black-btn\">Add to Cart</button>"
+                                    + "</span></form></div>");
+                            flag = true;
+                        }
+                    }
+                    if (flag == false) {
+                        botMsg = "I don't understand";
+                        chat = new Chat(uInput, botMsg);
+                        chatSession.add(chat);
+                        session.setAttribute("CHAT_SESSION", chatSession);
+                        out.println("<div class=\"incoming-msg\"> <span class=\"bot-msg\">" + chat.getBotMsg() + "</span></div>\n");
+                        break;
+                    }
                     break;
             }
             break;

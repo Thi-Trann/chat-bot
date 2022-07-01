@@ -10,6 +10,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  
 <html>
     <head>
         <title>Brown Ted</title>
@@ -284,18 +285,56 @@
             <c:if test="${sessionScope.CHAT_SESSION != null}">
                 <c:if test="${not empty sessionScope.CHAT_SESSION}">
                     <c:forEach var="chat" items="${sessionScope.CHAT_SESSION}">
-                        <script type="text/javascript">
-                            chatArea = document.querySelector('.chat-area');
-                            var myMsg = `<div class="out-msg">
-                            <span class="my-msg">${chat.getuInput()}</span>
-                            </div>`;
-                            chatArea.insertAdjacentHTML("beforeend", myMsg);
-                            
-                            var botMsg = `<div class="incoming-msg">
-                            <span class="bot-msg">${chat.getBotMsg()}</span>
-                            </div>`;
-                            chatArea.insertAdjacentHTML("beforeend", botMsg);
-                        </script>
+                        <c:set var="btMsg" value="${chat.getBotMsg()}"/>
+                        <c:set var="botMsgSplit" value="${fn:split(btMsg, '-')}"/>
+                        <c:choose>
+                            <c:when test="${fn:contains(btMsg, '-')}"> 
+                                <script type="text/javascript">
+                                    chatArea = document.querySelector('.chat-area');
+                                    var myMsg = `<div class="out-msg">
+                                    <span class="my-msg">${chat.getuInput()}</span>
+                                    </div>`;
+                                    chatArea.insertAdjacentHTML("beforeend", myMsg);
+
+                                    var botMsg = `<div class="incoming-msg">
+                                    <span class="bot-msg">
+                                    <form method ="post" action="/chatbot-test/product/detail.do">
+                                    <button style="background:white; color:black;" type="submit">
+                                    <input type="hidden" value="${botMsgSplit[0]}" name="id"/>
+                                    <img  src="/chatbot-test/images/products/${botMsgSplit[0]}.jpg" width=50%/><br/>
+                                    Discount:${botMsgSplit[3]}%<br/>\n
+                                    Price: <strike>${botMsgSplit[2]}$</strike>\n
+                                    <span style="color:red;font-size:20px;">\n${botMsgSplit[4]}$</span><br/>
+                                    </button>\n
+                                    <input name='quantity' type='hidden' value='1'/>
+                                    <button formaction=\"/chatbot-test/cart/add_chatbot.do\" style=\"border-radius: 5px;background: #212529;color: #fff;margin: 10px 0 0 20px;padding: 2px 27px;border: solid 2px #212529;transition: all 0.5s ease-in-out 0s;\" type=\"submit\" class=\"round-black-btn\">Add to Cart</button>
+                                    </form>
+                                    </span>
+                                    </div>`;
+                                    chatArea.insertAdjacentHTML("beforeend", botMsg);
+
+                                    this.scrollIntoView(false);
+                                    chatArea.scrollTop = chatArea.scrollHeight;
+                                </script>
+                            </c:when>
+                            <c:otherwise>
+                                <script type="text/javascript">
+                                    chatArea = document.querySelector('.chat-area');
+                                    var myMsg = `<div class="out-msg">
+                                    <span class="my-msg">${chat.getuInput()}</span>
+                                    </div>`;
+                                    chatArea.insertAdjacentHTML("beforeend", myMsg);
+
+                                    var botMsg = `<div class="incoming-msg">
+                                    <span class="bot-msg">${chat.getBotMsg()}</span>
+                                    </div>`;
+                                    chatArea.insertAdjacentHTML("beforeend", botMsg);
+
+                                    this.scrollIntoView(false);
+                                    chatArea.scrollTop = chatArea.scrollHeight;
+                                </script>
+                            </c:otherwise>
+                        </c:choose>
                     </c:forEach>
                 </c:if>
             </c:if>
