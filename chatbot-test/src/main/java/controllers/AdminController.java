@@ -6,6 +6,7 @@
 package controllers;
 
 import entities.Account;
+import entities.Chatbot;
 import entities.OrderHeader;
 import entities.Product;
 import java.io.IOException;
@@ -21,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import sessionbean.AccountFacade;
+import sessionbean.ChatbotFacade;
 import sessionbean.OrderHeaderFacade;
 import sessionbean.ProductFacade;
 
@@ -30,6 +32,9 @@ import sessionbean.ProductFacade;
  */
 @WebServlet(name = "AdminController", urlPatterns = {"/admin"})
 public class AdminController extends HttpServlet {
+
+    @EJB
+    private ChatbotFacade cbf;
 
     @EJB
     private ProductFacade pf;
@@ -87,8 +92,20 @@ public class AdminController extends HttpServlet {
             case "updateProductHandler":
                 updateProductHandler(request, response);
                 break;
-                case "deleteProduct":
+            case "deleteProduct":
                 deleteProduct(request, response);
+                break;
+            case "manageChatbot":
+                manageChabot(request, response);
+                break;
+            case "updateChatbot":
+                updateChatbot(request, response);
+                break;
+            case "deleteChatbot":
+                deleteChatbot(request, response);
+                break;
+            case"updateChatbot_hander":
+                updateChatbot_hander(request,response);
                 break;
             default:
                 request.setAttribute("controller", "error");
@@ -307,7 +324,7 @@ public class AdminController extends HttpServlet {
         String description = request.getParameter("productDescription");
         double price = Double.parseDouble(request.getParameter("productPrice"));
         double discount = Double.parseDouble(request.getParameter("productDiscount"));
-        
+
         Product p = new Product(id, name, description, price, discount);
         pf.edit(p);
         manageProducts(request, response);
@@ -326,6 +343,54 @@ public class AdminController extends HttpServlet {
         manageProducts(request, response);
         request.setAttribute("controller", "admin");
         request.setAttribute("action", "manageProducts");
+    }
+
+    private void manageChabot(HttpServletRequest request, HttpServletResponse response) {
+        List<Chatbot> list = cbf.findAll();
+        List<Chatbot> cblist = new ArrayList<>();
+        for (Chatbot bot : list) {
+            bot = new Chatbot(bot.getKeyword(), bot.getContent());
+            cblist.add(bot);
+            request.setAttribute("cblist", cblist);
+        }
+
+    }
+
+    private void updateChatbot(HttpServletRequest request, HttpServletResponse response) {
+        String key = request.getParameter("key").trim().toLowerCase();
+        List<Chatbot> list = cbf.findAll();
+        List botList = new ArrayList();
+        for (Chatbot p : list) {
+            if (p.getKeyword().trim().toLowerCase().equals(key)) {
+                botList.add(p);
+                request.setAttribute("botList", botList);
+            }
+        }
+    }
+    
+
+    private void deleteChatbot(HttpServletRequest request, HttpServletResponse response) {
+        String key = request.getParameter("key");
+        List<Chatbot> list = cbf.findAll();
+        for (Chatbot c : list) {
+            if (c.getKeyword().equals(key)) {
+                cbf.remove(c);
+            }
+        }
+        manageChabot(request, response);
+        request.setAttribute("controller", "admin");
+        request.setAttribute("action", "manageChatbot");
+    }
+
+    private void updateChatbot_hander(HttpServletRequest request, HttpServletResponse response) {
+        String key = request.getParameter("keyword");
+        String content = request.getParameter("content");    
+        Chatbot bot = new Chatbot(key, content);
+        cbf.edit(bot);
+        manageChabot(request, response);
+        request.setAttribute("controller", "admin");
+        request.setAttribute("action", "manageChatbot");
+        
     }
 
 }

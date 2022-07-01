@@ -95,6 +95,9 @@
                                 <form action="${pageContext.request.contextPath}/admin/manageOrders.do">
                                     <li> <button class="admin_btn">Manage orders</button></li>
                                 </form>
+                                <form action="${pageContext.request.contextPath}/admin/manageChatbot.do">
+                                    <li> <button class="admin_btn">Manage Chatbot</button></li>
+                                </form>
                             </ul><br/>
                         </div>
                         <div class="col-sm-9">
