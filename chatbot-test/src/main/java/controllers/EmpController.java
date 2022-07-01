@@ -175,7 +175,7 @@ public class EmpController extends HttpServlet {
          for (OrderDetail od : ord) {
              if(orid == od.getOrderId()){
                  
-                 total = od.getPrice() * (1-od.getDiscount());
+                 total = od.getPrice() * (1-od.getDiscount()) * od.getQuantity() ;
                  orlist.add(od);
              }
          

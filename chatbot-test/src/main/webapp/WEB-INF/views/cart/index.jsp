@@ -164,7 +164,7 @@
     <div>
 
         <input type="hidden" name="role" value="${role}">
-        <button style="margin-left: 500px;" class="checkout_button" type="submit"><span>Checkout</span></button>
+        <button style="margin-left: 43%;" class="checkout_button" type="submit"><span>Checkout</span></button>
 
     </div>
 </form>

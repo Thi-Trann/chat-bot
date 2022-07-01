@@ -109,13 +109,11 @@
 
 
         <!------------------------------------------------------------------------------------------------->        
-        <h1>Check bills</h1>
-        <hr>
         <div>
             <h2>confirmed</h2>
             <div>
-                <button id="flip" class="btn2" >Show/Hide</button><br>
-                <div id="panel">
+                <button id="flip2" class="btn2" >Show/Hide</button><br>
+                <div id="panel2">
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -179,13 +177,12 @@
 
 
         <!------------------------------------------------------------------------------------------------->
-  <h1>Check bills</h1>
-        <hr>
+
         <div>
             <h2>cancel</h2>
             <div>
-                <button id="flip" class="btn2" >Show/Hide</button><br>
-                <div id="panel">
+                <button id="flip3" class="btn2" >Show/Hide</button><br>
+                <div id="panel3">
                     <table class="table table-striped">
                         <thead>
                             <tr>
