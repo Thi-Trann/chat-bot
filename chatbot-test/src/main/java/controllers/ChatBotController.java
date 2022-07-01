@@ -34,7 +34,7 @@ public class ChatBotController extends HttpServlet {
 
     @EJB
     private ProductFacade pf;
-    
+
     List<Chat> chatSession = new ArrayList<>();
 
     /**
@@ -57,16 +57,17 @@ public class ChatBotController extends HttpServlet {
         String botMsg;
         Chat chat;
         HttpSession session = request.getSession();
-
+        uInput = request.getParameter("uInput");
         for (Chatbot c : listChatbot) {
-            uInput = request.getParameter("uInput");
             switch (uInput) {
                 case "hi":
-                    botMsg = (String) c.getContent();
-                    chat = new Chat(uInput, botMsg);
-                    chatSession.add(chat);
-                    session.setAttribute("CHAT_SESSION", chatSession);
-                    out.println("<div class=\"incoming-msg\"> <span class=\"bot-msg\">" + chat.getBotMsg() + "</span></div>\n");
+                     if(c.getKeyword().equals("hi")){
+                        botMsg = (String) c.getContent();
+                        chat = new Chat(uInput, botMsg);
+                        chatSession.add(chat);
+                        session.setAttribute("CHAT_SESSION", chatSession);
+                        out.println("<div class=\"incoming-msg\"> <span class=\"bot-msg\">" + chat.getBotMsg() + "</span></div>\n");
+                     }              
                     break;
                 case "search":
                     out.println("<div class=\"incoming-msg\"> <span class=\"bot-msg\">Enter the product name you want to find:</span></div>\n");
@@ -82,7 +83,7 @@ public class ChatBotController extends HttpServlet {
                     boolean flag = false;
                     for (Product p : listProduct) {
                         if (uInput.toLowerCase().equals(p.getName().toLowerCase())) {
-                            botMsg = p.getId() + "-" + p.getDiscount() + "-" + p.getPrice() +"-"+ p.getDiscount() * 100 + "-" +(p.getPrice() * (1 - p.getDiscount()));
+                            botMsg = p.getId() + "-" + p.getDiscount() + "-" + p.getPrice() + "-" + p.getDiscount() * 100 + "-" + (p.getPrice() * (1 - p.getDiscount()));
                             chat = new Chat(uInput, botMsg);
                             chatSession.add(chat);
                             session.setAttribute("CHAT_SESSION", chatSession);
@@ -105,7 +106,7 @@ public class ChatBotController extends HttpServlet {
                             flag = true;
                         }
                     }
-                    
+
                     if (flag == false) {
                         botMsg = "I don't understand";
                         chat = new Chat(uInput, botMsg);
@@ -116,7 +117,6 @@ public class ChatBotController extends HttpServlet {
                     }
                     break;
             }
-            break;
         }
 
 //        for (Product p : list) {
