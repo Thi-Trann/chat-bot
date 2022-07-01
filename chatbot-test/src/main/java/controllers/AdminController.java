@@ -7,6 +7,7 @@ package controllers;
 
 import entities.Account;
 import entities.OrderHeader;
+import entities.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import sessionbean.AccountFacade;
 import sessionbean.OrderHeaderFacade;
-
+import sessionbean.ProductFacade;
 
 /**
  *
@@ -31,12 +32,13 @@ import sessionbean.OrderHeaderFacade;
 public class AdminController extends HttpServlet {
 
     @EJB
+    private ProductFacade pf;
+
+    @EJB
     private OrderHeaderFacade ohf;
 
     @EJB
     private AccountFacade af;
-    
-    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -79,6 +81,15 @@ public class AdminController extends HttpServlet {
             case "deleteEmployee":
                 deleteEmployee(request, response);
                 break;
+            case "updateProduct":
+                updateProduct(request, response);
+                break;
+            case "updateProductHandler":
+                updateProductHandler(request, response);
+                break;
+                case "deleteProduct":
+                deleteProduct(request, response);
+                break;
             default:
                 request.setAttribute("controller", "error");
                 request.setAttribute("action", "index");
@@ -116,6 +127,19 @@ public class AdminController extends HttpServlet {
 
     private void generateNewEmployee(HttpServletRequest request, HttpServletResponse response) {
 
+    }
+
+    private void updateProduct(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("pid"));
+        List<Product> list = pf.findAll();
+        List productList = new ArrayList();
+        for (Product p : list) {
+            if (p.getId().equals(id)) {
+                productList.add(p);
+
+                request.setAttribute("productList", productList);
+            }
+        }
     }
 
     private void deleteEmployee(HttpServletRequest request, HttpServletResponse response) {
@@ -182,13 +206,19 @@ public class AdminController extends HttpServlet {
     }
 
     private void manageProducts(HttpServletRequest request, HttpServletResponse response) {
-
+        List<Product> list = pf.findAll();
+        List<Product> plist = new ArrayList<>();
+        for (Product p : list) {
+            p = new Product(p.getId(), p.getName(), p.getDescription(), p.getPrice(), p.getDiscount());
+            plist.add(p);
+        }
+        request.setAttribute("plist", plist);
     }
 
     private void manageOrders(HttpServletRequest request, HttpServletResponse response) {
         List<OrderHeader> list = ohf.findAll();
         List<OrderHeader> olist = new ArrayList<>();
-        for(OrderHeader oh : list){
+        for (OrderHeader oh : list) {
             oh = new OrderHeader(oh.getOrderId(), oh.getDate(), oh.getStatus(), oh.getCustomerId(), oh.getStaffId(), oh.getShipToAddress());
             olist.add(oh);
         }
@@ -270,5 +300,32 @@ public class AdminController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void updateProductHandler(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("productName");
+        String description = request.getParameter("productDescription");
+        double price = Double.parseDouble(request.getParameter("productPrice"));
+        double discount = Double.parseDouble(request.getParameter("productDiscount"));
+        
+        Product p = new Product(id, name, description, price, discount);
+        pf.edit(p);
+        manageProducts(request, response);
+        request.setAttribute("controller", "admin");
+        request.setAttribute("action", "manageProducts");
+    }
+
+    private void deleteProduct(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("pid"));
+        List<Product> list = pf.findAll();
+        for (Product p : list) {
+            if (p.getId().equals(id)) {
+                pf.remove(p);
+            }
+        }
+        manageProducts(request, response);
+        request.setAttribute("controller", "admin");
+        request.setAttribute("action", "manageProducts");
+    }
 
 }

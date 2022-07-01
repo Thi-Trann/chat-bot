@@ -21,9 +21,7 @@
 
         <div class="row">
             <div class="col-lg-4">
-                <div class="card mb-4">
-                    
-                    
+                <div class="card mb-4">          
                     <div class="card-body">
                         <h3 style="text-align: center;">Order</h3>
                         <br>
@@ -43,25 +41,13 @@
                         </div>
                         <hr>
 
-                        </c:forEach>
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
+                        </c:forEach>  
                     </div>
                 </div>
                 <div class="card mb-4 mb-lg-0">
                     <div>
-                        <h3 style="text-align: right; margin-right: 20px; margin-top: 2px;">Total : <fmt:formatNumber value="${total}" pattern="$#,##0.00" /></h3>
-                        
-                    
-                    </div> 
-                    
+                        <h3 style="text-align: right; margin-right: 20px; margin-top: 2px;">Total : <fmt:formatNumber value="${total}" pattern="$#,##0.00" /></h3>              
+                    </div>          
                 </div>
             </div>
             <div class="col-lg-8">
@@ -115,11 +101,8 @@
                         </div>
                     </div>      
                 </div>
-
             </div>
         </div>
     </div>
-</section>
-                            
-                            
+</section>                           
 </html>                            
