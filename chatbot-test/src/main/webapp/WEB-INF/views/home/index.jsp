@@ -27,7 +27,7 @@
                     </div>      
                 </div>
                 <div class="item">
-                    <img src="${root}/images/PNG home page/event1.png" alt="Image" style="padding: 15px;">
+                    <img src="${root}/images/PNG home page/event2.png" alt="Image" style="padding: 15px;">
                     <div class="carousel-caption">
                         <h3></h3>
                         <p></p>

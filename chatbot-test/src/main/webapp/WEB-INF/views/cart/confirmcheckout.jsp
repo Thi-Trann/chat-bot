@@ -31,8 +31,8 @@
                         <tr>
                             <th>Name</th>
                             <th>Quantity</th>
-                            <th>Price</th>
                             <th>Discount</th>
+                            <th>Price</th>
                         </tr>
                         <c:forEach var="item" items="${cart.items}" varStatus="loop">  
                             <tr>

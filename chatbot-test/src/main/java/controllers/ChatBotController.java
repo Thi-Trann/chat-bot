@@ -34,7 +34,7 @@ public class ChatBotController extends HttpServlet {
 
     @EJB
     private ProductFacade pf;
-
+    
     List<Chat> chatSession = new ArrayList<>();
 
     /**
@@ -69,11 +69,10 @@ public class ChatBotController extends HttpServlet {
                     out.println("<div class=\"incoming-msg\"> <span class=\"bot-msg\">" + chat.getBotMsg() + "</span></div>\n");
                     break;
                 case "search":
-                    out.println("<div class=\"incoming-msg\"> <span class=\"bot-msg\">Enter the product name \n you want to find:</span></div>\n");
-                    break;
-                case "end search":
+                    out.println("<div class=\"incoming-msg\"> <span class=\"bot-msg\">Enter the product name you want to find:</span></div>\n");
                     break;
                 case "find order":
+                    out.println("<div class=\"incoming-msg\"> <span class=\"bot-msg\">Enter the order number you want to find:</span></div>\n");
                     break;
                 case "end":
                     out.println("<div class=\"incoming-msg\"> <span class=\"bot-msg\">See you later!</span></div>\n");
@@ -106,6 +105,7 @@ public class ChatBotController extends HttpServlet {
                             flag = true;
                         }
                     }
+                    
                     if (flag == false) {
                         botMsg = "I don't understand";
                         chat = new Chat(uInput, botMsg);
