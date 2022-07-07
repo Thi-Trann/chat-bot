@@ -8,65 +8,131 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <link href="${root}/css/register.css" rel="stylesheet" type="text/css"/>
+        <link href="${root}/css/register2.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="css/register.css" rel="stylesheet" type="text/css"/>
+
+
+        
+<!--      <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
         <title>Register</title>
     </head>
     <body>
-        <form action="${pageContext.request.contextPath}/register/register.do" >
-            <div class="register_form">
 
-                <div class="register_header">
-                    Register
-                </div>
-                <div style="margin-left: 32px; ">
-                    Name: 
-                    <input style="margin-left: 66px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px; border: none;" type="text" name="name" placeholder="Enter your name" required/><br/><br/>
-                    User name:
-                    <input style="margin-left: 35px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="text" name="uName" placeholder="Enter user name" required /><br/>${messuname}<br/>
-                    Password:
-                    <input style="margin-left: 41px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="password" name="password" placeholder="Enter your password" required/><br/><br/>
-                    Verify Password:
-                    <input style="margin-left: 2px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="password" name="vpassword" placeholder="Enter your password" required /><br/>${messpass}<br/>    
-                    Address:
-                    <input style="margin-left: 47px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="text" name="address" placeholder="Enter your address" maxlength="100" required /><br/><br/>
-                    Email:
-                    <input style="margin-left: 68px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="email"  name="email" placeholder="Enter your email" required /><br/>${messmail}<br/>
-                    Phone number:
-                    <input style="margin-left: 12px;width: 170px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="text" onkeypress='validatePhone(event)' maxlength="10" name="phone" placeholder="Enter phone number" required/>
-                    Gender:
-                    <select name="gender" style="margin-left: 5px;width: 165px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;">
-                        <option>Male</option>
-                        <option>Female</option>
-                        <option>Other</option>
-                    </select>
-                    <br/>
-                    <br/>
-                </div>
-                <button style=" margin-left: 190px;" class="register_button" type="submit"><span>Register</span></button><br/>
 
+
+        <main class="my-form">
+            <div class="cotainer" style="margin-top: 5%;" >
+                <div class="row justify-content-center">
+                    <div class="col-md-4">
+                        <div class="card" style="background-color:#FFFAB3;">
+                            
+                     
+                                
+                            <h3 class="card-header" style="background-color:#F1AF00; text-align: center; margin-top: 0;" >Register</h3>
+                            
+                        
+                            <div class="card-body">
+                                <form name="my-form" action="${pageContext.request.contextPath}/register/register.do" method="post">
+<!------------------------->    
+                                    <div class="form-group row">
+                                        <label for="full_name" class="col-md-4 col-form-label" style="text-align: right;">Name</label>
+                                        <div class="col-md-6">
+                                            <input class="form-control" type="text" name="name" placeholder="Enter your name" required>
+                                        </div>
+                                    </div>
+<!------------------------->
+                                    <div class="form-group row">
+                                        <label for="user_name" class="col-md-4 col-form-label" style="text-align: right;">User Name</label>
+                                        <div class="col-md-6">
+                                            <input class="form-control" type="text" name="uName" placeholder="Enter user name" required >
+                                        </div>
+                                    </div>
+<!------------------------->
+                                    <div class="form-group row">
+                                        <label for="email_address" class="col-md-4 col-form-label" style="text-align: right;">E-Mail Address</label>
+                                        <div class="col-md-6">
+                                            <input class="form-control" type="email"  name="email" placeholder="Enter your email" required >
+                                        </div>
+                                    </div>
+<!------------------------->
+                                    <div class="form-group row">
+                                        <label for="passwork" class="col-md-4 col-form-label" style="text-align: right;">Password</label>
+                                        <div class="col-md-6">
+                                            <input class="form-control" type="password" name="password" placeholder="Enter your password" required>
+                                        </div>
+                                    </div>
+<!------------------------->
+                                    <div class="form-group row">
+                                        <label for="passwork" class="col-md-4 col-form-label" style="text-align: right;">Verify Password</label>
+                                        <div class="col-md-6">
+                                            <input class="form-control" type="password" name="vpassword" placeholder="Enter your password" required>
+                                        </div>
+                                    </div>  
+<!------------------------->
+                                    <div class="form-group row">
+                                        <label for="phone_number" class="col-md-4 col-form-label" style="text-align: right;">Phone Number</label>
+                                        <div class="col-md-6">
+                                            <input class="form-control" type="text" onkeypress='validatePhone(event)' maxlength="10" name="phone" placeholder="Enter phone number" required>
+                                        </div>
+                                    </div>
+<!------------------------->
+                                    <div class="form-group row">
+                                        <label for="present_address" class="col-md-4 col-form-label" style="text-align: right;"> Address</label>
+                                        <div class="col-md-6">
+                                            <input class="form-control" type="text" name="address" placeholder="Enter your address" maxlength="100" required>
+                                        </div>
+                                    </div>
+<!------------------------->
+                                    <div class="form-group row">
+                                        <label for="nid_number" class="col-md-4 col-form-label" style="text-align: right;">Gender</label>
+                                        <div class="col-md-6">
+                                            <select name="gender" class="form-control">
+                                                <option>Male</option>
+                                                <option>Female</option>
+                                                <option>Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+<!------------------------->
+                                    <div class="col-md-6 offset-md-4"  >
+                                        <button type="submit" class="btn btn-primary" style="background: #f0bc4d; color: black;">
+                                            Register
+                                        </button>
+                                    </div>
+<!------------------------->
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </form>
-    </body>
-    <script>
-        function validatePhone(evt) {
-            var theEvent = evt || window.event;
 
-            // Handle paste
-            if (theEvent.type === 'paste') {
-                key = event.clipboardData.getData('text/plain');
-            } else {
-                // Handle key press
-                var key = theEvent.keyCode || theEvent.which;
-                key = String.fromCharCode(key);
+
+        </main>
+        <script>
+            function validatePhone(evt) {
+                var theEvent = evt || window.event;
+
+                // Handle paste
+                if (theEvent.type === 'paste') {
+                    key = event.clipboardData.getData('text/plain');
+                } else {
+                    // Handle key press
+                    var key = theEvent.keyCode || theEvent.which;
+                    key = String.fromCharCode(key);
+                }
+                var regex = /[0-9]|\./;
+                if (!regex.test(key)) {
+                    theEvent.returnValue = false;
+                    if (theEvent.preventDefault)
+                        theEvent.preventDefault();
+                }
             }
-            var regex = /[0-9]|\./;
-            if (!regex.test(key)) {
-                theEvent.returnValue = false;
-                if (theEvent.preventDefault)
-                    theEvent.preventDefault();
-            }
-        }
-    </script>
+        </script>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    </body>
 </html>

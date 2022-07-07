@@ -22,8 +22,8 @@
                 <div style="text-align: center;" > ${mess}</div>
                 <hr/>
                 <button type="submit" class="find_button"><span>Find</span></button><br/>
-                <button type="reset" class="cancel_button"><span>Cancel</span></button>
-        </form>
+                <button type="submit" class="cancel_button" formaction="<c:url value="/login/login.do"/>"><span>Cancel</span></button>
+        </for   m>
     </div>
 </body>
 </html>

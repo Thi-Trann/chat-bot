@@ -20,7 +20,7 @@
     <table class="table ">      
         <thead >
             <tr class="heat">
-                <th >No.</th>
+                <th style=" text-align: center;">No.</th>
                 <th style=" text-align: center;">Image</th>
                 <th style=" text-align: center;">Name</th>
                 <th style=" text-align: center;">Description</th>
@@ -36,18 +36,15 @@
             <c:forEach var="item" items="${cart.items}" varStatus="loop">
                 <tr>
 
-                    <td style="  padding-top: 20px;">${loop.count}</td>
+                    <td style=" text-align: center; ">${loop.count}</td>
                     <td style=" text-align: center;" ><img src="${root}/images/products/${item.id}.jpg" width="30%" /><input type="hidden" value=${item.id} name="id" /> </td>
                     <td style=" text-align: center; padding-top: 20px;">${item.name}</td>
                     <td style=" text-align: center; padding-top: 20px;">${item.description}</td>
-                    <td style=" text-align: center; padding-top: 20px;"><strike><fmt:formatNumber value="${item.price} " pattern="$#,##0.00" /></strike> <fmt:formatNumber value="${item.newPrice}" pattern="$#,##0.00" /></td>
+                    <td style=" text-align: center; padding-top: 20px;"><fmt:formatNumber value="${item.newPrice}" pattern="$#,##0.00" /></td>
                   
                     <td     style=" text-align: center;padding-top: 20px;">
 <!--                            <script>var name =${item.id} +"a";document.write(name);</script>-->
-
-
                         <c:set var = "abc" scope = "session" value = "${item.id}a"></c:set>
-
                             <form method="post" action="update.do" id='${abc}' >
                             <input type="hidden" name="id"  value=${item.id} >
 
@@ -59,9 +56,8 @@
                                     document.getElementById('${abc}').submit();
                                     return false;
                                    " type='button' value='-'  />
-
-
                             <input id="${loop.count}" onkeypress='validatePhone(event)' onblur='autoup()'   style="width:50px;"  min="1" name="quantity" type="text" value="${item.quantity}" required />
+                            
                             <script>
                                 function autoup() {
 
@@ -153,10 +149,10 @@
             <th></th>
             <th></th>
             <th></th>
-            <th style=" text-align: right;  padding-top: 25px; padding-left: 50px;">Total(<c:if test="${cart.numOfProducts==null}"> 0 </c:if><c:if test="${cart.numOfProducts!=null}"> ${cart.numOfProducts} </c:if> products) </th>
-            <th style=" text-align: center;  padding-top: 25px; padding-left: 50px;"><fmt:formatNumber value="${cart.total}" pattern="$#,##0.00" /></th>
+            <th style=" text-align: center;  padding-top: 25px;">Total(<c:if test="${cart.numOfProducts==null}"> 0 </c:if><c:if test="${cart.numOfProducts!=null}"> ${cart.numOfProducts} </c:if> products) </th>
+            <th style=" text-align: center;  padding-top: 25px;"><fmt:formatNumber value="${cart.total}" pattern="$#,##0.00" /></th>
             
-            <th class="font-check" style="padding-top: 15px"><form method="post" action="checkout.do" >
+            <th class="font-check" style="padding-top: 15px;text-align: center;"><form method="post" action="checkout.do" >
             <div>
             <input type="hidden" name="role" value="${role}">
             <button  class="checkout_button" type="submit"><span>Checkout</span></button>
