@@ -3,6 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+/* global Intl */
+
 const popup = document.querySelector('.chat-popup');
 const chatBtn = document.querySelector('.chat-btn');
 const closeBtn = document.querySelector('.close-btn');
