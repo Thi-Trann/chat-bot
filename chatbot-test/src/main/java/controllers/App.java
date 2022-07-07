@@ -13,4 +13,7 @@ public class App {
     public static final String LAYOUT = "/WEB-INF/layouts/main.jsp";
     
     public static final String LAYOUT2 = "/WEB-INF/layouts/employ.jsp";
+    
+    
+    public static final String LAYOUT3 = "/WEB-INF/layouts/admin.jsp";
 }

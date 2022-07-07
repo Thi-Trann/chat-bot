@@ -59,6 +59,9 @@ public class AdminController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String action = request.getAttribute("action").toString();
         switch (action) {
+            case "index":
+                index(request, response);
+                break;
             case "manageEmployees":
                 manageEmployees(request, response);
                 break;
@@ -111,7 +114,7 @@ public class AdminController extends HttpServlet {
                 request.setAttribute("controller", "error");
                 request.setAttribute("action", "index");
         }
-        request.getRequestDispatcher(App.LAYOUT).forward(request, response);
+        request.getRequestDispatcher(App.LAYOUT3).forward(request, response);
     }
 
     private void manageEmployees(HttpServletRequest request, HttpServletResponse response) {
@@ -391,6 +394,10 @@ public class AdminController extends HttpServlet {
         request.setAttribute("controller", "admin");
         request.setAttribute("action", "manageChatbot");
         
+    }
+
+    private void index(HttpServletRequest request, HttpServletResponse response) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
