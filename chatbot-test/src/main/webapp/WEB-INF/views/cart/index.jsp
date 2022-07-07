@@ -16,35 +16,33 @@
     <link href="${root}/css/cart.css" rel="stylesheet" type="text/css"/>
 </head>
 <c:if test="${cart.numOfProducts>0}">
-    <table class="table table-striped">
-        <thead>
-            <tr>
+    <div class="background">   
+    <table class="table ">      
+        <thead >
+            <tr class="heat">
                 <th >No.</th>
                 <th style=" text-align: center;">Image</th>
                 <th style=" text-align: center;">Name</th>
-                <th style=" text-align: center;">Description.</th>
-                <th style=" text-align: center;">Old price</th>
-                <th style=" text-align: center;">Discount</th>
-                <th style=" text-align: center;" >New Price</th>
+                <th style=" text-align: center;">Description</th>
+                <th style=" text-align: center;">Price</th>               
                 <th style=" text-align: center;">Quantity</th>
                 <th style=" text-align: center;">Cost</th>
                 <th style=" text-align: center;">Operations</th>
             </tr>
         </thead>
+      
 
-        <tbody>
+        <tbody id="cart-b">
             <c:forEach var="item" items="${cart.items}" varStatus="loop">
                 <tr>
 
-                    <td >${loop.count}</td>
+                    <td style="  padding-top: 20px;">${loop.count}</td>
                     <td style=" text-align: center;" ><img src="${root}/images/products/${item.id}.jpg" width="30%" /><input type="hidden" value=${item.id} name="id" /> </td>
-                    <td style=" text-align: center;">${item.name}</td>
-                    <td style=" text-align: center;">${item.description}</td>
-                    <td style=" text-align: center;"><fmt:formatNumber value="${item.price}" pattern="$#,##0.00" /></td>
-                    <td style=" text-align: center;"><fmt:formatNumber value="${item.discount}" type="percent" /></td>
-                    <td style=" text-align: center;"><fmt:formatNumber value="${item.newPrice}" pattern="$#,##0.00" /></td>
-
-                    <td     style=" text-align: center;">
+                    <td style=" text-align: center; padding-top: 20px;">${item.name}</td>
+                    <td style=" text-align: center; padding-top: 20px;">${item.description}</td>
+                    <td style=" text-align: center; padding-top: 20px;"><strike><fmt:formatNumber value="${item.price} " pattern="$#,##0.00" /></strike> <fmt:formatNumber value="${item.newPrice}" pattern="$#,##0.00" /></td>
+                  
+                    <td     style=" text-align: center;padding-top: 20px;">
 <!--                            <script>var name =${item.id} +"a";document.write(name);</script>-->
 
 
@@ -98,9 +96,9 @@
                     </td>
 
 <!--                            <td class="text-right"><input type="number" value="${item.quantity}" style="width: 65px; text-align: right;"name="quantity" /></td>-->
-                    <td style=" text-align: center;"><fmt:formatNumber value="${item.cost}" pattern="$#,##0.00" /></td>
-                    <td style=" text-align: center;">                               
-                        <button type="submit" class="btn btn-link" formaction="<c:url value="/cart/delete.do"/>">Delete</button>
+                    <td style=" text-align: center; color: red; padding-top: 20px;"><fmt:formatNumber value="${item.cost}" pattern="$#,##0.00" /></td>
+                    <td style=" text-align: center; padding-top: 15px;">                               
+                        <button type="submit" class="btn btn-link" formaction="<c:url value="/cart/delete.do"/>">Delete<i class="bi bi-trash"></i></button>
                     </td>
 
                 </tr>
@@ -142,32 +140,33 @@
         </script>
 
     </tbody>
-    <tfoot>
+        <tfoot class="size" >
         <tr>
+            <th>
+                <form style=" text-align: center;  padding-top: 20px;"><a href="<c:url value="/cart/empty.do"/>">Empty your cart</a>
+                    
+                </form>
+            </th> 
+            
+                
             <th></th>
             <th></th>
             <th></th>
-
             <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-
-            <th style=" text-align: right; ">Total:</th>
-            <th style=" text-align: center;" ><fmt:formatNumber value="${cart.total}" pattern="$#,##0.00" /></th>
-            <th style=" text-align: center;"><a href="<c:url value="/cart/empty.do"/>">Empty your cart</a></th>
-
+            <th style=" text-align: right;  padding-top: 25px; padding-left: 50px;">Total(<c:if test="${cart.numOfProducts==null}"> 0 </c:if><c:if test="${cart.numOfProducts!=null}"> ${cart.numOfProducts} </c:if> products) </th>
+            <th style=" text-align: center;  padding-top: 25px; padding-left: 50px;"><fmt:formatNumber value="${cart.total}" pattern="$#,##0.00" /></th>
+            
+            <th class="font-check" style="padding-top: 15px"><form method="post" action="checkout.do" >
+            <div>
+            <input type="hidden" name="role" value="${role}">
+            <button  class="checkout_button" type="submit"><span>Checkout</span></button>
+            </div></form></th>
         </tr>
     </tfoot>
 </table>
-<form method="post" action="checkout.do" >
-    <div>
 
-        <input type="hidden" name="role" value="${role}">
-        <button style="margin-left: 43%;" class="checkout_button" type="submit"><span>Checkout</span></button>
 
-    </div>
-</form>
+    </div> 
 </c:if>
 <c:if test="${cart.numOfProducts<=0 || cart.numOfProducts==null}">
     <div class="container">

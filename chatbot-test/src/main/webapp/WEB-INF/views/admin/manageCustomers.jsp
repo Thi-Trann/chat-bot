@@ -16,11 +16,15 @@
     <body>
         <h1 style="padding: 4px;">Manage Customers</h1>
         <hr/>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>Data Customers </div>
+                
+            <div class="card-body">               
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th>No.</th>
-                    <th>Id</th>
                     <th>Name</th>
                     <th>Phone</th>
                     <th>Address</th>
@@ -34,7 +38,6 @@
                 <c:forEach var="clist" items="${clist}" varStatus="loop">
                     <tr>
                         <td>${loop.count}</td>
-                        <td>${clist.id}</td>
                         <td>${clist.name}</td>
                         <td>${clist.phone}</td>
                         <td>${clist.address}</td>
@@ -44,6 +47,9 @@
                         <td></td>
                     </tr>
                 </c:forEach>
+                     </table>
+                            </div>
+                        </div>
             </tbody>
         </table>
     </body>

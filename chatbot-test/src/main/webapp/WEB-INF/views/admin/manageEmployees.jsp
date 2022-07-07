@@ -19,15 +19,19 @@
     <body>
         <h1 style="padding: 4px;">Manage Employees</h1>
         <hr/>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>Data Employees  </div>
+                
+            <div class="card-body">
+                
         <form action="${pageContext.request.contextPath}/admin/generateNewEmployee.do">
-            <button class="generate_button" ><span>New employee</span> </button>
-
+            <button class="generate_button" ><span>New employee</span> </button>       
         </form>
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th>No.</th>
-                    <th>Id</th>
                     <th>Name</th>
                     <th>Phone number</th>
                     <th>Address</th>
@@ -36,14 +40,12 @@
                     <th>Username</th>
                     <th>Password</th>
                     <th>Manage</th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 <c:forEach var="elist" items="${elist}" varStatus="loop">
                     <tr>
                         <td>${loop.count}</td>
-                        <td>${elist.id}</td>
                         <td>${elist.name}</td>
                         <td>${elist.phone}</td>
                         <td>${elist.address}</td>
@@ -63,6 +65,9 @@
                         </td>
                     </tr>
                 </c:forEach> 
+                    </table>
+                            </div>
+                        </div>
             </tbody>
         </table>
 

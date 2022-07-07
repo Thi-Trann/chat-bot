@@ -24,6 +24,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css">
         <link href="${root}/css/layout.css" rel="stylesheet" type="text/css"/>
+        <link href="${root}/css/admin.css" rel="stylesheet" type="text/css"/>
 
     </head>
     <body>
@@ -42,65 +43,73 @@
                             <ul class="nav navbar-nav" style="display: inline;">
                                 <li><a style="padding: 0px; padding-right: 5px;" class="navbar-collapse" href="<c:url value="/"/>">
                                         <img src="${root}/images/logo.png" height="50"/>
-                                    </a></li>
-                                <li><a href="<c:url value="/"/>" class="text-dark"><i class="bi bi-house"></i> Home page</a></li>
-                                <li><a href="<c:url value="/product/index.do"/>"class="text-dark"><i class="bi bi-bag"></i> Product list</a></li>
-                                <li><a href="<c:url value="/cart/index.do"/>"class="text-dark"><i class="bi bi-cart"></i> Cart :<c:if test="${cart.numOfProducts==null}"> 0 </c:if><c:if test="${cart.numOfProducts!=null}"> ${cart.numOfProducts} </c:if> 
-                                            product(s)</a></li>
+                                    </a></li>                                            
                                 </ul>
-                            <c:if test="${login_success == null}">
-                                <ul class="nav navbar-nav navbar-right">
-                                    <li><a href="<c:url value="/login/login.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                                </ul>
-                                <ul class="nav navbar-nav navbar-right">
-                                    <li><a href="<c:url value="/register/register.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Register</a></li>
-                                </ul>
-                            </c:if>
-                            <c:if test="${login_success != null}">
-                                <ul class="nav navbar-nav navbar-right">
-                                    <li><a href="<c:url value="/login/logout.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-                                </ul>
-                                <ul class="nav navbar-nav navbar-right">
-                                    <li style="margin-top: 15px;">${userName}</li>
-                                </ul>
-                            </c:if>
-                            <form action="${pageContext.request.contextPath}/product/search.do">
-                                <ul class="nav navbar-nav">
-                                    <li class="search_form" style="margin-top:11px"><input type="text" placeholder="Search product..." name="productName"/><button type="submit" style="background-color: #D59B00;height: 25px"><i class="bi bi-search"></i></button></li>
-                                </ul>
-                            </form>
+                            
+                            
                         </div>
                     </div>
                 </nav>  
                 <div class="container-fluid">
                     <div class="row content">
-                        <div class="col-sm-3 sidenav" style="background-color: #FFFAB3; border: 1px solid black; height: 100vh; margin-top: 10px;">
-                            <ul class="nav nav-pills nav-stacked" style="display: block; margin-top: 10px;">
+                        <div class="menu col-sm-2 sidenav" >
+                            <ul class="nav nav-pills nav-stacked">
                                 <li>
-                                    <h3 style="font-weight: bold;">
-                                        Welcome ${roleuser} to Brown Ted 
-                                    </h3>
+                                    <h3> Welcome ${roleuser} </h3>                                    
                                 </li>
                                 <hr/>
                                 <br/>
-                                <form action="${pageContext.request.contextPath}/admin/manageEmployees.do">
-                                    <li> <button class="admin_btn">Manage employees</button></li>
+                                <form action="${pageContext.request.contextPath}/product/search.do">                                  
+                                    <div class="input-group">
+                                        <div class="search_form" ><input type="text" placeholder="Search product..." aria-label="Search for..." aria-describedby="btnNavbarSearch"  name="productName"/>
+                                        <button class="btn btn-primary" id="btnNavbarSearch" type="submit"><i class="bi bi-search"></i></button></div>
+                                    </div>
                                 </form>
-                                <form action="${pageContext.request.contextPath}/admin/manageCustomers.do">
-                                    <li> <button class="admin_btn">Manage customers</button></li>
-                                </form>
-                                <form action="${pageContext.request.contextPath}/admin/manageProducts.do">
-                                    <li> <button class="admin_btn">Manage products</button></li>
-                                </form>
-                                <form action="${pageContext.request.contextPath}/admin/manageOrders.do">
-                                    <li> <button class="admin_btn">Manage orders</button></li>
-                                </form>
-                                <form action="${pageContext.request.contextPath}/admin/manageChatbot.do">
-                                    <li> <button class="admin_btn">Manage Chatbot</button></li>
-                                </form>
+                                    
+                                <div class="nav-link">
+                                    <a href="<c:url value="/"/>" class="text-dark"><i class="bi bi-house-door-fill"></i> Home page</a>  
+                                </div>
+                                
+                                <div class="nav-link">
+                                    <li><a href="<c:url value="/product/index.do"/>"class="text-dark"><i class="bi bi-bag-fill"></i> Product list</a></li>
+                                </div>
+                                
+                                <div class="nav-link">
+                                <a  href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                    <div class="accordion text-dark"><i class="bi bi-table"></i> Tables </div>        
+                                    
+                                </a>
+                                    <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                        <nav >
+                                            <form action="${pageContext.request.contextPath}/admin/manageEmployees.do">
+                                                <button class="tables text-dark">Manage employees</button>
+                                            </form>
+                                            <form action="${pageContext.request.contextPath}/admin/manageCustomers.do">
+                                                <li> <button class="tables text-dark">Manage customers</button></li>
+                                            </form>
+                                            <form action="${pageContext.request.contextPath}/admin/manageProducts.do">
+                                                <li> <button class="tables text-dark">Manage products</button></li>
+                                            </form>
+                                            <form action="${pageContext.request.contextPath}/admin/manageOrders.do">
+                                                <li> <button class="tables text-dark">Manage orders</button></li>
+                                            </form>
+                                            <form action="${pageContext.request.contextPath}/admin/manageChatbot.do">
+                                                <li> <button class="tables text-dark">Manage Chatbot</button></li>
+                                            </form>
+                                        </nav>
+                                    </div>
+                                </div>                
+                                <div class="nav-link">
+                                    <li><a href=""class="text-dark"><i class="bi bi-gear-fill"></i> Setting</a></li>
+                                </div>                
+                                              
+                                <div class="nav-link">
+                                    <li><a href="<c:url value="/login/logout.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                                </div>
+                                
                             </ul><br/>
                         </div>
-                        <div class="col-sm-9">
+                        <div class="col-sm-10">
                             <jsp:include page="/WEB-INF/views/${controller}/${action}.jsp"/>
                         </div>
                     </div>
@@ -160,7 +169,7 @@
                 </c:choose>
                 <c:choose>
                     <c:when test="${roleuser ==null}">
-                        <nav class="navbar navbar-inverse" style="background-color:#F1AF00;">
+                        <nav class="navbar navbar-inverse" style="background-color:#F1AF00; margin-bottom: 0px;">
                             <div class="container-fluid">
                                 <div class="navbar-header">
                                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -350,5 +359,22 @@
 
 
     </section>
+    <script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+acc[i].addEventListener("click", function() {
+this.classList.toggle("active");
+var panel = this.nextElementSibling;
+if (panel.style.display === "block") {
+panel.style.display = "none";
+} else {
+panel.style.display = "block";
+}
+});
+}
+    </script>            
     <script src="${root}/js/main.js"></script>
+
 </html>

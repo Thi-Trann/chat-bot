@@ -6,5 +6,5 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<jsp:forward page="/admin/manageEmployees.do"/>
+<jsp:forward page="/home/index.do"/>
 

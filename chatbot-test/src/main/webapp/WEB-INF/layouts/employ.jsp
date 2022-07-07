@@ -23,7 +23,48 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css">
         <link href="${root}/css/layout.css" rel="stylesheet" type="text/css"/>
+        <link href="${root}/css/admin.css" rel="stylesheet" type="text/css"/>
+        
+        
+        <style>
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+ 
+}
 
+.active, .accordion:hover {
+  background-color: #ccc; 
+}
+
+.panel {
+    width: 20%;
+  padding: 0 18px;
+  display: none;
+  background-color: white;
+  overflow: hidden;
+  float: right;
+}
+div.accordion.active:after {
+    content: "\2212";
+}
+div.accordion:after {
+    content: '\002B';
+    color: #777;
+    font-weight: bold;
+    float: left;
+    margin-left: 5px;
+ 
+}
+</style>
     </head> 
     <body>
  <nav class="navbar navbar-inverse" style="background-color:#F1AF00;">
@@ -39,66 +80,75 @@
                             <ul class="nav navbar-nav" style="display: inline;">
                                 <li><a style="padding: 0px; padding-right: 5px;" class="navbar-collapse" href="<c:url value="/"/>">
                                         <img src="${root}/images/logo.png" height="50"/>
-                                    </a></li>
-                                <li><a href="<c:url value="/"/>" class="text-dark"><i class="bi bi-house"></i> Home page</a></li>
-                                <li><a href="<c:url value="/product/index.do"/>"class="text-dark"><i class="bi bi-bag"></i> Product list</a></li>
-                                <li><a href="<c:url value="/cart/index.do"/>"class="text-dark"><i class="bi bi-cart"></i> Cart :<c:if test="${cart.numOfProducts==null}"> 0 </c:if><c:if test="${cart.numOfProducts!=null}"> ${cart.numOfProducts} </c:if> 
-                                            product(s)</a></li>
+                                        
+                                  
+                                    </a></li> 
+                                    <li><a></a></li>
+                                    
                                 </ul>
-                            <c:if test="${login_success == null}">
-                                <ul class="nav navbar-nav navbar-right">
-                                    <li><a href="<c:url value="/login/login.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                                </ul>
-                                <ul class="nav navbar-nav navbar-right">
-                                    <li><a href="<c:url value="/register/register.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Register</a></li>
-                                </ul>
-                            </c:if>
-                            <c:if test="${login_success != null}">
-                                <ul class="nav navbar-nav navbar-right">
-                                    <li><a href="<c:url value="/login/logout.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-                                </ul>
-                                <ul class="nav navbar-nav navbar-right">
-                                    <li style="margin-top: 15px;">${userName}</li>
-                                </ul>
-                            </c:if>
-                            <form action="${pageContext.request.contextPath}/product/search.do">
-                                <ul class="nav navbar-nav">
-                                    <li class="search_form" style="margin-top:11px"><input type="text" placeholder="Search product..." name="productName"/><button type="submit" style="background-color: #D59B00;height: 25px"><i class="bi bi-search"></i></button></li>
-                                </ul>
-                            </form>
+                            
+                            
                         </div>
                     </div>
                 </nav>  
                 <div class="container-fluid">
                     <div class="row content">
-                        <div class="col-sm-3 sidenav" style="background-color: #FFFAB3; border: 1px solid black; height: 100vh; margin-top: 10px;">
-                            <ul class="nav nav-pills nav-stacked" style="display: block; margin-top: 10px;">
+                        <div class="menu col-sm-2 sidenav" >
+                            <ul class="nav nav-pills nav-stacked">
                                 <li>
-                                    <h3 style="font-weight: bold;">
-                                        Welcome ${roleuser} to Brown Ted 
-                                    </h3>
+                                    <h3> Welcome ${roleuser} </h3>                                    
                                 </li>
                                 <hr/>
                                 <br/>
-                                <form action="${pageContext.request.contextPath}/emp/index.do">
-                                    <li> <button class="admin_btn">Your profile</button></li>
-                                </form>
-                                <form action="${pageContext.request.contextPath}/emp/checkbill.do">
-                                    <li> <button class="admin_btn">Check bills</button></li>
-                                </form>
-<!--                                <form action="${pageContext.request.contextPath}/admin/manageProducts.do">
-                                    <li> <button class="admin_btn">Manage products</button></li>
-                                </form>
-                                <form action="${pageContext.request.contextPath}/admin/manageOrders.do">
-                                    <li> <button class="admin_btn">Manage orders</button></li>
-                                </form>-->
+                               
+                                
+                                 <div class="nav-link">
+                                    <a href="<c:url value="/"/>" class="text-dark"><i class="bi bi-house-door-fill"></i> Home page</a>  
+                                </div>
+                                
+                                
+                                <div class="nav-link">
+                                    <li><a href="<c:url value="/emp/index.do"/>"class="text-dark"><i class="bi bi-person-lines-fill"></i></i> Your profile</a></li>
+                                </div>
+                                
+                                <div class="nav-link">
+                                    <li><a href="<c:url value="/emp/checkbill.do"/>"class="text-dark"><i class="bi bi-card-checklist"></i></i> Check bills</a></li>
+                                </div>
+                               
+                                
+                                <div class="nav-link">
+                                    <li><a href="<c:url value="/login/logout.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                                </div>
+
+                                
                             </ul><br/>
                         </div>
                         <div class="col-sm-9">
                             <jsp:include page="/WEB-INF/views/${controller}/${action}.jsp"/>
+                          
                         </div>
+                        
                     </div>
                 </div>
+                        
+                        
+                        
+                    <script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+</script>
              </body>           
                         
                         

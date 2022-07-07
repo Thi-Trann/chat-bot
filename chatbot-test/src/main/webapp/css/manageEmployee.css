@@ -45,6 +45,8 @@ and open the template in the editor.
 .manage_btn{
     width: 100px;
     border-radius: 25px;
+    margin-top: 1px;
+    margin-bottom: -1px;
 }
 .manage_btn:hover{
     opacity: 0.8;
