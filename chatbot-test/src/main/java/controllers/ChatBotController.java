@@ -10,6 +10,8 @@ import entities.Chatbot;
 import entities.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
@@ -57,67 +59,61 @@ public class ChatBotController extends HttpServlet {
         String botMsg;
         Chat chat;
         HttpSession session = request.getSession();
+        boolean flag = false;
         uInput = request.getParameter("uInput");
         for (Chatbot c : listChatbot) {
-            switch (uInput) {
-                case "hi":
-                     if(c.getKeyword().equals("hi")){
-                        botMsg = (String) c.getContent();
+            if (uInput.toLowerCase().equals(c.getKeyword())) {
+                botMsg = (String) c.getContent();
+                chat = new Chat(uInput, botMsg);
+                chatSession.add(chat);
+                session.setAttribute("CHAT_SESSION", chatSession);
+                out.println("<div class=\"incoming-msg\"> <span class=\"bot-msg\">" + chat.getBotMsg() + "</span></div>\n");
+                flag = true;
+            } else if (uInput.equals("end")) {
+                out.println("<div class=\"incoming-msg\"> <span class=\"bot-msg\">See you later!</span></div>\n");
+                session.invalidate();
+                return;
+            } else {
+                for (Product p : listProduct) {
+                    if (p.getName().toLowerCase().contains(uInput.toLowerCase())) {
+                        NumberFormat formatter = new DecimalFormat("$#,##0.00");
+                        double finalPrice = p.getPrice() * (1 - p.getDiscount());
+                        botMsg = p.getId() + "-" + p.getDiscount() + "-" + p.getPrice() + "-" + p.getDiscount() * 100 + "-" + finalPrice;
                         chat = new Chat(uInput, botMsg);
                         chatSession.add(chat);
                         session.setAttribute("CHAT_SESSION", chatSession);
-                        out.println("<div class=\"incoming-msg\"> <span class=\"bot-msg\">" + chat.getBotMsg() + "</span></div>\n");
-                     }              
-                    break;
-                case "search":
-                    out.println("<div class=\"incoming-msg\"> <span class=\"bot-msg\">Enter the product name you want to find:</span></div>\n");
-                    break;
-                case "find order":
-                    out.println("<div class=\"incoming-msg\"> <span class=\"bot-msg\">Enter the order number you want to find:</span></div>\n");
-                    break;
-                case "end":
-                    out.println("<div class=\"incoming-msg\"> <span class=\"bot-msg\">See you later!</span></div>\n");
-                    session.invalidate();
-                    return;
-                default:
-                    boolean flag = false;
-                    for (Product p : listProduct) {
-                        if (uInput.toLowerCase().equals(p.getName().toLowerCase())) {
-                            botMsg = p.getId() + "-" + p.getDiscount() + "-" + p.getPrice() + "-" + p.getDiscount() * 100 + "-" + (p.getPrice() * (1 - p.getDiscount()));
-                            chat = new Chat(uInput, botMsg);
-                            chatSession.add(chat);
-                            session.setAttribute("CHAT_SESSION", chatSession);
-                            out.println(
-                                    "<div class =\"incoming-msg\"> "
-                                    + "<span class =\"bot-msg\">"
-                                    + "<form method =\"post\" action=\"/chatbot-test/product/detail.do\">"
-                                    + "<button style=\"background: white;color : black;border-radius: 5px;\" type=\"submit\">"
-                                    + " <input type=\"hidden\" value=\"" + p.getId() + "\" name=\"id\"/>"
-                                    + "<img  src=\"/chatbot-test/images/products/" + p.getId() + ".jpg\" width=\"50%\" /><br/>"
-                                    + "Discount:" + p.getDiscount() * 100 + "%" + "<br/>\n"
-                                    + "Price: <strike>" + p.getPrice() + "$" + "</strike>\n"
-                                    + "<span style=\"color:red;font-size:20px;\">\n"
-                                    + (p.getPrice() * (1 - p.getDiscount())) + "$"
-                                    + "</span><br/>"
-                                    + " </button>\n"
-                                    + " <input name='quantity' type='hidden' value='1' />"
-                                    + " <button formaction=\"/chatbot-test/cart/add_chatbot.do\" style=\"border-radius: 5px;background: #212529;color: #fff;margin: 10px 0 0 20px;padding: 2px 27px;border: solid 2px #212529;transition: all 0.5s ease-in-out 0s;\" type=\"submit\" class=\"round-black-btn\">Add to Cart</button>"
-                                    + "</span></form></div>");
-                            flag = true;
-                        }
+                        out.println(
+                                "<div class =\"incoming-msg\"> "
+                                + "<span class =\"bot-msg\">"
+                                + "<form method =\"post\" action=\"/chatbot-test/product/detail.do\">"
+                                + "<button style=\"background: white;color : black;border-radius: 5px;\" type=\"submit\">"
+                                + " <input type=\"hidden\" value=\"" + p.getId() + "\" name=\"id\"/>"
+                                + "<img  src=\"/chatbot-test/images/products/" + p.getId() + ".jpg\" width=\"50%\" /><br/>"
+                                + "Discount:" + p.getDiscount() * 100 + "%" + "<br/>\n"
+                                + "Price: <strike> " + formatter.format(p.getPrice()) + "</strike></br>"
+                                + "<span style=\"color:red;font-size:20px;\">\n"
+                                + formatter.format(finalPrice)
+                                + "</span><br/>"
+                                + " </button>\n"
+                                + " <input name='quantity' type='hidden' value='1' />"
+                                + " <button formaction=\"/chatbot-test/cart/add_chatbot.do\" style=\"border-radius: 5px;background: #212529;color: #fff;margin: 10px 5px 0 7px;font-size: 15px;padding: 2px 27px;border: solid 2px #212529;transition: all 0.5s ease-in-out 0s;\" type=\"submit\" class=\"round-black-btn\">Add to Cart</button>"
+                                + "</span></form></div>");
+                        flag = true;
                     }
-
-                    if (flag == false) {
-                        botMsg = "I don't understand";
-                        chat = new Chat(uInput, botMsg);
-                        chatSession.add(chat);
-                        session.setAttribute("CHAT_SESSION", chatSession);
-                        out.println("<div class=\"incoming-msg\"> <span class=\"bot-msg\">" + chat.getBotMsg() + "</span></div>\n");
-                        break;
-                    }
+                }
+                if (flag == true) {
                     break;
+                }
             }
         }
+        if (flag == false) {
+            botMsg = "I don't understand";
+            chat = new Chat(uInput, botMsg);
+            chatSession.add(chat);
+            session.setAttribute("CHAT_SESSION", chatSession);
+            out.println("<div class=\"incoming-msg\"> <span class=\"bot-msg\">" + chat.getBotMsg() + "</span></div>\n");
+        }
+    }
 
 //        for (Product p : list) {
 //            if (uInput.toLowerCase().equals(p.getName().toLowerCase())) {
@@ -148,20 +144,19 @@ public class ChatBotController extends HttpServlet {
 //                out.println("<span style=\"background-color: #0084FF;color: white;\" class=\"bot-msg\">I can't understand</span>\n");
 //            }
 //        }
-        //            case 2:
-        //                String inputTxt = request.getParameter("inputTxt");
-        //                List<Product> list = pf.findAll();
-        //                for (Product p : list) {
-        //                    if (inputTxt.toLowerCase().contains(p.getName().toLowerCase())) {
-        //                        out.println("<div class=\"img_scale\" ><img src=\"${root}/images/products/" + p.getId() + ".jpg\" width=\"10%\" /></div>");
-        //                    } else {
-        //                        out.println("<span style=\"background-color: #0084FF;color: white;\" class=\"bot-msg\">Product is not existed !</span>\n");
-        //                    }
-        //                }
-        //                break;
-    }
+    //            case 2:
+    //                String inputTxt = request.getParameter("inputTxt");
+    //                List<Product> list = pf.findAll();
+    //                for (Product p : list) {
+    //                    if (inputTxt.toLowerCase().contains(p.getName().toLowerCase())) {
+    //                        out.println("<div class=\"img_scale\" ><img src=\"${root}/images/products/" + p.getId() + ".jpg\" width=\"10%\" /></div>");
+    //                    } else {
+    //                        out.println("<span style=\"background-color: #0084FF;color: white;\" class=\"bot-msg\">Product is not existed !</span>\n");
+    //                    }
+    //                }
+    //                break;
+//    }
 //        out.println("<button type=\"submit\" class=\"chat-round-black-btn\">Add to Cart</button>");
-
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
