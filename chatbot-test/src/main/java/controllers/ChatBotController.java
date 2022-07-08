@@ -60,6 +60,7 @@ public class ChatBotController extends HttpServlet {
         Chat chat;
         HttpSession session = request.getSession();
         boolean flag = false;
+        int DupChatCount = 0;
         uInput = request.getParameter("uInput");
         for (Chatbot c : listChatbot) {
             if (uInput.toLowerCase().equals(c.getKeyword())) {
@@ -69,16 +70,23 @@ public class ChatBotController extends HttpServlet {
                 session.setAttribute("CHAT_SESSION", chatSession);
                 out.println("<div class=\"incoming-msg\"> <span class=\"bot-msg\">" + chat.getBotMsg() + "</span></div>\n");
                 flag = true;
+                break;
             } else if (uInput.equals("end")) {
                 out.println("<div class=\"incoming-msg\"> <span class=\"bot-msg\">See you later!</span></div>\n");
                 session.invalidate();
                 return;
             } else {
+                String InitUInput = uInput;
+                DupChatCount = 0;
                 for (Product p : listProduct) {
-                    if (p.getName().toLowerCase().contains(uInput.toLowerCase())) {
+                    if(DupChatCount > 0){
+                        uInput = "";
+                    }
+                    if (p.getName().toLowerCase().contains(InitUInput.toLowerCase())) {
                         NumberFormat formatter = new DecimalFormat("$#,##0.00");
                         double finalPrice = p.getPrice() * (1 - p.getDiscount());
                         botMsg = p.getId() + "-" + p.getDiscount() + "-" + p.getPrice() + "-" + p.getDiscount() * 100 + "-" + finalPrice;
+                        DupChatCount++;
                         chat = new Chat(uInput, botMsg);
                         chatSession.add(chat);
                         session.setAttribute("CHAT_SESSION", chatSession);
@@ -98,7 +106,7 @@ public class ChatBotController extends HttpServlet {
                                 + " <input name='quantity' type='hidden' value='1' />"
                                 + " <button formaction=\"/chatbot-test/cart/add_chatbot.do\" style=\"border-radius: 5px;background: #212529;color: #fff;margin: 10px 5px 0 7px;font-size: 15px;padding: 2px 27px;border: solid 2px #212529;transition: all 0.5s ease-in-out 0s;\" type=\"submit\" class=\"round-black-btn\">Add to Cart</button>"
                                 + "</span></form></div>");
-                        flag = true;
+                        flag = true;                        
                     }
                 }
                 if (flag == true) {

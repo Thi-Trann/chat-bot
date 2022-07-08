@@ -11,6 +11,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  
+<%@ page isELIgnored="false" %> 
 <html>
     <head>
         <title>Brown Ted</title>
@@ -44,9 +45,9 @@
                                 <li><a style="padding: 0px; padding-right: 5px;" class="navbar-collapse" href="<c:url value="/"/>">
                                         <img src="${root}/images/logo.png" height="50"/>
                                     </a></li>                                            
-                                </ul>
-                            
-                            
+                            </ul>
+
+
                         </div>
                     </div>
                 </nav>  
@@ -62,23 +63,23 @@
                                 <form action="${pageContext.request.contextPath}/product/search.do">                                  
                                     <div class="input-group">
                                         <div class="search_form" ><input type="text" placeholder="Search product..." aria-label="Search for..." aria-describedby="btnNavbarSearch"  name="productName"/>
-                                        <button class="btn btn-primary" id="btnNavbarSearch" type="submit"><i class="bi bi-search"></i></button></div>
+                                            <button class="btn btn-primary" id="btnNavbarSearch" type="submit"><i class="bi bi-search"></i></button></div>
                                     </div>
                                 </form>
-                                    
+
                                 <div class="nav-link">
                                     <a href="<c:url value="/"/>" class="text-dark"><i class="bi bi-house-door-fill"></i> Home page</a>  
                                 </div>
-                                
+
                                 <div class="nav-link">
                                     <li><a href="<c:url value="/product/index.do"/>"class="text-dark"><i class="bi bi-bag-fill"></i> Product list</a></li>
                                 </div>
-                                
+
                                 <div class="nav-link">
-                                <a  href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                    <div class="accordion text-dark"><i class="bi bi-table"></i> Tables </div>        
-                                    
-                                </a>
+                                    <a  href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                        <div class="accordion text-dark"><i class="bi bi-table"></i> Tables </div>        
+
+                                    </a>
                                     <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                         <nav >
                                             <form action="${pageContext.request.contextPath}/admin/manageEmployees.do">
@@ -102,11 +103,11 @@
                                 <div class="nav-link">
                                     <li><a href=""class="text-dark"><i class="bi bi-gear-fill"></i> Setting</a></li>
                                 </div>                
-                                              
+
                                 <div class="nav-link">
                                     <li><a href="<c:url value="/login/logout.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
                                 </div>
-                                
+
                             </ul><br/>
                         </div>
                         <div class="col-sm-10">
@@ -297,37 +298,64 @@
             <c:if test="${sessionScope.CHAT_SESSION != null}">
                 <c:if test="${not empty sessionScope.CHAT_SESSION}">
                     <c:forEach var="chat" items="${sessionScope.CHAT_SESSION}">
+
                         <c:set var="btMsg" value="${chat.getBotMsg()}"/>
                         <c:set var="botMsgSplit" value="${fn:split(btMsg, '-')}"/>
                         <c:choose>
                             <c:when test="${fn:contains(btMsg, '-')}"> 
-                                <script type="text/javascript">
-                                    chatArea = document.querySelector('.chat-area');
-                                    var myMsg = `<div class="out-msg">
-                                    <span class="my-msg">${chat.getuInput()}</span>
-                                    </div>`;
-                                    chatArea.insertAdjacentHTML("beforeend", myMsg);
-                                    
-                                    var botMsg = `<div class="incoming-msg">
-                                    <span class="bot-msg">
-                                    <form method ="post" action="/chatbot-test/product/detail.do">
-                                    <button style="background:white; color:black;" type="submit">
-                                    <input type="hidden" value="${botMsgSplit[0]}" name="id"/>
-                                    <img  src="/chatbot-test/images/products/${botMsgSplit[0]}.jpg" width=50%/><br/>
-                                    Discount:${botMsgSplit[3]}%<br/>\n
-                                    Price: <strike><fmt:formatNumber value="${botMsgSplit[2]}" pattern="$#,##0.00" /></strike></br>
-                                    <span style="color:red;font-size:20px;">\n<fmt:formatNumber value="${botMsgSplit[4]}" pattern="$#,##0.00" /></span><br/>
-                                    </button>\n
-                                    <input name='quantity' type='hidden' value='1'/>
-                                    <button formaction=\"/chatbot-test/cart/add_chatbot.do\" style=\"border-radius: 5px;background: #212529;color: #fff;margin: 10px 5px 0 7px;font-size: 15px;padding: 2px 27px;border: solid 2px #212529;transition: all 0.5s ease-in-out 0s;\" type=\"submit\" class=\"round-black-btn\">Add to Cart</button>
-                                    </form>
-                                    </span>
-                                    </div>`;
-                                    chatArea.insertAdjacentHTML("beforeend", botMsg);
+                                <c:choose>
+                                    <c:when test="${not empty chat.getuInput()}">
+                                        <script type="text/javascript">
+                                            chatArea = document.querySelector('.chat-area');
+                                            var myMsg = `<div class="out-msg">
+                                            <span class="my-msg">${chat.getuInput()}</span>
+                                            </div>`;
+    
+                                            chatArea.insertAdjacentHTML("beforeend", myMsg);
+                                            var botMsg = `<div class="incoming-msg">
+                                            <span class="bot-msg">
+                                            <form method ="post" action="/chatbot-test/product/detail.do">
+                                            <button style="background:white; color:black;" type="submit">
+                                            <input type="hidden" value="${botMsgSplit[0]}" name="id"/>
+                                            <img  src="/chatbot-test/images/products/${botMsgSplit[0]}.jpg" width=50%/><br/>
+                                            Discount:${botMsgSplit[3]}%<br/>\n
+                                            Price: <strike><fmt:formatNumber value="${botMsgSplit[2]}" pattern="$#,##0.00" /></strike></br>
+                                            <span style="color:red;font-size:20px;">\n<fmt:formatNumber value="${botMsgSplit[4]}" pattern="$#,##0.00" /></span><br/>
+                                            </button>\n
+                                            <input name='quantity' type='hidden' value='1'/>
+                                            <button formaction=\"/chatbot-test/cart/add_chatbot.do\" style=\"border-radius: 5px;background: #212529;color: #fff;margin: 10px 5px 0 7px;font-size: 15px;padding: 2px 27px;border: solid 2px #212529;transition: all 0.5s ease-in-out 0s;\" type=\"submit\" class=\"round-black-btn\">Add to Cart</button>
+                                            </form>
+                                            </span>
+                                            </div>`;
+                                            chatArea.insertAdjacentHTML("beforeend", botMsg);
 
-                                    this.scrollIntoView(false);
-                                    chatArea.scrollTop = chatArea.scrollHeight;
-                                </script>
+                                            chatArea.scrollTop = chatArea.scrollHeight;
+                                        </script>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <script type="text/javascript">
+                                            chatArea = document.querySelector('.chat-area');
+                                            var botMsg = `<div class="incoming-msg">
+                                            <span class="bot-msg">
+                                            <form method ="post" action="/chatbot-test/product/detail.do">
+                                            <button style="background:white; color:black;" type="submit">
+                                            <input type="hidden" value="${botMsgSplit[0]}" name="id"/>
+                                            <img  src="/chatbot-test/images/products/${botMsgSplit[0]}.jpg" width=50%/><br/>
+                                            Discount:${botMsgSplit[3]}%<br/>\n
+                                            Price: <strike><fmt:formatNumber value="${botMsgSplit[2]}" pattern="$#,##0.00" /></strike></br>
+                                            <span style="color:red;font-size:20px;">\n<fmt:formatNumber value="${botMsgSplit[4]}" pattern="$#,##0.00" /></span><br/>
+                                            </button>\n
+                                            <input name='quantity' type='hidden' value='1'/>
+                                            <button formaction=\"/chatbot-test/cart/add_chatbot.do\" style=\"border-radius: 5px;background: #212529;color: #fff;margin: 10px 5px 0 7px;font-size: 15px;padding: 2px 27px;border: solid 2px #212529;transition: all 0.5s ease-in-out 0s;\" type=\"submit\" class=\"round-black-btn\">Add to Cart</button>
+                                            </form>
+                                            </span>
+                                            </div>`;
+                                            chatArea.insertAdjacentHTML("beforeend", botMsg);
+
+                                            chatArea.scrollTop = chatArea.scrollHeight;
+                                        </script>
+                                    </c:otherwise>
+                                </c:choose>
                             </c:when>
                             <c:otherwise>
                                 <script type="text/javascript">
@@ -342,7 +370,6 @@
                                     </div>`;
                                     chatArea.insertAdjacentHTML("beforeend", botMsg);
 
-                                    this.scrollIntoView(false);
                                     chatArea.scrollTop = chatArea.scrollHeight;
                                 </script>
                             </c:otherwise>
@@ -360,20 +387,20 @@
 
     </section>
     <script>
-var acc = document.getElementsByClassName("accordion");
-var i;
+        var acc = document.getElementsByClassName("accordion");
+        var i;
 
-for (i = 0; i < acc.length; i++) {
-acc[i].addEventListener("click", function() {
-this.classList.toggle("active");
-var panel = this.nextElementSibling;
-if (panel.style.display === "block") {
-panel.style.display = "none";
-} else {
-panel.style.display = "block";
-}
-});
-}
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+            });
+        }
     </script>            
     <script src="${root}/js/main.js"></script>
 
