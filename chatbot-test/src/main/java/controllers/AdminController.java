@@ -114,8 +114,7 @@ public class AdminController extends HttpServlet {
                 request.setAttribute("controller", "error");
                 request.setAttribute("action", "index");
         }
-        
-        request.getRequestDispatcher(App.LAYOUT3).forward(request, response);
+        request.getRequestDispatcher(App.LAYOUT).forward(request, response);
     }
 
     private void manageEmployees(HttpServletRequest request, HttpServletResponse response) {
