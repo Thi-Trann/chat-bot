@@ -17,6 +17,7 @@ and open the template in the editor.
  
 
         <div class="login_form">
+            <div>
             <form action="${pageContext.request.contextPath}/login/login_handler.do" method="post">
                 <h2 style="font-weight: bold; font-size: 30px; text-align: center;">Login</h2>
                 <br>
@@ -24,6 +25,7 @@ and open the template in the editor.
                 <input class="userName" value="${userName}" type="text" placeholder="Enter Username" name="userName"><br/>
                 <input class="password" value="${password}" type="password" placeholder="Enter Password" name="password"><br/> 
                 <a style="margin-left: 150px; " href="<c:url value="/login/forget.do"/>">Forgot your password? Click here</a><br/>
+            </div>
                 <label style="margin-left: 200px;">
                     <input type="checkbox" checked="checked" name="rememberMe"> Remember me
                 </label><br/>
