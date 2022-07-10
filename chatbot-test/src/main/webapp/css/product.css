@@ -8,7 +8,10 @@ and open the template in the editor.
     Author     : SE151515 Cao Trong Hieu
 */
 
-
+.item{
+    padding-top: 10px;
+    
+}
 .button {
     background-color: Crimson;
     border: none;
@@ -28,6 +31,8 @@ and open the template in the editor.
     text-align: center;
     font-family: arial;
     height: 450px;
+    margin-top: 30px;
+    
 }
 
 .card button {

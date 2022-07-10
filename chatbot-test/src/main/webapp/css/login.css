@@ -7,7 +7,9 @@ and open the template in the editor.
     Created on : May 24, 2022, 9:36:28 PM
     Author     : quckh
 */
-
+body{
+    background-color: #EEC3D6;
+}
 .login_form {
     padding-top: 10px;
     border: 3px solid black;

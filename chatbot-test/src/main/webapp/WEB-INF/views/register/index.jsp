@@ -17,19 +17,21 @@
       <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
         <title>Register</title>
     </head>
-    <body>
+    <body style="background-color: #EEC3D6;">
 
 
 
         <main class="my-form">
-            <div class="cotainer" style="margin-top: 5%;" >
+            <div class="cotainer"  >
                 <div class="row justify-content-center">
-                    <div class="col-md-4">
-                        <div class="card" style="background-color:#FFFAB3;">
+                    <div class="table">
+                        <div class="card" style="background-color:#FFFAB3; ">
                             
                      
-                                
-                            <h3 class="card-header" style="background-color:#F1AF00; text-align: center; margin-top: 0;" >Register</h3>
+                            <div class="head" >
+                                <h2 style="font-weight: bold; font-size: 30px; text-align: center;">Register</h2>
+                            </div>    
+                    
                             
                         
                             <div class="card-body">
@@ -95,8 +97,8 @@
                                         </div>
                                     </div>
 <!------------------------->
-                                    <div class="col-md-6 offset-md-4"  >
-                                        <button type="submit" class="btn btn-primary" style="background: #f0bc4d; color: black;">
+                                    <div class="submit "  >
+                                        <button type="submit" class="btn btn-primary" style="background: #f0bc4d; color: black; border: 2px solid #45362E; border-radius: 50px;">
                                             Register
                                         </button>
                                     </div>

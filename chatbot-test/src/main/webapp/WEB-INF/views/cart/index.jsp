@@ -15,8 +15,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link href="${root}/css/cart.css" rel="stylesheet" type="text/css"/>
 </head>
+
 <c:if test="${cart.numOfProducts>0}">
-    <div class="background">   
+    <div class="background"  >   
     <table class="table ">      
         <thead >
             <tr class="heat">
@@ -163,11 +164,13 @@
 
 
     </div> 
+
 </c:if>
 <c:if test="${cart.numOfProducts<=0 || cart.numOfProducts==null}">
-    <div class="container">
+    <div class="null" >
+        <div class="container" >
         <img class="img-responsive" src="${root}/images/not.png" />
-    </div> 
+    </div > 
     <h1 style="text-align: center">
         Don't have anything in cart !
     </h1>
@@ -176,4 +179,5 @@
             <button class="shopping_button" type='submit'><span>Go shopping</span></button>
         </form>     
     </h1>
+        </div>
 </c:if>

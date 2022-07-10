@@ -71,7 +71,7 @@ public class ProductController extends HttpServlet {
     }
 
     private void index(HttpServletRequest request, HttpServletResponse response) {
-        int pageSize = 6;//Kich thuoc trang                        
+        int pageSize = 9;//Kich thuoc trang                        
         HttpSession session = request.getSession();
 
         //Xac dinh so thu tu cua trang hien tai
