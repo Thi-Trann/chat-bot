@@ -7,7 +7,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <form>
         <section style="background-color: #eee;">
             <div class="container py-5">
                 <div class="row">
@@ -26,8 +25,6 @@
                             <div class="card-body">
                                 <h3 style="text-align: center;">Chatbot</h3>
                                 <br>
-
-                                <c:forEach var="c" items="${botList}" varStatus="loop">
                                     <div class="row">
                                         <div class="col-sm-3">
                                             <p class="mb-0">
@@ -49,7 +46,7 @@
                                             <p class="mb-0">Keyword</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0"><input type="text" name="keyword" value="${c.keyword}"/></p>
+                                            <p class="text-muted mb-0"><input type="text" name="keyword" value="${keyword}"/></p>
                                         </div>
                                     </div>
                                     <hr>
@@ -58,14 +55,13 @@
                                             <p class="mb-0">Content</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0"><input type="text" name="content" value="${c.content}"/></p>
+                                            <p class="text-muted mb-0"><input type="text" name="content" value="${content}"/></p>
                                         </div>
                                     </div>
                                     <hr>
                                     <div class="row">
                                         <div class="col-sm-9">
                                             <form>
-                                                <input type="hidden" value="${x.id}" name="id"/>
                                                 <button formaction="${pageContext.request.contextPath}/admin/updateChatbot_hander.do">Save</button>
                                             </form>
                                         </div>   
@@ -75,8 +71,5 @@
                         </div>
                     </div>
                 </div>
-            </c:forEach>
         </section>        
-    </form>
-
 </html>

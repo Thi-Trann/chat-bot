@@ -139,7 +139,7 @@
                                             <li><a href="<c:url value="/login/logout.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
                                         </ul>
                                         <ul class="nav navbar-nav navbar-right">
-                                            <li style="margin-top: 15px;">${userName}</li>
+                                            <li><a href="<c:url value="/user/index.do"/>"class="text-dark">Profile</a></li>
                                         </ul>
                                     </c:if>
 
@@ -203,6 +203,7 @@
                                         <ul class="nav navbar-nav navbar-right">
                                             <li style="margin-top: 15px;">${userName}</li>
                                         </ul>
+
                                     </c:if>
 
 

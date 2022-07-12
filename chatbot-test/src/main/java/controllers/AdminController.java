@@ -246,14 +246,12 @@ public class AdminController extends HttpServlet {
 
     private void updateEmployee(HttpServletRequest request, HttpServletResponse response) {
         response.setContentType("text/html;charset=UTF-8");
-
         int id = Integer.parseInt(request.getParameter("id"));
         List<Account> list = af.findAll();
         List elist = new ArrayList();
         for (Account acc : list) {
             if (acc.getId().equals(id)) {
                 elist.add(acc);
-
                 request.setAttribute("elist", elist);
             }
         }
