@@ -177,7 +177,6 @@ public class AdminController extends HttpServlet {
 
     private void generateNewEmployee_handler(HttpServletRequest request, HttpServletResponse response) {
         response.setContentType("text/html;charset=UTF-8");
-
         boolean flag = false;
         List<Account> list = af.findAll();
         request.setAttribute("list", list);

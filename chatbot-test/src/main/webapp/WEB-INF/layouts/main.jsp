@@ -100,9 +100,9 @@
                                         </nav>
                                     </div>
                                 </div>                
-                                <div class="nav-link">
+<!--                                <div class="nav-link">
                                     <li><a href=""class="text-dark"><i class="bi bi-gear-fill"></i> Setting</a></li>
-                                </div>                
+                                </div>                -->
 
                                 <div class="nav-link">
                                     <li><a href="<c:url value="/login/logout.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
