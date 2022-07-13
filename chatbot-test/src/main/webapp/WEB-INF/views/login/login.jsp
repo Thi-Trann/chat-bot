@@ -10,33 +10,34 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <link href="${root}/css/login.css" rel="stylesheet" type="text/css"/>
+        <link href="${root}/css/login.css" rel="stylesheet" type="text/css"/>      
     </head>
     <body>
         <input type="hidden" id ="resu" value${sucmess}>
  
 
         <div class="login_form">
-            <div>
-            <form action="${pageContext.request.contextPath}/login/login_handler.do" method="post">
+            <div class="flex flex-col justify-conter items-center px-5">
+            <form action="${pageContext.request.contextPath}/login/login_handler.do" method="post" class="w-full flex flex-col items-center" >
                 <h2 style="font-weight: bold; font-size: 30px; text-align: center;">Login</h2>
-                <br>
+         
                 
-                <input class="userName" value="${userName}" type="text" placeholder="Enter Username" name="userName"><br/>
-                <input class="password" value="${password}" type="password" placeholder="Enter Password" name="password"><br/> 
-                <a style="margin-left: 150px; " href="<c:url value="/login/forget.do"/>">Forgot your password? Click here</a><br/>
-            </div>
-                <label style="margin-left: 200px;">
+                <input class="userName" value="${userName}" type="text" placeholder="Enter Username" name="userName">
+                <input class="password" value="${password}" type="password" placeholder="Enter Password" name="password">
+                
+                <label style="">
                     <input type="checkbox" checked="checked" name="rememberMe"> Remember me
-                </label><br/>
+                </label>
+                <a   href="<c:url value="/login/forget.do"/>" style="text-align: center; font-size:12px">Forgot your password? Click here</a>
                 
                
-                <p style="margin-left: 160px; color: red">${mess}</p><br/>
-                <button style="margin-left: 160px;" class="login_button" type="submit"><span>Login</span></button>
+                <p style="text-align: left; color: red">${mess}</p><br/>
+                <button style="" class="login_button" type="submit"><span>Login</span></button>
             </form>
             <form action="${root}/register/index.do">
-                <button style="margin-left: 160px;" type="submit" class="register_button"><span>Register</span></button>
+                <button style="" type="submit" class="register_button"><span>Register</span></button>
             </form>
+            </div>
         </div>
     </body>
 </html>
