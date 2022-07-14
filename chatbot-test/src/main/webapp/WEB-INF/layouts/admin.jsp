@@ -29,7 +29,7 @@
     </head>
     <body>
 
-                <nav class="navbar navbar-inverse" style="background-color:#F1AF00;">
+                <nav class="navbar navbar-inverse" style="background-color:#F2C2DC;border:none">
                     <div class="container-fluid">
                         <div class="navbar-header">
                             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -38,9 +38,9 @@
                                 <span class="icon-bar"></span>                        
                             </button>
                         </div>
-                        <div class="collapse navbar-collapse" id="myNavbar" style="background-color:#F1AF00 ">
+                        <div class="collapse navbar-collapse" id="myNavbar"  >
                             <ul class="nav navbar-nav" style="display: inline;">
-                                <li><a style="padding: 0px; padding-right: 5px;" class="navbar-collapse" href="<c:url value="/"/>">
+                                <li><a style="; padding-right: 5px;" class="navbar-collapse" href="<c:url value="/"/>">
                                         <img src="${root}/images/logo.png" height="50"/>
                                     </a></li>                                            
                                 </ul>

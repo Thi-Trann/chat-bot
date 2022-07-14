@@ -17,7 +17,7 @@
       <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
         <title>Register</title>
     </head>
-    <body style="background-color: #FFFCE6;">
+    <body style="background-color: white;">
 
 
 
@@ -25,7 +25,7 @@
             <div class="cotainer"  >
                 <div class="row justify-content-center">
                     <div class="table">
-                        <div class="card" style="background-color:#FFFAB3; ">
+                        <div class="card" style="background-color:#F2C2DC;">
                             
                      
                             <div class="head" >
@@ -98,7 +98,7 @@
                                     </div>
 <!------------------------->
                                     <div class="submit "  >
-                                        <button type="submit" class="btn btn-primary" style="background: #f0bc4d; color: black; border: 2px solid #45362E; border-radius: 50px;">
+                                        <button type="submit" class="btn btn-primary" style="background: #47D2E9; color: black;  border-radius: 50px; border:none;">
                                             Register
                                         </button>
                                     </div>

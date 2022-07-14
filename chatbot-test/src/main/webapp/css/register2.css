@@ -12,9 +12,10 @@ and open the template in the editor.
 
 
 .table{
-    width: 30%;
+    min-width: 400px;
+    max-width: 500px;
+    width: 100%;
     margin-top: 100px;
-    border: 3px solid #45362E;
     border-radius: 50px;
     padding: 0px;
 }
@@ -23,25 +24,24 @@ and open the template in the editor.
 }
 
 .submit{
-    margin-left: 40%;
-   
-  
+    margin-left: 40%;   
 }
+
 .card{
     border-radius: 50px;
 }
+
 #h2{
     font-weight: bold;
     font-size: 30px;
     text-align: center;
 }
 
-
-.my-form
-{
+.my-form{
     font-family: Raleway, sans-serif;
 }
-.form-control{
+
+.form-control{   
     width: 100%;
     border-radius: 50px;
 }

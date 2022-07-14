@@ -18,21 +18,19 @@ and open the template in the editor.
 }
 
 .background{  
-      background-color: #FFFCE6;
+      background-color: white;
       height: 100%;
     }
+    
 .img-responsive{
     border-radius: 100%;
-    }
+}
+
 .null{
     height: 100%;
     padding-top:100px;
- 
-    background-color: #FFFCE6;
+    background-color: white;
 }
-    
-
-
 
 .checkout_button{
     width: 180px;
@@ -46,17 +44,19 @@ and open the template in the editor.
 .font-check{
     float: right;
 }
+
 .shopping_button{
-    background-color: #f0bc4d;
+    background-color: #F2C2DC;
     color: rgb(74, 74, 74);
     font-weight: 500;
     padding: 10px 55px;
     display: inline-block;
-    border-radius: 4px;
+    border-radius: 10px;
     transition: all 0.5s;
     cursor: pointer;
     margin: 5px;
     text-align: left;
+    border:none;
 }
 
 .shopping_button span {

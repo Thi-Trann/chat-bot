@@ -31,26 +31,7 @@
     <body>
         <c:choose>
             <c:when test="${roleuser=='ADMIN'}">
-                <nav class="navbar navbar-inverse" style="background-color:#F1AF00;">
-                    <div class="container-fluid">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>                        
-                            </button>
-                        </div>
-                        <div class="collapse navbar-collapse" id="myNavbar" style="background-color:#F1AF00 ">
-                            <ul class="nav navbar-nav" style="display: inline;">
-                                <li><a style="padding: 0px; padding-right: 5px;" class="navbar-collapse" href="<c:url value="/"/>">
-                                        <img src="${root}/images/logo.png" height="50"/>
-                                    </a></li>                                            
-                            </ul>
 
-
-                        </div>
-                    </div>
-                </nav>  
                 <div class="container-fluid">
                     <div class="row content">
                         <div class="menu col-sm-2 sidenav" >
@@ -59,11 +40,18 @@
                                     <h3> Welcome ${roleuser} </h3>                                    
                                 </li>
                                 <hr/>
-                                <br/>
+
+                                <div class="logo"  >
+                                    <a   href="<c:url value="/"/>">
+                                        <img src="${root}/images/logo.png" height="60"/>
+                                    </a>
+
+                                </div>
+
                                 <form action="${pageContext.request.contextPath}/product/search.do">                                  
                                     <div class="input-group">
-                                        <div class="search_form" ><input type="text" placeholder="Search product..." aria-label="Search for..." aria-describedby="btnNavbarSearch"  name="productName"/>
-                                            <button class="btn btn-primary" id="btnNavbarSearch" type="submit"><i class="bi bi-search"></i></button></div>
+                                        <div class="search_form"  ><input type="text" placeholder="Search product..." aria-label="Search for..." aria-describedby="btnNavbarSearch"  name="productName"/>
+                                            <button style="background-color:#47D2E9; border:none;"class="btn btn-primary" id="btnNavbarSearch" type="submit"><i class="bi bi-search"></i></button></div>
                                     </div>
                                 </form>
 
@@ -100,9 +88,9 @@
                                         </nav>
                                     </div>
                                 </div>                
-<!--                                <div class="nav-link">
-                                    <li><a href=""class="text-dark"><i class="bi bi-gear-fill"></i> Setting</a></li>
-                                </div>                -->
+                                <!--                                <div class="nav-link">
+                                                                    <li><a href=""class="text-dark"><i class="bi bi-gear-fill"></i> Setting</a></li>
+                                                                </div>                -->
 
                                 <div class="nav-link">
                                     <li><a href="<c:url value="/login/logout.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
@@ -119,7 +107,7 @@
             <c:otherwise>
                 <c:choose>
                     <c:when test="${roleuser =='CUSTOMER'}">
-                        <nav class="navbar navbar-inverse" style="background-color:#F1AF00;">
+                        <nav class="navbar navbar-inverse" style="background-color:#F2C2DC; border:none ; position: sticky; top: 0;z-index: 999;">
                             <div class="container-fluid">
                                 <div class="navbar-header">
                                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -128,7 +116,7 @@
                                         <span class="icon-bar"></span>                        
                                     </button>
                                 </div>
-                                <div class="collapse navbar-collapse" id="myNavbar" style="background-color:#F1AF00 ">
+                                <div class="collapse navbar-collapse" id="myNavbar" >
                                     <ul class="nav navbar-nav" style="display: inline;">
                                         <li><a style="padding: 0px; padding-right: 5px;" class="navbar-collapse" href="<c:url value="/"/>">
                                                 <img src="${root}/images/logo.png" height="50"/>
@@ -155,11 +143,14 @@
                                         </ul>
                                     </c:if>
 
+
                                     <form action="${pageContext.request.contextPath}/product/search.do">
                                         <ul class="nav navbar-nav">
-                                            <li class="search_form" style="margin-top:11px"><input type="text" placeholder="Search product..." name="productName"/><button type="submit" style="background-color: #D59B00;height: 25px"><i class="bi bi-search"></i></button></li>
+                                            <div class="search_form" style="margin-top:5px;"><input type="text" placeholder="Search product..." name="productName"/>
+                                                <button type="submit" style="border:none; background-color: #47D2E9;height:30px ;width:40px;"><i class="bi bi-search"></i></button></div>
                                         </ul>
-                                    </form>    
+                                    </form>   
+
                                 </div>
                             </div>
                         </nav>  
@@ -170,7 +161,7 @@
                 </c:choose>
                 <c:choose>
                     <c:when test="${roleuser ==null}">
-                        <nav class="navbar navbar-inverse" style="background-color:#F1AF00; margin-bottom: 0px;">
+                        <nav class="navbar navbar-inverse" style="background-color:#F2C2DC; margin-bottom: 0px;border:none ; position: sticky; top: 0;z-index: 999;">
                             <div class="container-fluid">
                                 <div class="navbar-header">
                                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -179,7 +170,7 @@
                                         <span class="icon-bar"></span>                        
                                     </button>
                                 </div>
-                                <div class="collapse navbar-collapse" id="myNavbar" style="background-color:#F1AF00 ">
+                                <div class="collapse navbar-collapse" id="myNavbar" >
                                     <ul class="nav navbar-nav" style="display: inline;">
                                         <li><a style="padding: 0px; padding-right: 5px;" class="navbar-collapse" href="<c:url value="/"/>">
                                                 <img src="${root}/images/logo.png" height="50"/>
@@ -188,7 +179,15 @@
                                         <li><a href="<c:url value="/product/index.do"/>"class="text-dark"><i class="bi bi-bag"></i> Product list</a></li>
                                         <li><a href="<c:url value="/cart/index.do"/>"class="text-dark"><i class="bi bi-cart"></i> Cart :<c:if test="${cart.numOfProducts==null}"> 0 </c:if><c:if test="${cart.numOfProducts!=null}"> ${cart.numOfProducts} </c:if> 
                                                     product(s)</a></li>
-                                        </ul>
+                                            <li>                  
+                                                    <form action="${pageContext.request.contextPath}/product/search.do">
+                                                <ul class="nav navbar-nav">
+                                                    <div class="search_form" style="margin-top:5px;"><input type="text" placeholder="Search product..." name="productName"/>
+                                                        <button type="submit" style="border:none; background-color: #47D2E9;height:30px ;width:40px;"><i class="bi bi-search"></i></button></div>
+                                                </ul>
+                                            </form>   
+                                        </li>
+                                    </ul>
                                     <c:if test="${login_success == null}">
                                         <ul class="nav navbar-nav navbar-right">
                                             <li><a href="<c:url value="/register/index.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Register</a></li>
@@ -206,11 +205,8 @@
                                         </ul>
                                     </c:if>
 
-                                    <form action="${pageContext.request.contextPath}/product/search.do">
-                                        <ul class="nav navbar-nav">
-                                            <li class="search_form" style="margin-top:11px"><input type="text" placeholder="Search product..." name="productName"/><button type="submit" style="background-color: #D59B00;height: 25px"><i class="bi bi-search"></i></button></li>
-                                        </ul>
-                                    </form>    
+
+
                                 </div>
                             </div>
                         </nav>  
@@ -221,7 +217,7 @@
                 </c:choose>
                 <c:choose>
                     <c:when test="${roleuser =='EMPLOYEE'}">
-                        <nav class="navbar navbar-inverse" style="background-color:#F1AF00;">
+                        <nav class="navbar navbar-inverse" style="background-color:#F2C2DC;border:none  ;position: sticky; top: 0;z-index: 999;">
                             <div class="container-fluid">
                                 <div class="navbar-header">
                                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -230,7 +226,7 @@
                                         <span class="icon-bar"></span>                        
                                     </button>
                                 </div>
-                                <div class="collapse navbar-collapse" id="myNavbar" style="background-color:#F1AF00 ">
+                                <div class="collapse navbar-collapse" id="myNavbar" >
                                     <ul class="nav navbar-nav" style="display: inline;">
                                         <li><a style="padding: 0px; padding-right: 5px;" class="navbar-collapse" href="<c:url value="/"/>">
                                                 <img src="${root}/images/logo.png" height="50"/>
@@ -260,11 +256,14 @@
                                         </ul>
                                     </c:if>
 
+
                                     <form action="${pageContext.request.contextPath}/product/search.do">
                                         <ul class="nav navbar-nav">
-                                            <li class="search_form" style="margin-top:11px"><input type="text" placeholder="Search product..." name="productName"/><button type="submit" style="background-color: #D59B00;height: 25px"><i class="bi bi-search"></i></button></li>
+                                            <div class="search_form" style="margin-top:5px;"><input type="text" placeholder="Search product..." name="productName"/>
+                                                <button type="submit" style="border:none; background-color: #47D2E9;height:30px ;width:40px;"><i class="bi bi-search"></i></button></div>
                                         </ul>
-                                    </form>    
+                                    </form>   
+
                                 </div>
                             </div>
                         </nav>  
@@ -310,7 +309,7 @@
                                             var myMsg = `<div class="out-msg">
                                             <span class="my-msg">${chat.getuInput()}</span>
                                             </div>`;
-    
+
                                             chatArea.insertAdjacentHTML("beforeend", myMsg);
                                             var botMsg = `<div class="incoming-msg">
                                             <span class="bot-msg">

@@ -28,7 +28,7 @@
                     <div class="product-info">
                         <div class="product-name">${list.name}</div>
                         <div class="reviews-counter">
-                            <div class="rate">
+<!--                            <div class="rate">
                                 <input type="radio" id="star5" name="rate" value="5" checked />
                                 <label for="star5" title="text">5 stars</label>
                                 <input type="radio" id="star4" name="rate" value="4" checked />
@@ -40,7 +40,7 @@
                                 <input type="radio" id="star1" name="rate" value="1" />
                                 <label for="star1" title="text">1 star</label>
                             </div>
-                            <span>3 Reviews</span>
+                            <span>3 Reviews</span>-->
                         </div>
                         <c:if test="${list.discount > 0/100}">
                             <div class="product-price-discount" style="color:red;font-size:30px;"> <fmt:formatNumber value="${list.price*(1 - list.discount)}" pattern="$#,##0.00" /><span class="line-through"><fmt:formatNumber value="${list.price}" pattern="$#,##0.00" /></span></div>

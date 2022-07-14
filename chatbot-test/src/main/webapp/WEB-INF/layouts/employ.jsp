@@ -67,30 +67,7 @@ div.accordion:after {
 </style>
     </head> 
     <body>
- <nav class="navbar navbar-inverse" style="background-color:#F1AF00;">
-                    <div class="container-fluid">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>                        
-                            </button>
-                        </div>
-                        <div class="collapse navbar-collapse" id="myNavbar" style="background-color:#F1AF00 ">
-                            <ul class="nav navbar-nav" style="display: inline;">
-                                <li><a style="padding: 0px; padding-right: 5px;" class="navbar-collapse" href="<c:url value="/"/>">
-                                        <img src="${root}/images/logo.png" height="50"/>
-                                        
-                                  
-                                    </a></li> 
-                                    <li><a></a></li>
-                                    
-                                </ul>
-                            
-                            
-                        </div>
-                    </div>
-                </nav>  
+ 
                 <div class="container-fluid">
                     <div class="row content">
                         <div class="menu col-sm-2 sidenav" >
@@ -99,7 +76,12 @@ div.accordion:after {
                                     <h3> Welcome ${roleuser} </h3>                                    
                                 </li>
                                 <hr/>
-                                <br/>
+                                <div class="logo"  >
+                                    <a   href="<c:url value="/"/>">
+                                        <img src="${root}/images/logo.png" height="60"/>
+                                    </a>
+                                   
+                                </div>
                                
                                 
                                  <div class="nav-link">

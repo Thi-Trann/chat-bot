@@ -8,7 +8,7 @@ and open the template in the editor.
     Author     : quckh
 */
 body{
-    background-color: #FFFCE6;
+    background-color: white;
 }
 
 /* Remove the navbar's default margin-bottom and rounded borders */ 
@@ -74,7 +74,7 @@ body{
     right: 25px;
     height: 470px;
     width: 300px;
-    background-color: #FFFAB3;
+    background-color: #F2C2DC;
     flex-direction: column;
     justify-content: space-between;
     border-radius: 10px;
@@ -213,3 +213,4 @@ body{
 .admin_btn:hover{
     opacity: 0.8;
 }
+

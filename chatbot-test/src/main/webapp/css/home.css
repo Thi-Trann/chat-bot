@@ -8,14 +8,15 @@ and open the template in the editor.
     Author     : quckh
 */
 .product_button{
-    margin-top: 15px;
-    width: 450px;
+   width: 450px;
     height: 50px;
     border-radius: 50px;
-    background-color: #f0bc4d;
+    background-color: #f2c2dc;
     transition: all 0.5s;
     cursor: pointer;
-    margin: 5px;
+    margin: 30px;
+    border: none;
+    
 }
 
 .product_button span {
