@@ -36,9 +36,10 @@ and open the template in the editor.
     width: 180px;
     height: 40px;
     border-radius: 5px;
-    background-color: #f0bc4d;
+    background-color: #F2C2DC;
     transition: all 0.5s;
     cursor: pointer;
+    border:none;
 
 }
 .font-check{
