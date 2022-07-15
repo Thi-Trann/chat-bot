@@ -44,7 +44,7 @@
         <div>
             <h2>New</h2>
             <div>
-                <button id="flip" class="btn2" >Show/Hide</button><br>
+                <button id="flip" class="btn2"  >Show/Hide</button><br>
                 <div id="panel">
                     <table class="table table-striped">
                         <thead>

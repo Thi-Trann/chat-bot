@@ -19,7 +19,7 @@
             <p style="font-size: 50px; text-align: center">Check out your purchase !</p>
             <p><img src="${root}/images/logo.png" style="height: 110; margin-left: 45%"/></p>
 
-            <div style="background-color: #FFFAB3;box-shadow: 2px 4px #ddd ;height: fit-content; width: 500px; margin-left: 33%; padding: 15px;">
+            <div style="background-color: #F2C2DC;height: fit-content; width: 500px; margin-left: 33%; padding: 15px;">
                 <h3 style="font-weight: bold">${name}</h3>
                 <ul>      
                     <li class="text-black mt-1"> Phone number: ${phone}</li>

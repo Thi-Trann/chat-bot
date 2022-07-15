@@ -9,18 +9,18 @@ and open the template in the editor.
 */
 
 .login_form {
-    padding-top: 10px;
-    border: 3px solid black;
-    width: 700px;
+    text-align: center;
+    min-width: 350px;
+    max-width: 450px;
+    width: 100%;
     margin: 0 auto;
-    margin-top: 50px;
+    margin-top: 100px;
     border-radius: 50px;
-    height: 500px;
-    background-color:#FFFAB3;
+    height: 400px;
+    background-color:#F2C2DC;
 }
 .login_header{
     padding-top: 10px;
-    margin-left: 300px;
     width: 695px;
     height: 75px;
     font-size: 32px;
@@ -28,8 +28,8 @@ and open the template in the editor.
 }
 
 .con_header{
-    margin-left: 300px;
-    font-size: 16px;
+    padding-top:20px;
+    font-size: 20px;
     font-weight: bold;
     
 }
@@ -37,35 +37,35 @@ and open the template in the editor.
     margin-top: 50px;
 }
 .contit{
-    margin-left: 168px;
+  
     font-weight: bold;
     
 }
 
 .userName{
-    text-indent: 20px;
-    margin-left: 150px;
+    text-indent: 20px; 
     width: 400px;
     height: 50px;
     border-radius: 50px;
+    border:none;
 }
 .password{
     margin-top: 15px;
     text-indent: 20px;
-    margin-left: 150px;
     width: 400px;
     height: 50px;
     border-radius: 50px;
 }
 .login_button{
-    margin: 250px auto;
     width: 250px;
     height: 50px;
     border-radius: 50px;
-    background-color: #f0bc4d;
+    background-color: #47D2E9;
     transition: all 0.5s;
     cursor: pointer;
     margin: 5px;
+    border: none;
+    margin-top:10px;
 }
 
 .login_button span {
@@ -97,10 +97,10 @@ and open the template in the editor.
     height: 50px;
     border-radius: 50px;
     background-color: #f0bc4d;
-    margin-left: 220px;
     transition: all 0.5s;
     cursor: pointer;
     margin: 5px;
+    margin-bottom: 20px;
 }
 
 .register_button span {

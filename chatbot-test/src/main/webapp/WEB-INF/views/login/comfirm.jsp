@@ -1,7 +1,7 @@
 <%-- 
-    Document   : confirm
-    Created on : Jun 6, 2022, 7:57:14 PM
-    Author     : SE151515 Cao Trong Hieu
+    Document   : comfirm
+    Created on : Jul 15, 2022, 11:23:45 AM
+    Author     : nldta
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,7 +12,7 @@
         <link href="${root}/css/confirm.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <!--        header-->
+<!--                header-->
         <div class="login_form">
            
             <div class="conf">
@@ -26,11 +26,11 @@
              
                 <input class="userName" id="ab1" type="text" placeholder="Enter your code " name="inputcode"><br/> <br/> 
               
-                <button style="margin-left: 220px;" class="login_button" type="submit"><span>Confirm</span></button>    <br>
-                 <div style="text-align: center;" > ${codemess}</div>
+                <button  class="login_button" type="submit"><span>Confirm</span></button>    <br>
+                 <div  > ${codemess}</div>
             </form>
         </div>
         </div>
               
 </html>
-<p style="margin-left: 250px;">${mess}</p><br/>
+<p >${mess}</p><br/>

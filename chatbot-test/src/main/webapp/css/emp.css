@@ -17,13 +17,13 @@ and open the template in the editor.
   text-decoration: none;
   outline: none;
   color: #fff;
-  background-color: #F1AF00;
+  background-color: #47D2E9;
   border: none;
   border-radius: 15px;
   
 }
 
-.btn2:hover {background-color: #D59B00}
+.btn2:hover {background-color: #47D2E9}
 
 .btn2:active {
   background-color: #d8d8d8;

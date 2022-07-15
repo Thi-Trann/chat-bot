@@ -12,7 +12,7 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <link href="${root}/css/login.css" rel="stylesheet" type="text/css"/>      
     </head>
-    <body>
+    <body class="background">
         <input type="hidden" id ="resu" value${sucmess}>
  
 

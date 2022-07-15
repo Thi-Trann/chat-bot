@@ -15,7 +15,7 @@ and open the template in the editor.
             <div class="row content">
                 <div>
                     <c:forEach var="product" items="${list}">
-                        <div class="col-sm-4 py-3" style="margin-top: 10px;">
+                        <div class="col-sm-3 py-3" style="margin-top: 10px;">
                             <div class="card">  
                                 <form method ="post" action="${pageContext.request.contextPath}/product/detail.do">
                                     <button style="background: white;color : black;" type="submit">

@@ -32,11 +32,11 @@
                 <input type="hidden" name="vcode" value="${vcode}">
                 <input class="userName" id="ab1" type="text" placeholder="Enter your code " name="inputcode"><br/> <br/> 
                 ${codemess}
-                <button style="margin-left: 220px;" class="login_button" type="submit"><span>Confirm</span></button>
+                <button  class="login_button" type="submit"><span>Confirm</span></button>
                 
             </form>
         </div>
         </div>
               
 </html>
-<p style="margin-left: 250px;">${mess}</p><br/>
+<p >${mess}</p><br/>
