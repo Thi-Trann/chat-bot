@@ -67,7 +67,7 @@
                                             <p class="mb-0">Price</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0"><input type="number" name="productPrice" value="${x.price}"/></p>
+                                            <p class="text-muted mb-0"><input step=".01" type="number" name="productPrice" value="${x.price}"/></p>
                                         </div>
                                     </div>
                                     <hr>
