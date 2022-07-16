@@ -5,7 +5,6 @@
  */
 package cart;
 
-
 import entities.Product;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,12 +15,10 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import sessionbean.ProductFacade;
 
-
 public class Cart {
 
     ProductFacade pf = lookupProductFacadeBean();
 
-    
     List<Item> list = null;
 
     public Cart() {
@@ -30,10 +27,16 @@ public class Cart {
 
     public void add(int id, int quantity) {
         //Tim item trong cart
+
+
+        Product product = pf.find(id);
+
         Item item = find(id);
+
+
         // Neu item ch co trong cart thi tao moi item va them vao cart
         if (item == null) {
-            Product product = pf.find(id);
+
             item = new Item(product.getId(),
                     product.getDescription(),
                     product.getName(),
@@ -45,12 +48,13 @@ public class Cart {
             item.setQuantity(item.getQuantity() + quantity);
         }
     }
-    
-    
-    
+
     public Item find(int id) {
+        
+       Product product = pf.find(id);
+        
         for (Item item : list) {
-            if (item.getId() == id) {
+            if (item.getId() == id && item.getPrice()==product.getPrice() && item.getDiscount() == product.getDiscount()) {
                 return item;
             }
         }
@@ -75,14 +79,14 @@ public class Cart {
         return list;
     }
 
-    public List<Item> getAllItems(){
+    public List<Item> getAllItems() {
         List<Item> listAll = new ArrayList();
         for (Item item : list) {
             listAll.add(item);
         }
         return listAll;
     }
-    
+
     public double getTotal() {
         double total = 0;
         for (Item item : list) {
@@ -94,8 +98,6 @@ public class Cart {
     public int getNumOfProducts() {
         return list.size();
     }
-
-   
 
     private ProductFacade lookupProductFacadeBean() {
         try {
