@@ -105,8 +105,9 @@ public class CartController extends HttpServlet {
     private void index(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();   
         Cart cart = (Cart) session.getAttribute("cart");
+        if(cart !=null){
         cart.check();
-        
+        }
     }
 
     private void add(HttpServletRequest request, HttpServletResponse response) {

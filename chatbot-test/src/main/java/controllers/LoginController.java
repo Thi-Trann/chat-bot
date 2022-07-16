@@ -383,14 +383,14 @@ public class LoginController extends HttpServlet {
                 request.setAttribute("id", id);
                 vgmail(email, vcode);
                 request.setAttribute("vcode", vcode);
-                request.setAttribute("controller", "login");
+                request.setAttribute("controller","login");
                 request.setAttribute("action", "confirm");
                 flag = true;
             }
         }
 
         if (!flag) {
-            request.setAttribute("mess", "Wrong email address or email doesnot exist!");
+            request.setAttribute("mess", "Wrong email address or email does not exist!");
             request.setAttribute("controller", "login");
             request.setAttribute("action", "forget");
         }
