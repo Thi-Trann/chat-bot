@@ -25,6 +25,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -108,6 +109,7 @@ public class LoginController extends HttpServlet {
         String action = request.getAttribute("action").toString();
         switch (action) {
             case "login":
+                login(request, response);
                 break;
             case "login_handler":
                 login_handler(request, response);
@@ -132,7 +134,52 @@ public class LoginController extends HttpServlet {
     }
 
     private void login(HttpServletRequest request, HttpServletResponse response) {
+        Cookie cookie = null;
+        Cookie cUserName = null;
+        Cookie cPassword = null;
+        Cookie[] cookies = null;
 
+        List<Account> list = af.findAll();
+        boolean flag = false;
+        // Get an array of Cookies associated with the this domain
+        cookies = request.getCookies();
+
+        if (cookies != null) {
+            for (int i = 0; i < cookies.length; i++) {
+                cookie = cookies[i];
+                if ((cookie.getName()).equals("userName")) {
+                    cUserName = cookie;
+                } else if ((cookie.getName()).equals("password")) {
+                    cPassword = cookie;
+                }
+            }
+        }
+
+        for (Account acc : list) {
+            if (cUserName != null
+                    && cPassword != null
+                    && cUserName.getValue().equals(acc.getUserName())
+                    && cPassword.getValue().equals(acc.getPassword())) {
+                //Lưu userName vào session để ghi nhận đã login thành công
+                HttpSession session = request.getSession();
+
+                //Chuyển đến trang details.jsp
+                request.setAttribute("controller", "home");
+                request.setAttribute("action", "index");
+
+                session.setAttribute("login_success", 1);
+                session.setAttribute("userName", cUserName.getValue());
+                String role = acc.getRole();
+                session.setAttribute("iduser", acc.getId());
+                session.setAttribute("roleuser", role);
+
+                flag = true;
+            }
+        }
+        if (!flag) {
+            request.setAttribute("controller", "login");
+            request.setAttribute("action", "login");
+        }
     }
 
     private void login_handler(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -142,45 +189,109 @@ public class LoginController extends HttpServlet {
         String password = request.getParameter("password");
         HttpSession session = request.getSession();
         String role;
+        boolean rememberMe = request.getParameter("rememberMe") != null;
 
-        for (Account acc : list) {
-            if (userName.equals(acc.getUserName()) && password.equals(acc.getPassword()) && acc.getRole().equals("CUSTOMER")) {
-                request.setAttribute("controller", "home");
-                request.setAttribute("action", "index");
-                session.setAttribute("login_success", 1);
-                session.setAttribute("userName", userName);
-                role = acc.getRole();
-                session.setAttribute("iduser", acc.getId());
-                session.setAttribute("roleuser", role);
-                flag = true;
+        if (rememberMe) {
+            for (Account acc : list) {
+                if (userName.equals(acc.getUserName()) && password.equals(acc.getPassword()) && acc.getRole().equals("CUSTOMER")) {
+                    request.setAttribute("controller", "home");
+                    request.setAttribute("action", "index");
+                    session.setAttribute("login_success", 1);
+                    session.setAttribute("userName", userName);
+                    role = acc.getRole();
+                    session.setAttribute("iduser", acc.getId());
+                    session.setAttribute("roleuser", role);
+                    //cookie
+                    Cookie cUserName = new Cookie("userName", acc.getUserName());
+                    Cookie cPassword = new Cookie("password", acc.getPassword());
+                    cUserName.setMaxAge(60 * 60 * 24);
+                    cPassword.setMaxAge(60 * 60 * 24);
+                    response.addCookie(cUserName);
+                    response.addCookie(cPassword);
+                    //
+                    flag = true;
+                }
+                if (userName.equals(acc.getUserName()) && password.equals(acc.getPassword()) && acc.getRole().equals("ADMIN")) {
+                    request.setAttribute("controller", "home");
+                    request.setAttribute("action", "index");
+                    session.setAttribute("login_success", 1);
+                    session.setAttribute("userName", userName);
+                    role = acc.getRole();
+                    session.setAttribute("iduser", acc.getId());
+                    session.setAttribute("roleuser", role);
+                    //cookie
+                    Cookie cUserName = new Cookie("userName", acc.getUserName());
+                    Cookie cPassword = new Cookie("password", acc.getPassword());
+                    cUserName.setMaxAge(60 * 60 * 24);
+                    cPassword.setMaxAge(60 * 60 * 24);
+                    response.addCookie(cUserName);
+                    response.addCookie(cPassword);
+                    //
+                    flag = true;
+                }
+
+                if (userName.equals(acc.getUserName()) && password.equals(acc.getPassword()) && acc.getRole().equals("EMPLOYEE")) {
+                    request.setAttribute("controller", "home");
+                    request.setAttribute("action", "index");
+                    session.setAttribute("login_success", 1);
+                    session.setAttribute("userName", userName);
+                    role = acc.getRole();
+                    session.setAttribute("iduser", acc.getId());
+                    session.setAttribute("roleuser", role);
+                    //cookie
+                    Cookie cUserName = new Cookie("userName", acc.getUserName());
+                    Cookie cPassword = new Cookie("password", acc.getPassword());
+                    cUserName.setMaxAge(60 * 60 * 24);
+                    cPassword.setMaxAge(60 * 60 * 24);
+                    response.addCookie(cUserName);
+                    response.addCookie(cPassword);
+                    //
+                    flag = true;
+                }
+
             }
-            if (userName.equals(acc.getUserName()) && password.equals(acc.getPassword()) && acc.getRole().equals("ADMIN")) {
-                request.setAttribute("controller", "home");
-                request.setAttribute("action", "index");
-                session.setAttribute("login_success", 1);
-                session.setAttribute("userName", userName);
-                role = acc.getRole();
-                session.setAttribute("iduser", acc.getId());
-                session.setAttribute("roleuser", role);
-                flag = true;
+        } else {
+            for (Account acc : list) {
+                if (userName.equals(acc.getUserName()) && password.equals(acc.getPassword()) && acc.getRole().equals("CUSTOMER")) {
+                    request.setAttribute("controller", "home");
+                    request.setAttribute("action", "index");
+                    session.setAttribute("login_success", 1);
+                    session.setAttribute("userName", userName);
+                    role = acc.getRole();
+                    session.setAttribute("iduser", acc.getId());
+                    session.setAttribute("roleuser", role);
+                    flag = true;
+                }
+                if (userName.equals(acc.getUserName()) && password.equals(acc.getPassword()) && acc.getRole().equals("ADMIN")) {
+                    request.setAttribute("controller", "home");
+                    request.setAttribute("action", "index");
+                    session.setAttribute("login_success", 1);
+                    session.setAttribute("userName", userName);
+                    role = acc.getRole();
+                    session.setAttribute("iduser", acc.getId());
+                    session.setAttribute("roleuser", role);
+                    flag = true;
+                }
+
+                if (userName.equals(acc.getUserName()) && password.equals(acc.getPassword()) && acc.getRole().equals("EMPLOYEE")) {
+                    request.setAttribute("controller", "home");
+                    request.setAttribute("action", "index");
+                    session.setAttribute("login_success", 1);
+                    session.setAttribute("userName", userName);
+                    role = acc.getRole();
+                    session.setAttribute("iduser", acc.getId());
+                    session.setAttribute("roleuser", role);
+                    flag = true;
+                }
+
             }
 
-            if (userName.equals(acc.getUserName()) && password.equals(acc.getPassword()) && acc.getRole().equals("EMPLOYEE")) {
-                request.setAttribute("controller", "home");
-                request.setAttribute("action", "index");
-                session.setAttribute("login_success", 1);
-                session.setAttribute("userName", userName);
-                role = acc.getRole();
-                session.setAttribute("iduser", acc.getId());
-                session.setAttribute("roleuser", role);
-                flag = true;
-            }
+        }
 
-            if (!flag) {
-                request.setAttribute("controller", "login");
-                request.setAttribute("action", "login");
-                request.setAttribute("mess", "Wrong username or password !");
-            }
+        if (!flag) {
+            request.setAttribute("controller", "login");
+            request.setAttribute("action", "login");
+            request.setAttribute("mess", "Wrong username or password !");
         }
     }
 
@@ -190,6 +301,17 @@ public class LoginController extends HttpServlet {
 
     private void logout(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
+ 
+        
+        
+        ///
+                Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (int i = 0; i < cookies.length; i++) {
+                cookies[i].setMaxAge(0);
+                response.addCookie(cookies[i]);
+            }            
+        }
         // session.invalidate();
         session.setAttribute("login_success", null);
         session.setAttribute("iduser", null);
