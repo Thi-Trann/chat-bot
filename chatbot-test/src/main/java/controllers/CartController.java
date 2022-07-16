@@ -103,7 +103,10 @@ public class CartController extends HttpServlet {
     }
 
     private void index(HttpServletRequest request, HttpServletResponse response) {
-
+        HttpSession session = request.getSession();   
+        Cart cart = (Cart) session.getAttribute("cart");
+        cart.check();
+        
     }
 
     private void add(HttpServletRequest request, HttpServletResponse response) {
@@ -131,11 +134,13 @@ public class CartController extends HttpServlet {
 
     private void delete(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-
+        double price = Double.parseDouble(request.getParameter("price"));
+        double discount = Double.parseDouble(request.getParameter("discount"));
+        
         HttpSession session = request.getSession();
         Cart cart = (Cart) session.getAttribute("cart");
         //Xoa item trong cart
-        cart.delete(id);
+        cart.delete(id,price,discount);
         //Cho hien cart/index.jsp
 
         request.setAttribute("action", "index");
@@ -144,11 +149,17 @@ public class CartController extends HttpServlet {
     private void update(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         int quantity = Integer.parseInt(request.getParameter("quantity"));
-
+        double price = Double.parseDouble(request.getParameter("price"));
+        double discount = Double.parseDouble(request.getParameter("discount"));
+        
+        //debug
+        System.out.println(price);
+        System.out.println(discount);
+        //
         HttpSession session = request.getSession();
         Cart cart = (Cart) session.getAttribute("cart");
         //Xoa item trong cart
-        cart.update(id, quantity);
+        cart.update(id, quantity,price,discount);
         //Cho hien cart/index.jsp controller
         request.setAttribute("action", "index");
     }

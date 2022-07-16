@@ -42,13 +42,25 @@ public class Cart {
                     product.getName(),
                     product.getPrice(),
                     product.getDiscount(),
-                    quantity);
+                    quantity,"new");
             list.add(item);
         } else { //Neu da co item trong gio hang thi cap nhap so luong
             item.setQuantity(item.getQuantity() + quantity);
         }
     }
 
+    public void check(){
+        for(int i =0;i<list.size()-1;i++){
+            for(int j=i+1;j<list.size();j++)
+            {
+                if(list.get(i).getId()==list.get(j).getId()){
+                    list.get(i).setStatus("old");
+                }
+            }
+        }
+    }
+    
+    
     public Item find(int id) {
         
        Product product = pf.find(id);
@@ -61,14 +73,26 @@ public class Cart {
         return null;
     }
 
-    public void delete(int id) {
-        Item item = find(id);
-        list.remove(item);
+    public void delete(int id, double price , double discount) {
+        Item del= new Item();
+        
+        for (Item item : list) {
+            if (item.getId() == id && item.getPrice()== price && item.getDiscount() == discount) {
+                del=item;
+            }
+        }
+        list.remove(del);
     }
 
-    public void update(int id, int quantity) {
-        Item item = find(id);
-        item.setQuantity(quantity);
+    public void update(int id, int quantity , double price , double discount) {
+        
+        for (Item item : list) {
+            if (item.getId() == id && item.getPrice()== price && item.getDiscount() == discount) {
+                item.setQuantity(quantity);
+            }
+        }
+        
+        
     }
 
     public void empty() {

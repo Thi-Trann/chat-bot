@@ -13,18 +13,29 @@ public class Item {
     private double price;
     private double discount;
     private int quantity;
-
+    private String status;
     public Item() {
     }
 
-    public Item(int id,String name, String description, double price, double discount, int quantity) {
+    public Item(int id, String description, String name, double price, double discount, int quantity, String stataus) {
         this.id = id;
         this.description = description;
+        this.name = name;
         this.price = price;
         this.discount = discount;
         this.quantity = quantity;
-        this.name = name;
+        this.status = stataus;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String stataus) {
+        this.status = stataus;
+    }
+
+  
 
     public int getId() {
         return id;

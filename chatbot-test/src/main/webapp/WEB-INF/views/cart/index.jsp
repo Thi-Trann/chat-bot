@@ -44,13 +44,20 @@
                     <td style=" text-align: center; padding-top: 20px;"><fmt:formatNumber value="${item.newPrice}" pattern="$#,##0.00" /></td>
                   
                     <td     style=" text-align: center;padding-top: 20px;">
+                        
 <!--                            <script>var name =${item.id} +"a";document.write(name);</script>-->
-                        <c:set var = "abc" scope = "session" value = "${item.id}a"></c:set>
+                        <c:set var = "abc" scope = "session" value = "${item.id+loop.count}a"></c:set>
+
                             <form method="post" action="update.do" id='${abc}' >
+                            
+                            
+                            <c:if test="${item.status == 'new' }">     
+                            
                             <input type="hidden" name="id"  value=${item.id} >
-
-
-                            <input onclick="var result = document.getElementById('${loop.count}');
+                            <input type="hidden" name="price"  value=${item.price} >
+                            <input type="hidden" name="discount"  value=${item.discount} >
+                            
+                            <input  onclick="var result = document.getElementById('${loop.count}');
                                     var qty = result.value;
                                     if (qty > 1)
                                         result.value--;
@@ -89,7 +96,55 @@
 
 
 
+                            </c:if>
+                            
+                            
+                             <c:if test="${item.status == 'old' }">     
+                            
+                            <input type="hidden" name="id"  value=${item.id} >
+                            <input type="hidden" name="price"  value=${item.price} >
+                            <input type="hidden" name="discount"  value=${item.discount} >
+                            
+                            <input disabled  onclick="var result = document.getElementById('${loop.count}');
+                                    var qty = result.value;
+                                    if (qty > 1)
+                                        result.value--;
+                                    document.getElementById('${abc}').submit();
+                                    return false;
+                                   " type='button' value='-'  />
+                            <input disabled id="${loop.count}" onkeypress='validatePhone(event)' onblur='autoup()'   style="width:50px;"  min="1" name="quantity" type="text" value="${item.quantity}" required />
+                            
+                            <script>
+                                function autoup() {
 
+                                    var result = document.getElementById('${loop.count}');
+                                    var qty = result.value;
+                                    if (isNaN(qty) === true || qty === "") {
+                                        document.getElementById('${loop.count}').value = 1;
+                                        document.getElementById('${abc}').submit();
+                                    } else {
+                                        document.getElementById('${abc}').submit();
+//                                   
+                                    }
+
+
+
+
+                                }
+                            </script>
+
+                            <input disabled onclick="var result = document.getElementById('${loop.count}');
+                                    var qty = result.value;
+                                    if (!isNaN(qty))
+                                        result.value++;
+                                    document.getElementById('${abc}').submit();
+                                    return false;
+                                   " type='button' value='+'  />
+
+
+
+
+                            </c:if>
                     </td>
 
 <!--                            <td class="text-right"><input type="number" value="${item.quantity}" style="width: 65px; text-align: right;"name="quantity" /></td>-->
