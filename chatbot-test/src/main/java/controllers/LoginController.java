@@ -268,7 +268,7 @@ public class LoginController extends HttpServlet {
         }
 
         if (!flag) {
-            request.setAttribute("mess", "Wrong email address !");
+            request.setAttribute("mess", "Wrong email address or email doesnot exist!");
             request.setAttribute("controller", "login");
             request.setAttribute("action", "forget");
         }
