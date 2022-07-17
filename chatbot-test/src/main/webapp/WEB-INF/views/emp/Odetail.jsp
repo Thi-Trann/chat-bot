@@ -29,7 +29,7 @@
                         <c:forEach var="x" items="${orlist}" varStatus="loop">
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0"><img src="${root}/images/products/${x.productId}.jpg" width="100%" /></p>
+                                <p class="mb-0"><img src="${x.img}" width="100%" /></p>
                             </div>
                             <div class="col-sm-3">
                                 <p class="mb-0">X${x.quantity}</p>

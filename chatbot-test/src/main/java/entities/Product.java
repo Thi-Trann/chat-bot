@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author quckh
+ * @author SE151515 Cao Trong Hieu
  */
 @Entity
 @Table(name = "Product")
@@ -32,7 +32,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Product.findByName", query = "SELECT p FROM Product p WHERE p.name = :name")
     , @NamedQuery(name = "Product.findByDescription", query = "SELECT p FROM Product p WHERE p.description = :description")
     , @NamedQuery(name = "Product.findByPrice", query = "SELECT p FROM Product p WHERE p.price = :price")
-    , @NamedQuery(name = "Product.findByDiscount", query = "SELECT p FROM Product p WHERE p.discount = :discount")})
+    , @NamedQuery(name = "Product.findByDiscount", query = "SELECT p FROM Product p WHERE p.discount = :discount")
+    , @NamedQuery(name = "Product.findByImg", query = "SELECT p FROM Product p WHERE p.img = :img")})
 public class Product implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -59,6 +60,11 @@ public class Product implements Serializable {
     @NotNull
     @Column(name = "discount")
     private double discount;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 100)
+    @Column(name = "img")
+    private String img;
 
     public Product() {
     }
@@ -67,12 +73,13 @@ public class Product implements Serializable {
         this.id = id;
     }
 
-    public Product(Integer id, String name, String description, double price, double discount) {
+    public Product(Integer id, String name, String description, double price, double discount, String img) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.discount = discount;
+        this.img = img;
     }
 
     public Integer getId() {
@@ -115,6 +122,14 @@ public class Product implements Serializable {
         this.discount = discount;
     }
 
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -137,7 +152,7 @@ public class Product implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Product[ id=" + id + " ]";
+        return "cart.Product[ id=" + id + " ]";
     }
     
 }

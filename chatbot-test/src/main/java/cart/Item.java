@@ -14,18 +14,31 @@ public class Item {
     private double discount;
     private int quantity;
     private String status;
+    private String img;
     public Item() {
     }
 
-    public Item(int id, String description, String name, double price, double discount, int quantity, String stataus) {
+    public Item(int id, String description, String name, double price, double discount, int quantity, String status, String img) {
         this.id = id;
         this.description = description;
         this.name = name;
         this.price = price;
         this.discount = discount;
         this.quantity = quantity;
-        this.status = stataus;
+        this.status = status;
+        this.img = img;
     }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+ 
+    
+
 
     public String getStatus() {
         return status;

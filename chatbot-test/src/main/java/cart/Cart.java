@@ -42,7 +42,7 @@ public class Cart {
                     product.getName(),
                     product.getPrice(),
                     product.getDiscount(),
-                    quantity,"new");
+                    quantity,"new",product.getImg());
             list.add(item);
         } else { //Neu da co item trong gio hang thi cap nhap so luong
             item.setQuantity(item.getQuantity() + quantity);

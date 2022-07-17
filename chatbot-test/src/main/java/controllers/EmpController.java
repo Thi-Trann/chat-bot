@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import order.order;
 import sessionbean.AccountFacade;
 import sessionbean.OrderDetailFacade;
 import sessionbean.OrderHeaderFacade;
@@ -32,6 +33,9 @@ import sessionbean.StaffFacade;
  */
 @WebServlet(name = "EmpController", urlPatterns = {"/emp"})
 public class EmpController extends HttpServlet {
+
+    @EJB
+    private ProductFacade pf;
 
 
 
@@ -167,6 +171,7 @@ public class EmpController extends HttpServlet {
         List<Account> list = af.findAll();
         List<OrderDetail> ord = of.findAll();
         List<OrderDetail> orlist = new ArrayList();
+        List<order> temp = new ArrayList();
         
         int cid = Integer.parseInt(request.getParameter("cusid"));
         int orid = Integer.parseInt(request.getParameter("orid"));
@@ -174,9 +179,11 @@ public class EmpController extends HttpServlet {
         double total=0;
          for (OrderDetail od : ord) {
              if(orid == od.getOrderId()){
-                 
-                 total = od.getPrice() * (1-od.getDiscount()) * od.getQuantity() ;
-                 orlist.add(od);
+                 total += od.getPrice() * (1-od.getDiscount()) * od.getQuantity() ;
+                  Product product = pf.find(od.getProductId());
+//                orlist.add(od);
+                 order x = new order(od.getQuantity(),od.getPrice(),od.getDiscount(),product.getImg());
+                 temp.add(x);
              }
          
          
@@ -201,7 +208,7 @@ public class EmpController extends HttpServlet {
             
             
         request.setAttribute("total",total);      
-        request.setAttribute("orlist",orlist);   
+        request.setAttribute("orlist",temp);   
         
         request.setAttribute("controller", "emp");
         request.setAttribute("action", "Odetail");

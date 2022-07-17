@@ -19,7 +19,7 @@ and open the template in the editor.
                             <div class="card">  
                                 <form method ="post" action="${pageContext.request.contextPath}/product/detail.do">
                                     <button style="background: white;color : black;" type="submit">
-                                        <div class="img_scale" ><img src="${root}/images/products/${product.id}.jpg" width="90%" /></div><br/>                    
+                                        <div class="img_scale" ><img src="${product.img}" width="90%" /></div><br/>                    
                                         <input type="hidden" value="${product.id}" name="id"/>
                                         Name: ${product.name}<br/>
                                         <c:if test="${product.discount > 0/100}">

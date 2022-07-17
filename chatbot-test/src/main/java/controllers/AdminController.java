@@ -234,7 +234,7 @@ public class AdminController extends HttpServlet {
         List<Product> list = pf.findAll();
         List<Product> plist = new ArrayList<>();
         for (Product p : list) {
-            p = new Product(p.getId(), p.getName(), p.getDescription(), p.getPrice(), p.getDiscount());
+            p = new Product(p.getId(), p.getName(), p.getDescription(), p.getPrice(), p.getDiscount(),p.getImg());
             plist.add(p);
         }
         request.setAttribute("plist", plist);
@@ -330,8 +330,8 @@ public class AdminController extends HttpServlet {
         String description = request.getParameter("productDescription");
         double price = Double.parseDouble(request.getParameter("productPrice"));
         double discount = Double.parseDouble(request.getParameter("productDiscount"));
-
-        Product p = new Product(id, name, description, price, discount);
+        String img = request.getParameter("img");
+        Product p = new Product(id, name, description, price, discount,img);
         pf.edit(p);
         manageProducts(request, response);
         request.setAttribute("controller", "admin");

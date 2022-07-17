@@ -38,7 +38,7 @@
                 <tr>
 
                     <td style=" text-align: center; ">${loop.count}</td>
-                    <td style=" text-align: center;" ><img src="${root}/images/products/${item.id}.jpg" width="30%" /><input type="hidden" value=${item.id} name="id" /> </td>
+                    <td style=" text-align: center;" ><img src="${item.img}" width="30%" /><input type="hidden" value=${item.id} name="id" /> </td>
                     <td style=" text-align: center; padding-top: 20px;">${item.name}</td>
                     <td style=" text-align: center; padding-top: 20px;">${item.description}</td>
                     <td style=" text-align: center; padding-top: 20px;"><fmt:formatNumber value="${item.newPrice}" pattern="$#,##0.00" /></td>

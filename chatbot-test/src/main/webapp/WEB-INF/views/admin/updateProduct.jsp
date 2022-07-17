@@ -32,7 +32,7 @@
                                 <c:forEach var="x" items="${productList}" varStatus="loop">
                                     <div class="row">
                                         <div class="col-sm-3">
-                                            <p class="mb-0"><img src="${root}/images/products/${x.id}.jpg" width="100%" /></p>
+                                            <p class="mb-0"><img src="${x.img}" width="100%" /></p>
                                         </div>
                                     </div>
                                     <hr>  

@@ -175,7 +175,7 @@ public class ProductController extends HttpServlet {
         List<Product> list2 = new ArrayList<>();
         for (Product p : list) {
             if (p.getName().toLowerCase().contains(productName.toLowerCase())) {
-                p = new Product(p.getId(), p.getName(), p.getDescription(), p.getPrice(), p.getDiscount());
+                p = new Product(p.getId(), p.getName(), p.getDescription(), p.getPrice(), p.getDiscount(),p.getImg());
                 list2.add(p);
                 flag = true;
                 request.setAttribute("list", list2);
