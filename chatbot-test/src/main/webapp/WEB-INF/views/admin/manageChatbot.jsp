@@ -12,6 +12,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <link href="${root}/css/btnChatbotManage.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <table class="table table-striped">
@@ -37,8 +38,11 @@
                             </form>    
                         </td>
                     </tr>
-                </c:forEach>>
+                </c:forEach>
             </tbody>
         </table>
+        <form action="${pageContext.request.contextPath}/admin/addChatbot.do">
+            <button class="generate_button" ><span>Add content</span> </button>       
+        </form>
     </body>
 </html>

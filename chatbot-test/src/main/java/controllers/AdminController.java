@@ -107,8 +107,14 @@ public class AdminController extends HttpServlet {
             case "deleteChatbot":
                 deleteChatbot(request, response);
                 break;
-            case"updateChatbot_hander":
-                updateChatbot_hander(request,response);
+            case "updateChatbot_hander":
+                updateChatbot_hander(request, response);
+                break;
+            case "addChatbot":
+                addChatbot(request, response);
+                break;
+            case "addChatbot_handler":
+                addChatbot_handler(request, response);
                 break;
             default:
                 request.setAttribute("controller", "error");
@@ -362,12 +368,11 @@ public class AdminController extends HttpServlet {
         List botList = new ArrayList();
         for (Chatbot p : list) {
             if (p.getKeyword().trim().toLowerCase().equals(key)) {
-                botList.add(p);
-                request.setAttribute("botList", botList);
+                request.setAttribute("keyword", key);
+                request.setAttribute("content", p.getContent());
             }
         }
     }
-    
 
     private void deleteChatbot(HttpServletRequest request, HttpServletResponse response) {
         String key = request.getParameter("key");
@@ -384,17 +389,30 @@ public class AdminController extends HttpServlet {
 
     private void updateChatbot_hander(HttpServletRequest request, HttpServletResponse response) {
         String key = request.getParameter("keyword");
-        String content = request.getParameter("content");    
+        String content = request.getParameter("content");
         Chatbot bot = new Chatbot(key, content);
         cbf.edit(bot);
         manageChabot(request, response);
         request.setAttribute("controller", "admin");
         request.setAttribute("action", "manageChatbot");
-        
+
     }
 
     private void index(HttpServletRequest request, HttpServletResponse response) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void addChatbot(HttpServletRequest request, HttpServletResponse response) {
+    }
+
+    private void addChatbot_handler(HttpServletRequest request, HttpServletResponse response) {
+        String keyword = request.getParameter("keyword");
+        String content = request.getParameter("content");
+        Chatbot b = new Chatbot(keyword, content);
+        cbf.create(b);
+        manageChabot(request, response);
+        request.setAttribute("controller", "admin");
+        request.setAttribute("action", "manageChatbot");
     }
 
 }
