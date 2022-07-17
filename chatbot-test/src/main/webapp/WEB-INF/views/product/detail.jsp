@@ -19,7 +19,7 @@
             <div class="col-md-6">
                 <div id="slider" class="owl-carousel product-slider">
                     <div class="item">
-                        <img src="${root}/images/products/${list.id}.jpg" width="90%" />
+                        <img src="${list.img}" width="90%" />
                     </div>
                 </div>
             </div>
