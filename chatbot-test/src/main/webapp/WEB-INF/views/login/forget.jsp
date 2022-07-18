@@ -1,4 +1,4 @@
-<%-- 
+ <%-- 
     Document   : forget
     Created on : May 24, 2022, 11:48:57 PM
     Author     : SE151515 Cao Trong Hieu
@@ -12,7 +12,7 @@
         <meta charset="UTF-8">
         <link href="${root}/css/forget.css" rel="stylesheet" type="text/css"/>
     </head>
-    <body>
+    <body style="background-image: url(/chatbot-test/images/layout.jpg); background-size: cover;">
         <div class="forget_form">
         <form action="${pageContext.request.contextPath}/login/forget_handler.do" method="post">
             <div >

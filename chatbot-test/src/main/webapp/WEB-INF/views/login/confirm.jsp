@@ -11,7 +11,7 @@
         <meta charset="UTF-8">
         <link href="${root}/css/confirm.css" rel="stylesheet" type="text/css"/>
     </head>
-    <body>
+    <body style="background-image: url(/chatbot-test/images/layout.jpg); background-size: cover;">
 <!--                header-->
         <div class="login_form">
            
