@@ -17,7 +17,7 @@
       <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
         <title>Register</title>
     </head>
-    <body style="background-color: white;">
+    <body style="background-image: url(/chatbot-test/images/layout.jpg); background-size: cover;">
 
 
 
@@ -97,8 +97,8 @@
                                         </div>
                                     </div>
 <!------------------------->
-                                    <div class="submit "  >
-                                        <button type="submit" class="btn btn-primary" style="background: #47D2E9; color: black;  border-radius: 50px; border:none;">
+                                    <div >
+                                        <button   class="register_button" type="submit" class="btn btn-primary" >
                                             Register
                                         </button>
                                     </div>

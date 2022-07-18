@@ -50,7 +50,7 @@
 
                                 <form action="${pageContext.request.contextPath}/product/search.do">                                  
                                     <div class="input-group">
-                                        <div class="search_form"  ><input type="text" placeholder="Search product..." aria-label="Search for..." aria-describedby="btnNavbarSearch"  name="productName"/>
+                                        <div class="search_form"  ><input style="border:none;" type="text" placeholder="Search product..." aria-label="Search for..." aria-describedby="btnNavbarSearch"  name="productName"/>
                                             <button style="background-color:#47D2E9; border:none;"class="btn btn-primary" id="btnNavbarSearch" type="submit"><i class="bi bi-search"></i></button></div>
                                     </div>
                                 </form>
@@ -127,9 +127,7 @@
                                                     product(s)</a></li>
                                         </ul>
                                     <c:if test="${login_success == null}">
-                                        <ul class="nav navbar-nav navbar-right">
-                                            <li><a href="<c:url value="/register/index.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Register</a></li>
-                                        </ul>
+                                        
                                         <ul class="nav navbar-nav navbar-right">
                                             <li><a href="<c:url value="/login/login.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                                         </ul>
@@ -146,8 +144,8 @@
 
                                     <form action="${pageContext.request.contextPath}/product/search.do">
                                         <ul class="nav navbar-nav">
-                                            <div class="search_form" style="margin-top:5px;"><input type="text" placeholder="Search product..." name="productName"/>
-                                                <button type="submit" style="border:none; background-color: #47D2E9;height:30px ;width:40px;"><i class="bi bi-search"></i></button></div>
+                                            <div class="search_form" style="margin-top:5px;"><input style="border-radius: 10px;border:none;" type="text" placeholder="Search product..." name="productName"/>
+                                                <button type="submit" style="border:none; background-color: #F2C2DC;height:30px ;width:40px;"><i class="bi bi-search"></i></button></div>
                                         </ul>
                                     </form>   
 
@@ -182,16 +180,14 @@
                                             <li>                  
                                                     <form action="${pageContext.request.contextPath}/product/search.do">
                                                 <ul class="nav navbar-nav">
-                                                    <div class="search_form" style="margin-top:5px;"><input type="text" placeholder="Search product..." name="productName"/>
-                                                        <button type="submit" style="border:none; background-color: #47D2E9;height:30px ;width:40px;"><i class="bi bi-search"></i></button></div>
+                                                    <div class="search_form" ><input style="border-radius: 10px;border:none;" type="text" placeholder="Search product..." name="productName"/>
+                                                        <button type="submit" style="border:none; background-color: #F2C2DC;height:30px ;width:40px;"><i class="bi bi-search"></i></button></div>
                                                 </ul>
                                             </form>   
                                         </li>
                                     </ul>
                                     <c:if test="${login_success == null}">
-                                        <ul class="nav navbar-nav navbar-right">
-                                            <li><a href="<c:url value="/register/index.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Register</a></li>
-                                        </ul>
+                                        
                                         <ul class="nav navbar-nav navbar-right">
                                             <li><a href="<c:url value="/login/login.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                                         </ul>
@@ -238,9 +234,7 @@
                                                     product(s)</a></li>
                                         </ul>
                                     <c:if test="${login_success == null}">
-                                        <ul class="nav navbar-nav navbar-right">
-                                            <li><a href="<c:url value="/register/index.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Register</a></li>
-                                        </ul>
+                                       
                                         <ul class="nav navbar-nav navbar-right">
                                             <li><a href="<c:url value="/login/login.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                                         </ul>
@@ -260,8 +254,8 @@
 
                                     <form action="${pageContext.request.contextPath}/product/search.do">
                                         <ul class="nav navbar-nav">
-                                            <div class="search_form" style="margin-top:5px;"><input type="text" placeholder="Search product..." name="productName"/>
-                                                <button type="submit" style="border:none; background-color: #47D2E9;height:30px ;width:40px;"><i class="bi bi-search"></i></button></div>
+                                            <div class="search_form" ><input style="border-radius: 10px;border:none;" type="text" placeholder="Search product..." name="productName"/>
+                                                <button type="submit" style="border:none; background-color: #F2C2DC;height:30px ;width:40px;"><i class="bi bi-search"></i></button></div>
                                         </ul>
                                     </form>   
 

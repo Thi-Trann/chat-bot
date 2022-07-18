@@ -8,7 +8,10 @@ and open the template in the editor.
     Author     : quckh
 */
 body{
-    background-color: white;
+
+    background-image: url("/chatbot-test/images/layout.jpg");
+    background-size: cover;
+                
 }
 #h2{
     font-weight: bold;
@@ -86,11 +89,12 @@ body{
     width: 250px;
     height: 50px;
     border-radius: 50px;
-    background-color: #47D2E9;
+    background-color: white;
     transition: all 0.5s;
     cursor: pointer;
     margin: 5px;
     border:none;
+    color: #188fff
 }
 
 .login_button span {
@@ -121,11 +125,12 @@ body{
     width: 250px;
     height: 50px;
     border-radius: 50px;
-    background-color: #47D2E9;
+    background-color: white;
     transition: all 0.5s;
     cursor: pointer;
     margin: 5px;
     border:none;
+    color: #188fff
 }
 
 .register_button span {

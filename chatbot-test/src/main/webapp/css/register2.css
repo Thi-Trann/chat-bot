@@ -19,6 +19,16 @@ and open the template in the editor.
     border-radius: 50px;
     padding: 0px;
 }
+.register_button{
+    background: white; 
+    color: #188fff;  
+    border-radius: 50px; 
+    border:none;
+    height:50px;
+    width: 180px;
+    text-align: center;
+    margin-left: 30%;
+}
 .from-group{
     margin-bottom: 20px;
 }
