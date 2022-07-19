@@ -1,22 +1,24 @@
 <%-- 
-    Document   : updateProduct
-    Created on : Jun 30, 2022, 3:48:41 PM
+    Document   : addNewProduct
+    Created on : Jul 18, 2022, 11:39:36 AM
     Author     : quckh
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
-    <form>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
         <section style="background-color: #eee;">
             <div class="container py-5">
                 <div class="row">
                     <div class="col">
                         <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
                             <ol class="breadcrumb mb-0">
-                                <li class="breadcrumb-item active" aria-current="page">Manage Product</li>
+                                <li class="breadcrumb-item active" aria-current="page">Manage Chatbot</li>
                             </ol>
                         </nav>
                     </div>
@@ -26,30 +28,32 @@
                     <div class="col-lg-4">
                         <div class="card mb-4">          
                             <div class="card-body">
-                                <h3 style="text-align: center;">Product</h3>
+                                <h3 style="text-align: center;">Chatbot</h3>
                                 <br>
-
-                                <c:forEach var="x" items="${productList}" varStatus="loop">
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <p class="mb-0"><img src="${x.img}" width="100%" /></p>
-                                        </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">
+                                            <img src="${root}/images/logo.png" alt=""/>
+                                        </p>
                                     </div>
-                                    <hr>  
                                 </div>
+                                <hr>  
                             </div>
                         </div>
-                        <div class="col-lg-8">
-                            <div class="card mb-4">
-                                <div class="card-body">
-                                    <h3 style="text-align: center;">Detail</h3>
-                                    <br>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h3 style="text-align: center;">Chatbot</h3>
+                                <br>
+                                <form>
+
                                     <div class="row">
                                         <div class="col-sm-3">
                                             <p class="mb-0">Name</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0"><input type="text" name="productName" value="${x.name}"/></p>
+                                            <p class="text-muted mb-0"><input type="text" name="name"/></p>
                                         </div>
                                     </div>
                                     <hr>
@@ -58,7 +62,7 @@
                                             <p class="mb-0">Description</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0"><input type="text" name="productDescription" value="${x.description}"/></p>
+                                            <p class="text-muted mb-0"><input type="text" name="description"/></p>
                                         </div>
                                     </div>
                                     <hr>
@@ -67,7 +71,7 @@
                                             <p class="mb-0">Price</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0"><input step=".01" type="number" name="productPrice" value="${x.price}"/></p>
+                                            <p class="text-muted mb-0"><input type="number" name="price"/></p>
                                         </div>
                                     </div>
                                     <hr>
@@ -76,34 +80,29 @@
                                             <p class="mb-0">Discount</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0"><input type="number" min="0" max="1" step=".01" name="productDiscount" value="${x.discount}"/> </p>
+                                            <p class="text-muted mb-0"><input type="text" name="discount"/></p>
                                         </div>
                                     </div>
-                                    <hr/>
+                                    <hr>
                                     <div class="row">
                                         <div class="col-sm-3">
                                             <p class="mb-0">Image</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0"><input type="text" name="image" value="${x.img}"/> </p>
+                                            <p class="text-muted mb-0"><input type="text" name="image"/></p>
                                         </div>
                                     </div>
+                                    <hr>
                                     <div class="row">
                                         <div class="col-sm-9">
-                                            <form>
-                                                <input type="hidden" value="${x.id}" name="id"/>
-                                                <button formaction="${pageContext.request.contextPath}/admin/updateProductHandler.do">Save</button>
-                                            </form>
-                                        </div>
-
+                                            <button formaction="${pageContext.request.contextPath}/admin/addNewProduct_handler.do">Save</button>
+                                        </div>   
                                     </div>
-                                </div>      
-                            </div>
+                                </form>
+                            </div>      
                         </div>
                     </div>
                 </div>
-            </c:forEach>
+            </div>
         </section>        
-    </form>
-
 </html>

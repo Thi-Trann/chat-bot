@@ -47,6 +47,9 @@ public class UserController extends HttpServlet {
             case "update":
                 update(request, response);
                 break;
+            case "update_handler":
+                update_handler(request, response);
+                break;
             default:
                 request.setAttribute("controller", "error");
                 request.setAttribute("action", "index");
@@ -125,5 +128,28 @@ public class UserController extends HttpServlet {
 
             }
         }
+    }
+
+    private void update_handler(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+
+        String fullName = request.getParameter("fullName");
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
+        String address = request.getParameter("address");
+        String role = "CUSTOMER";
+        int id = (int) session.getAttribute("iduser");
+        List<Account> list = af.findAll();
+
+        for (Account acc : list) {
+            if (acc.getId().equals(id)) {
+                acc = new Account(id, fullName, address, phone, email, acc.getGender(), acc.getUserName(), acc.getPassword(), true, role);
+                af.edit(acc);
+                index(request, response);
+                request.setAttribute("controller", "user");
+                request.setAttribute("action", "index");
+            }
+        }
+
     }
 }

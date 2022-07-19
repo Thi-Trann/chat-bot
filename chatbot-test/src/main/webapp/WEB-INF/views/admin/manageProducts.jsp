@@ -12,10 +12,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <link href="${root}/css/btnChatbotManage.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <h1 style="padding: 4px;">Manage Products</h1>
         <hr/>
+        <form action="${pageContext.request.contextPath}/admin/addNewProduct.do">
+            <button class="generate_button" ><span>New product</span> </button>       
+        </form>
         <table class="table table-striped">
             <thead>
                 <tr>

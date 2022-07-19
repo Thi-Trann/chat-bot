@@ -116,6 +116,12 @@ public class AdminController extends HttpServlet {
             case "addChatbot_handler":
                 addChatbot_handler(request, response);
                 break;
+            case "addNewProduct":
+                addNewProduct(request, response);
+                break;
+            case "addNewProduct_handler":
+                addNewProduct_handler(request, response);
+                break;
             default:
                 request.setAttribute("controller", "error");
                 request.setAttribute("action", "index");
@@ -162,7 +168,6 @@ public class AdminController extends HttpServlet {
         for (Product p : list) {
             if (p.getId().equals(id)) {
                 productList.add(p);
-
                 request.setAttribute("productList", productList);
             }
         }
@@ -234,7 +239,7 @@ public class AdminController extends HttpServlet {
         List<Product> list = pf.findAll();
         List<Product> plist = new ArrayList<>();
         for (Product p : list) {
-            p = new Product(p.getId(), p.getName(), p.getDescription(), p.getPrice(), p.getDiscount(),p.getImg());
+            p = new Product(p.getId(), p.getName(), p.getDescription(), p.getPrice(), p.getDiscount(), p.getImg());
             plist.add(p);
         }
         request.setAttribute("plist", plist);
@@ -331,7 +336,7 @@ public class AdminController extends HttpServlet {
         double price = Double.parseDouble(request.getParameter("productPrice"));
         double discount = Double.parseDouble(request.getParameter("productDiscount"));
         String img = request.getParameter("img");
-        Product p = new Product(id, name, description, price, discount,img);
+        Product p = new Product(id, name, description, price, discount, img);
         pf.edit(p);
         manageProducts(request, response);
         request.setAttribute("controller", "admin");
@@ -415,4 +420,32 @@ public class AdminController extends HttpServlet {
         request.setAttribute("action", "manageChatbot");
     }
 
+    private void addNewProduct(HttpServletRequest request, HttpServletResponse response) {
+
+    }
+
+    private void addNewProduct_handler(HttpServletRequest request, HttpServletResponse response) {
+        Product product = null;
+        int id = getTotalID() + 1;
+        String name = request.getParameter("name");
+        String description = request.getParameter("description");
+        double price = Double.parseDouble(request.getParameter("price"));
+        double discount = Double.parseDouble(request.getParameter("discount"));
+        String img = request.getParameter("image");
+        product = new Product(id, name, description, price, discount, img);
+        pf.create(product);
+        manageProducts(request, response);
+        request.setAttribute("controller", "admin");
+        request.setAttribute("action", "manageProducts");
+
+    }
+
+    private int getTotalID() {
+        int sum = 0;
+        List<Product> list = pf.findAll();
+        for (int i = 0; i < list.size(); i++) {
+            sum += i;
+        }
+        return sum;
+    }
 }
