@@ -144,7 +144,7 @@
 
                                     <form action="${pageContext.request.contextPath}/product/search.do">
                                         <ul class="nav navbar-nav">
-                                            <div class="search_form" style="margin-top:5px;"><input style="border-radius: 10px;border:none;" type="text" placeholder="Search product..." name="productName"/>
+                                            <div class="search_form" style="margin-top:5px;"><input class="search_but" type="text" placeholder="Search product..." name="productName"/>
                                                 <button type="submit" style="border:none; background-color: #F2C2DC;height:30px ;width:40px;"><i class="bi bi-search"></i></button></div>
                                         </ul>
                                     </form>   
@@ -180,7 +180,7 @@
                                             <li>                  
                                                     <form action="${pageContext.request.contextPath}/product/search.do">
                                                 <ul class="nav navbar-nav">
-                                                    <div class="search_form" ><input style="border-radius: 10px;border:none;" type="text" placeholder="Search product..." name="productName"/>
+                                                    <div class="search_form" ><input class="search_but" type="text" placeholder="Search product..." name="productName"/>
                                                         <button type="submit" style="border:none; background-color: #F2C2DC;height:30px ;width:40px;"><i class="bi bi-search"></i></button></div>
                                                 </ul>
                                             </form>   
@@ -254,7 +254,7 @@
 
                                     <form action="${pageContext.request.contextPath}/product/search.do">
                                         <ul class="nav navbar-nav">
-                                            <div class="search_form" ><input style="border-radius: 10px;border:none;" type="text" placeholder="Search product..." name="productName"/>
+                                            <div class="search_form" ><input class="search_but" type="text" placeholder="Search product..." name="productName"/>
                                                 <button type="submit" style="border:none; background-color: #F2C2DC;height:30px ;width:40px;"><i class="bi bi-search"></i></button></div>
                                         </ul>
                                     </form>   

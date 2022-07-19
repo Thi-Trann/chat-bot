@@ -8,7 +8,7 @@ and open the template in the editor.
     Author     : quckh
 */
 
-.login_form {
+.comfirm_form {
     text-align: center;
     min-width: 350px;
     max-width: 450px;
@@ -16,114 +16,23 @@ and open the template in the editor.
     margin: 0 auto;
     margin-top: 100px;
     border-radius: 50px;
-    height: 400px;
+    height: 350px;
     background-color:#F2C2DC;
 }
-.login_header{
-    padding-top: 10px;
-    width: 695px;
-    height: 75px;
-    font-size: 32px;
-    font-weight: bold;
+.title{
+    padding-top:10px;
 }
 
-.con_header{
-    padding-top:20px;
-    font-size: 20px;
-    font-weight: bold;
-    
-}
 .conf{
     margin-top: 50px;
 }
 .contit{
-  
+
     font-weight: bold;
+
+}
+.input{
+    width: 200px;
     
 }
 
-.userName{
-    text-indent: 20px; 
-    width: 400px;
-    height: 50px;
-    border-radius: 50px;
-    border:none;
-}
-.password{
-    margin-top: 15px;
-    text-indent: 20px;
-    width: 400px;
-    height: 50px;
-    border-radius: 50px;
-}
-.login_button{
-    width: 250px;
-    height: 50px;
-    border-radius: 50px;
-    background-color: #47D2E9;
-    transition: all 0.5s;
-    cursor: pointer;
-    margin: 5px;
-    border: none;
-    margin-top:10px;
-}
-
-.login_button span {
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    transition: 0.5s;
-}
-
-.login_button span:after {
-    content: '\00bb';
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    right: -20px;
-    transition: 0.5s;
-}
-
-.login_button:hover span {
-    padding-right: 25px;
-}
-
-.login_button:hover span:after {
-    opacity: 1;
-    right: 0;
-}
-.register_button{
-    width: 250px;
-    height: 50px;
-    border-radius: 50px;
-    background-color: #f0bc4d;
-    transition: all 0.5s;
-    cursor: pointer;
-    margin: 5px;
-    margin-bottom: 20px;
-}
-
-.register_button span {
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    transition: 0.5s;
-}
-
-.register_button span:after {
-    content: '\00bb';
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    right: -20px;
-    transition: 0.5s;
-}
-
-.register_button:hover span {
-    padding-right: 25px;
-}
-
-.register_button:hover span:after {
-    opacity: 1;
-    right: 0;
-}

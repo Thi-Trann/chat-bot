@@ -10,16 +10,17 @@
     <head>
         <meta charset="UTF-8">
         <link href="${root}/css/confirm.css" rel="stylesheet" type="text/css"/>
+        <link href="${root}/css/same_login.css" rel="stylesheet" type="text/css"/>
     </head>
     <body style="background-image: url(/chatbot-test/images/layout.jpg); background-size: cover;">
         <!--        header-->
-        <div class="login_form">
+        <div class="comfirm_form">
            
-            <div class="conf">
+            <div class="flex flex-col justify-conter items-center px-5">
             <form action="${pageContext.request.contextPath}/register/confirm.do" method="post">
-                <p class="con_header" >Verify Account</p>
+                <div class="title" >Verify Account</div>
                 <br>
-                <h6 class ="contit">Verification code </h6>
+                <div class ="message">Verification code </div>
                 <input type="hidden" name="id" value="${id}">
                 <input type="hidden" name="name" value="${name}">
                 <input type="hidden" name="address" value="${address}">
@@ -30,13 +31,13 @@
                 <input type="hidden" name="pw" value="${pw}">
                 <input type="hidden" name="role" value="${role}">
                 <input type="hidden" name="vcode" value="${vcode}">
-                <input class="userName" id="ab1" type="text" placeholder="Enter your code " name="inputcode"><br/> <br/> 
-                ${codemess}
-                <button  class="login_button" type="submit"><span>Confirm</span></button>
+                <input class="input" id="ab1" type="text" placeholder="Enter your code " name="inputcode"><br/> <br/> 
+                <div class="warning">${codemess}</div>
+                <button  class="button" type="submit"><span>Confirm</span></button>
                 
             </form>
         </div>
         </div>
               
 </html>
-<p >${mess}</p><br/>
+<div class="warning" >${mess}</div><br/>

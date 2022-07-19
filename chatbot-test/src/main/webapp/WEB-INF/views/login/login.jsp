@@ -10,7 +10,8 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <link href="${root}/css/login.css" rel="stylesheet" type="text/css"/>      
+        <link href="${root}/css/login.css" rel="stylesheet" type="text/css"/>  
+        <link href="${root}/css/same_login.css" rel="stylesheet" type="text/css"/>  
     </head>
     <body class="background">
         <input type="hidden" id ="resu" value${sucmess}>
@@ -19,11 +20,12 @@ and open the template in the editor.
         <div class="login_form">
             <div class="flex flex-col justify-conter items-center px-5">
             <form action="${pageContext.request.contextPath}/login/login_handler.do" method="post" class="w-full flex flex-col items-center" >
-                <h2 style="font-weight: bold; font-size: 30px; text-align: center;">Login</h2>
+                
+                <div class="title">Login</div>
          
                 
-                <input class="userName" value="${userName}" type="text" placeholder="Enter Username" name="userName">
-                <input class="password" value="${password}" type="password" placeholder="Enter Password" name="password">
+                <input class="input" value="${userName}" type="text" placeholder="Enter Username" name="userName">
+                <input class="input" value="${password}" type="password" placeholder="Enter Password" name="password">
                 
                 <label style="">
                     <input type="checkbox" checked="checked" name="rememberMe"> Remember me
@@ -31,11 +33,11 @@ and open the template in the editor.
                 <a   href="<c:url value="/login/forget.do"/>" style="text-align: center; font-size:12px">Forgot your password? Click here</a>
                 
                
-                <p style="text-align: left; color: red">${mess}</p><br/>
-                <button style="" class="login_button" type="submit"><span>Login</span></button>
+                <p class="warning">${mess}</p><br/>
+                <button style="" class="button" type="submit"><span>Login</span></button>
             </form>
             <form action="${root}/register/index.do">
-                <button style="" type="submit" class="register_button"><span>Register</span></button>
+                <button style="" type="submit" class="button"><span>Register</span></button>
             </form>
             </div>
         </div>

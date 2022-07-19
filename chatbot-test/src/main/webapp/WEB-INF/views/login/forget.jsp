@@ -11,22 +11,26 @@
     <head>
         <meta charset="UTF-8">
         <link href="${root}/css/forget.css" rel="stylesheet" type="text/css"/>
+        <link href="${root}/css/same_login.css" rel="stylesheet" type="text/css"/>  
     </head>
     <body style="background-image: url(/chatbot-test/images/layout.jpg); background-size: cover;">
         <div class="forget_form">
+            <div class="flex flex-col justify-conter items-center px-5">
         <form action="${pageContext.request.contextPath}/login/forget_handler.do" method="post">
             <div >
-                <p class="title">Find your account</p>
+                <div class="title">Find your account</div>
                 
                 <div class="message">Please enter your email or mobile number to search for your account.</div>
-                <input class="input_forget" type="email" name="email" placeholder="Enter your Email" ><br>
-                <div style="text-align: center; margin-top: 10px;" > ${mess}</div>
+                
+                <input class="input" type="email" name="email" placeholder="Enter your Email" ><br>
+                <p class="warning"> ${mess}</p>
               
-                <button type="submit" class="find_button"><span>Find</span></button><br/>
-                <button type="submit" class="cancel_button" formaction="<c:url value="/login/login.do"/>"><span>Cancel</span></button>
+                <button type="submit" class="button"><span>Find</span></button><br/>
+                <button type="submit" class="button" formaction="<c:url value="/login/login.do"/>"><span>Cancel</span></button>
        
         </div>
         </form>
+            </div>
     </div>
 </body>
 </html>
