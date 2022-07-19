@@ -10,17 +10,14 @@ import entities.Chatbot;
 import entities.OrderHeader;
 import entities.Product;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import sessionbean.AccountFacade;
 import sessionbean.ChatbotFacade;
 import sessionbean.OrderHeaderFacade;
@@ -122,6 +119,9 @@ public class AdminController extends HttpServlet {
             case "addNewProduct_handler":
                 addNewProduct_handler(request, response);
                 break;
+            case "deleteCustomer":
+                deleteCustomer(request, response);
+                break;
             default:
                 request.setAttribute("controller", "error");
                 request.setAttribute("action", "index");
@@ -131,7 +131,6 @@ public class AdminController extends HttpServlet {
 
     private void manageEmployees(HttpServletRequest request, HttpServletResponse response) {
         response.setContentType("text/html;charset=UTF-8");
-
         String role = "EMPLOYEE";
         List<Account> elist = new ArrayList<>();
         List<Account> list = af.findAll();
@@ -145,7 +144,6 @@ public class AdminController extends HttpServlet {
 
     private void manageCustomers(HttpServletRequest request, HttpServletResponse response) {
         response.setContentType("text/html;charset=UTF-8");
-
         String role = "CUSTOMER";
         List<Account> clist = new ArrayList<>();
         List<Account> list = af.findAll();
@@ -274,7 +272,6 @@ public class AdminController extends HttpServlet {
         List<Account> list = af.findAll();
         String name = request.getParameter("name");
         String address = request.getParameter("address");
-        int length = address.length();
         String phoneNumber = request.getParameter("phoneNumber");
         String email = request.getParameter("email");
         String gender = request.getParameter("gender");
@@ -370,7 +367,6 @@ public class AdminController extends HttpServlet {
     private void updateChatbot(HttpServletRequest request, HttpServletResponse response) {
         String key = request.getParameter("key").trim().toLowerCase();
         List<Chatbot> list = cbf.findAll();
-        List botList = new ArrayList();
         for (Chatbot p : list) {
             if (p.getKeyword().trim().toLowerCase().equals(key)) {
                 request.setAttribute("keyword", key);
@@ -400,11 +396,9 @@ public class AdminController extends HttpServlet {
         manageChabot(request, response);
         request.setAttribute("controller", "admin");
         request.setAttribute("action", "manageChatbot");
-
     }
 
     private void index(HttpServletRequest request, HttpServletResponse response) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private void addChatbot(HttpServletRequest request, HttpServletResponse response) {
@@ -425,7 +419,7 @@ public class AdminController extends HttpServlet {
     }
 
     private void addNewProduct_handler(HttpServletRequest request, HttpServletResponse response) {
-        Product product = null;
+        Product product;
         int id = getTotalID() + 1;
         String name = request.getParameter("name");
         String description = request.getParameter("description");
@@ -437,7 +431,6 @@ public class AdminController extends HttpServlet {
         manageProducts(request, response);
         request.setAttribute("controller", "admin");
         request.setAttribute("action", "manageProducts");
-
     }
 
     private int getTotalID() {
@@ -447,5 +440,18 @@ public class AdminController extends HttpServlet {
             sum += i;
         }
         return sum;
+    }
+
+    private void deleteCustomer(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("idCus"));
+        List<Account> list = af.findAll();
+        for(Account acc : list){
+            if(acc.getId().equals(id)){
+                af.remove(acc);
+            }
+        }
+        manageCustomers(request, response);
+        request.setAttribute("controller", "admin");
+        request.setAttribute("action", "manageCustomers");
     }
 }
