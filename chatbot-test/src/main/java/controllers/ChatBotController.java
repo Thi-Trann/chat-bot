@@ -96,7 +96,7 @@ public class ChatBotController extends HttpServlet {
                                 + "<form method =\"post\" action=\"/chatbot-test/product/detail.do\">"
                                 + "<button style=\"background: white;color : black;border-radius: 5px;\" type=\"submit\">"
                                 + " <input type=\"hidden\" value=\"" + p.getId() + "\" name=\"id\"/>"
-                                + "<img  src=\"/chatbot-test/images/products/" + p.getId() + ".jpg\" width=\"50%\" /><br/>"
+                                + "<img  src=\"" + p.getImg()+ "\" width=\"50%\" /><br/>"
                                 + "Discount:" + p.getDiscount() * 100 + "%" + "<br/>\n"
                                 + "Price: <strike> " + formatter.format(p.getPrice()) + "</strike></br>"
                                 + "<span style=\"color:red;font-size:20px;\">\n"
