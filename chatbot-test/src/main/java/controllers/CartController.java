@@ -77,7 +77,7 @@ public class CartController extends HttpServlet {
             case "add":
                 add(request, response);
                 break;
-                case "add_chatbot":
+            case "add_chatbot":
                 add_chatbot(request, response);
                 break;
             case "update":
@@ -95,6 +95,9 @@ public class CartController extends HttpServlet {
             case "success":
                 success(request, response);
                 break;
+            case "addFromIndex":
+                addFromIndex(request, response);
+                break;
             default:
                 request.setAttribute("controller", "error");
                 request.setAttribute("action", "index");
@@ -103,10 +106,10 @@ public class CartController extends HttpServlet {
     }
 
     private void index(HttpServletRequest request, HttpServletResponse response) {
-        HttpSession session = request.getSession();   
+        HttpSession session = request.getSession();
         Cart cart = (Cart) session.getAttribute("cart");
-        if(cart !=null){
-        cart.check();
+        if (cart != null) {
+            cart.check();
         }
     }
 
@@ -120,7 +123,6 @@ public class CartController extends HttpServlet {
         if (cart == null) {//Nếu trong session chưa có cart thì tạo mới cart
             cart = new Cart();
             session.setAttribute("cart", cart);
-
         }
         //Thêm item vào cart
         cart.add(id, quantity);
@@ -137,11 +139,11 @@ public class CartController extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         double price = Double.parseDouble(request.getParameter("price"));
         double discount = Double.parseDouble(request.getParameter("discount"));
-        
+
         HttpSession session = request.getSession();
         Cart cart = (Cart) session.getAttribute("cart");
         //Xoa item trong cart
-        cart.delete(id,price,discount);
+        cart.delete(id, price, discount);
         //Cho hien cart/index.jsp
 
         request.setAttribute("action", "index");
@@ -152,7 +154,7 @@ public class CartController extends HttpServlet {
         int quantity = Integer.parseInt(request.getParameter("quantity"));
         double price = Double.parseDouble(request.getParameter("price"));
         double discount = Double.parseDouble(request.getParameter("discount"));
-        
+
         //debug
         System.out.println(price);
         System.out.println(discount);
@@ -160,7 +162,7 @@ public class CartController extends HttpServlet {
         HttpSession session = request.getSession();
         Cart cart = (Cart) session.getAttribute("cart");
         //Xoa item trong cart
-        cart.update(id, quantity,price,discount);
+        cart.update(id, quantity, price, discount);
         //Cho hien cart/index.jsp controller
         request.setAttribute("action", "index");
     }
@@ -296,7 +298,7 @@ public class CartController extends HttpServlet {
     }
 
     private void add_chatbot(HttpServletRequest request, HttpServletResponse response) {
-         //Lấy thông tin từ client gửi lên
+        //Lấy thông tin từ client gửi lên
         int id = Integer.parseInt(request.getParameter("id"));
         int quantity = Integer.parseInt(request.getParameter("quantity"));
         //Lấy cart từ session        
@@ -311,6 +313,27 @@ public class CartController extends HttpServlet {
         //Để cart vào session
         //Cho hiện view home/index.jsp
         request.setAttribute("controller", "cart");
+        request.setAttribute("action", "index");
+        //Đọc danh sách sản phẩm
+        List<Product> list = pf.findAll();
+        request.setAttribute("list", list);
+    }
+
+    private void addFromIndex(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        int quantity = 1;
+        //Lấy cart từ session        
+        HttpSession session = request.getSession();
+        Cart cart = (Cart) session.getAttribute("cart");
+        if (cart == null) {//Nếu trong session chưa có cart thì tạo mới cart
+            cart = new Cart();
+            session.setAttribute("cart", cart);
+        }
+        //Thêm item vào cart
+        cart.add(id, quantity);
+        //Để cart vào session
+        //Cho hiện view home/index.jsp
+        request.setAttribute("controller", "product");
         request.setAttribute("action", "index");
         //Đọc danh sách sản phẩm
         List<Product> list = pf.findAll();

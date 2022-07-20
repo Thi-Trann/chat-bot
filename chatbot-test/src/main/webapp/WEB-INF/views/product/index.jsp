@@ -32,8 +32,8 @@ and open the template in the editor.
                                         <c:if test="${product.discount == 0/100}">
                                             Price: <fmt:formatNumber value="${product.price}" pattern="$#,##0.00" /><br/>
                                         </c:if>
-                                        <!--                    Quantity: <input type="number" value="1" name="quantity" style="width:80px;" /><br/>-->
-                                        <!--                    <button type="submit" class="btn btn-sm btn-info" style="margin-top: 20px"><i class="bi bi-cart-plus"></i> Add to Cart</button>-->
+                                        <input type="hidden" name="id" value="${product.id}" >
+                                        <button formaction="${pageContext.request.contextPath}/cart/addFromIndex.do" class="btn btn-sm btn-info" style="margin-top: 20px"><i class="bi bi-cart-plus"></i> Add to Cart</button>
                                     </button>
                                 </form>       
                             </div>
