@@ -19,7 +19,7 @@ and open the template in the editor.
                             <div class="card">  
                                 <form method ="post" action="${pageContext.request.contextPath}/product/detail.do">
                                     <button style="background: white;color : black;" type="submit">
-                                        <div class="img_scale" ><img src="${product.img}" width="90%" /></div><br/>                    
+                                        <div class="img_scale" ><img src="${product.img}" style="width: 90%; height: 250px" /></div><br/>                    
                                         <input type="hidden" value="${product.id}" name="id"/>
                                         Name: ${product.name}<br/>
                                         <c:if test="${product.discount > 0/100}">
@@ -27,14 +27,16 @@ and open the template in the editor.
                                             Price: <strike><fmt:formatNumber value="${product.price}" pattern="$#,##0.00" /></strike>
                                             <span style="color:red;font-size:20px;">
                                                 <fmt:formatNumber value="${product.price*(1 - product.discount)}" pattern="$#,##0.00" />
-                                            </span><br/>
+                                            </span>
+                                            <input type="hidden" name="id" value="${product.id}" >
+
+                                            <button formaction="${pageContext.request.contextPath}/cart/addFromIndex.do" class="btn btn-sm btn-info" style="margin-top: 20px"><i class="bi bi-cart-plus"></i> Add to Cart</button>
                                         </c:if>
                                         <c:if test="${product.discount == 0/100}">
                                             Price: <fmt:formatNumber value="${product.price}" pattern="$#,##0.00" /><br/>
+                                            <input type="hidden" name="id" value="${product.id}" >
+                                            <button formaction="${pageContext.request.contextPath}/cart/addFromIndex.do" class="btn btn-sm btn-info" style="margin-top: 50px"><i class="bi bi-cart-plus"></i> Add to Cart</button>
                                         </c:if>
-                                        <input type="hidden" name="id" value="${product.id}" >
-                                        <button formaction="${pageContext.request.contextPath}/cart/addFromIndex.do" class="btn btn-sm btn-info" style="margin-top: 20px"><i class="bi bi-cart-plus"></i> Add to Cart</button>
-                                    </button>
                                 </form>       
                             </div>
                         </div>
