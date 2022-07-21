@@ -303,9 +303,9 @@
                     <c:forEach var="chat" items="${sessionScope.CHAT_SESSION}">
 
                         <c:set var="btMsg" value="${chat.getBotMsg()}"/>
-                        <c:set var="botMsgSplit" value="${fn:split(btMsg, '-')}"/>
+                        <c:set var="botMsgSplit" value="${fn:split(btMsg, '*')}"/>
                         <c:choose>
-                            <c:when test="${fn:contains(btMsg, '-')}"> 
+                            <c:when test="${fn:contains(btMsg, '*')}"> 
                                 <c:choose>
                                     <c:when test="${not empty chat.getuInput()}">
                                         <script type="text/javascript">
@@ -320,13 +320,13 @@
                                             <form method ="post" action="/chatbot-test/product/detail.do">
                                             <button style="background:white; color:black;" type="submit">
                                             <input type="hidden" value="${botMsgSplit[0]}" name="id"/>
-                                            <img  src="/chatbot-test/images/products/${botMsgSplit[0]}.jpg" width=50%/><br/>
+                                            <img  src="${botMsgSplit[5]}" width=50%/><br/>
                                             Discount:${botMsgSplit[3]}%<br/>\n
                                             Price: <strike><fmt:formatNumber value="${botMsgSplit[2]}" pattern="$#,##0.00" /></strike></br>
                                             <span style="color:red;font-size:20px;">\n<fmt:formatNumber value="${botMsgSplit[4]}" pattern="$#,##0.00" /></span><br/>
                                             </button>\n
                                             <input name='quantity' type='hidden' value='1'/>
-                                            <button formaction=\"/chatbot-test/cart/add_chatbot.do\" style=\"border-radius: 5px;background: #212529;color: #fff;margin: 10px 5px 0 7px;font-size: 15px;padding: 2px 27px;border: solid 2px #212529;transition: all 0.5s ease-in-out 0s;\" type=\"submit\" class=\"round-black-btn\">Add to Cart</button>
+                                            <button formaction=\"/chatbot-test/cart/add_chatbot.do\" style=\"border-radius: 5px;background: #212529;color: #fff;margin: 10px 5px 0 12px;font-size: 15px;padding: 2px 27px;border: solid 2px #212529;transition: all 0.5s ease-in-out 0s;\" type=\"submit\" class=\"round-black-btn\">Add to Cart</button>
                                             </form>
                                             </span>
                                             </div>`;
@@ -343,7 +343,7 @@
                                             <form method ="post" action="/chatbot-test/product/detail.do">
                                             <button style="background:white; color:black;" type="submit">
                                             <input type="hidden" value="${botMsgSplit[0]}" name="id"/>
-                                            <img  src="/chatbot-test/images/products/${botMsgSplit[0]}.jpg" width=50%/><br/>
+                                            <img  src="${botMsgSplit[5]}" width=50%/><br/>
                                             Discount:${botMsgSplit[3]}%<br/>\n
                                             Price: <strike><fmt:formatNumber value="${botMsgSplit[2]}" pattern="$#,##0.00" /></strike></br>
                                             <span style="color:red;font-size:20px;">\n<fmt:formatNumber value="${botMsgSplit[4]}" pattern="$#,##0.00" /></span><br/>
