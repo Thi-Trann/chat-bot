@@ -141,7 +141,7 @@ public class AdminController extends HttpServlet {
         }
         request.setAttribute("elist", elist);
     }
-
+    
     private void manageCustomers(HttpServletRequest request, HttpServletResponse response) {
         response.setContentType("text/html;charset=UTF-8");
         String role = "CUSTOMER";
@@ -154,7 +154,7 @@ public class AdminController extends HttpServlet {
         }
         request.setAttribute("clist", clist);
     }
-
+    
     private void generateNewEmployee(HttpServletRequest request, HttpServletResponse response) {
 
     }
@@ -199,7 +199,6 @@ public class AdminController extends HttpServlet {
         String gender = request.getParameter("gender");
         int id = list.size() + 1;
         String role = "EMPLOYEE";
-        List<Account> rlist = new ArrayList<>();
 
         for (Account account : list) {
             if (uname.equals(account.getUserName())) {
@@ -267,7 +266,6 @@ public class AdminController extends HttpServlet {
     }
 
     private void updateEmployee_handler(HttpServletRequest request, HttpServletResponse response) {
-        boolean flag = false;
         int id = Integer.parseInt(request.getParameter("id"));
         List<Account> list = af.findAll();
         String name = request.getParameter("name");
@@ -332,8 +330,8 @@ public class AdminController extends HttpServlet {
         String description = request.getParameter("productDescription");
         double price = Double.parseDouble(request.getParameter("productPrice"));
         double discount = Double.parseDouble(request.getParameter("productDiscount"));
-        String img = request.getParameter("img");
-        Product p = new Product(id, name, description, price, discount, img);
+        String img = request.getParameter("image");
+        Product p = new Product(id, name, description, price, discount / 100, img);
         pf.edit(p);
         manageProducts(request, response);
         request.setAttribute("controller", "admin");
@@ -361,7 +359,6 @@ public class AdminController extends HttpServlet {
             cblist.add(bot);
             request.setAttribute("cblist", cblist);
         }
-
     }
 
     private void updateChatbot(HttpServletRequest request, HttpServletResponse response) {
@@ -426,7 +423,7 @@ public class AdminController extends HttpServlet {
         double price = Double.parseDouble(request.getParameter("price"));
         double discount = Double.parseDouble(request.getParameter("discount"));
         String img = request.getParameter("image");
-        product = new Product(id, name, description, price, discount, img);
+        product = new Product(id, name, description, price, discount / 100, img);
         pf.create(product);
         manageProducts(request, response);
         request.setAttribute("controller", "admin");
@@ -445,8 +442,8 @@ public class AdminController extends HttpServlet {
     private void deleteCustomer(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("idCus"));
         List<Account> list = af.findAll();
-        for(Account acc : list){
-            if(acc.getId().equals(id)){
+        for (Account acc : list) {
+            if (acc.getId().equals(id)) {
                 af.remove(acc);
             }
         }

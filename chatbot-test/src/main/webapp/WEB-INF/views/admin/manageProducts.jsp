@@ -24,7 +24,8 @@
             <thead>
                 <tr>
                     <th>No.</th>
-                    <td>ID</td>
+                    <th>ID</th>
+                    <th>Image</th>
                     <th>Name</th>
                     <th>Description</th>
                     <th>Price</th>
@@ -37,6 +38,7 @@
                     <tr>
                         <td>${loop.count}</td>
                         <td>${product.id}</td>
+                        <td><image src="${product.img}" style="width: 10%;"/></td>
                         <td>${product.name}</td>
                         <td>${product.description}</td>
                         <td><fmt:formatNumber value="${product.price}" pattern="$#,##0.00"/></td>
@@ -45,7 +47,7 @@
                             <form>
                                 <input type="hidden" value="${product.id}" name="pid"/>
                                 <button formaction="${pageContext.request.contextPath}/admin/updateProduct.do">Update</button>
-                                <button formaction="${pageContext.request.contextPath}/admin/deleteProduct.do">Delete</button>
+                                <button formaction="${pageContext.request.contextPath}/admin/deleteProduct.do"style="width: 73px;">Delete</button>
                             </form>
                         </td>
                     </tr>

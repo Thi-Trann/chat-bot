@@ -23,7 +23,6 @@
                         </nav>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="card mb-4">
@@ -34,12 +33,10 @@
                                 <p class="text-muted mb-1">${roleuser}</p>
                                 <p class="text-muted mb-4">${addr}</p>
                                 <div class="d-flex justify-content-center mb-2">
-
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     <div class="col-lg-8">
                         <div class="card mb-4">
                             <div class="card-body">
@@ -91,7 +88,6 @@
                                     </div>
                                     <hr>
                                 </form>
-
                             </div>
                         </div>
                     </div>

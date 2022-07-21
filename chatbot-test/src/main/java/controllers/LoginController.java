@@ -138,12 +138,10 @@ public class LoginController extends HttpServlet {
         Cookie cUserName = null;
         Cookie cPassword = null;
         Cookie[] cookies = null;
-
         List<Account> list = af.findAll();
         boolean flag = false;
         // Get an array of Cookies associated with the this domain
         cookies = request.getCookies();
-
         if (cookies != null) {
             for (int i = 0; i < cookies.length; i++) {
                 cookie = cookies[i];
@@ -154,7 +152,6 @@ public class LoginController extends HttpServlet {
                 }
             }
         }
-
         for (Account acc : list) {
             if (cUserName != null
                     && cPassword != null
@@ -190,7 +187,6 @@ public class LoginController extends HttpServlet {
         HttpSession session = request.getSession();
         String role;
         boolean rememberMe = request.getParameter("rememberMe") != null;
-
         if (rememberMe) {
             for (Account acc : list) {
                 if (userName.equals(acc.getUserName()) && password.equals(acc.getPassword()) && acc.getRole().equals("CUSTOMER")) {
@@ -229,7 +225,6 @@ public class LoginController extends HttpServlet {
                     //
                     flag = true;
                 }
-
                 if (userName.equals(acc.getUserName()) && password.equals(acc.getPassword()) && acc.getRole().equals("EMPLOYEE")) {
                     request.setAttribute("controller", "home");
                     request.setAttribute("action", "index");
@@ -248,7 +243,6 @@ public class LoginController extends HttpServlet {
                     //
                     flag = true;
                 }
-
             }
         } else {
             for (Account acc : list) {
@@ -283,11 +277,8 @@ public class LoginController extends HttpServlet {
                     session.setAttribute("roleuser", role);
                     flag = true;
                 }
-
             }
-
         }
-
         if (!flag) {
             request.setAttribute("controller", "login");
             request.setAttribute("action", "login");
@@ -300,10 +291,7 @@ public class LoginController extends HttpServlet {
     }
 
     private void logout(HttpServletRequest request, HttpServletResponse response) {
-        HttpSession session = request.getSession();
- 
-        
-        
+        HttpSession session = request.getSession(); 
         ///
                 Cookie[] cookies = request.getCookies();
         if (cookies != null) {
@@ -376,7 +364,6 @@ public class LoginController extends HttpServlet {
         int id;
         boolean flag = false;
         List<Account> list = af.findAll();
-
         for (Account account : list) {
             if (account.getEmail().equals(email)) {
                 id = account.getId();
@@ -388,7 +375,6 @@ public class LoginController extends HttpServlet {
                 flag = true;
             }
         }
-
         if (!flag) {
             request.setAttribute("mess", "Wrong email address or email does not exist!");
             request.setAttribute("controller", "login");
@@ -404,15 +390,12 @@ public class LoginController extends HttpServlet {
             request.setAttribute("id", id);
             request.setAttribute("controller", "login");
             request.setAttribute("action", "resetpw");
-
         } else {
             request.setAttribute("id", id);
             request.setAttribute("vcode", vcode);
-
             request.setAttribute("codemess", "Wrong verification code !!!");
             request.setAttribute("controller", "login");
             request.setAttribute("action", "confirm");
-
         }
     }
 

@@ -39,67 +39,68 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-8">
-                            <div class="card mb-4">
-                                <div class="card-body">
-                                    <h3 style="text-align: center;">Detail</h3>
-                                    <br>
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <p class="mb-0">Name</p>
+                        <form>
+
+                            <div class="col-lg-8">
+                                <div class="card mb-4">
+                                    <div class="card-body">
+                                        <h3 style="text-align: center;">Detail</h3>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0">Name</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="text-muted mb-0"><input type="text" name="productName" value="${x.name}"required/></p>
+                                            </div>
                                         </div>
-                                        <div class="col-sm-9">
-                                            <p class="text-muted mb-0"><input type="text" name="productName" value="${x.name}"/></p>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0">Description</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="text-muted mb-0"><input type="text" name="productDescription" value="${x.description}"required/></p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <p class="mb-0">Description</p>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0">Price</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="text-muted mb-0"><input step=".01" type="number" name="productPrice" value="${x.price}"required/></p>
+                                            </div>
                                         </div>
-                                        <div class="col-sm-9">
-                                            <p class="text-muted mb-0"><input type="text" name="productDescription" value="${x.description}"/></p>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0">Discount</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="text-muted mb-0"><input type="text" min="0" max="1" step=".01" name="productDiscount" value="${x.discount}"required/> </p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <p class="mb-0">Price</p>
+                                        <hr/>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <p class="mb-0">Image</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <p class="text-muted mb-0"><input type="text" name="image" value="${x.img}"required/> </p>
+                                            </div>
                                         </div>
-                                        <div class="col-sm-9">
-                                            <p class="text-muted mb-0"><input step=".01" type="number" name="productPrice" value="${x.price}"/></p>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <p class="mb-0">Discount</p>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            <p class="text-muted mb-0"><input type="number" min="0" max="1" step=".01" name="productDiscount" value="${x.discount}"/> </p>
-                                        </div>
-                                    </div>
-                                    <hr/>
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <p class="mb-0">Image</p>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            <p class="text-muted mb-0"><input type="text" name="image" value="${x.img}"/> </p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-9">
-                                            <form>
+                                        <div class="row">
+                                            <div class="col-sm-9">
                                                 <input type="hidden" value="${x.id}" name="id"/>
                                                 <button formaction="${pageContext.request.contextPath}/admin/updateProductHandler.do">Save</button>
-                                            </form>
+                                            </div>
                                         </div>
 
-                                    </div>
-                                </div>      
+                                    </div> 
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </c:forEach>

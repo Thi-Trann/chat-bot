@@ -6,7 +6,9 @@
 package controllers;
 
 import entities.Account;
+import entities.OrderHeader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -16,6 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import sessionbean.AccountFacade;
+import sessionbean.OrderDetailFacade;
+import sessionbean.OrderHeaderFacade;
 
 /**
  *
@@ -23,6 +27,12 @@ import sessionbean.AccountFacade;
  */
 @WebServlet(name = "UserController", urlPatterns = {"/user"})
 public class UserController extends HttpServlet {
+
+    @EJB(name = "odf")
+    private OrderDetailFacade odf;
+
+    @EJB(name = "ohf")
+    private OrderHeaderFacade ohf;
 
     @EJB
     private AccountFacade af;
@@ -49,6 +59,9 @@ public class UserController extends HttpServlet {
                 break;
             case "update_handler":
                 update_handler(request, response);
+                break;
+            case "paymentHistory":
+                paymentHistory(request, response);
                 break;
             default:
                 request.setAttribute("controller", "error");
@@ -151,5 +164,18 @@ public class UserController extends HttpServlet {
             }
         }
 
+    }
+
+    private void paymentHistory(HttpServletRequest request, HttpServletResponse response) {
+        List<OrderHeader> listOrderHeader = ohf.findAll();
+        List<OrderHeader> list2 = new ArrayList<>();;
+        HttpSession session = request.getSession();
+        int id = (int) session.getAttribute("iduser");
+        for (OrderHeader oh : listOrderHeader) {
+            if (id == oh.getCustomerId()) {
+                list2.add(new OrderHeader(oh.getOrderId(), oh.getDate(), oh.getStatus(), oh.getCustomerId(), oh.getStaffId(), oh.getShipToAddress()));
+                request.setAttribute("oh", list2);
+            }
+        }
     }
 }

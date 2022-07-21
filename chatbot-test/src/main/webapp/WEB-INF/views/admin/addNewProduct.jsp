@@ -53,7 +53,7 @@
                                             <p class="mb-0">Name</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0"><input type="text" name="name"/></p>
+                                            <p class="text-muted mb-0"><input type="text" name="name"required/></p>
                                         </div>
                                     </div>
                                     <hr>
@@ -62,7 +62,7 @@
                                             <p class="mb-0">Description</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0"><input type="text" name="description"/></p>
+                                            <p class="text-muted mb-0"><input type="text" name="description"required/></p>
                                         </div>
                                     </div>
                                     <hr>
@@ -71,7 +71,7 @@
                                             <p class="mb-0">Price</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0"><input type="number" name="price"/></p>
+                                            <p class="text-muted mb-0"><input type="number" name="price"required/></p>
                                         </div>
                                     </div>
                                     <hr>
@@ -80,7 +80,7 @@
                                             <p class="mb-0">Discount</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0"><input type="text" name="discount"/></p>
+                                            <p class="text-muted mb-0"><input type="text" name="discount"required/></p>
                                         </div>
                                     </div>
                                     <hr>
@@ -89,7 +89,7 @@
                                             <p class="mb-0">Image</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0"><input type="text" name="image"/></p>
+                                            <p class="text-muted mb-0"><input type="text" name="image"required/></p>
                                         </div>
                                     </div>
                                     <hr>

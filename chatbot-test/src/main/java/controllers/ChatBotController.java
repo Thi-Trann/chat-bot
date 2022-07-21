@@ -54,7 +54,6 @@ public class ChatBotController extends HttpServlet {
         PrintWriter out = response.getWriter();
         List<Product> listProduct = pf.findAll();
         List<Chatbot> listChatbot = cf.findAll();
-
         String uInput;
         String botMsg;
         Chat chat;
@@ -63,7 +62,7 @@ public class ChatBotController extends HttpServlet {
         int DupChatCount = 0;
         uInput = request.getParameter("uInput");
         for (Chatbot c : listChatbot) {
-            if (uInput.toLowerCase().equals(c.getKeyword())) {
+            if (uInput.toLowerCase().contains(c.getKeyword())) {
                 botMsg = (String) c.getContent();
                 chat = new Chat(uInput, botMsg);
                 chatSession.add(chat);
@@ -75,7 +74,7 @@ public class ChatBotController extends HttpServlet {
                 out.println("<div class=\"incoming-msg\"> <span class=\"bot-msg\">See you later!</span></div>\n");
                 session.invalidate();
                 return;
-            } else {
+            }else {
                 String InitUInput = uInput;
                 DupChatCount = 0;
                 for (Product p : listProduct) {

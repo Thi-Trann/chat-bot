@@ -42,13 +42,12 @@
                             <h3 style="text-align: center;">Chatbot</h3>
                             <br>
                             <form>
-
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <p class="mb-0">Keyword</p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-muted mb-0"><input type="text" name="keyword"/></p>
+                                        <p class="text-muted mb-0"><input type="text" name="keyword"required/></p>
                                     </div>
                                 </div>
                                 <hr>
@@ -57,7 +56,7 @@
                                         <p class="mb-0">Content</p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-muted mb-0"><input type="text" name="content"/></p>
+                                        <p class="text-muted mb-0"><input type="text" name="content"required/></p>
                                     </div>
                                 </div>
                                 <hr>

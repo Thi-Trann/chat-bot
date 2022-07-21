@@ -12,16 +12,25 @@ package entities;
 public class Chat {
     private String uInput;
     private String botMsg;
-
+    private String bUInput;
     public Chat(){
         uInput="";
         botMsg="";
+        bUInput = uInput;
     }
     
     public Chat(String uInput, String botMsg){
         this.uInput = uInput;
         this.botMsg = botMsg;
     }
+
+    public Chat(String uInput, String botMsg, String bUInput) {
+        this.uInput = uInput;
+        this.botMsg = botMsg;
+        this.bUInput = bUInput;
+    }
+    
+    
     
     public String getuInput() {
         return uInput;
