@@ -46,45 +46,70 @@
                         
 <!--                            <script>var name =${item.id} +"a";document.write(name);</script>-->
                         <c:set var = "abc" scope = "session" value = "${item.id+loop.count}a"></c:set>
-
-                            <form method="post" action="update.do" id='${abc}' >
+                        <c:set var = "x" scope = "session" value = "${item.id+loop.count}ab"></c:set>
+                        <c:if test="${item.status == 'new' }">     
+                            <form  action="update.do" id='${abc}' >
                             
                             
-                            <c:if test="${item.status == 'new' }">     
+                            
                             
                             <input type="hidden" name="id"  value=${item.id} >
                             <input type="hidden" name="price"  value=${item.price} >
                             <input type="hidden" name="discount"  value=${item.discount} >
                             
-                            <input  onclick="var result = document.getElementById('${loop.count}');
+                            <input  onclick="var result = document.getElementById('${x}');
                                     var qty = result.value;
                                     if (qty > 1)
                                         result.value--;
                                     document.getElementById('${abc}').submit();
                                     return false;
                                    " type='button' value='-'  />
-                            <input id="${loop.count}" onkeypress='validatePhone(event)' onblur='autoup()'   style="width:50px;"  min="1" name="quantity" type="text" value="${item.quantity}" required />
+                            <input  id="${x}" onkeypress='validatePhone(event)' 
+                                    onblur='
+                                    var result = document.getElementById("${x}");
+                                    var qty = result.value;
+                                    if (isNaN(qty) === true || qty === "" || qty == 0) {
+                                        document.getElementById("${x}").value = 1;
+                                        document.getElementById("${abc}").submit();
+                                        
+                                    } else {
+                                        document.getElementById("${abc}").submit();
+                                        
+//                                   
+                                    }'
+                                    
+                                    
+                                    
+                                    
+                                    style="width:50px;"  min="1" maxlength="7" name="quantity" type="text" value="${item.quantity}" required />
+                            
+                            
+                            
+                            
+                            
                             
                             <script>
                                 function autoup() {
 
-                                    var result = document.getElementById('${loop.count}');
+                                    var result = document.getElementById('${x}');
                                     var qty = result.value;
                                     if (isNaN(qty) === true || qty === "") {
-                                        document.getElementById('${loop.count}').value = 1;
+                                        document.getElementById('${x}').value = 1;
                                         document.getElementById('${abc}').submit();
+                                        
                                     } else {
                                         document.getElementById('${abc}').submit();
+                                        
 //                                   
                                     }
 
-
+                                    
 
 
                                 }
                             </script>
 
-                            <input onclick="var result = document.getElementById('${loop.count}');
+                            <input onclick="var result = document.getElementById('${x}');
                                     var qty = result.value;
                                     if (!isNaN(qty))
                                         result.value++;
@@ -94,7 +119,7 @@
 
 
 
-
+                            </form>
                             </c:if>
                             
                             
@@ -104,22 +129,22 @@
                             <input type="hidden" name="price"  value=${item.price} >
                             <input type="hidden" name="discount"  value=${item.discount} >
                             
-                            <input disabled  onclick="var result = document.getElementById('${loop.count}');
+                            <input disabled  onclick="var result = document.getElementById('${x}');
                                     var qty = result.value;
                                     if (qty > 1)
                                         result.value--;
                                     document.getElementById('${abc}').submit();
                                     return false;
                                    " type='button' value='-'  />
-                            <input disabled id="${loop.count}" onkeypress='validatePhone(event)' onblur='autoup()'   style="width:50px;"  min="1" name="quantity" type="text" value="${item.quantity}" required />
+                            <input disabled id="${x}" onkeypress='validatePhone(event)' onblur='autoup()'   style="width:50px;"  min="1" name="quantity" type="text" value="${item.quantity}" required />
                             
                             <script>
                                 function autoup() {
 
-                                    var result = document.getElementById('${loop.count}');
+                                    var result = document.getElementById('${x}');
                                     var qty = result.value;
                                     if (isNaN(qty) === true || qty === "") {
-                                        document.getElementById('${loop.count}').value = 1;
+                                        document.getElementById('${x}').value = 1;
                                         document.getElementById('${abc}').submit();
                                     } else {
                                         document.getElementById('${abc}').submit();
@@ -132,7 +157,7 @@
                                 }
                             </script>
 
-                            <input disabled onclick="var result = document.getElementById('${loop.count}');
+                            <input disabled onclick="var result = document.getElementById('${x}');
                                     var qty = result.value;
                                     if (!isNaN(qty))
                                         result.value++;
@@ -148,9 +173,14 @@
 
 <!--                            <td class="text-right"><input type="number" value="${item.quantity}" style="width: 65px; text-align: right;"name="quantity" /></td>-->
                     <td style=" text-align: center; color: red; padding-top: 20px;"><fmt:formatNumber value="${item.cost}" pattern="$#,##0.00" /></td>
-                    <td style=" text-align: center; padding-top: 15px;">                               
+                    <td style=" text-align: center; padding-top: 15px;"> 
+                        <form>
+                             <input type="hidden" name="id"  value=${item.id} >
+                            <input type="hidden" name="price"  value=${item.price} >
+                            <input type="hidden" name="discount"  value=${item.discount} >
                         <button type="submit" class="btn btn-link" formaction="<c:url value="/cart/delete.do"/>">Delete<i class="bi bi-trash"></i></button>
-                    </td>
+                    </form>
+                        </td>
 
                 </tr>
 
