@@ -87,7 +87,8 @@
                                     </div>
                                     <div class="col-sm-9">
                                         <form>
-                                            <button formaction="${pageContext.request.contextPath}/user/update.do">Edit</button>
+                                            <button style="border-radius: 10px; border:none;width: 80px; height: 40px;background-color: #F2C2DC "  
+                                            formaction="${pageContext.request.contextPath}/user/update.do">Edit</button>
                                         </form>
                                     </div>
                                 </div>
