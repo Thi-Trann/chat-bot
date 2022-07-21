@@ -6,6 +6,7 @@
 package controllers;
 
 import entities.Account;
+import entities.OrderDetail;
 import entities.OrderHeader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -62,6 +63,9 @@ public class UserController extends HttpServlet {
                 break;
             case "paymentHistory":
                 paymentHistory(request, response);
+                break;
+            case "orderDetail":
+                orderDetail(request, response);
                 break;
             default:
                 request.setAttribute("controller", "error");
@@ -176,6 +180,18 @@ public class UserController extends HttpServlet {
                 list2.add(new OrderHeader(oh.getOrderId(), oh.getDate(), oh.getStatus(), oh.getCustomerId(), oh.getStaffId(), oh.getShipToAddress()));
                 request.setAttribute("oh", list2);
             }
+        }
+    }
+
+    private void orderDetail(HttpServletRequest request, HttpServletResponse response) {
+        int orderID = Integer.parseInt(request.getParameter("orderID"));
+        List<OrderDetail> listOrderDetail = odf.findAll();
+        List<OrderDetail> list2 = new ArrayList<>();
+        for(OrderDetail od : listOrderDetail){
+            if(orderID == od.getOrderId()){
+                list2.add(new OrderDetail(orderID, od.getProductId(), od.getQuantity(), od.getPrice(), od.getDiscount()));
+                request.setAttribute("od", list2);
+           }
         }
     }
 }

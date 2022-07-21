@@ -23,6 +23,7 @@
                     <th>Customer Id</th>
                     <th>Staff Id</th>
                     <th>Ship to</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -34,9 +35,13 @@
                         <td>${oh.customerId}</td>
                         <td>${oh.staffId}</td>
                         <td>${oh.shipToAddress}</td>
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
-    </body>
+                <form action="${pageContext.request.contextPath}/user/orderDetail.do">
+                    <input type="hidden" name="orderID" value="${oh.orderId}"/>
+                    <td><button style="border: none"><i class="bi bi-eye"></i></button></td>
+                </form>
+            </tr>
+        </c:forEach>
+    </tbody>
+</table>
+</body>
 </html>
