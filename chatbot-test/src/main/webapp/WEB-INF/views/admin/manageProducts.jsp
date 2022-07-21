@@ -30,7 +30,7 @@
                     <th>Description</th>
                     <th>Price</th>
                     <th>Discount</th>
-                    <th>Operation</th>
+                    <th style="text-align: center">Operation</th>
                 </tr>
             </thead>
             <tbody>
@@ -46,8 +46,8 @@
                         <td>
                             <form>
                                 <input type="hidden" value="${product.id}" name="pid"/>
-                                <button formaction="${pageContext.request.contextPath}/admin/updateProduct.do">Update</button>
-                                <button formaction="${pageContext.request.contextPath}/admin/deleteProduct.do"style="width: 73px;">Delete</button>
+                                <button formaction="${pageContext.request.contextPath}/admin/updateProduct.do" style="width: 100px;border-radius: 25px;">Update</button>
+                                <button formaction="${pageContext.request.contextPath}/admin/deleteProduct.do"style="width: 100px;border-radius: 25px;">Delete</button>
                             </form>
                         </td>
                     </tr>
