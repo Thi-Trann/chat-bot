@@ -126,29 +126,27 @@
                                         <li><a href="<c:url value="/cart/index.do"/>"class="text-dark"><i class="bi bi-cart"></i> Cart :<c:if test="${cart.numOfProducts==null}"> 0 </c:if><c:if test="${cart.numOfProducts!=null}"> ${cart.numOfProducts} </c:if> 
                                                     product(s)</a></li>
                                         </ul>
-                                    <c:if test="${login_success == null}">
-                                        
-                                        <ul class="nav navbar-nav navbar-right">
-                                            <li><a href="<c:url value="/login/login.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                                        </ul>
-                                    </c:if>
-                                    <c:if test="${login_success != null}">
-                                        <ul class="nav navbar-nav navbar-right">
-                                            <li><a href="<c:url value="/login/logout.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-                                        </ul>
-                                        <ul class="nav navbar-nav navbar-right">
-                                            <li><a href="<c:url value="/user/index.do"/>"class="text-dark">Profile</a></li>
-                                        </ul>
-                                    </c:if>
-
+                                  
 
                                     <form action="${pageContext.request.contextPath}/product/search.do">
                                         <ul class="nav navbar-nav">
                                             <div class="search_form" style="margin-top:5px;"><input class="search_but" type="text" placeholder="Search product..." name="productName"/>
                                                 <button type="submit" style="border:none; background-color: #F2C2DC;height:30px ;width:40px;"><i class="bi bi-search"></i></button></div>
                                         </ul>
-                                    </form>   
+                                    </form >  
+                      <!--         profile list-->
 
+                                        <ul class="menu2 nav navbar-nav navbar-right">
+                                            <li><a href=""><i class="bi bi-list"></i></a>
+                                                <ul>
+                                                    <li><a href="<c:url value="/user/index.do"/>"class="text-dark">Profile</a></li>
+                                                    <li><a href="">Support</a></li>
+                                                    <li><a href="">History</a></li>
+                                                    <li><a href="<c:url value="/login/logout.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                                                </ul>
+                                            </li>
+
+                                        </ul>          
                                 </div>
                             </div>
                         </nav>  
@@ -185,9 +183,10 @@
                                                 </ul>
                                             </form>   
                                         </li>
+                                     
                                     </ul>
                                     <c:if test="${login_success == null}">
-                                        
+
                                         <ul class="nav navbar-nav navbar-right">
                                             <li><a href="<c:url value="/login/login.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                                         </ul>
@@ -233,23 +232,7 @@
                                         <li><a href="<c:url value="/cart/index.do"/>"class="text-dark"><i class="bi bi-cart"></i> Cart :<c:if test="${cart.numOfProducts==null}"> 0 </c:if><c:if test="${cart.numOfProducts!=null}"> ${cart.numOfProducts} </c:if> 
                                                     product(s)</a></li>
                                         </ul>
-                                    <c:if test="${login_success == null}">
-                                       
-                                        <ul class="nav navbar-nav navbar-right">
-                                            <li><a href="<c:url value="/login/login.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                                        </ul>
-                                    </c:if>
-                                    <c:if test="${login_success != null}">
-                                        <ul class="nav navbar-nav navbar-right">
-                                            <li><a href="<c:url value="/login/logout.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-                                        </ul>
-                                        <ul class="nav navbar-nav navbar-right">
-                                            <li style="margin-top: 15px;">${userName}</li>
-                                        </ul>
-                                        <ul class="nav navbar-nav navbar-right" style="margin-right: 1%; ">
-                                            <li><a href="<c:url value="/emp/index.do"/>"class="text-dark"> Work</a></li>
-                                        </ul>
-                                    </c:if>
+                                    
 
 
                                     <form action="${pageContext.request.contextPath}/product/search.do">
@@ -258,7 +241,20 @@
                                                 <button type="submit" style="border:none; background-color: #F2C2DC;height:30px ;width:40px;"><i class="bi bi-search"></i></button></div>
                                         </ul>
                                     </form>   
+                                      <!--         profile list-->
 
+                                        <ul class="menu2 nav navbar-nav navbar-right">
+                                            <li><a href=""><i class="bi bi-list"></i></a>
+                                                <ul>
+                                                    <li><a href="<c:url value="/user/index.do"/>"class="text-dark">Profile</a></li>
+                                                    <li><a href="<c:url value="/emp/index.do"/>"class="text-dark"> Work</a></li>
+                                                    <li><a href="">Support</a></li>
+                                                    <li><a href="">History</a></li>
+                                                    <li><a href="<c:url value="/login/logout.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                                                </ul>
+                                            </li>
+
+                                        </ul>         
                                 </div>
                             </div>
                         </nav>  
