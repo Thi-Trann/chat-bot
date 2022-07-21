@@ -15,13 +15,15 @@
         <link href="${root}/css/btnChatbotManage.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
+        <h1 style="padding: 4px;">Manage Chatbot</h1>
+        <hr/>
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th>No.</th>
                     <th>Keyword</th>
                     <th>Content</th>
-                    <th>Operation</th>
+                    <th style="padding-left: 50px;">Operation</th>
                 </tr>
             </thead>
             <tbody>
@@ -33,8 +35,8 @@
                         <td>
                             <form>
                                 <input type="hidden" value="${c.keyword}" name="key"/>
-                                <button formaction="${pageContext.request.contextPath}/admin/updateChatbot.do">Update</button>
-                                <button formaction="${pageContext.request.contextPath}/admin/deleteChatbot.do">Delete</button>
+                                <button formaction="${pageContext.request.contextPath}/admin/updateChatbot.do" style="width: 100px;border-radius: 25px;">Update</button>
+                                <button formaction="${pageContext.request.contextPath}/admin/deleteChatbot.do" style="width: 100px;border-radius: 25px;">Delete</button>
                             </form>    
                         </td>
                     </tr>

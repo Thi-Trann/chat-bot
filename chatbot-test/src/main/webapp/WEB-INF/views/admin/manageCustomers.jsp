@@ -31,7 +31,7 @@
                             <th>Email</th>
                             <th>Gender</th>
                             <th>Username</th>
-                            <th>Manage</th>
+                            <th style="padding-left: 20px;">Manage</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -47,7 +47,7 @@
                                 <td>
                                     <form action="${pageContext.request.contextPath}/admin/deleteCustomer.do" method="post">
                                         <input type="hidden" value="${clist.id}" name="idCus"/>
-                                        <button class="manage_btn"><i class="bi bi-eraser"></i> Ban</button>
+                                        <button class="manage_btn" style="width: 100px;border-radius: 25px;"><i class="bi bi-eraser"></i> Ban</button>
                                     </form>
                                 </td>
                             </tr>

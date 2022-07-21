@@ -18,19 +18,28 @@
             <div class="register_form">
                 <div style="margin-left: 32px; ">
                     Name: 
-                    <input style="margin-left: 66px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px; border: none;" type="text" name="name" placeholder="Enter employee name" required/><br/><br/>
+                    <input style="margin-left: 95px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px; border: none;" 
+                           type="text" name="name" placeholder="Enter employee name" required/><br/><br/>
                     User name:
-                    <input style="margin-left: 35px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="text" name="uName" placeholder="Enter user name" required /><br/>${messuname}<br/>
+                    <input style="margin-left: 50px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none; margin-bottom: 10px;" 
+                           type="text" name="uName" placeholder="Enter user name" required /><br/>
+                    <div style="color:red; margin: 10px 0 10px 0;">${messuname}</div>
                     Password:
-                    <input style="margin-left: 41px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="password" name="password" placeholder="Enter employee password" required/><br/><br/>
+                    <input style="margin-left: 60px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" 
+                           type="password" name="password" placeholder="Enter employee password" required/><br/><br/>
                     Verify Password:
-                    <input style="margin-left: 2px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="password" name="vpassword" placeholder="Verify employee password" required /><br/>${messpass}<br/>
+                    <input style="margin-left: 10px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none; margin-bottom: 10px;" 
+                           type="password" name="vpassword" placeholder="Verify employee password" required />
+                   <div style="color:red ;margin: 10px 0 10px 0;" >${messpass}</div>
                     Address:
-                    <input style="margin-left: 51px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="text" name="address" placeholder="Enter employee address"  maxlength="300"  required/><br/><br/>          
+                    <input style="margin-left: 70px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" 
+                           type="text" name="address" placeholder="Enter employee address"  maxlength="300"  required/><br/><br/>          
                     Email:
-                    <input style="margin-left: 68px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="email"  name="email" placeholder="Enter employee email" required /><br/><br/>
+                    <input style="margin-left: 90px;width: 400px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" 
+                           type="email"  name="email" placeholder="Enter employee email" required /><br/><br/>
                     Phone number:
-                    <input style="margin-left: 12px;width: 170px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" type="text" onkeypress='validatePhone(event)' maxlength="10" name="phone" placeholder="Enter phone number" required/>
+                    <input style="margin-left: 20px;width: 180px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;" 
+                           type="text" onkeypress='validatePhone(event)' maxlength="10" name="phone" placeholder="Enter phone number" required/>
                     Gender:
                     <select name="gender" style="margin-left: 5px;width: 165px; height: 50px; border-radius: 50px; text-indent: 20px;border: none;">
                         <option>Male</option>
