@@ -68,18 +68,24 @@ public class ChatBotController extends HttpServlet {
         HttpSession session = request.getSession();
         boolean flag = false;
         boolean flagProduct = true;
-        int DupChatCount = 0;
+        int DupChatCount;
+        String preMsg = (String) session.getAttribute("PREVIOUS");
         uInput = request.getParameter("uInput");
-        //check for chatbot db answers
+        //check for chatbot db-based answers
         for (Chatbot c : listChatbot) {
-            if (uInput.toLowerCase().contains(c.getKeyword())) {
+            if (uInput.toLowerCase().equals(c.getKeyword())) {
                 botMsg = c.getContent();
+                if("search".equals(preMsg)){
+                    session.setAttribute("PREVIOUS", null);
+                    break;
+                }
                 chat = new Chat(uInput, botMsg);
                 chatSession.add(chat);
                 session.setAttribute("CHAT_SESSION", chatSession);
                 out.println("<div class=\"incoming-msg\"> <span class=\"bot-msg\">" + chat.getBotMsg() + "</span></div>\n");
                 flag = true;
                 flagProduct = false;
+                session.setAttribute("PREVIOUS", uInput);
             }
         }
         //end chat session
@@ -88,7 +94,8 @@ public class ChatBotController extends HttpServlet {
             session.invalidate();
             return;
             //find product
-        } else if (flagProduct) {
+        }
+        if (flagProduct) {
             String InitUInput = uInput;
             DupChatCount = 0;
             for (Product p : listProduct) {

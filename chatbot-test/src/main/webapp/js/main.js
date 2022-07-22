@@ -42,7 +42,8 @@ $(txtMsg).keyup(function (event) {
 
 $(submitBtn).click(function () {
     var userInput = $(txtMsg).val();
-    if (userInput === "") {
+    if (!userInput.trim()) {
+        eraseText();
         return;
     } else {
         var myMsg = `
@@ -54,7 +55,7 @@ $(submitBtn).click(function () {
         $.ajax({
             url: "/chatbot-test/chatbot",
             data: {
-                uInput: userInput
+                uInput: userInput.trim()
             },
             cache: false,
             type: "GET",
