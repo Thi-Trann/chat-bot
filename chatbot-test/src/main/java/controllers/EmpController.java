@@ -184,17 +184,8 @@ public class EmpController extends HttpServlet {
 //                orlist.add(od);
                  order x = new order(od.getQuantity(),od.getPrice(),od.getDiscount(),product.getImg());
                  temp.add(x);
-             }
-         
-         
-         
-         
+             }        
          }
-         
-        
-        
-        
-        
         for (Account st : list) {
             if (cid == st.getId()) {
                 request.setAttribute("name", st.getName());
@@ -203,13 +194,9 @@ public class EmpController extends HttpServlet {
                 request.setAttribute("addr", st.getAddress());
                 request.setAttribute("gender", st.getGender());
             }
-        }
-            
-            
-            
+        }    
         request.setAttribute("total",total);      
         request.setAttribute("orlist",temp);   
-        
         request.setAttribute("controller", "emp");
         request.setAttribute("action", "Odetail");
     }
