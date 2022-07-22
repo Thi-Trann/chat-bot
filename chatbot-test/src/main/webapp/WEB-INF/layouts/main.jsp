@@ -126,9 +126,9 @@
                                         <li><a href="<c:url value="/cart/index.do"/>"class="text-dark"><i class="bi bi-cart"></i> Cart :<c:if test="${cart.numOfProducts==null}"> 0 </c:if><c:if test="${cart.numOfProducts!=null}"> ${cart.numOfProducts} </c:if> 
                                                     product(s)</a></li>
                                         </ul>
-                                                    
-                                                    
-                                     <c:if test="${login_success == null}">
+
+
+                                    <c:if test="${login_success == null}">
 
                                         <ul class="nav navbar-nav navbar-right">
                                             <li><a href="<c:url value="/login/login.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
@@ -140,20 +140,20 @@
                                                 <ul style="list-style-type: none;">
                                                     <li><a  href="<c:url value="/user/index.do"/>"class="text-dark"><i class="bi bi-person-circle"></i> Profile</a></li>
                                                     <li><a href="" class="text-dark"><i class="bi bi-question-circle-fill"></i> Support</a></li>
-                                                    <li><a href="" class="text-dark"><i class="bi bi-clock-history"></i> History</a></li>
+                                                    <li><a href="<c:url value="/user/paymentHistory.do"/>" class="text-dark"><i class="bi bi-clock-history"></i> Payment history</a></li>
                                                     <li><a href="<c:url value="/login/logout.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
                                                 </ul>
                                             </li>
                                         </ul>                                          
                                     </c:if>                
-                                                    
+
                                     <form action="${pageContext.request.contextPath}/product/search.do" style="margin-top:5px;">
                                         <ul class="nav navbar-nav">
                                             <div class="search_form" style="margin-top:5px;"><input class="search_but" type="text" placeholder="Search product..." name="productName"/>
                                                 <button type="submit" style="border:none; background-color: #F2C2DC;height:30px ;width:40px;"><i class="bi bi-search"></i></button></div>
                                         </ul>
                                     </form >  
-          
+
                                 </div>
                             </div>
                         </nav>  
@@ -190,7 +190,7 @@
                                                 </ul>
                                             </form>   
                                         </li>
-                                     
+
                                     </ul>
                                     <c:if test="${login_success == null}">
 
@@ -249,8 +249,8 @@
                                         <ul class="menu2 right">
                                             <li><a href="<c:url value="/"/>"><i class="bi bi-person-lines-fill"></i></a>
                                                 <ul style="list-style-type: none;">
-                                                    <li><a href="<c:url value="/user/index.do"/>"class="text-dark"><i class="bi bi-person-circle"></i> Profile</a></li>
-                                                    <li><a href="<c:url value="/emp/index.do"/>"class="text-dark"><i class="bi bi-journal-check"></i> Work</a></li>
+                                                    <li><a href="<c:url value="/emp/index.do"/>"class="text-dark"><i class="bi bi-person-circle"></i> Profile</a></li>
+                                                    <li><a href="<c:url value="/emp/checkbill.do"/>"class="text-dark"><i class="bi bi-journal-check"></i> Work</a></li>
                                                     <li><a href="" class="text-dark"><i class="bi bi-question-circle-fill"></i> Support</a></li>
                                                     <li><a href="" class="text-dark"><i class="bi bi-clock-history"></i> History</a></li>
                                                     <li><a href="<c:url value="/login/logout.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
@@ -261,7 +261,7 @@
                                     </c:if>
 
 
-                                                <form action="${pageContext.request.contextPath}/product/search.do" style="margin-top:10px;">
+                                    <form action="${pageContext.request.contextPath}/product/search.do" style="margin-top:10px;">
                                         <ul class="nav navbar-nav">
                                             <div class="search_form" ><input class="search_but" type="text" placeholder="Search product..." name="productName"/>
                                                 <button type="submit" style="border:none; background-color: #F2C2DC;height:30px ;width:40px;"><i class="bi bi-search"></i></button></div>
@@ -301,7 +301,6 @@
             <c:if test="${sessionScope.CHAT_SESSION != null}">
                 <c:if test="${not empty sessionScope.CHAT_SESSION}">
                     <c:forEach var="chat" items="${sessionScope.CHAT_SESSION}">
-
                         <c:set var="btMsg" value="${chat.getBotMsg()}"/>
                         <c:set var="botMsgSplit" value="${fn:split(btMsg, '*')}"/>
                         <c:choose>
@@ -313,7 +312,6 @@
                                             var myMsg = `<div class="out-msg">
                                             <span class="my-msg">${chat.getuInput()}</span>
                                             </div>`;
-
                                             chatArea.insertAdjacentHTML("beforeend", myMsg);
                                             var botMsg = `<div class="incoming-msg">
                                             <span class="bot-msg">
@@ -331,7 +329,6 @@
                                             </span>
                                             </div>`;
                                             chatArea.insertAdjacentHTML("beforeend", botMsg);
-
                                             chatArea.scrollTop = chatArea.scrollHeight;
                                         </script>
                                     </c:when>
@@ -385,9 +382,6 @@
                 <button class="submit-btn"  style="padding-left: 8px"> <i class="material-icons"> send</i></button>
             </div>
         </div>
-
-
-
     </section>
     <script>
         var acc = document.getElementsByClassName("accordion");

@@ -8,6 +8,7 @@ package controllers;
 import entities.Account;
 import entities.OrderDetail;
 import entities.OrderHeader;
+import entities.Product;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,9 +19,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import order.order;
 import sessionbean.AccountFacade;
 import sessionbean.OrderDetailFacade;
 import sessionbean.OrderHeaderFacade;
+import sessionbean.ProductFacade;
 
 /**
  *
@@ -28,6 +31,9 @@ import sessionbean.OrderHeaderFacade;
  */
 @WebServlet(name = "UserController", urlPatterns = {"/user"})
 public class UserController extends HttpServlet {
+
+    @EJB
+    private ProductFacade pf;
 
     @EJB(name = "odf")
     private OrderDetailFacade odf;
@@ -184,14 +190,36 @@ public class UserController extends HttpServlet {
     }
 
     private void orderDetail(HttpServletRequest request, HttpServletResponse response) {
-        int orderID = Integer.parseInt(request.getParameter("orderID"));
-        List<OrderDetail> listOrderDetail = odf.findAll();
-        List<OrderDetail> list2 = new ArrayList<>();
-        for(OrderDetail od : listOrderDetail){
-            if(orderID == od.getOrderId()){
-                list2.add(new OrderDetail(orderID, od.getProductId(), od.getQuantity(), od.getPrice(), od.getDiscount()));
-                request.setAttribute("od", list2);
-           }
+        List<Account> list = af.findAll();
+        List<OrderDetail> ord = odf.findAll();
+        List<OrderDetail> orlist = new ArrayList();
+        List<order> temp = new ArrayList();
+
+        int orid = Integer.parseInt(request.getParameter("orderID"));
+        HttpSession session = request.getSession();
+        int id = (int) session.getAttribute("iduser");
+        double total = 0;
+        for (OrderDetail od : ord) {
+            if (orid == od.getOrderId()) {
+                total += od.getPrice() * (1 - od.getDiscount()) * od.getQuantity();
+                Product product = pf.find(od.getProductId());
+//                orlist.add(od);
+                order x = new order(od.getQuantity(), od.getPrice(), od.getDiscount(), product.getImg());
+                temp.add(x);
+            }
         }
+        for (Account acc : list) {
+            if (acc.getId().equals(id)) {
+                request.setAttribute("name", acc.getName());
+                request.setAttribute("email", acc.getEmail());
+                request.setAttribute("phone", acc.getPhone());
+                request.setAttribute("addr", acc.getAddress());
+                request.setAttribute("gender", acc.getGender());
+            }
+        }
+        request.setAttribute("total", total);
+        request.setAttribute("orlist", temp);
+        request.setAttribute("controller", "emp");
+        request.setAttribute("action", "Odetail");
     }
 }
