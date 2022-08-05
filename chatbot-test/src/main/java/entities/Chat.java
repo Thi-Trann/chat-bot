@@ -5,6 +5,10 @@
  */
 package entities;
 
+import java.util.ArrayList;
+import java.util.List;
+import order.order;
+
 /**
  *
  * @author Admin
@@ -12,11 +16,11 @@ package entities;
 public class Chat {
     private String uInput;
     private String botMsg;
-    private String bUInput;
+    private List<order> order;
     public Chat(){
         uInput="";
         botMsg="";
-        bUInput = uInput;
+        order = new ArrayList();
     }
     
     public Chat(String uInput, String botMsg){
@@ -24,14 +28,12 @@ public class Chat {
         this.botMsg = botMsg;
     }
 
-    public Chat(String uInput, String botMsg, String bUInput) {
+    public Chat(String uInput, String botMsg, List<order> order) {
         this.uInput = uInput;
         this.botMsg = botMsg;
-        this.bUInput = bUInput;
+        this.order = order;
     }
-    
-    
-    
+       
     public String getuInput() {
         return uInput;
     }
@@ -47,6 +49,12 @@ public class Chat {
     public void setBotMsg(String botMsg) {
         this.botMsg = botMsg;
     }
-    
-    
+
+    public void setOrder(List<order> order) {
+        this.order = order;
+    }
+
+    public List<order> getOrder() {
+        return order;
+    }   
 }

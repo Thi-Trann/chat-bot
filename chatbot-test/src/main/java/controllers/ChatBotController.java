@@ -7,6 +7,8 @@ package controllers;
 
 import entities.Chat;
 import entities.Chatbot;
+import entities.OrderDetail;
+import entities.OrderHeader;
 import entities.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,6 +23,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import order.order;
 import sessionbean.ChatbotFacade;
 import sessionbean.OrderDetailFacade;
 import sessionbean.OrderHeaderFacade;
@@ -62,12 +65,17 @@ public class ChatBotController extends HttpServlet {
         PrintWriter out = response.getWriter();
         List<Product> listProduct = pf.findAll();
         List<Chatbot> listChatbot = cf.findAll();
+        List<OrderHeader> listOH = ohf.findAll();
+        List<OrderDetail> listOD = odf.findAll();
+        order order;
+        List<order> temp = new ArrayList();
         String uInput;
         String botMsg;
         Chat chat;
         HttpSession session = request.getSession();
         boolean flag = false;
         boolean flagProduct = true;
+        boolean flagOrder = true;
         int DupChatCount;
         String preMsg = (String) session.getAttribute("PREVIOUS");
         uInput = request.getParameter("uInput");
@@ -75,16 +83,18 @@ public class ChatBotController extends HttpServlet {
         for (Chatbot c : listChatbot) {
             if (uInput.toLowerCase().equals(c.getKeyword())) {
                 botMsg = c.getContent();
-                if("search".equals(preMsg)){
+                if ("search".equals(preMsg) || "find my order".equals(preMsg)) {
                     session.setAttribute("PREVIOUS", null);
                     break;
                 }
+
                 chat = new Chat(uInput, botMsg);
                 chatSession.add(chat);
                 session.setAttribute("CHAT_SESSION", chatSession);
                 out.println("<div class=\"incoming-msg\"> <span class=\"bot-msg\">" + chat.getBotMsg() + "</span></div>\n");
                 flag = true;
                 flagProduct = false;
+                flagOrder = false;
                 session.setAttribute("PREVIOUS", uInput);
             }
         }
@@ -127,12 +137,59 @@ public class ChatBotController extends HttpServlet {
                             + " <button formaction=\"/chatbot-test/cart/add_chatbot.do\" style=\"border-radius: 5px;background: #212529;color: #fff;margin: 10px 5px 0 12px;font-size: 15px;padding: 2px 27px;border: solid 2px #212529;transition: all 0.5s ease-in-out 0s;\" type=\"submit\" class=\"round-black-btn\">Add to Cart</button>"
                             + "</span></form></div>");
                     flag = true;
+                    flagOrder = false;
+                    session.setAttribute("PREVIOUS", "product");
                 }
             }
         }
-        
+
+        if (flagOrder) {
+            double total = 0;
+            if (uInput.matches("[0-9]+")) {
+                int ordID = Integer.valueOf(uInput);
+                String status = null;
+                for (OrderHeader oh : listOH) {
+                    if (oh.getOrderId() == ordID) {
+                        status = oh.getStatus();
+                    }
+                }
+                out.println(
+                        "<div class =\"incoming-msg\"> "
+                        + "<span class =\"bot-msg\">"
+                        + "Order status: </br>" + status + "</br></br>"
+                );
+                for (OrderDetail od : listOD) {
+                    if (od.getOrderId() == ordID) {
+                        NumberFormat formatter = new DecimalFormat("$#,##0.00");
+                        total += od.getPrice() * (1 - od.getDiscount()) * od.getQuantity();
+                        Product product = pf.find(od.getProductId());
+                        double finalPrice = product.getPrice() * (1 - product.getDiscount());
+                        order = new order(od.getQuantity(), od.getPrice(), od.getDiscount(), product.getImg());
+                        temp.add(order);
+                        out.println(
+                                "<div class=\"row\" style=\"margin-left: 1px\">"
+                                + "<div class=\"col-6\"><p class=\"mb-0\">" + product.getName() + "</p></div>"
+                                + "<div class=\"col-3\"><p class=\"mb-0\">X" + od.getQuantity() + "</p></div>"
+                                + "<div class=\"col-5\"><p class=\"mb-0\">" + formatter.format(finalPrice) + "</p></div>"
+                                + "</div>"
+                        );
+                    }
+                }
+                out.println(
+                        "<h3>Total: $" + total + "</h3>"
+                        + "</span></div>");
+                botMsg = status;
+                session.setAttribute("PREVIOUS", "order");
+                chat = new Chat(uInput, botMsg, temp);
+                chatSession.add(chat);
+                flag = true;
+            } else {
+                flag = false;
+            }
+        }
+
         if (flag == false) {
-            botMsg = (String)"I don't understand</br>Bot inputs:</br>- search: find products in the shop</br>- find my order: find order using order ID</br>Try again!";
+            botMsg = (String) "I don't understand</br>Bot inputs:</br>- search: find products in the shop</br>- find my order: find order using order ID</br>Try again!";
             chat = new Chat(uInput, botMsg);
             chatSession.add(chat);
             session.setAttribute("CHAT_SESSION", chatSession);

@@ -296,11 +296,13 @@
                 <div class="incoming-msg">
                     <span class="bot-msg">Hi, I'm Chatbot</span>
                     <span class="bot-msg">How can I help you?</span>
+                    <span class="bot-msg">Bot inputs:</br>- search: find products in the shop</br>- find my order: find order using order ID</span>
                 </div>
             </div>
             <c:if test="${sessionScope.CHAT_SESSION != null}">
                 <c:if test="${not empty sessionScope.CHAT_SESSION}">
                     <c:forEach var="chat" items="${sessionScope.CHAT_SESSION}">
+                        <c:set var="uInput" value="${chat.getuInput()}"/>
                         <c:set var="btMsg" value="${chat.getBotMsg()}"/>
                         <c:set var="botMsgSplit" value="${fn:split(btMsg, '*')}"/>
                         <c:choose>
@@ -356,6 +358,23 @@
                                         </script>
                                     </c:otherwise>
                                 </c:choose>
+                            </c:when>
+                            <c:when test="${uInput.matches('[0-9]+')}">
+                                <c:set var="ordList" value="${chat.getOrder()}"/>
+                                <script type="text/javascript">
+                                    chatArea = document.querySelector('.chat-area');
+                                    var myMsg = `<div class="out-msg">
+                                    <span class="my-msg">${chat.getuInput()}</span>
+                                    </div>`;
+                                    chatArea.insertAdjacentHTML("beforeend", myMsg);
+
+                                    var botMsg = `<div class="incoming-msg">
+                                    <span class="bot-msg">${chat.getBotMsg()}</span>
+                                    </div>`;
+                                    chatArea.insertAdjacentHTML("beforeend", botMsg);
+
+                                    chatArea.scrollTop = chatArea.scrollHeight;
+                                </script>
                             </c:when>
                             <c:otherwise>
                                 <script type="text/javascript">
