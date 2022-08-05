@@ -359,23 +359,6 @@
                                     </c:otherwise>
                                 </c:choose>
                             </c:when>
-                            <c:when test="${uInput.matches('[0-9]+')}">
-                                <c:set var="ordList" value="${chat.getOrder()}"/>
-                                <script type="text/javascript">
-                                    chatArea = document.querySelector('.chat-area');
-                                    var myMsg = `<div class="out-msg">
-                                    <span class="my-msg">${chat.getuInput()}</span>
-                                    </div>`;
-                                    chatArea.insertAdjacentHTML("beforeend", myMsg);
-
-                                    var botMsg = `<div class="incoming-msg">
-                                    <span class="bot-msg">${chat.getBotMsg()}</span>
-                                    </div>`;
-                                    chatArea.insertAdjacentHTML("beforeend", botMsg);
-
-                                    chatArea.scrollTop = chatArea.scrollHeight;
-                                </script>
-                            </c:when>
                             <c:otherwise>
                                 <script type="text/javascript">
                                     chatArea = document.querySelector('.chat-area');
