@@ -78,7 +78,7 @@
                                                 <p class="mb-0">Discount</p>
                                             </div>
                                             <div class="col-sm-9">
-                                                <p class="text-muted mb-0"><input type="text" min="0" max="1" step=".01" name="productDiscount" value="${x.discount}"required/> </p>
+                                                <p class="text-muted mb-0"><input type="text" min="0" max="1" step=".01" name="productDiscount" value="${x.discount*100}"required/> </p>
                                             </div>
                                         </div>
                                         <hr/>

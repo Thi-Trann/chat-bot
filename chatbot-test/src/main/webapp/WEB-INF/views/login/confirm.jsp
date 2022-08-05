@@ -20,7 +20,7 @@
             <form action="${pageContext.request.contextPath}/login/confirm.do" method="post">
                 <div class="title">Verify Account</div>
                 <br>
-                <div class ="message">verifycation code </div>
+                <div class ="message">Verification code </div>
                 <input  type="hidden" name="id" value="${id}">
                 <input type="hidden" name="vcode" value="${vcode}">
                 

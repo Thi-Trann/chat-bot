@@ -83,23 +83,28 @@ public class ChatBotController extends HttpServlet {
         for (Chatbot c : listChatbot) {
             if (uInput.toLowerCase().equals(c.getKeyword())) {
                 botMsg = c.getContent();
-                if ("search".equals(preMsg) || "find my order".equals(preMsg)) {
+                if ("search".equals(preMsg)) {
                     session.setAttribute("PREVIOUS", null);
                     break;
                 }
-
+                if("find my order".equals(preMsg)){
+                    session.setAttribute("PREVIOUS", null);
+                    flagProduct = false;
+                    break;
+                } else {
+                    flagProduct = true;
+                }
                 chat = new Chat(uInput, botMsg);
                 chatSession.add(chat);
                 session.setAttribute("CHAT_SESSION", chatSession);
                 out.println("<div class=\"incoming-msg\"> <span class=\"bot-msg\">" + chat.getBotMsg() + "</span></div>\n");
                 flag = true;
-                flagProduct = false;
                 flagOrder = false;
                 session.setAttribute("PREVIOUS", uInput);
             }
         }
         //end chat session
-        if (uInput.equals("end")) {
+        if (uInput.equals("bye")) {
             out.println("<div class=\"incoming-msg\"> <span class=\"bot-msg\">See you later!</span></div>\n");
             session.invalidate();
             return;
@@ -148,12 +153,22 @@ public class ChatBotController extends HttpServlet {
             if (uInput.matches("[0-9]+")) {
                 int ordID = Integer.valueOf(uInput);
                 String status = null;
+                boolean validator = true;
                 for (OrderHeader oh : listOH) {
                     if (oh.getOrderId() == ordID) {
                         status = oh.getStatus();
                     }
                 }
-                out.println(
+                for (OrderDetail od: listOD){
+                    if(od.getOrderId()==ordID){
+                        validator = true;
+                        break;
+                    } else {
+                        validator = false;
+                    }
+                }
+                if(validator){
+                    out.println(
                         "<div class =\"incoming-msg\"> "
                         + "<span class =\"bot-msg\">"
                         + "Order status: </br>" + status + "</br></br>"
@@ -183,13 +198,16 @@ public class ChatBotController extends HttpServlet {
                 chat = new Chat(uInput, botMsg, temp);
                 chatSession.add(chat);
                 flag = true;
+                } else {
+                    flag = false;
+                }
             } else {
                 flag = false;
             }
         }
 
         if (flag == false) {
-            botMsg = (String) "I don't understand</br>Bot inputs:</br>- search: find products in the shop</br>- find my order: find order using order ID</br>Try again!";
+            botMsg = (String) "I don't understand</br>Bot inputs:</br>- search: find products in the shop</br>- find my order: find order using order ID</br>- bye: end chat session</br>Try again!";
             chat = new Chat(uInput, botMsg);
             chatSession.add(chat);
             session.setAttribute("CHAT_SESSION", chatSession);

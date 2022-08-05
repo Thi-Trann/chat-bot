@@ -14,7 +14,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <section style="background-color: #eee;">
+        <section style="background-color: #eee; ">
             <div class="container py-5">
                 <div class="row">
                     <div class="col">
@@ -28,7 +28,7 @@
 
                 <div class="row">
                     <div class="col-lg-4">
-                        <div class="card mb-4">
+                        <div class="card mb-4" style="border-radius: 50px;">
                             <div class="card-body text-center">
                                 <img src="${root}/images/logo.png" height="50" alt="avatar"
                                      class="rounded-circle img-fluid" style="width: 150px;">
@@ -92,7 +92,7 @@
                                         </form>
                                     </div>
                                 </div>
-                                <hr>
+                                
                             </div>
                         </div>
                     </div>

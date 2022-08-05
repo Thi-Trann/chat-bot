@@ -20,7 +20,7 @@
             <div >
                 <div class="title">Find your account</div>
                 
-                <div class="message">Please enter your email or mobile number to search for your account.</div>
+                <div class="message">Please enter your email to search for your account.</div>
                 
                 <input class="input" type="email" name="email" placeholder="Enter your Email" ><br>
                 <p class="warning"> ${mess}</p>

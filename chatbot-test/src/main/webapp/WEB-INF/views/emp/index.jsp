@@ -1,4 +1,4 @@
-<%-- 
+ <%-- 
     Document   : index
     Created on : Jun 28, 2022, 11:28:05 PM
     Author     : SE151515 Cao Trong Hieu
@@ -14,7 +14,7 @@
         <link href="${root}/css/emp.css" rel="stylesheet" type="text/css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <body>
-<section style="background-color: #eee;">
+<section style="background-color: #eee;width: max-content;margin-top: 20px;">
   <div class="container py-5">
     <div class="row">
       <div class="col">
@@ -28,7 +28,7 @@
 
     <div class="row">
       <div class="col-lg-4">
-        <div class="card mb-4">
+        <div class="card mb-4" style="border-radius: 50px;">
           <div class="card-body text-center">
             <img src="${root}/images/logo.png" height="50" alt="avatar"
               class="rounded-circle img-fluid" style="width: 150px;">
@@ -47,7 +47,7 @@
           <div class="card-body">
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">Full Name</p>
+                  <p class="mb-0" style="margin-left: 10px;">Full Name</p>
               </div>
               <div class="col-sm-9">
                 <p class="text-muted mb-0">${name}</p>
@@ -56,7 +56,7 @@
             <hr>
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">Email</p>
+                <p class="mb-0 "  style="margin-left: 10px;">Email</p>
               </div>
               <div class="col-sm-9">
                 <p class="text-muted mb-0">${email}</p>
@@ -65,7 +65,7 @@
             <hr>
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">Phone</p>
+                <p class="mb-0" style="margin-left: 10px;">Phone</p>
               </div>
               <div class="col-sm-9">
                 <p class="text-muted mb-0">${phone}</p>
@@ -74,7 +74,7 @@
             <hr>
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">Address</p>
+                <p class="mb-0"  style="margin-left: 10px;">Address</p>
               </div>
               <div class="col-sm-9">
                 <p class="text-muted mb-0">${addr}</p>
@@ -83,7 +83,7 @@
             <hr>
                         <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">Salary</p>
+                <p class="mb-0"  style="margin-left: 10px;">Salary</p>
               </div>
               <div class="col-sm-9">
                 <p class="text-muted mb-0"><fmt:formatNumber value="${salary}" pattern="$#,##0.00" /></p>

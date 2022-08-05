@@ -26,7 +26,7 @@
 
                 <div class="row">
                     <div class="col-lg-4">
-                        <div class="card mb-4">
+                        <div class="card mb-4" style="border-radius: 50px;">
                             <div class="card-body text-center">
                                 <img src="${root}/images/logo.png" height="50" alt="avatar"
                                      class="rounded-circle img-fluid" style="width: 150px;">
@@ -90,7 +90,7 @@
                                                 formaction="${pageContext.request.contextPath}/user/update_handler.do">Update</button>
                                         </div>
                                     </div>
-                                    <hr>
+                                    
                                 </form>
 
                             </div>

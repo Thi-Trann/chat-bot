@@ -139,7 +139,6 @@
                                             <li><a href="<c:url value="/"/>"><i class="bi bi-person-lines-fill"></i></a>
                                                 <ul style="list-style-type: none;">
                                                     <li><a  href="<c:url value="/user/index.do"/>"class="text-dark"><i class="bi bi-person-circle"></i> Profile</a></li>
-                                                    <li><a href="" class="text-dark"><i class="bi bi-question-circle-fill"></i> Support</a></li>
                                                     <li><a href="<c:url value="/user/paymentHistory.do"/>" class="text-dark"><i class="bi bi-clock-history"></i> Payment history</a></li>
                                                     <li><a href="<c:url value="/login/logout.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
                                                 </ul>
@@ -251,8 +250,6 @@
                                                 <ul style="list-style-type: none;">
                                                     <li><a href="<c:url value="/emp/index.do"/>"class="text-dark"><i class="bi bi-person-circle"></i> Profile</a></li>
                                                     <li><a href="<c:url value="/emp/checkbill.do"/>"class="text-dark"><i class="bi bi-journal-check"></i> Work</a></li>
-                                                    <li><a href="" class="text-dark"><i class="bi bi-question-circle-fill"></i> Support</a></li>
-                                                    <li><a href="" class="text-dark"><i class="bi bi-clock-history"></i> History</a></li>
                                                     <li><a href="<c:url value="/login/logout.do"/>"class="text-dark"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
                                                 </ul>
                                             </li>
@@ -296,7 +293,7 @@
                 <div class="incoming-msg">
                     <span class="bot-msg">Hi, I'm Chatbot</span>
                     <span class="bot-msg">How can I help you?</span>
-                    <span class="bot-msg">Bot inputs:</br>- search: find products in the shop</br>- find my order: find order using order ID</span>
+                    <span class="bot-msg">Bot inputs:</br>- search: find products in the shop</br>- find my order: find order using order ID</br>- bye: end chat session</span>
                 </div>
             </div>
             <c:if test="${sessionScope.CHAT_SESSION != null}">
